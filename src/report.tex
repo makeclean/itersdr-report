@@ -36,7 +36,7 @@
 \begin{document}
 \maketitle
 \newpage
-\tableofcontents
+==\tableofcontents
 \newpage
 \section{Introduction}
 The shutdown doserate in an around the equatorial and upper ports determine the type and duration of maintenance that can be
@@ -69,9 +69,36 @@ All materials in the problem originate from the Clite MCNP model - CLITE\textund
 \subsection{Variance Reduction}
 The weight window parameters were generated using the Oak Ridge National Laboratory (ORNL) code ADVANTG, specifically using DAG-ADVANTG, which allows a DAGMC geometry to be read and the geometry and material data handed off to Denovo. The weight windows used
 for the problem are shown below in Figure \ref{fig:wwinp}. The weight windows were produced using the Forward Weighted Consistent Adjoint Driven Importance Sampling (FW-CADIS), which attempts to produce a weight window map which tries to get particles everywhere int the model, as opposed to CADIS for example, which attempts to get results to a small number of specific regions.
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[scale=0.4]{../plots/wwinp/wwinp_y0.png}
+  \includegraphics[scale=0.3]{../plots/wwinp/wwinp_z0.png}
+  \caption{Slices through the ADVANTG produced weight window through y = 0.0 cm and through z = 0.0 cm}
+  \label{fig:wwinp}
+\end{figure}
+Several artifacts are worthy of note, despite being a deterministic code Denovo has handled the streaming of neutrons along the divertor duct well as shown in left hand image of Figure \ref{fig:wwinp}. The overall span of the weight window is seven orders of magnitude, which is largely proportional to the neutron attenuation from the plasma to the port interspace, previous calculations put the attenuation in the range of 6 to 8 orders of magnitude. There is some evidence of ray effects in the weight window solution in the right hand image of Figure \ref{fig:wwinp} due to the neutron attenuation of some EPI shielding around the diagnostic equipment, but this is small deviation in an otherwise reasonable solution.
+\\
+\\
+It should be noted that ORNL specifically developed the 360$^{\circ}$ rotation feature for DAG-ADVANTG that allows rotationally symmetric bodies, which is the reason for the weight window values beyond the 40$^{\circ}$ sector. 
+
 \section{Neutron Transport Results}
-The neutron transport calculations were performed using version 1.0 of DAG-MCNP5 using the source from version 1.60 of MCNP5, from the develop branch with git checkout \texttt{e12e2a3}. The two batches of calculations one for the with B$_4$C case and one without,  were submited to the University of Wisconsin's Centre for High Throughput Computer (CHTC) system in batches of 200, with seven meshes used to determine the neutron flux, making a total of 2800 individual MCNP simulations. These results were then combined using PyNE to result in the statistically averaged final results.
+The neutron transport calculations were performed using version 1.0 of DAG-MCNP5 using the source from version 1.60 of MCNP5, from the develop branch with git checkout \texttt{e12e2a3}. The two batches of calculations one for the with B$_4$C case and one without, were submited to the University of Wisconsin's Centre for High Throughput Computer (CHTC) system in batches of 200, with seven meshes used to determine the neutron flux, making a total of 2800 individual MCNP simulations. These results were then combined using PyNE to result in the statistically averaged final results. Intially calculations were batched into groups of $5\times10^7$ particles per batch, however these calculations did not finish in a timely enough manner and were instead reduced to groups of $5\times10^6$ particles per batch. 
 \subsection{Including the B4C Liner}
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[scale=0.4]{../plots/neutron/b4c/flux_y-17.png}
+  \caption{Slices through the total neutron flux (n cm$^{-2}$ src$^{-1}$) y = -17.0 cm and through z = 0.0 cm}
+  \label{fig:wwinp}
+\end{figure}
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[scale=0.27]{../plots/neutron/b4c/flux_z-500.png}
+  \includegraphics[scale=0.27]{../plots/neutron/b4c/flux_z0.png}       
+  \includegraphics[scale=0.27]{../plots/neutron/b4c/flux_z500.png}
+  \caption{Slices through the total neutron flux (n cm$^{-2}$ src$^{-1}$) z = -500.0 cm and through z = 500.0 cm}
+  \label{fig:wwinp}
+\end{figure}
+
 \subsection{Without the B4C Liner}
 \section{Neutron Activation}
 The R2S shutdown dose rate calculations were performed using the pyne.r2s methods found PyNE. The setup scripts produce Alara input
@@ -117,6 +144,7 @@ x = {0,1500}, y = {-500,500}, z = {-1900,1500} cm.
 
 \section{Conclusions}
 \subsection{Neutron Transport}
+The final calulcations represent only around 10\% of the overall requested runtime, this is mostly due to calculations not completing with the 3 day allotted runtime on CHTC, the reason being that is seems the requested VR parameters were too extreme resulting in severe oversplitting of particles. This has been noticed to occur in several previous challenging attenuating geometries and has been attributed to so called long histories. The long history problem requires an ultimate solution beyond the scope of this report, but perhaps solutions like that already underway at UW-Madison \& ORNL; GT-CADIS \& MS-CADIS respectively.
 \subsection{Shutdown Photon Doserate}
 It is clear from Figures XXX that the shutdown photon doserate in the port interspaces is significantly affected by the addition of boron carbide to the plasma side surface of the bioshield. The reason for the this is significantly degraded thermal flux which impacts the inportance of (n,$\gamma$) reactions and also the transport of neutrons back from the bioshield. 
 
