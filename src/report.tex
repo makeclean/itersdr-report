@@ -46,6 +46,7 @@
 %\usepackage{fouriernc}
 \usepackage{times}
 \usepackage{graphicx}
+\usepackage[acronym]{glossaries}
 \usepackage[a4paper, portrait, margin=0.5in]{geometry}
 \usepackage[table]{xcolor}
 \usepackage[nottoc,numbib]{tocbibind}
@@ -75,6 +76,43 @@
 \tocfile{\listtablename}{lot}
 \endgroup}
 
+%%\makenoidxglossaries
+\makeglossaries
+%% abreviations
+\newacronym{aci}{ACI}{Advanced Computing Initiative}
+\newacronym{advantg}{ADVANTG}{AutomateD VAriaNce reducTion Generator}
+\newacronym{alara_c}{ALARA - [Code]}{Analytic and Laplacian Adaptive Radioactivity Analysis}
+\newacronym{alara_p}{ALARA - [Principle]}{As Low As Reasonably Achievable}
+\newacronym{cad}{CAD}{Computer Aided Design}
+\newacronym{cadis}{CADIS}{Consistent Adjoint Driven Importance Sampling}
+\newacronym{chtc}{CHTC}{Centre for High Throughput Computing}
+\newacronym{d1s}{D1S}{ Direct One (1) Step}
+\newacronym{dag}{DAG}{ Direct Accelerated Geometry}
+\newacronym{dagmc}{DAGMC}{ Direct Accelerated Geometry Monte Carlo}
+\newacronym{dd}{DD}{ Diagnostics Division}
+\newacronym{endf}{ENDF}{Evaluated Nuclear Data File}
+\newacronym{ep}{EP}{Equatorial Port}
+\newacronym{epp}{EPP}{Equatorial Port Plug}
+\newacronym{epi}{EPI}{Equatorial Port Interspace}
+\newacronym{fendl}{FENDL}{Fusion Evaluated Nuclear Data Library}
+\newacronym{fwcadis}{FW-CADIS}{Forward Weighted - Consistent Adjoint Driven Importance Sampling}
+\newacronym{gepp}{GEPP}{Generic Equatorial Port Plug}
+\newacronym{icrp}{ICRP}{International Commission on Radiation Protection}
+\newacronym{io}{IO}{ITER Organisation}
+\newacronym{lp}{LP}{Lower Port}
+\newacronym{lpp}{LPP}{Lower Pumping Port}
+\newacronym{mcnp}{MCNP}{Monte Carlo N Particle}
+\newacronym{moab}{MOAB}{Mesh Oriented datABase}
+\newacronym{ornl}{ORNL}{Oak Ridge National Laboratory}
+\newacronym{pi}{PI}{Port Interspace}
+\newacronym{pyne}{PyNE}{Python for Nuclear Engineering}
+\newacronym{r2s}{R2S}{Rigorous Two [2] Step}
+\newacronym{sdr}{SDR}{Shutdown Dose Rate}
+\newacronym{ta}{TA}{Task Agreement}
+\newacronym{up}{UP}{Upper Port}
+\newacronym{upp}{UPP}{Upper Port Plug}
+\newacronym{upi}{UPI}{Upper Port Interspace}
+
 \begin{document}
 \maketitle
 \newpage
@@ -85,13 +123,37 @@
 \listoftables
 \newpage
 \section*{Acronyms}
+ \gls{aci} \\ 
+ \gls{advantg} \\ \gls{alara_c} \\
+ \gls{alara_p} \\ \gls{cad} \\
+ \gls{cadis} \\  \gls{chtc} \\
+ \gls{d1s} \\
+ \gls{dag} \\
+ \gls{dagmc} \\ \gls{dd} \\
+ \gls{endf} \\ \gls{ep} \\
+ \gls{epp} \\ \gls{epi} \\
+ \gls{fendl} \\ \gls{fwcadis} \\
+ \gls{gepp} \\ \gls{icrp} \\
+ \gls{io} \\ \gls{lp} \\
+ \gls{lpp} \\ \gls{mcnp} \\
+ \gls{moab} \\ \gls{ornl} \\
+ \gls{pi} \\ \gls{pyne} \\
+ \gls{r2s} \\ \gls{sdr} \\
+ \gls{ta} \\ \gls{up} \\
+ \gls{upp} \\ \gls{upi}
+
+% \printnoidxglossaries[type=\acronymtype]
+%\printglossary
+%\printglossary[type=\acronymtype]
+% none of these work, but should
+
 \newpage
 \section*{Executive Summary}
 The results contained within this report show the results of complex 3D neutron
 \& photon transport simulations to determine the shutdown photon dose rate
 resulting from the neutron activation of structural materials within a
 representative model of the ITER device. There are several ongoing questions
-regarding the correct level of SDR photon dose in the equatorial and upper port
+regarding the correct level of \gls{sdr} photon dose in the equatorial and upper port
 regions of ITER.
 \\
 \\
@@ -112,23 +174,23 @@ contain prompt photon doses.
 \section*{Abstract}
 This report provides the methology, input data, assumptions and results for a
 full analysis of neutron, neutron induced activation and the subsequent
-transport of residual decay photons in a reference ITER CAD model. The purpose
+transport of residual decay photons in a reference ITER \gls{cad} model. The purpose
 of the analysis was to (1) establish a baseline result for the shutdown photon
-doserate around the ITER device and (2) determine the effect upon the SDR of a
+doserate around the ITER device and (2) determine the effect upon the \gls{sdr} of a
 thin B$_4$C layer added to the plasma-side of the bioshield. A differentiating
 factor in this analysis relative to others is the level of detail present in
-the ports. The UP contained a detailed diagnostic model along side detailed PI
-equipment upto the bioshield plug. Similarly, the EP contained the DD model of
-an EPP with diagnostic drawers and significant quantities of internal B$_4$C
-shielding, the EP interspace contained detailed models of rails, racks and
-support frames out to the bioshield. The LPP contained a detailed model of the
+the ports. The \gls{up} contained a detailed diagnostic model along side detailed \gls{pi}
+equipment upto the bioshield plug. Similarly, the \gls{ep} contained the \gls{dd} model of
+an \gls{epp} with diagnostic drawers and significant quantities of internal B$_4$C
+shielding, the \gls{ep} interspace contained detailed models of rails, racks and
+support frames out to the bioshield. The \gls{lpp} contained a detailed model of the
 cryopump. 
 \newpage
 \section{Purpose}
 \subsection{Problem Statement}
 The shutdown doserate in an around the equatorial and upper ports determine the
 type and duration of maintenance that can be performed by person access. Thus,
-minimization of the dose rate is desirable and indeed encouraged by the ALARA
+minimization of the dose rate is desirable and indeed encouraged by the \gls{alara_p}
 principles used at ITER. It was recently suggested in the Neutronics Task Force
 that lining the plasma side of the concrete bioshield with a thin ($\sim$ mm
 thickness) layer of boron carbide (B$_4$C). The purpose of the layer is to
@@ -139,11 +201,13 @@ significantly and lead to signficantly lower shutdown photon doserates, close
 to an order of magnitude. The main goal of this report was therefore to examine
 if the use of the B$_4$C liner does indeed lead to lower doserates, this would
 be achived by modelling a detailed 40$^{\circ}$ sector of the ITER device once
-with the layer included and once without.
+with the layer included and once without and then examing the detailed effect
+this layer has upon neutron transport, the subsequent neutron induced activation
+and the resultant photon transport.
 \subsection{Initiating Documents}
 The ITER Task Agreement which this work was initiated and performed is TA XXXX
 Several documents provided the basis of the materials for components, and
-several CAD models were provided by numerous IO groups.
+several \gls{cad} models were provided by numerous \gls{io} groups.
 \\
 \\
 This report fulfills deliverable 6 of the task agreement.
@@ -151,21 +215,36 @@ This report fulfills deliverable 6 of the task agreement.
 \section{Solution Methodology}
 \subsection{Background}
 \subsubsection{FW-CADIS Method}
+The \gls{fwcadis} method of generating weight windows is ideal for a global
+\gls{sdr} photon problem such as this. Two calculations are performed, a
+neutron adjoint problem and a forward neutron problem, the combination of these
+calculations result in mathematically perfect space and enegy dependent biasing
+parameters for the problem simulated. 
 \subsubsection{Rigorous Two Step (R2S) Method}
+The \gls{r2s} method \cite{r2s} is the primary method of generating shutdown
+photon doserates and fluxes for fusion devices. The method has been improved
+upon with the addition of mesh based flux determination methods
+\cite{mcr2s,r2smesh,r2suned,pyne_r2s} which allow more fine neutron flux
+gradients to be represented in resultant activation source. The method consists
+of 3 main steps; 1) neutron transport, 2) inventory calculation for the problem,
+3) transport of photons resulting from the inventory calculation. Since the
+\gls{r2s} method is tied to a nuclear inventory code, it is capable of handling
+the non-linear variations of nuclide density induced by (n,xn) reactions, which
+\gls{d1s} methods traditionally struggle with.
 \subsection{Input Description}
 \subsubsection{The Model Geometry}
-The CAD model was generated from several sources, ITER Clite CAD which was used
-as input to generate the ITER Clite V1 MCNP model, ITER Diagnostics Division
-CAD models of Upper and Equatorial ports, and previous MCNP analysis which were
-detailed in \cite{cad_origination}. The model represents several ITER systems
-in high levels of detail, with all detail retained in the Equatorial Port
-Interspace (EPI), the  Upper Port Interspace (UPI), and the Lower Port Cryopump.
-Some of these models were previsouly used to generate MCNP input decks so have
+The \gls{cad} model was generated from several sources, ITER Clite \gls{cad}
+which was used as input to generate the ITER Clite V1 \gls{mcnp} model, ITER
+Diagnostics Division \gls{cad} models of Upper and Equatorial ports, and
+previous \gls{mcnp} analysis which were detailed in \cite{cad_origination}. The
+model represents several ITER systems in high levels of detail, with all detail
+retained in the \gls{epi}, the  \gls{upi}, and the Lower Port Cryopump. Some of
+these models were previsouly used to generate \gls{mcnp} input decks so have
 undergone some degree of simplification.
 \\
 \\
-The overall CAD model in shown in Figure \ref{fig:cad_iter_global}, the broad
-details of the model can be seen. 
+The overall \gls{cad} model in shown in Figure \ref{fig:cad_iter_global}, the
+broad details of the model can be seen. 
 \begin{figure}[ht!]
   \centering
   \includegraphics[scale=0.8]{../plots/cad/global.png}
@@ -191,122 +270,87 @@ details of the model can be seen.
 \newpage
 \clearpage
 \subsubsection{Materials}
-All materials in the problem originate from the Clite MCNP model -
+All materials in the problem originate from the Clite \gls{mcnp} model -
 CLITE\textunderscore V1\textunderscore REV131031\textunderscore MOD, with the
-exception of the Upper Port Plugs (UPP), the Equatorial Port Plug (EPP), the
-Cryopump, the blanket modules and the contents of the UPI and EPI. The default
-cross section set used was FENDL-2.1, with the exception of XX which was
-expanded into an isoptopic defintion and used the ENDF-VIIR1 evaluation. The EPP
-material definitions were taken from the Generic Equatorial Port Plug (GEPP)
-MCNP model \cite{epp_materials}. The UPP material definitions were provided by
-\cite{bertalot_communication}. The Cryopump materials assignments came from
-\cite{cryopump_communication}. The blanket module material compositions were
-taken from the Bl-lite CAD model since the blankets were homogenized identically
-in this model. The full evaluated material definitions can be found in the
-Appendix.
-\subsubsection{Variance Reduction}
-The weight window parameters were generated using the Oak Ridge National
-Laboratory (ORNL) code ADVANTG, specifically using DAG-ADVANTG, which allows a
-DAGMC geometry to be read and the geometry and material data handed off to
-Denovo. The weight windows used for the problem are shown below in Figure
-\ref{fig:wwinp}. The weight windows were produced using the Forward Weighted
-Consistent Adjoint Driven Importance Sampling (FW-CADIS), which attempts to
-produce a weight window map which tries to get particles everywhere int the
-model, as opposed to CADIS for example, which attempts to get results to a
-small number of specific regions.
-\begin{figure}[ht!]
-  \centering
-  \includegraphics[scale=0.4]{../plots/wwinp/wwinp_y0.png}
-  \includegraphics[scale=0.3]{../plots/wwinp/wwinp_z0.png}
-  \caption{Slices through the ADVANTG produced weight window through y = 0.0 cm
-  and through z = 0.0 cm}
-  \label{fig:wwinp}
-\end{figure}
-Several artifacts are worthy of note, despite being a deterministic code Denovo
-has handled the streaming of neutrons along the divertor duct well as shown in
-left hand image of Figure \ref{fig:wwinp}. The overall span of the weight window
-is seven orders of magnitude, which is largely proportional to the neutron
-attenuation from the plasma to the port interspace, previous calculations put
-the attenuation in the range of 6 to 8 orders of magnitude. There is some
-evidence of ray effects in the weight window solution in the right hand image
-of Figure \ref{fig:wwinp} due to the neutron attenuation of some EPI shielding
-around the diagnostic equipment, but this is small deviation in an otherwise
-reasonable solution.
-\\
-\\
-It should be noted that ORNL specifically developed the 360$^{\circ}$ rotation
-feature for DAG-ADVANTG that allows rotationally symmetric bodies, which is the
-reason for the weight window values beyond the 40$^{\circ}$ sector.
-\subsubsection{Irradiation Parameters}
-\subsection{Irradiation Scenario}
-\begin{table}[ht!]
-   \begin{tabular}{| l | c |}
-      \hline 
-      Irradiation Period & Fractional Strength \\
-      \hline
-      5 Years & 0.0095 \\
-      1 Year  & 0.0127 \\
-      1 Year  & 0.0190 \\
-      1 Year  & 0.0317 \\
-      1 Year  & 0.0380 \\
-      1 Year  & 0.0380 \\
-      6 Days  & 0.1929 \\
-      1 Year  & 0.0380 \\
-      \cellcolor{blue!25} 400 Seconds & 1.0000 \\
-      \cellcolor{blue!25}1673.6 Seconds & 0.0000 \\
-      400 Seconds & 1.0000 \\
-      \hline
-\end{tabular}
-\caption{The table shows the ITER-DRG2 scenario for aggresive pulsing, note the
-         cells in \textcolor{blue!25}{blue} are repeated 249 times}
-\label{tag:irrad_scenario}
-\end{table}
-
+exception of the \gls{upp}, the \gls{epp}, the
+Cryopump, the blanket modules and the contents of the \gls{upi} and \gls{epi}.
+The default cross section set used was \gls{fendl}-2.1, with the exception of XX
+which was expanded into an isoptopic defintion and used the \gls{endf}-VIIR1
+evaluation. The \gls{epp} material definitions were taken from the \gls{gepp}
+\gls{mcnp} model\cite{epp_materials}. The \gls{upp} material definitions were
+provided by \cite{bertalot_communication}. The Cryopump materials assignments
+came from \cite{cryopump_communication}. The blanket module material
+compositions were taken from the Bl-lite \gls{cad}model since the blankets were
+homogenized identically in this model. The full evaluated material definitions
+can be found in the Appendix.
 \newpage
 \subsection{Software Programs \& Validation Status}
 \subsubsection{DAGMC}
-The Direct Accelerated Geometry Monte Carlo (DAGMC) is a toolkit developed at
-the University of Wisconsin-Madison designed specifically for ray tracing
-efficiently on complex CAD based geometries. The DAGMC toolkit is distributed as
-part of the Mesh Orientated dABase (MOAB) and is completely open source. Input
-to DAGMC is a MOAB mesh file which contains the faceted representation of the
-CAD geometry, this is loaded and Oriented Bounding Box (OBB) acceleration
-structures are built to speed each ray fire query.
+The \gls{dagmc} is a toolkit developed at the University of Wisconsin-Madison
+designed specifically for ray tracing efficiently on complex \gls{cad} based
+geometries. The \gls{dagmc} toolkit is distributed as part of \gls{moab} and
+is completely open source. Input to \gls{dagmc} is a \gls{moab} mesh file
+which contains the faceted representation of the \gls{cad} geometry, this
+is loaded and Oriented Bounding Box (OBB) acceleration structures are built
+to speed each ray fire query.
 \subsubsection{DAG-MCNP5}
-DAG-MCNP5 \cite{dagmc} is a version of MCNP \cite{mcnp} where the core ray
-queries (point in volume, ray fire, next volume, etc) have their MCNP versions
-replaced with the DAGMC equivlents. DAG-MCNP5 has been validated
+DAG-MCNP5 \cite{dagmc} is a version of \gls{mcnp} \cite{mcnp} where the core ray
+queries (point in volume, ray fire, next volume, etc) have their \gls{mcnp}
+versions replaced with the \gls{dagmc} equivlents. DAG-MCNP5 has been validated
 \cite{dagmc_validation} and tested in several ITER analysis in the past.
 \subsubsection{PyNE}
-The Python for Nuclear Engineering (PyNE) \cite{Scopatz2012b} project aims to
+The \gls{pyne} \cite{Scopatz2012b} project aims to
 make C++ wrapped Python-accessible library of well validated and tested
 functions and capabilities available to nuclear engineers across the world.
-For this project we used the following capabilities of PyNE.
+For this project we used the following capabilities of \gls{pyne}.
 \begin{itemize}
   \item{the \texttt{pyne.mesh} class to combine meshes, with an appropriate
         combined statistical error}
-  \item{the \texttt{pyne.r2s} class to produce R2S inputs and outputs}
+  \item{the \texttt{pyne.r2s} class to produce \gls{r2s} inputs and outputs}
   \item{the \texttt{pyne.alara} class to produce alara inputs}
-  \item{the \texttt{pyne.mcnp} class to read MCNP meshtal files}
+  \item{the \texttt{pyne.mcnp} class to read \gls{mcnp} meshtal files}
 \end{itemize}
 \subsubsection{ALARA}
-AlARA \cite{alara} is a nuclear inventory code developed at the University of
-Wisconsin-Madison. The unique feature of ALARA is the way it handles the
+\gls{alara_c} \cite{alara} is a nuclear inventory code developed at the University of
+Wisconsin-Madison. The unique feature of \gls{alara_c} is the way it handles the
 pathways of the reactions, all of the potential pathways are accounted for and
-duplicate links linearised. ALARA is used in this analysis as the method of
-producing gamma ray sources for R2S shutdown photon calculations.
+duplicate links linearised. \gls{alara_c} is used in this analysis as the method of
+producing gamma ray sources for \gls{r2s} shutdown photon calculations.
+\newpage
 \subsection{Solution Methodology}
+\subsubsection{Neutron Transport}
 The neutron transport calculations were performed using version 1.0 of DAG-MCNP5
 using the source from version 1.60 of MCNP5, from the develop branch with git
-checkout e12e2a3. The two batches of calculations were performed, one case with
-the B 4 C liner and one without. Due to the large amount of RAM required to run
-these jobs (in excess of 12 Gb per CPU) these jobs were considered a good case
-to run using a high throughput methodology. In this method the spatial domain
-of the problem is duplicated several times but the random number seed is
-strided in such a way that no CPU will share the same seed with another job.
+checkout \texttt{e12e2a3}. The two batches of calculations were performed, one
+case with the B$_4$C liner and one without.
 \\
 \\
-neutron transport, variance reduction meshes, photon transport many sources etc.
+The level of detail present in the faceted geometry files impacts the amount of
+memory required to run the calculation, this combined with the large and
+detailed weight window file and the need for 175 energy group neutron spectra
+in each voxel means that the calculation requires significant memory resources,
+in excess of 12 Gb per CPU. It was therefore determined that in order to perform
+the neutron transport in a timely fashion given the memory requirements, this
+set of simulations would be considered a good case to run using a high
+throughput methodology with domain replication.
+\\
+\\
+In this method the spatial domain of the problem is duplicated and a given
+meshtally superimposed onto the geometry. Several single core simulations are
+launched for that specific meshtally but the random number seed is strided in
+such a way that no CPU will share the same seed with another job, this is
+performed using the \texttt{rand hist=n} command in \gls{mcnp}.
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[scale=0.3]{../plots/method/neutron_method.png}
+  \caption{The high throughput methodology, splitting a given MCNP calculation
+           into smaller calculations spanning a contigious random number seed
+           space}
+  \label{fig:mesh_spliting}
+\end{figure}
+The key feature of this method is that the combined sub results are identically
+equal to single MCNP calculation covering the whole original range of particles
+simulated.
 \begin{figure}[ht!]
   \centering
   \includegraphics[scale=0.4]{../plots/transport/job_splits.png}
@@ -319,13 +363,13 @@ neutron transport, variance reduction meshes, photon transport many sources etc.
 The calculation was split into seven calculation domains, shown in Figure
 \ref{fig:mesh_domains}, which bound the regions of the problem requiring
 activation. The physical size and boundaries that were used in the calculation
-can be found in Table \ref{table:mesh_sizes}. With R2S calculations there is a
+can be found in Table \ref{table:mesh_sizes}. With \gls{r2s} calculations there is a
 subtle interplay between the size of the mesh elements and the number of mesh
 elements; the larger the mesh elements the lower the statistical errors will be
 for a given fixed number of particles but the mesh will conform poorly to the
 geometry, and vice versa. In this calculation the maximum number of mesh
 elements in a given mesh is dictated by the size that the given mesh will
-occupy in memory when transferred to an ALARA geometry. 
+occupy in memory when transferred to an \gls{alara_c}geometry. 
 
 \begin{centering}
  \begin{table}[ht!]
@@ -359,37 +403,134 @@ occupy in memory when transferred to an ALARA geometry.
  \label{table:mesh_sizes}
  \end{table}
 \end{centering}
+\subsubsection{Activation}
+The activation calculations are performed using the spatially dependent neutron
+spectra determined in the previous step. The activation calculations proceed as
+a set of standard mesh based \gls{r2s} calculations typically proceed since the meshes
+do not overlap. The geometery under each voxel in the mesh is queried to determine
+the average material composition by volume fraction, a material description is developed
+and recorded for running in an inventory code. In the case of \texttt{pyne.r2s} a full
+\gls{alara_c} input deck is produced which can then be executed and the final shutdown
+photon sources produced.
+\subsubsection{Photon Transport}
 
 \subsection{Software Risk Assesment}
+\clearpage
 \newpage
 \section{Assumptions and Engineering Judgements}
-\subsection{Source}
-\subsection{Irradiation Data}
+\subsection{Neutron Source}
+As used in typical ITER analysis the reference ITER neutron source with
+reflecting boundary conditions is assumed to adequately represent the
+true 360$^{\circ}$ neutron source. The ITER supplied MCNP SDEF was used
+completely unmodified. The onload neutron data is used un-normalised
+in the \gls{r2s} calculation since the neutron source normalisation is scaled
+depending on average power for the pulse being modelled. However for reference,
+the highest power used in the activation calculation was 500 MW, which is
+equivlent to 1.98$\times$10$^{18}$ neutrons per second in the 40$^{\circ}$ sector.
+\subsection{Irradiation Scenario}
+The irradiation scenario used in this work was the MDRG-2, shown in Table
+\ref{tab:irrad_scenario} scenario as opposed to the typical SA-2 scenario.
+The MDRG-2 scenario is more aggressive in overall fluence than the SA-2
+scenario, representing a full ITER lifetime as opposed to 2 operation
+cycles of the SA-2 scenario.
+\begin{table}[ht!]
+   \begin{tabular}{| l | c |}
+      \hline 
+      Irradiation Period & Fractional Strength \\
+      \hline
+      5 Years & 0.0095 \\
+      1 Year  & 0.0127 \\
+      1 Year  & 0.0190 \\
+      1 Year  & 0.0317 \\
+      1 Year  & 0.0380 \\
+      1 Year  & 0.0380 \\
+      6 Days  & 0.1929 \\
+      1 Year  & 0.0380 \\
+      \cellcolor{blue!25} 400 Seconds & 1.0000 \\
+      \cellcolor{blue!25}1673.6 Seconds & 0.0000 \\
+      400 Seconds & 1.0000 \\
+      \hline
+\end{tabular}
+\caption{The table shows the MDRG-2 scenario for irradiation, note the
+         cells in \textcolor{blue!25}{blue} are repeated 249 times}
+\label{tab:irrad_scenario}
+\end{table}
+It is assumed that the longer fluence operation will lead to greater accumulated
+radionuclides, which should provide a conservative estimate of shutdown photon
+doserate.
+\\
+\\
+In this report time periods following machine shutdown are of interest,
+1.0$\times$10$^5$ s, 1.0$\times$10$^6$ s and 1.0$\times$10$^6$ s, approximately
+corresponding to 27 hours, 14 days, and 116 days post shutdown.
 \subsection{Geometry}
+The geometry used in this simulation was collected from a number of sources,
+some models were generated directly from CAD drawings supplied by the
+drawing office of US ITER and the IO, some were intermediate CAD files produced
+as part of other simulations, and some were generated by UW to meet a percieved
+deficiency in the file. Irrespective of this, the \gls{dagmc} method allows the
+exact respresentation of the underlying CAD to be used without approximation.
+\\
+\\
+The geometry is defined starting at the centre column (x = 0.0 cm) and ends
+beyond the bioshield (x = 1800 cm), truncation of details realtive to the full
+ITER device CAD model begins on the port cell side of the bioshield plugs,
+results beyond the bioshield should therefore be not be used for any
+analysis purposes. 
 \subsection{Variance Reduction}
+The weight window parameters were generated using the \gls{ornl} code
+\gls{advantg}, specifically using DAG-\gls{advantg}, which allows a
+\gls{dagmc} geometry to be read and the geometry and material data handed off to
+Denovo. The weight windows used for the problem are shown below in Figure
+\ref{fig:wwinp}. The weight windows were produced using the \gls{fwcadis},
+which attempts to produce a weight window map which tries to get particles
+everywhere int the model, as opposed to \gls{cadis} for example, which
+attempts to get results to a small number of specific regions.
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[scale=0.4]{../plots/wwinp/wwinp_y0.png}
+  \includegraphics[scale=0.3]{../plots/wwinp/wwinp_z0.png}
+  \caption{Slices through the \gls{advantg} produced weight window through y =
+  0.0 cm and through z = 0.0 cm}
+  \label{fig:wwinp}
+\end{figure}
+Several artifacts are worthy of note, despite being a deterministic code Denovo
+has handled the streaming of neutrons along the divertor duct well as shown in
+left hand image of Figure \ref{fig:wwinp}. The overall span of the weight window
+is seven orders of magnitude, which is largely proportional to the neutron
+attenuation from the plasma to the port interspace, previous calculations put
+the attenuation in the range of 6 to 8 orders of magnitude. There is some
+evidence of ray effects in the weight window solution in the right hand image
+of Figure \ref{fig:wwinp} due to the neutron attenuation of some \gls{epi}
+shielding around the diagnostic equipment, but this is small deviation in an
+otherwise reasonable solution.
+\\
+\\
+It should be noted that \gls{ornl} specifically developed the 360$^{\circ}$
+rotation feature for DAG-\gls{advantg} that allows rotationally symmetric
+bodies, which is the reason for the weight window values beyond the
+40$^{\circ}$ sector.
 \subsection{Materials and Nuclear Data}
 \subsection{Transport Software}
 \subsection{Activation Software}
 
 \section{Neutron Transport Results and Conclusions}
-
-
 Having been split appropriately, these jobs were submited to the University of
-Wisconsin's Centre for High Throughput Computer (CHTC) system in batches of 200
+Wisconsin's \gls{chtc} system in batches of 200
 for each mesh, with seven meshes used to determine the neutron flux, making a
-total of 2800 individual MCNP simulations. These results were then combined
-using PyNE to result in the statistically averaged final results. Intially
-calculations were batched into groups of $5\times10^7$ particles per batch,
-however these calculations did not finish in a timely enough manner and were
-instead reduced to groups of $5\times10^6$ particles per batch. With the smaller
-batching system calculations did finish, however, only 10\% of all calculations
-for each mesh finished, but this represents $5\times10^7$ total source histories
-for each mesh. 
+total of 2800 individual \gls{mcnp} simulations. These results were then
+combined using \gls{pyne} to result in the statistically averaged final results.
+Intially calculations were batched into groups of $5\times10^7$ particles per
+batch, however these calculations did not finish in a timely enough manner and
+were instead reduced to groups of $5\times10^6$ particles per batch. With the
+smaller batching system calculations did finish, however, only 10\% of all
+calculations for each mesh finished, but this represents $5\times10^7$ total
+source histories for each mesh. 
 \newpage
 \clearpage
 \subsection{Without the B4C Liner}
 The baseline results represent a standard C-lite model since there is no B$_4$C
-liner present, however relative to the standard C-lite native MCNP model there
+liner present, however relative to the standard C-lite native \gls{mcnp} model there
 is much more equipment present in the port inspaces (both upper and lower), and
 the divertor pumping port is unplugged. 
 \begin{figure}[ht!]
@@ -413,7 +554,7 @@ the divertor pumping port is unplugged.
 \clearpage
 \subsection{Including the B4C Liner}
 These results represent a standard C-lite model with improved B$_4$C liner,
-however relative to the standard C-lite native MCNP model there is much more
+however relative to the standard C-lite native \gls{mcnp} model there is much more
 equipment present in the port inspaces (both upper and lower), and the divertor
 pumping port is unplugged. 
 \begin{figure}[ht!]
@@ -441,16 +582,16 @@ parameters were too extreme resulting in severe oversplitting of particles.
 This has been noticed to occur in several previous challenging attenuating
 geometries and has been attributed to so called long histories. The long history
 problem requires an ultimate solution beyond the scope of this report, but
-perhaps solutions like that already underway at UW-Madison \& ORNL; GT-CADIS
+perhaps solutions like that already underway at UW-Madison \& \gls{ornl}; GT-CADIS
 \& MS-CADIS respectively.
 \newpage
 \clearpage
 
 \section{Neutron Activation Results and Conclusions}
-The R2S shutdown dose rate calculations were performed using the pyne.r2s
-methods found PyNE. The setup scripts produce ALARA inputs and the neutron
-activation calculations were performed using ALARA 2.9.1RC which used the
-FENDL-3.0/A activation cross sections. 
+The \gls{r2s} shutdown dose rate calculations were performed using the pyne.r2s
+methods found \gls{pyne}. The setup scripts produce \gls{alara_c} inputs and the neutron
+activation calculations were performed using \gls{alara_c} 2.9.1RC which used the
+\gls{fendl}-3.0/A activation cross sections. 
 \subsection{Including the B4C Liner}
 \subsection{Without the B4C Liner}
 \subsection{Conclusion}
@@ -458,13 +599,13 @@ FENDL-3.0/A activation cross sections.
 \section{Shutdown Photon Doserates Results and Conclusions}
 The shutdown photon sources were developed in several seperate meshes and
 therefore any individual mesh does not represent the entire problem. The
-results of the previous ALARA calculations are then processed further to make
+results of the previous \gls{alara_c} calculations are then processed further to make
 shutdown sources to be read into a sampling subroutine (also distributed with
-PyNE) Each source is run independently, and the photon dose is recorded on a
+\gls{pyne}) Each source is run independently, and the photon dose is recorded on a
 mesh common to each photon calculation and then the meshes summed together to
 create the final result. The final mesh has a uniform size of side 2 cm striding
 from x = {0,1500}, y = {-500,500}, z = {-1900,1500} cm. The meshes used the
-ICRP-74 dose response coeffiecients as a dose multiplier as recommended in
+\gls{icrp}-74 dose response coeffiecients as a dose multiplier as recommended in
 \cite{iter_sdr_coeffs}.
 \subsection{Decay time 1 - 1.$\times$10$^5$ s}
 \subsection{Decay time 2 - 1.$\times$10$^6$ s}
