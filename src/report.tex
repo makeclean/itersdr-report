@@ -46,6 +46,7 @@
 %\usepackage{fouriernc}
 \usepackage{times}
 \usepackage{graphicx}
+\usepackage{longtable}
 \usepackage[acronym]{glossaries}
 \usepackage[a4paper, portrait, margin=0.5in]{geometry}
 \usepackage[table]{xcolor}
@@ -517,9 +518,102 @@ rotation feature for DAG-\gls{advantg} that allows rotationally symmetric
 bodies, which is the reason for the weight window values beyond the
 40$^{\circ}$ sector.
 \subsection{Materials and Nuclear Data}
-\subsection{Transport Software}
-\subsection{Activation Software}
+\subsubsection{Materials}
+The full description of material contents can be found in the Appendix. The 
+origin of each material is desribed in Table \ref{tab:material_origin}. 
 
+\begin{centering}
+ \begin{longtable}[ht!]{ p{0.2\textwidth} | p{0.3\textwidth} | p{0.3\textwidth} }
+  \hline 
+  Material Number & Description & Origin \\
+  \hline
+  M29  & &  CLITE V1 \\
+  M74  & &  CLITE V1 \\
+  M100  & &  CLITE V1 \\
+  M101  & &  CLITE V1 \\
+  M102  & &  CLITE V1 \\
+  M103  & &  CLITE V1 \\
+  M104  & &  CLITE V1 \\
+  M105  & &  CLITE V1 \\
+  M106  & &  CLITE V1 \\
+  M107  & &  CLITE V1 \\
+  M108  & &  CLITE V1 \\
+  M109  & &  CLITE V1 \\
+  M110  & &  CLITE V1 \\
+  M111  & &  CLITE V1 \\
+  M162  & &  CLITE V1 \\
+  M170  & &  CLITE V1 \\
+  M200  & &  CLITE V1 \\
+  M303  & &  CLITE V1 \\
+  M400  & &  CLITE V1 \\
+  M601  & &  CLITE V1 \\
+  M602  & &  CLITE V1 \\
+  M603  & &  CLITE V1 \\
+  M611  & &  CLITE V1 \\
+  M613  & &  CLITE V1 \\
+  M621  & &  CLITE V1 \\
+  M622  & &  CLITE V1 \\
+  M623  & &  CLITE V1 \\
+  M631  & &  CLITE V1 \\
+  M906  & &  CLITE V1 \\
+  M907  & &  CLITE V1 \\
+  M908  & &  CLITE V1 \\
+  M910 & B$_4$C & Bespoke  \\
+  M911 & Al T6061 & Bespoke  \\
+  M912 & Al T6061 & Bespoke  \\
+  M913 & Copy M100 & CLITE V1\\
+  M914 & Copy M100 & CLITE V1\\
+  M915 & Copy M910 & Bespoke \\
+  M916 & Copy M100 & CLITE V1\\
+  M917 & Cryopipes & \cite{neutr anal materials}\\
+  M918 & Copy M100 & CLITE V1 \\
+  M920 & Copy M100 & CLITE V1 \\
+  M921 & Copy M100 & CLITE V1 \\
+  M922 & Copy M100 & CLITE V1 \\
+  M923 & Copy M100 & CLITE V1 \\
+  M924 & Copy M100 & CLITE V1 \\
+  M925 & Copy M100 & CLITE V1 \\
+  M926 & Copy M100 - Frame Wheels & \cite{neutr_anal_materials}\\
+  M927 & Copy M100 - Frame Wheels Drive & \cite{neutr_anal_materials}\\
+  M928 & Copy M100 - Port Plug Frame & \cite{neutr_anal_materials}\\
+  M929 & Copy M100 - Port Plug Pipes & \cite{neutr_anal_materials}\\
+  M930 & Copy M100 & \cite{neutr_anal_materials}\\
+  M931 & M100:0.7 M400:0.3 & \cite{neutr_anal_materials}\\
+  M932 & M100:0.9 M400:0.1 & \cite{neutr_anal_materials}\\
+  M933 & M100:0.9 M400:0.1 & \cite{neutr_anal_materials}\\
+  M934 & M100:0.97 M400:0.03 & \cite{neutr_anal_materials}\\
+  M937 & Copy M100 & \cite{neutr_anal_materials}\\
+  M938 & Copy M100 & \cite{neutr_anal_materials}\\
+  M939 & Copy M100 & \cite{neutr_anal_materials}\\
+  M935 & First Wall & BL-lite \\
+  M936 & First Wall & BL-lite \\
+  M940 & Copy M100 & Diagnostics MCNP Model \\
+  M941 & Copy M100 & Diagnostics MCNP Model \\
+  M942 & Copy M100 & Diagnostics MCNP Model \\
+  M943 & Copy M100 & Diagnostics MCNP Model \\
+  M944 & EPP Drawers & Diagnostics MCNP Model \\
+  M945 & EPP Contents & Diagnostics MCNP Model \\
+  M946 & EPP Chunks & Diagnostics MCNP Model \\
+ \caption{Table showing the origin of the material descriptions used}
+ \label{tab:material_origin}
+ \end{longtable}
+\end{centering}
+
+\subsubsection*{Nuclear Data}
+Neutron Data - The neutron transport data used was \gls{fendl}-2.1/MC, as 
+recommended by \gls{io} for ITER analysis. 
+\\
+\\
+Activation Data - The activation data used was \gls{fendl}-3.0/A.
+\\
+\\
+Photon Data - The standard photon data supplied with \gls{mcnp}5 mcplib04 was 
+used. This data ultimately falls back onto \gls{endf}/B-VI release 8 photoatomic
+data.
+\subsection{Transport Software}
+\gls{mcnp}
+\subsection{Activation Software}
+\gls{alara_c}
 \newpage
 \clearpage
 \section{Neutron Transport Results and Conclusions}
