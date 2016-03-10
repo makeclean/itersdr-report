@@ -406,14 +406,20 @@ occupy in memory when transferred to an \gls{alara_c}geometry.
 \subsubsection{Activation}
 The activation calculations are performed using the spatially dependent neutron
 spectra determined in the previous step. The activation calculations proceed as
-a set of standard mesh based \gls{r2s} calculations typically proceed since the meshes
-do not overlap. The geometery under each voxel in the mesh is queried to determine
-the average material composition by volume fraction, a material description is developed
-and recorded for running in an inventory code. In the case of \texttt{pyne.r2s} a full
-\gls{alara_c} input deck is produced which can then be executed and the final shutdown
-photon sources produced.
+a set of standard mesh based \gls{r2s} calculations typically proceed since the 
+meshes do not overlap. The geometery under each voxel in the mesh is queried to 
+determine the average material composition by volume fraction, a material 
+description is developed and recorded for running in an inventory code. In the 
+case of \texttt{pyne.r2s} a full \gls{alara_c} input deck is produced which can
+then be executed and the final shutdown photon sources produced. 
 \subsubsection{Photon Transport}
-
+The photon transport proceeds using the same computational model as in the 
+neutron calculation, with the exception the photon source and appropriate 
+normalisation is determined using the activation step. The calculation is then
+performed, but each photon transport will use a common result mesh for each 
+calculation, and therefore, since each photon source is determined for a 
+specific non overlapping region of the geometry the final result is the 
+summation of each mesh, with the statistical error propageted appropriately.
 \subsection{Software Risk Assesment}
 \clearpage
 \newpage
@@ -514,6 +520,8 @@ bodies, which is the reason for the weight window values beyond the
 \subsection{Transport Software}
 \subsection{Activation Software}
 
+\newpage
+\clearpage
 \section{Neutron Transport Results and Conclusions}
 Having been split appropriately, these jobs were submited to the University of
 Wisconsin's \gls{chtc} system in batches of 200
@@ -526,8 +534,6 @@ were instead reduced to groups of $5\times10^6$ particles per batch. With the
 smaller batching system calculations did finish, however, only 10\% of all
 calculations for each mesh finished, but this represents $5\times10^7$ total
 source histories for each mesh. 
-\newpage
-\clearpage
 \subsection{Without the B4C Liner}
 The baseline results represent a standard C-lite model since there is no B$_4$C
 liner present, however relative to the standard C-lite native \gls{mcnp} model there
