@@ -82,8 +82,9 @@
 %% abreviations
 \newacronym{aci}{ACI}{Advanced Computing Initiative}
 \newacronym{advantg}{ADVANTG}{AutomateD VAriaNce reducTion Generator}
-\newacronym{alara_c}{ALARA - [Code]}{Analytic and Laplacian Adaptive Radioactivity Analysis}
-\newacronym{alara_p}{ALARA - [Principle]}{As Low As Reasonably Achievable}
+\newacronym{alara_c}{ALARA}{Analytic and Laplacian Adaptive Radioactivity Analysis}
+\newacronym{alara_p}{ALARA - [Principle] - }{As Low As Reasonably Achievable}
+\newacronym{bs}{BS}{Bioshield}
 \newacronym{cad}{CAD}{Computer Aided Design}
 \newacronym{cadis}{CADIS}{Consistent Adjoint Driven Importance Sampling}
 \newacronym{chtc}{CHTC}{Centre for High Throughput Computing}
@@ -106,6 +107,7 @@
 \newacronym{moab}{MOAB}{Mesh Oriented datABase}
 \newacronym{ornl}{ORNL}{Oak Ridge National Laboratory}
 \newacronym{pi}{PI}{Port Interspace}
+\newacronym{pfc}{PFC}{Poloidal Field Coil}
 \newacronym{pyne}{PyNE}{Python for Nuclear Engineering}
 \newacronym{r2s}{R2S}{Rigorous Two [2] Step}
 \newacronym{sdr}{SDR}{Shutdown Dose Rate}
@@ -114,6 +116,7 @@
 \newacronym{upp}{UPP}{Upper Port Plug}
 \newacronym{upi}{UPI}{Upper Port Interspace}
 \newacronym{uw}{UW}{The University of Wisconsin}
+\newacronym{ve}{VE}{Vessel Extension}
 \begin{document}
 \maketitle
 \newpage
@@ -126,7 +129,8 @@
 \section*{Acronyms}
  \gls{aci} \\ 
  \gls{advantg} \\ \gls{alara_c} \\
- \gls{alara_p} \\ \gls{cad} \\
+ \gls{alara_p} \\ \gls{bs} \\
+ \gls{cad} \\
  \gls{cadis} \\  \gls{chtc} \\
  \gls{d1s} \\
  \gls{dag} \\
@@ -139,10 +143,11 @@
  \gls{lpp} \\ \gls{mcnp} \\
  \gls{moab} \\ \gls{ornl} \\
  \gls{pi} \\ \gls{pyne} \\
+ \gls{pfc} \\
  \gls{r2s} \\ \gls{sdr} \\
  \gls{ta} \\ \gls{up} \\
- \gls{upp} \\ \gls{upi}
-
+ \gls{upp} \\ \gls{upi} \\
+ \gls{ve}
 % \printnoidxglossaries[type=\acronymtype]
 %\printglossary
 %\printglossary[type=\acronymtype]
@@ -674,7 +679,7 @@ leads to higher neutron fluxes beyond the vacuum vessel.
 \subsection{Including the B4C Liner}
 These results represent a standard C-lite model with improved B$_4$C liner,
 however relative to the standard C-lite native \gls{mcnp} model there is much more
-equipment present in the port gls{pi} (both upper and lower), and the divertor
+equipment present in the \gls{pi} (both upper and lower), and the divertor
 pumping port is unplugged. 
 \begin{figure}[ht!]
   \centering
@@ -701,44 +706,97 @@ parameters were too extreme resulting in severe over splitting of particles.
 This has been noticed to occur in several previous challenging attenuating
 geometries and has been attributed to so called long histories. The long history
 problem requires an ultimate solution beyond the scope of this report, but
-perhaps solutions like that already underway at UW-Madison \& \gls{ornl}; GT-CADIS
-\& MS-CADIS respectively.
+perhaps solutions like that already underway at UW-Madison \& \gls{ornl};
+GT-CADIS \& MS-CADIS respectively. The uncertainty due to the statistical error
+is sufficiently low in most regions of the model that the neutron flux can be
+said to be converged, however, there are regions where the statistical error
+is large enough to cause under or overestimates of the total neutron flux.
 \newpage
 \clearpage
 
 \section{Neutron Activation Results and Conclusions}
-The \gls{r2s} shutdown dose rate calculations were performed using the pyne.r2s
-methods found \gls{pyne}. The setup scripts produce \gls{alara_c} inputs and the neutron
-activation calculations were performed using \gls{alara_c} 2.9.1RC which used the
-\gls{fendl}-3.0/A activation cross sections. 
+The \gls{r2s} shutdown dose rate calculations were performed using the
+\texttt{pyne.r2s} methods found \gls{pyne}. The setup scripts produce
+\gls{alara_c} inputs and the neutron activation calculations were performed
+using \gls{alara_c} 2.9.1RC. 
 \subsection{Including the B4C Liner}
+\subsubsection{Decay Time 1 - 1$\times$10$^{5}$ seconds}
+\subsubsection{Decay Time 2 - 1$\times$10$^{6}$ seconds}
+\subsubsection{Decay Time 3 - 1$\times$10$^{7}$ seconds}
 \subsection{Without the B4C Liner}
+\subsubsection{Decay Time 1 - 1$\times$10$^{5}$ seconds}
+\subsubsection{Decay Time 2 - 1$\times$10$^{6}$ seconds}
+\subsubsection{Decay Time 3 - 1$\times$10$^{7}$ seconds}
+\subsection{Comparison}
 \subsection{Conclusion}
+The shutdown photon source produced for each case and 3 decay times results in
+42 individual photon sources that must be used in subsequent photon transport
+calculations.
+\\
+\\
+It is worth noting that the lack of gamma source present in the \gls{epp}
+regions are not due to poor neutron transport in this region, but due to the
+fact that the \gls{gepp} model has a large B$_4$C powder filled containers
+in these regions, B$_4$C when irradiated by neutrons undergoes reactions
+which produce only low energy beta particle decays with very low associated
+photon energies, thus effectively produces no decay photons.
 \newpage
+\clearpage
 \section{Shutdown Photon Dose rates Results and Conclusions}
 The shutdown photon sources were developed in several separate meshes and
 therefore any individual mesh does not represent the entire problem. The
-results of the previous \gls{alara_c} calculations are then processed further to make
-shutdown sources to be read into a sampling subroutine (also distributed with
-\gls{pyne}) Each source is run independently, and the photon dose is recorded on a
-mesh common to each photon calculation and then the meshes summed together to
-create the final result. The final mesh has a uniform size of side 2 cm striding
-from x = {0,1500}, y = {-500,500}, z = {-1900,1500} cm. The meshes used the
-\gls{icrp}-74 dose response coefficients as a dose multiplier as recommended in
-\cite{iter_sdr_coeffs}.
-\subsection{Decay time 1 - 1.$\times$10$^5$ s}
-\subsection{Decay time 2 - 1.$\times$10$^6$ s}
-\subsection{Decay time 3 - 1.$\times$10$^7$ s}
+results of the previous \gls{alara_c} calculations are then processed further
+to make shutdown sources to be read into a sampling subroutine (also distributed
+with \gls{pyne}). Each photon source is run independently, and the photon dose
+is recorded on a mesh common to each photon calculation and then the meshes
+summed together to create the final result. The final mesh has a uniform size of
+side 2 cm striding from x = {0,1500}, y = {-500,500}, z = {-1900,1500} cm.
+The meshes used the\gls{icrp}-74 dose response coefficients as a dose multiplier
+as recommended in \cite{iter_sdr_coeffs}.
+\subsection{Including the B$_4$C liner}
+\subsubsection{Decay time 1 - 1.$\times$10$^5$ s}
+\subsubsection{Decay time 2 - 1.$\times$10$^6$ s}
+\subsubsection{Decay time 3 - 1.$\times$10$^7$ s}
+\subsection{Without the B$_4$C liner}
+\subsubsection{Decay time 1 - 1.$\times$10$^5$ s}
+\subsubsection{Decay time 2 - 1.$\times$10$^6$ s}
+\subsubsection{Decay time 3 - 1.$\times$10$^7$ s}
 \subsection{Conclusion}
 It is clear from Figures XXX that the shutdown photon dose rate in the port
-interspace is affected by the addition of boron carbide to the plasma side
-surface of the bioshield. The reason for the this is significantly degraded
-thermal flux which impacts the importance of (n,$\gamma$) reactions and also
-the transport of neutrons back from the bioshield. The true benefit appears
-only to be very close to the B$_4$C layer, where is reduces the activation of
-steel components near to the bioshield, those components away from the
-bioshield appear to have their activation dominated by the neutron transported
-via long paths around other ports, known as cross talk.
+interspace is marginally affected by the addition of boron carbide to the
+plasma side surface of the bioshield. The reason for the this is significantly
+degraded thermal flux which impacts the importance of (n,$\gamma$) reactions
+and also the transport of neutrons back from the bioshield. The true benefit
+appears only to be very close to the B$_4$C layer, where is reduces the
+activation of steel components near to the bioshield, those components away
+from the bioshield appear to have their activation dominated by the neutron
+transported via long paths around other ports. 
+\\
+\\
+What is clear is that the shutdown photon dose rate at the second decay time is
+significantly higher than the desired target goal of 100 $\mu$Sv hr$^{-1}$,
+previous analysis has shown ranges of \gls{sdr} in the \gls{epi} of anywhere
+from 200 to 400 $\mu$Sv hr$^{-1}$. It is surmised that the reason for the
+significantly higher \gls{sdr} in this calculation is due to the increased
+mass of components modelled in the \gls{epi} which leads to higher \gls{sdr}.
+The \gls{pfc}3 \& 4 coils also are strong sources near the \gls{epi}, but being
+beyond the \gls{ve} are somewhat shielded by it. The \gls{bs} is als a
+significant source, unshielded due to is proximity to the \gls{epi}. The ever
+present photon cross talk is also present, the \gls{lp} being unplugged leads
+to strong sources in the cryopump, which has roughly the same contribution
+as the sources within the \gls{epi}.
+\\
+\\
+It is also apparent that the utility of the B$_4$C present in the \gls{gepp}
+design is not as high as may be imagined. The B$_4$C powder is contained within
+a stainless steel lined box, which itself becomes activated under the presence
+of neutrons. The largest components in the region which do become activated are
+the back plate and attachment flange, both of which are the dominant source of
+activation in the region. It is suggested that the front 50 cm of the B$_4$C
+drawers could be removed, reducing the weight of the port plug without
+significantly impacting the shielding capability.
+\newpage
+\clearpage
 \section{Calculation Details}
 \subsection{Neutron Transport}
 \subsubsection{Baseline}
@@ -749,14 +807,51 @@ via long paths around other ports, known as cross talk.
 \subsection{Photon Transport}
 \subsubsection{Baseline}
 \subsubsection{With B$_4$C}
-
+\newpage
+\clearpage
 \section{Acceptance Criteria}
+\newpage
+\clearpage
 \section{Lessons learned and future work}
+\subsection*{CAD}
+One of the biggest reasons for delay with the deliver of the calculation results
+in this task was the cleaning and preparation of the CAD geometry. Several
+months were expended cleaning, repairing and merging components together into a
+final model. Ultimately due to time contraints, the decision was taken to
+proceed with the analysis with the CAD in its current state. It is important
+for CAD based workflows to have access to the unmodified, unsimplified CAD
+models that have been used to prepare the IO geometries. A specific issue
+was the use of the IO supplied Clite CAD geometry which was unprepared for
+such an analysis, several stages of simplification and fixing has been performed
+which lead to problems downstream in the final CAD preparation.
+\subsection*{High Throughput Methodology}
+The splitting of a given MCNP calculation into subruns spanning the same random
+number space proved to be a successful way of performing these calculations with
+access to the large of amounts of CPU-time on \gls{uw}'s \gls{chtc} system. In
+the future, we expect to make increasing use of this method for MCNP
+calculations. In this specific case long histories were a pervasive problem and
+limited the total number of runs that could be completed, however the underlying
+method was reliable. One of the issues associated with such a method is the
+quantity of storage space required to store the intermediate split results prior
+to merging, in this batch of simulations a total sum of 1.8 Tb of data was
+produced, consider that this represents only 10\% of the completed runs,
+therefore this simulation should have consumed some 20 Tb of space.
+\subsection*{Variance Reduction}
+The neutron section of this work was impacted by long histories, which appear to
+be a pervasive problem in the ITER geometry due to the area available for
+neutrons to stream through, combined with the strong neutron attenuation though
+bulk shielding. Ultimately this problem needs a solution, there are several
+potential solutions but each must be appropriately weighed and considered to
+ensure that a fair game is being played when rouletting particles. A future
+work could be to investigate several potential solutions to the ``long history
+problem'' and then provide recommendations to IO.
 \section{Acknowledgements}
-
+\newpage
+\clearpage
 \bibliographystyle{unsrt}
 \bibliography{bibliography}
 \newpage
+\clearpage
 \section{Appendix}
 \input{materials.tex}
 \end{document}
