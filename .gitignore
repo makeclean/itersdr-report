@@ -6,3 +6,10 @@
 *.pdf
 *.toc
 *.ps
+*.acn
+*.glo
+*.ist
+*.lof
+*.lot
+*.out
+*.xwm
