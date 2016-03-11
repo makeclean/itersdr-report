@@ -628,8 +628,8 @@ Activation Data - The activation data used was \gls{fendl}-3.0/A.
 \\
 \\
 Photon Data - The standard photon data supplied with \gls{mcnp}5 mcplib04 was 
-used. This data ultimately falls back onto \gls{endf}/B-VI release 8 photo atomic
-data.
+used. This data ultimately falls back onto \gls{endf}/B-VI release 8 photo
+atomic data.
 \subsection{Transport Software}
 \gls{mcnp}
 \subsection{Activation Software}
@@ -637,20 +637,6 @@ data.
 \newpage
 \clearpage
 \section{Neutron Transport Results and Conclusions}
-Using the methodology shown in Section \ref{section:method}, the neutron meshes
-were split into 7 calculations. These jobs were submitted to the \gls{uw}
-\gls{chtc} system in batches of 200
-for each mesh, with seven meshes used to determine the neutron flux, making a
-total of 2800 individual \gls{mcnp} simulations. These results were then
-combined using \gls{pyne} to result in the statistically averaged final results.
-Initially calculations were batched into groups of $5\times10^7$ particles per
-batch, however these calculations did not finish in a timely enough manner and
-were instead reduced to groups of $5\times10^6$ particles per batch. With the
-smaller batching system calculations did finish, however, only 10\% of all
-calculations for each mesh finished, but this represents $5\times10^7$ total
-source histories for each mesh.
-\\
-\\
 \subsection{Without the B4C Liner}
 The baseline results represent a standard C-lite model since there is no B$_4$C
 liner present, however relative to the standard C-lite native \gls{mcnp} model
@@ -743,16 +729,6 @@ photon energies, thus effectively produces no decay photons.
 \newpage
 \clearpage
 \section{Shutdown Photon Dose rates Results and Conclusions}
-The shutdown photon sources were developed in several separate meshes and
-therefore any individual mesh does not represent the entire problem. The
-results of the previous \gls{alara_c} calculations are then processed further
-to make shutdown sources to be read into a sampling subroutine (also distributed
-with \gls{pyne}). Each photon source is run independently, and the photon dose
-is recorded on a mesh common to each photon calculation and then the meshes
-summed together to create the final result. The final mesh has a uniform size of
-side 2 cm striding from x = {0,1500}, y = {-500,500}, z = {-1900,1500} cm.
-The meshes used the\gls{icrp}-74 dose response coefficients as a dose multiplier
-as recommended in \cite{iter_sdr_coeffs}.
 \subsection{Including the B$_4$C liner}
 \subsubsection{Decay time 1 - 1.$\times$10$^5$ s}
 \subsubsection{Decay time 2 - 1.$\times$10$^6$ s}
@@ -799,12 +775,41 @@ significantly impacting the shielding capability.
 \clearpage
 \section{Calculation Details}
 \subsection{Neutron Transport}
+Using the methodology shown in Section \ref{section:method}, the neutron meshes
+were split into 7 calculations. These jobs were submitted to the \gls{uw}
+\gls{chtc} system in batches of 200 for each mesh, with seven meshes used to
+determine the neutron flux, making a
+total of 2800 individual \gls{mcnp} simulations. These results were then
+combined using \gls{pyne} to result in the statistically averaged final results.
+Initially calculations were batched into groups of $5\times10^7$ particles per
+batch, however these calculations did not finish in a timely enough manner and
+were instead reduced to groups of $5\times10^6$ particles per batch. With the
+smaller batching system calculations did finish, however, only 10\% of all
+calculations for each mesh finished, but this represents $5\times10^7$ total
+source histories for each mesh.
 \subsubsection{Baseline}
 \subsubsection{With B$_4$C}
 \subsection{Activation Calculations}
 \subsubsection{Baseline}
 \subsubsection{With B$_4$C}
 \subsection{Photon Transport}
+The shutdown photon sources were developed in several separate meshes and
+therefore any individual mesh does not represent the entire problem. The
+results of the previous \gls{alara_c} calculations are then processed further
+to make shutdown sources to be read into a sampling subroutine (also distributed
+with \gls{pyne}). Each photon source is run independently, and the photon dose
+is recorded on a mesh common to each photon calculation and then the meshes
+summed together to create the final result. The final mesh has a uniform size of
+side 2 cm striding from x = {0,1500}, y = {-500,500}, z = {-1900,1500} cm.
+The meshes used the\gls{icrp}-74 dose response coefficients as a dose multiplier
+as recommended in \cite{iter_sdr_coeffs}.
+\\
+\\
+Each photon transport calculation was performed for a fixed number of particles,
+1$\times$10$^8$, which nominally completed in less than 15 hours on 40 cores of
+\gls{aci}. Each photon simulation used the same random number seed, but given
+that each photon source is unique, there are no concerns regarding the resuse
+of the same seed.
 \subsubsection{Baseline}
 \subsubsection{With B$_4$C}
 \newpage
