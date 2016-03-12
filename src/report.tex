@@ -50,6 +50,7 @@
 %\usepackage[printwatermark]{xwatermark}
 %\usepackage{mathptmx}
 %\usepackage{fouriernc}
+\usepackage{hyperref}
 \usepackage{times}
 \usepackage{graphicx}
 \usepackage{longtable}
@@ -398,10 +399,9 @@ of producing gamma ray sources for \gls{r2s} shutdown photon calculations.
   \hline
   Code & Validation Status & References \\    
   \hline
-  ADVANTG & ?? & \\
-  pyne.mesh & Validated by unit tests & \\
-  pyne.r2s & Validated & \\
-  pyne.source\_sampling & Validated & \\
+  pyne.mesh & Validated by unit tests & - \\
+  pyne.r2s & Validated & \cite{pyne_r2s} \\
+  pyne.source\_sampling & Validated & \cite{pyne_r2s} \\
  \end{tabular}
  \caption{}
  \label{table:validation_aux}
@@ -670,7 +670,7 @@ origin of each material is described in Table \ref{tab:material_origin}.
   M914 & Copy M100 & CLITE V1\\
   M915 & Copy M910 & Bespoke \\
   M916 & Copy M100 & CLITE V1\\
-  M917 & Cryopipes & \cite{neutr anal materials}\\
+  M917 & Cryopipes & \cite{cryopump_communication}\\
   M918 & Copy M100 & CLITE V1 \\
   M920 & Copy M100 & CLITE V1 \\
   M921 & Copy M100 & CLITE V1 \\
@@ -678,18 +678,18 @@ origin of each material is described in Table \ref{tab:material_origin}.
   M923 & Copy M100 & CLITE V1 \\
   M924 & Copy M100 & CLITE V1 \\
   M925 & Copy M100 & CLITE V1 \\
-  M926 & Copy M100 - Frame Wheels & \cite{neutr_anal_materials}\\
-  M927 & Copy M100 - Frame Wheels Drive & \cite{neutr_anal_materials}\\
-  M928 & Copy M100 - Port Plug Frame & \cite{neutr_anal_materials}\\
-  M929 & Copy M100 - Port Plug Pipes & \cite{neutr_anal_materials}\\
-  M930 & Copy M100 & \cite{neutr_anal_materials}\\
-  M931 & M100:0.7 M400:0.3 & \cite{neutr_anal_materials}\\
-  M932 & M100:0.9 M400:0.1 & \cite{neutr_anal_materials}\\
-  M933 & M100:0.9 M400:0.1 & \cite{neutr_anal_materials}\\
-  M934 & M100:0.97 M400:0.03 & \cite{neutr_anal_materials}\\
-  M937 & Copy M100 & \cite{neutr_anal_materials}\\
-  M938 & Copy M100 & \cite{neutr_anal_materials}\\
-  M939 & Copy M100 & \cite{neutr_anal_materials}\\
+  M926 & Copy M100 - Frame Wheels & \cite{bertalot_communication}\\
+  M927 & Copy M100 - Frame Wheels Drive & \cite{bertalot_communication}\\
+  M928 & Copy M100 - Port Plug Frame & \cite{bertalot_communication}\\
+  M929 & Copy M100 - Port Plug Pipes & \cite{bertalot_communication}\\
+  M930 & Copy M100 & \cite{cryopump_communication}\\
+  M931 & M100:0.7 M400:0.3 & \cite{bertalot_communication}\\
+  M932 & M100:0.9 M400:0.1 & \cite{bertalot_communication}\\
+  M933 & M100:0.9 M400:0.1 & \cite{bertalot_communication}\\
+  M934 & M100:0.97 M400:0.03 & \cite{bertalot_communication}\\
+  M937 & Copy M100 & \cite{cryopump_communication}\\
+  M938 & Copy M100 & \cite{cryopump_communication}\\
+  M939 & Copy M100 & \cite{cryopump_communication}\\
   M935 & First Wall & BL-lite \\
   M936 & First Wall & BL-lite \\
   M940 & Copy M100 & Diagnostics MCNP Model \\
