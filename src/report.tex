@@ -25,13 +25,19 @@
   The University of Wisconsin-Madison\\
   Madison, Wisconsin, 53706, \underline{USA}
   \and
-  Ahmed Ibrahim \\
+  Ahmad Ibrahim \\
   Radiation Transport Group\\
   Oak Ridge National Laboratory \\
   P.O. Box 2008 \\
   Oak Ridge, Tennessee 37831, \underline{USA}
   \and
   Patrick Shriwise \\
+  Department of Engineering Physics\\
+  College of Engineering \\
+  The University of Wisconsin-Madison\\
+  Madison, Wisconsin, 53706, \underline{USA}
+  \and
+  Edward Marriott\\
   Department of Engineering Physics\\
   College of Engineering \\
   The University of Wisconsin-Madison\\
@@ -375,10 +381,10 @@ of producing gamma ray sources for \gls{r2s} shutdown photon calculations.
   \hline
   Code & Version & Validation Status & References \\
   \hline 
-  DAG-MCNP5 & 1.0 & Production & \\
-  ALARA & 2.9.1 & Production & \\
-  ADVANTG & 3.0.2 & Production & \\
-  Denovo & 5.3 & Production & \\
+  DAG-MCNP5 & 1.0 & Production & \cite{dagmc_validation}\\
+  ALARA & 2.9.1 & Production & \cite{alara}\\
+  ADVANTG & 3.0.2 & Production & \cite{advantg}\\
+  Denovo & 5.3 & Production & \cite{denovo} \\
   yt & 3.2 & Production & \\
   \end{tabular}
  \caption{}
@@ -724,7 +730,7 @@ the divertor pumping port is unplugged. The open pumping port specifically
 leads to higher neutron fluxes beyond the vacuum vessel.
 \begin{figure}[ht!]
   \centering
-  \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/Neutron_Result_(All_Energy_Groups)_Meshes_1-7.png}     
+  \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/{Neutron_Result_(All_Energy_Groups)_Meshes_1-7}.png}     
   \label{fig:neutrons_baseline}
   \caption{The total neutron flux from the baseline case}
 \end{figure}
@@ -743,7 +749,7 @@ equipment present in the \gls{pi} (both upper and lower), and the divertor
 pumping port is unplugged. 
 \begin{figure}[ht!]
   \centering
-  \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Neutron_Result_(All_Energy_Groups)_Meshes_1-7.png}     
+  \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/{Neutron_Result_(All_Energy_Groups)_Meshes_1-7}.png}     
   \label{fig:neutrons_no4bc}
   \caption{The total neutron flux from the B$_4$C case}
 \end{figure}
@@ -785,12 +791,24 @@ The \gls{r2s} shutdown dose rate calculations were performed using the
 using \gls{alara_c} 2.9.1RC. 
 \subsection{Without the B4C Liner}
 \subsubsection{Decay Time 1 - 1$\times$10$^{5}$ seconds}
+\input{../plots/final_model_nob4c/src_dc1.tex}
+\clearpage
 \subsubsection{Decay Time 2 - 1$\times$10$^{6}$ seconds}
+\input{../plots/final_model_nob4c/src_dc2.tex}
+\clearpage
 \subsubsection{Decay Time 3 - 1$\times$10$^{7}$ seconds}
+\input{../plots/final_model_nob4c/src_dc3.tex}
+\clearpage
 \subsection{Including the B4C Liner}
 \subsubsection{Decay Time 1 - 1$\times$10$^{5}$ seconds}
+\input{../plots/final_model/src_dc1.tex}
+\clearpage
 \subsubsection{Decay Time 2 - 1$\times$10$^{6}$ seconds}
+\input{../plots/final_model/src_dc2.tex}
+\clearpage
 \subsubsection{Decay Time 3 - 1$\times$10$^{7}$ seconds}
+\input{../plots/final_model/src_dc3.tex}
+\clearpage
 \subsection{Comparison}
 \subsection{Conclusion}
 The shutdown photon source produced for each case and 3 decay times results in
