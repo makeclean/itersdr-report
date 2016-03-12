@@ -3,7 +3,6 @@
 print_image(){
 # $1 filename $2 decay time $3 mesh number $4 flux or error
 
-echo $1 | tr "_" " " | awk '{print $9}'
 ranges=`echo $1 | tr "_" " " | awk '{print $9" MeV"}'`
 ranges2=`echo $1 | tr "_" " " | awk '{print $9}'`
 
@@ -15,6 +14,7 @@ echo "\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_m
 echo '\label{fig:source_dc$2_no4bc_'$ranges2'}'
 echo '\caption{The shutdown photon source for the baseline case for decay time '$2' in the energy ranges '$ranges'}'
 echo "\end{figure}"
+echo "\clearpage"
 }
 
 print_image_total(){
@@ -28,6 +28,7 @@ echo "\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_m
 echo "\label{fig:source_dc$2_no4bc}"
 echo '\caption{The total shutdown photon source for the baseline case for decay time '$2'}'
 echo "\end{figure}"
+echo "\clearpage"
 }
 
 rm src_dc?.tex
