@@ -722,7 +722,7 @@ atomic data.
 \newpage
 \clearpage
 \section{Neutron Transport Results and Conclusions}
-\subsection{Without the B$_4$C Liner}
+\subsection{Baseline}
 The baseline results represent a standard C-lite model since there is no B$_4$C
 liner present, however relative to the standard C-lite native \gls{mcnp} model
 there is much more equipment present in the \gls{upi} \& \gls{epi}, and
@@ -789,20 +789,57 @@ The \gls{r2s} shutdown dose rate calculations were performed using the
 \texttt{pyne.r2s} methods found \gls{pyne}. The setup scripts produce
 \gls{alara_c} inputs and the neutron activation calculations were performed
 using \gls{alara_c} 2.9.1RC. 
-\subsection{Without the B4C Liner}
+\subsection{Baseline}
 \subsubsection{Decay Time 1 - 1$\times$10$^{5}$ seconds}
-\input{../plots/final_model_nob4c/src_dc1.tex}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/{Photon_Source_Density_Decay_Time_1_All_Energy_Groups}.png}
+\label{fig:source_dc1_no4bc}
+\caption{The total shutdown photon source for the baseline case for decay time 1}
+\end{figure}
+\clearpage
 \subsubsection{Decay Time 2 - 1$\times$10$^{6}$ seconds}
-\input{../plots/final_model_nob4c/src_dc2.tex}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/{Photon_Source_Density_Decay_Time_2_All_Energy_Groups}.png}
+\label{fig:source_dc2_no4bc}
+\caption{The total shutdown photon source for the baseline case for decay time 2}
+\end{figure}
+\clearpage
 \subsubsection{Decay Time 3 - 1$\times$10$^{7}$ seconds}
-\input{../plots/final_model_nob4c/src_dc3.tex}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/{Photon_Source_Density_Decay_Time_3_All_Energy_Groups}.png}
+\label{fig:source_dc3_no4bc}
+\caption{The total shutdown photon source for the baseline case for decay time 3}
+\end{figure}
+\newpage
+\clearpage
 \subsection{Including the B4C Liner}
 \subsubsection{Decay Time 1 - 1$\times$10$^{5}$ seconds}
-\input{../plots/final_model/src_dc1.tex}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/{Photon_Source_Density_Decay_Time_1_All_Energy_Groups}.png}
+\label{fig:source_dc1_b4c}
+\caption{The total shutdown photon source for the case with B$_4$C for decay time 1}
+\end{figure}
+\clearpage
 \subsubsection{Decay Time 2 - 1$\times$10$^{6}$ seconds}
-\input{../plots/final_model/src_dc2.tex}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/{Photon_Source_Density_Decay_Time_2_All_Energy_Groups}.png}
+\label{fig:source_dc2_b4c}
+\caption{The total shutdown photon source for the case with B$_4$C for decay time 2}
+\end{figure}
+\clearpage
 \subsubsection{Decay Time 3 - 1$\times$10$^{7}$ seconds}
-\input{../plots/final_model/src_dc3.tex}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/{Photon_Source_Density_Decay_Time_3_All_Energy_Groups}.png}
+\label{fig:source_dc3_b4c}
+\caption{The total shutdown photon source for the case with B$_4$C for decay time 3}
+\end{figure}
+\clearpage
 \subsection{Comparison}
 \subsection{Conclusion}
 The shutdown photon source produced for each case and 3 decay times results in
@@ -819,22 +856,91 @@ photon energies, thus effectively produces no decay photons.
 \newpage
 \clearpage
 \section{Shutdown Photon Dose rates Results and Conclusions}
-\subsection{Without the B$_4$C liner}
+\subsection{Baseline}
 \subsubsection{Decay time 1 - 1.$\times$10$^5$ s}
-\input{../plots/final_model_nob4c/dc1.tex}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/Photon_Dose_Rate_Decay_Time_1_Meshes_1-7.png}
+\label{fig:photons_dc1_no4bc_total}
+\caption{The total dose rate summed over all meshes for decay time 1}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/Photon_Dose_Relative_Error_Decay_Time_1_Meshes_1-7.png}
+\label{fig:photons_dc1_no4bc_total_error}
+\caption{The error in the total dose rate combined over all meshes for decay time 1}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/Photon_Dose_Rate_Decay_Time_1_Meshes_1-7_Zoomed_Y_Views.png}
+\label{fig:photons_dc1_no4bc_total_zoomed}
+\caption{The total dose rate summed over all meshes for decay time 1, with focus on the port areas}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/Photon_Dose_Relative_Error_Decay_Time_1_Meshes_1-7_Zoomed_Y_Views.png}
+\label{fig:photons_dc1_no4bc_total_error_zoomed}
+\caption{The error in the total dose rate combined over all meshes for decay time 1, with focus on the port areas}
+\end{figure}
+
 \clearpage
 \subsubsection{Decay time 2 - 1.$\times$10$^6$ s}
-\input{../plots/final_model_nob4c/dc2.tex}
+%% the totals plots
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/Photon_Dose_Rate_Decay_Time_2_Meshes_1-7.png}
+\label{fig:photons_dc2_no4bc_total}
+\caption{The total dose rate summed over all meshes for decay time 2}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/Photon_Dose_Relative_Error_Decay_Time_2_Meshes_1-7.png}
+\label{fig:photons_dc2_no4bc_total_error}
+\caption{The error in the total dose rate combined over all meshes for decay time 2}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/Photon_Dose_Rate_Decay_Time_2_Meshes_1-7_Zoomed_Y_Views.png}
+\label{fig:photons_dc2_no4bc_total_zoomed}
+\caption{The total dose rate summed over all meshes for decay time 2, with focus on the port areas}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/Photon_Dose_Relative_Error_Decay_Time_2_Meshes_1-7_Zoomed_Y_Views.png}
+\label{fig:photons_dc2_no4bc_total_error_zoomed}
+\caption{The error in the total dose rate combined over all meshes for decay time 2, with focus on the port areas}
+\end{figure}
 \clearpage
+
 \subsubsection{Decay time 3 - 1.$\times$10$^7$ s}
-\input{../plots/final_model_nob4c/dc3.tex}
-
-
+%% the totals plots
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/Photon_Dose_Rate_Decay_Time_3_Meshes_1-7.png}
+\label{fig:photons_dc3_no4bc_total}
+\caption{The total dose rate summed over all meshes for decay time 3}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/Photon_Dose_Relative_Error_Decay_Time_3_Meshes_1-7.png}
+\label{fig:photons_dc3_no4bc_total_error}
+\caption{The error in the total dose rate combined over all meshes for decay time 3}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/Photon_Dose_Rate_Decay_Time_3_Meshes_1-7_Zoomed_Y_Views.png}
+\label{fig:photons_dc3_no4bc_total_zoomed}
+\caption{The total dose rate summed over all meshes for decay time 3, with focus on the port areas}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_nob4c/Photon_Dose_Relative_Error_Decay_Time_3_Meshes_1-7_Zoomed_Y_Views.png}
+\label{fig:photons_dc3_no4bc_total_error_zoomed}
+\caption{The error in the total dose rate combined over all meshes for decay time 3, with focus on the port areas}
+\end{figure}
 \clearpage
 \subsection{Including the B$_4$C liner}
 \subsubsection{Decay time 1 - 1.$\times$10$^5$ s}
-\input{../plots/final_model/dc1.tex}
-%% the totals plots
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Rate_Decay_Time_1_Meshes_1-7.png}
@@ -862,7 +968,7 @@ photon energies, thus effectively produces no decay photons.
 
 \clearpage
 \subsubsection{Decay time 2 - 1.$\times$10$^6$ s}
-\input{../plots/final_model/dc2.tex}
+
 %% the totals plots
 \begin{figure}[ht!]
 \centering
@@ -889,8 +995,8 @@ photon energies, thus effectively produces no decay photons.
 \caption{The error in the total dose rate combined over all meshes for decay time 2, with focus on the port areas}
 \end{figure}
 \clearpage
+
 \subsubsection{Decay time 3 - 1.$\times$10$^7$ s}
-\input{../plots/final_model/dc3.tex}
 %% the totals plots
 \begin{figure}[ht!]
 \centering
@@ -926,7 +1032,9 @@ and also the transport of neutrons back from the bioshield. The true benefit
 appears only to be very close to the B$_4$C layer, where is reduces the
 activation of steel components near to the bioshield, those components away
 from the bioshield appear to have their activation dominated by the neutron
-transported via long paths around other ports. 
+transported via long paths around other ports. This is  likely due to the fact
+that most neutron induced activation in fusion devices are due to high energy
+capture reactions like (n,p), (n,2n) and (n,xn) reactions.
 \\
 \\
 What is clear is that the shutdown photon dose rate at the second decay time is
@@ -1070,7 +1178,47 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 \bibliography{bibliography}
 \newpage
 \clearpage
-\section{Appendix}
+\section{Appendix - A - Materials used in the problem}
 \input{materials.tex}
+
+\section{Appendix - B - Groupwise Photon Sources}
+\subsection{Baseline}
+\subsubsection{Decay Time 1 - 1$\times$10$^{5}$ seconds}
+\input{../plots/final_model_nob4c/src_dc1.tex}
+\subsubsection{Decay Time 2 - 1$\times$10$^{6}$ seconds}
+\input{../plots/final_model_nob4c/src_dc2.tex}
+\subsubsection{Decay Time 3 - 1$\times$10$^{7}$ seconds}
+\input{../plots/final_model_nob4c/src_dc3.tex}
+\subsection{Including the B4C Liner}
+\subsubsection{Decay Time 1 - 1$\times$10$^{5}$ seconds}
+\input{../plots/final_model/src_dc1.tex}
+\subsubsection{Decay Time 2 - 1$\times$10$^{6}$ seconds}
+\input{../plots/final_model/src_dc2.tex}
+\subsubsection{Decay Time 3 - 1$\times$10$^{7}$ seconds}
+\input{../plots/final_model/src_dc3.tex}
+
+\section{Appendix - C - Shutdown Photon Dose Rates}
+\subsection{Baseline}
+\subsubsection{Decay time 1 - 1.$\times$10$^5$ s}
+\input{../plots/final_model_nob4c/dc1.tex}
+\clearpage
+\subsubsection{Decay time 2 - 1.$\times$10$^6$ s}
+\input{../plots/final_model_nob4c/dc2.tex}
+\clearpage
+\subsubsection{Decay time 3 - 1.$\times$10$^7$ s}
+\input{../plots/final_model_nob4c/dc3.tex}
+\clearpage
+\subsection{Including the B4C Liner}
+\subsubsection{Decay time 1 - 1.$\times$10$^5$ s}
+\input{../plots/final_model/dc1.tex}
+\clearpage
+\subsubsection{Decay time 2 - 1.$\times$10$^6$ s}
+\input{../plots/final_model/dc2.tex}
+\clearpage
+\subsubsection{Decay time 3 - 1.$\times$10$^7$ s}
+\input{../plots/final_model/dc3.tex}
+\clearpage
+
+
 \end{document}
 This is never printed
