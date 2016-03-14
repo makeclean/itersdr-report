@@ -222,8 +222,8 @@ with the layer included and once without and then examining the detailed effect
 this layer has upon neutron transport, the subsequent neutron induced activation
 and the resultant photon transport.
 \subsection{Initiating Documents}
-The ITER Task Agreement which this work was initiated and performed is TA
-C74TD21FU Several documents provided the basis of the materials for components,
+The ITER Task Agreement under which this work was initiated and performed is TA
+C74TD21FU. Several documents provided the basis of the materials for components,
 and several \gls{cad} models were provided by numerous \gls{io} groups.
 \\
 \\
@@ -231,33 +231,56 @@ This report fulfills deliverable 7 of the task agreement.
 \newpage
 \section{Solution Methodology}
 \subsection{Background}
-\subsubsection{FW-CADIS Method}
-The \gls{fwcadis} method was originally developed to increase the efficiency of 
-Monte Carlo calculations of distributions, such as flux or dose rate 
-distributions (e.g., mesh tallies), as well as responses at multiple localized 
-detectors and spectra. The basis of this method is the development of an 
-importance function that represents the importance of particles to the objective
- of uniform Monte Carlo particle density in the desired tally regions. 
-Implementation of this method utilizes the results from a (forward) 
-deterministic calculation to develop a forward-weighted source for a 
-deterministic adjoint calculation. The resulting adjoint function is 
-then used to generate a consistent space- and energy-dependent source 
-biasing parameters and weight windows that are used in a forward Monte 
-Carlo calculation to obtain more uniform statistical uncertainties in the 
-desired tally regions \cite{wagnerNSEFWCADIS} . This method was used to 
-accelerate the neutron Monte Carlo calculation of the \gls{r2s} \gls{sdr} 
- analysis in this work.
+
 \subsubsection{Rigorous Two Step (R2S) Method}
+
 The \gls{r2s} method \cite{r2s} is the primary method of generating shutdown
-photon dose rates and fluxes for fusion devices. The method has been improved
-upon with the addition of mesh based flux determination methods
-\cite{mcr2s,r2smesh,r2suned,pyne_r2s} which allow more fine neutron flux
-gradients to be represented in resultant activation source. The method consists
-of 3 main steps; 1) neutron transport, 2) inventory calculation for the problem,
-3) transport of photons resulting from the inventory calculation. Since the
-\gls{r2s} method is tied to a nuclear inventory code, it is capable of handling
-the non-linear variations of nuclide density induced by (n,xn) reactions, which
-\gls{d1s} methods traditionally struggle with.
+photon dose rates and fluxes for fusion devices. The method consists of 3 main
+steps.  Neutron transport simulations generate a detailed three-dimensional
+map of multi-group neutron fluxes.  These are used to predict the induced
+activity of the structural material, resulting in three-dimensional maps of
+the energy-dependent photon emission density for different times after
+shutdown.  For each time after shutdown, those photon emission densities are
+used as the source for photon transport to determine a three-dimensional map
+of the photon dose.  Improvements on the original method rely on mesh based
+flux determination methods \cite{mcr2s,r2smesh,r2suned,pyne_r2s} that allow
+more fine neutron flux gradients to be represented in resultant activation
+source.  Since the \gls{r2s} method performs a complete activation calculation
+using a standalone nuclear inventory code, it is capable of handling the
+non-linear variations of nuclide density induced by (n,xn) reactions
+that \gls{d1s} methods traditionally struggle with.
+
+\subsubsection{Variance Reduction and the FW-CADIS Method}
+
+The neutron and photon transport steps of the above \gls{r2s} methodology are
+performed with Monte Carlo radiation transport methods in order to best
+capture the effects of streaming through narrow ducts and channels.  At the
+same time, problems such as these are characterized by deep penetration for
+which Monte Carlo simulation is known to be computationally ineffecient.
+Variance reduction techniques can be employed to improve the computational
+efficiency without introducing approximations to the transport problem.
+
+For \gls{r2s} problems, it is desirable to predict the neutron flux throughout
+the entire domain of the problem with equal statistical accuracy even though
+it originates from a relatively small region of the problem in the plasma
+chamber.  The \gls{fwcadis} method was originally developed to increase the
+efficiency of performing Monte Carlo calculations of spatial distributions
+over large domains (e.g., mesh tallies of fluxes or dose rates), as well as
+responses at multiple localized detectors and spectra. The basis of this
+method is the development of an importance function that represents the
+importance of particles to the objective of uniform Monte Carlo particle
+density in the desired tally regions.  Implementation of this method utilizes
+the results from a forward deterministic calculation to develop a
+forward-weighted adjoint source for a deterministic adjoint calculation. The
+resulting adjoint function is then used to generate a consistent space- and
+energy-dependent source biasing parameters and weight windows that are used in
+a forward Monte Carlo calculation to obtain more uniform statistical
+uncertainties in the desired tally regions \cite{wagnerNSEFWCADIS}. This
+method was used to accelerate the neutron Monte Carlo calculation of
+the \gls{r2s} \gls{sdr} analysis in this work.  Since the photon source is
+distributed broadly in space, the impact of variance reduction for a broadly
+distributed photon dose map is less obvious, and was not used in this problem.
+
 \subsection{Input Description}
 \subsubsection{The Model Geometry}
 The \gls{cad} model was generated from several sources, ITER Clite \gls{cad}
@@ -267,8 +290,13 @@ previous \gls{mcnp} analysis which were detailed in \cite{cad_origination}. The
 model represents several ITER systems in high levels of detail, with all detail
 retained in the \gls{epi}, the  \gls{upi}, and the Lower Port Cryopump. Some of
 these models were previously used to generate \gls{mcnp} input decks so have
-undergone some degree of simplification.
+undergone some degree of simplification prior to being provided for use on this 
+problem.
 \\
+
+NOTE: more on necessary modifications to make model useable?!?  This was a big
+fraction of our timeline.
+
 \\
 The overall \gls{cad} model in shown in Figure \ref{fig:cad_iter_global}, the
 broad details of the model can be seen. 
