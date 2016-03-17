@@ -89,7 +89,8 @@
 %% abreviations
 \newacronym{aci}{ACI}{Advanced Computing Initiative}
 \newacronym{advantg}{ADVANTG}{AutomateD VAriaNce reducTion Generator}
-\newacronym{alara_c}{ALARA}{Analytic and Laplacian Adaptive Radioactivity Analysis}
+\newacronym{alara_c}{ALARA}{Analytic and Laplacian Adaptive Radioactivity 
+           Analysis}
 \newacronym{alara_p}{ALARA - [Principle] - }{As Low As Reasonably Achievable}
 \newacronym{bs}{BS}{Bioshield}
 \newacronym{cad}{CAD}{Computer Aided Design}
@@ -105,7 +106,8 @@
 \newacronym{epi}{EPI}{Equatorial Port Interspace}
 \newacronym{fendl}{FENDL}{Fusion Evaluated Nuclear Data Library}
 \newacronym{fom}{FOM}{Figure of Merit}
-\newacronym{fwcadis}{FW-CADIS}{Forward Weighted - Consistent Adjoint Driven Importance Sampling}
+\newacronym{fwcadis}{FW-CADIS}{Forward Weighted - Consistent Adjoint Driven 
+            Importance Sampling}
 \newacronym{gepp}{GEPP}{Generic Equatorial Port Plug}
 \newacronym{icrp}{ICRP}{International Commission on Radiation Protection}
 \newacronym{io}{IO}{ITER Organisation}
@@ -174,13 +176,23 @@ port regions of ITER.
 \\
 The neutron results showed some effect of the introduction of the B$_4$C liner 
 to the bioshield, neutron fluxes were depressed near to the bioshield by an 
-order of magnitude. The largest reduction was in the lowest thermal groups.
+order of magnitude. The largest reduction was in the lowest thermal groups, 
+which impacts the (n,$\gamma$) capture reactions the most.
 \\
 \\
-The activation results showed ....
+The activation results showed the for the first decay time there is little 
+difference between the baseline and with B$_4$C. For the second decay time, 
+the was an order of magnitude reduction in the photon source density for 
+steel components near the bioshield in the B$_4$C case. For the third decay
+time there are nominal differences between the two cases.
 \\
 \\
-The photon results showed ....
+The photon results showed that the doserate there was some benefit to the 
+the B$_4$C liner. Dose rates across all decay times were consistently lower
+by factors of 2-4 for the with B$_4$C case for all the ports. The biggest effect
+was present in the upper and equatorial ports. However, for decay times greater
+than 10$^6$ seconds the dose rate in all the port interspaces was greater than
+than 100 $\mu$Sv $hr^{-1}$. 
 \\
 \\
 This analysis focused on only shutdown photon sources, and therefore does not
@@ -191,36 +203,36 @@ contain prompt photon doses.
 \section*{Abstract}
 This report provides the methology, input data, assumptions and results for a
 full analysis of neutron, neutron induced activation and the subsequent
-transport of residual decay photons in a reference ITER \gls{cad} model. The purpose
-of the analysis was to (1) establish a baseline result for the shutdown photon
-dose rate around the ITER device and (2) determine the effect upon the \gls{sdr} of a
-thin B$_4$C layer added to the plasma-side of the bioshield. A differentiating
-factor in this analysis relative to others is the level of detail present in
-the ports. The \gls{up} contained a detailed diagnostic model along side detailed \gls{pi}
-equipment up to the bioshield plug. Similarly, the \gls{ep} contained the \gls{dd} model of
-an \gls{epp} with diagnostic drawers and significant quantities of internal B$_4$C
-shielding, the \gls{ep} interspace contained detailed models of rails, racks and
-support frames out to the bioshield. The \gls{lpp} contained a detailed model of the
-cryopump. 
+transport of residual decay photons in a reference ITER \gls{cad} model. The 
+purpose of the analysis was to (1) establish a baseline result for the shutdown 
+photon dose rate around the ITER device and (2) determine the effect upon the 
+\gls{sdr} of a thin B$_4$C layer added to the plasma-side of the bioshield. A 
+differentiating factor in this analysis relative to others is the level of 
+detail present in the ports. The \gls{up} contained a detailed diagnostic model 
+along side detailed \gls{pi} equipment up to the bioshield plug. Similarly, the 
+\gls{ep} contained the \gls{dd} model of an \gls{epp} with diagnostic drawers 
+and significant quantities of internal B$_4$C shielding, the \gls{ep} interspace
+contained detailed models of rails, racks and support frames out to the 
+bioshield. The \gls{lpp} contained a detailed model of the cryopump. 
 \newpage
 \section{Purpose}
 \subsection{Problem Statement}
 The shutdown dose rate in an around the equatorial and upper ports determine the
 type and duration of maintenance that can be performed by person access. Thus,
-minimization of the dose rate is desirable and indeed encouraged by the \gls{alara_p}
-principles used at ITER. It was recently suggested in the Neutronics Task Force
-that lining the plasma side of the concrete bioshield with a thin ($\sim$ mm
-thickness) layer of boron carbide (B$_4$C). The purpose of the layer is to
-absorb much of the thermal flux which would otherwise lead to neutron induced
-activation, typically (n,$\gamma$) capture reactions. Simple scoping
-calculations have suggested that the thermal neutron flux should be depressed
-significantly and lead to significantly lower shutdown photon dose rates, close
-to an order of magnitude. The main goal of this report was therefore to examine
-if the use of the B$_4$C liner does indeed lead to lower dose rates, this would
-be achieved by modelling a detailed 40$^{\circ}$ sector of the ITER device once
-with the layer included and once without and then examining the detailed effect
-this layer has upon neutron transport, the subsequent neutron induced activation
-and the resultant photon transport.
+minimization of the dose rate is desirable and indeed encouraged by the 
+\gls{alara_p} principles used at ITER. It was recently suggested in the 
+Neutronics Task Force that lining the plasma side of the concrete bioshield 
+with a thin ($\sim$ mm thickness) layer of boron carbide (B$_4$C). The purpose 
+of the layer is to absorb much of the thermal flux which would otherwise lead 
+to neutron induced activation, typically (n,$\gamma$) capture reactions. Simple 
+scoping calculations have suggested that the thermal neutron flux should be 
+depressed significantly and lead to significantly lower shutdown photon dose 
+rates, close to an order of magnitude. The main goal of this report was 
+therefore to examine if the use of the B$_4$C liner does indeed lead to lower 
+dose rates, this would be achieved by modelling a detailed 40$^{\circ}$ sector 
+of the ITER device once with the layer included and once without and then 
+examining the detailed effect this layer has upon neutron transport, the 
+subsequent neutron induced activation and the resultant photon transport.
 \subsection{Initiating Documents}
 The ITER Task Agreement under which this work was initiated and performed is TA
 C74TD21FU. Several documents provided the basis of the materials for components,
@@ -231,9 +243,7 @@ This report fulfills deliverable 7 of the task agreement.
 \newpage
 \section{Solution Methodology}
 \subsection{Background}
-
 \subsubsection{Rigorous Two Step (R2S) Method}
-
 The \gls{r2s} method \cite{r2s} is the primary method of generating shutdown
 photon dose rates and fluxes for fusion devices. The method consists of 3 main
 steps.  Neutron transport simulations generate a detailed three-dimensional
@@ -251,7 +261,6 @@ non-linear variations of nuclide density induced by (n,xn) reactions
 that \gls{d1s} methods traditionally struggle with.
 
 \subsubsection{Variance Reduction and the FW-CADIS Method}
-
 The neutron and photon transport steps of the above \gls{r2s} methodology are
 performed with Monte Carlo radiation transport methods in order to best
 capture the effects of streaming through narrow ducts and channels.  At the
@@ -259,7 +268,8 @@ same time, problems such as these are characterized by deep penetration for
 which Monte Carlo simulation is known to be computationally ineffecient.
 Variance reduction techniques can be employed to improve the computational
 efficiency without introducing approximations to the transport problem.
-
+\\
+\\
 For \gls{r2s} problems, it is desirable to predict the neutron flux throughout
 the entire domain of the problem with equal statistical accuracy even though
 it originates from a relatively small region of the problem in the plasma
@@ -294,8 +304,9 @@ undergone some degree of simplification prior to being provided for use on this
 problem.
 \\
 \\
-NOTE: more on necessary modifications to make model useable?!?  This was a big
-fraction of our timeline.
+Several modifications were nessary for the \gls{cad} to be fully usable. Several
+person months of time was invested in cleaning, reparing and building multiple
+components multiple times. 
 \\
 \\
 The overall \gls{cad} model in shown in Figure \ref{fig:cad_iter_global}, the
@@ -396,6 +407,8 @@ For this project we used the following capabilities of \gls{pyne}.
   \item{the \texttt{pyne.alara} class to produce alara inputs}
   \item{the \texttt{pyne.mcnp} class to read \gls{mcnp} meshtal files}
 \end{itemize}
+The PyNE capabilities are interoperable with \gls{dagmc} output and handles
+most post-process operations in the analysis.
 \subsubsection{ALARA}
 \gls{alara_c} \cite{alara} is a nuclear inventory code developed at the \gls{uw}
 The unique feature of \gls{alara_c} is the way it handles the
@@ -404,6 +417,9 @@ duplicate links linearised. \gls{alara_c} is used in this analysis as the method
 of producing gamma ray sources for \gls{r2s} shutdown photon calculations.
 \subsection{Validation Status}
 \subsubsection*{Analysis Codes}
+The 1$^{st}$ rate analsysis codes used in these calculations are shown in Table 
+\ref{table:validation}. These codes were used to directly produce results shown
+in this report.
 \begin{centering}
  \begin{table}[ht!]
   \begin{tabular}{c | c | c | c}
@@ -421,6 +437,10 @@ of producing gamma ray sources for \gls{r2s} shutdown photon calculations.
  \end{table}
 \end{centering}
 \subsubsection*{Auxilliary Codes}
+The auxiallary codes used in the this report are shown in Table 
+\ref{table:validation_aux}. These codes were not directly used to 
+produce results, but were used to either process or produce input
+and output data.
 \begin{centering}
  \begin{table}[ht!]
   \begin{tabular}{c | c | c}
@@ -437,6 +457,7 @@ of producing gamma ray sources for \gls{r2s} shutdown photon calculations.
 \end{centering}
 \newpage
 \subsection{Solution Methodology}
+\label{section:method}
 \subsubsection{Neutron Transport}
 The neutron transport calculations were performed using version 1.0 of DAG-MCNP5
 using the source from version 1.60 of MCNP5, from the develop branch with git
@@ -451,7 +472,8 @@ in each voxel means that the calculation requires significant memory resources,
 in excess of 12 Gb per CPU. It was therefore determined that in order to perform
 the neutron transport in a timely fashion given the memory requirements, this
 set of simulations would be considered a good case to run using a high
-throughput methodology with domain replication.
+throughput methodology with domain replication, this procedure is shown in 
+Figure \ref{fig:mesh_splitting}.
 \\
 \\
 In this method the spatial domain of the problem is duplicated and a given
@@ -482,8 +504,8 @@ simulated.
 The calculation was split into seven calculation domains, shown in Figure
 \ref{fig:mesh_domains}, which bound the regions of the problem requiring
 activation. The physical size and boundaries that were used in the calculation
-can be found in Table \ref{table:mesh_sizes}. With \gls{r2s} calculations there is a
-subtle interplay between the size of the mesh elements and the number of mesh
+can be found in Table \ref{table:mesh_sizes}. With \gls{r2s} calculations there 
+is a subtle interplay between the size of the mesh elements and the number of mesh
 elements; the larger the mesh elements the lower the statistical errors will be
 for a given fixed number of particles but the mesh will conform poorly to the
 geometry, and vice versa. In this calculation the maximum number of mesh
@@ -628,10 +650,9 @@ everywhere in the model, as opposed to \gls{cadis} for example, which
 attempts to get results to a small number of specific regions.
 \begin{figure}[ht!]
   \centering
-  \includegraphics[scale=0.4]{../plots/wwinp/wwinp_y0.png}
-  \includegraphics[scale=0.3]{../plots/wwinp/wwinp_z0.png}
-  \caption{Slices through the \gls{advantg} produced weight window through y =
-  0.0 cm and through z = 0.0 cm}
+  \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/wwinp/Neutron_Weight_Windows.png}
+  \caption{Figure showing the ADVANTG produced neutron weight windows for y = 0.0 cm,
+  z = 500.0 cm, z = 0.0 cm and z = -500.0 cm}
   \label{fig:wwinp}
 \end{figure}
 Several artifacts are worthy of note, despite being a deterministic code Denovo
@@ -972,25 +993,25 @@ photon energies, thus effectively produces no decay photons.
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Rate_Decay_Time_1_Meshes_1-7.png}
-\label{fig:photons_dc1_no4bc_total}
+\label{fig:photons_dc1_b4c_total}
 \caption{The total dose rate summed over all meshes for decay time 1}
 \end{figure}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Relative_Error_Decay_Time_1_Meshes_1-7.png}
-\label{fig:photons_dc1_no4bc_total_error}
+\label{fig:photons_dc1_b4c_total_error}
 \caption{The error in the total dose rate combined over all meshes for decay time 1}
 \end{figure}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Rate_Decay_Time_1_Meshes_1-7_Zoomed_Y_Views.png}
-\label{fig:photons_dc1_no4bc_total_zoomed}
+\label{fig:photons_dc1_b4c_total_zoomed}
 \caption{The total dose rate summed over all meshes for decay time 1, with focus on the port areas}
 \end{figure}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Relative_Error_Decay_Time_1_Meshes_1-7_Zoomed_Y_Views.png}
-\label{fig:photons_dc1_no4bc_total_error_zoomed}
+\label{fig:photons_dc1_b4c_total_error_zoomed}
 \caption{The error in the total dose rate combined over all meshes for decay time 1, with focus on the port areas}
 \end{figure}
 
@@ -1001,25 +1022,25 @@ photon energies, thus effectively produces no decay photons.
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Rate_Decay_Time_2_Meshes_1-7.png}
-\label{fig:photons_dc2_no4bc_total}
+\label{fig:photons_dc2_b4c_total}
 \caption{The total dose rate summed over all meshes for decay time 2}
 \end{figure}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Relative_Error_Decay_Time_2_Meshes_1-7.png}
-\label{fig:photons_dc2_no4bc_total_error}
+\label{fig:photons_dc2_b4c_total_error}
 \caption{The error in the total dose rate combined over all meshes for decay time 2}
 \end{figure}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Rate_Decay_Time_2_Meshes_1-7_Zoomed_Y_Views.png}
-\label{fig:photons_dc2_no4bc_total_zoomed}
+\label{fig:photons_dc2_b4c_total_zoomed}
 \caption{The total dose rate summed over all meshes for decay time 2, with focus on the port areas}
 \end{figure}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Relative_Error_Decay_Time_2_Meshes_1-7_Zoomed_Y_Views.png}
-\label{fig:photons_dc2_no4bc_total_error_zoomed}
+\label{fig:photons_dc2_b4c_total_error_zoomed}
 \caption{The error in the total dose rate combined over all meshes for decay time 2, with focus on the port areas}
 \end{figure}
 \clearpage
@@ -1029,25 +1050,25 @@ photon energies, thus effectively produces no decay photons.
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Rate_Decay_Time_3_Meshes_1-7.png}
-\label{fig:photons_dc3_no4bc_total}
+\label{fig:photons_dc3_b4c_total}
 \caption{The total dose rate summed over all meshes for decay time 3}
 \end{figure}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Relative_Error_Decay_Time_3_Meshes_1-7.png}
-\label{fig:photons_dc3_no4bc_total_error}
+\label{fig:photons_dc3_b4c_total_error}
 \caption{The error in the total dose rate combined over all meshes for decay time 3}
 \end{figure}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Rate_Decay_Time_3_Meshes_1-7_Zoomed_Y_Views.png}
-\label{fig:photons_dc3_no4bc_total_zoomed}
+\label{fig:photons_dc3_b4c_total_zoomed}
 \caption{The total dose rate summed over all meshes for decay time 3, with focus on the port areas}
 \end{figure}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Relative_Error_Decay_Time_3_Meshes_1-7_Zoomed_Y_Views.png}
-\label{fig:photons_dc3_no4bc_total_error_zoomed}
+\label{fig:photons_dc3_b4c_total_error_zoomed}
 \caption{The error in the total dose rate combined over all meshes for decay time 3, with focus on the port areas}
 \end{figure}
 \clearpage
@@ -1103,12 +1124,13 @@ photon energies, thus effectively produces no decay photons.
 \newpage
 \clearpage
 \subsection{Conclusion}
-It is clear from Figures XXX that the shutdown photon dose rate in the port
-interspace is marginally affected by the addition of boron carbide to the
-plasma side surface of the bioshield. The reason for the this is significantly
-degraded thermal flux which impacts the importance of (n,$\gamma$) reactions
-and also the transport of neutrons back from the bioshield. The true benefit
-appears only to be very close to the B$_4$C layer, where is reduces the
+It is clear from Figures \ref{fig:photons_dc1_no4bc_total} to 
+\ref{fig:photons_dc3_b4c_total_error_zoomed} that the shutdown photon dose rate 
+in the port interspace is slightly affected by the addition of boron carbide 
+to the plasma side surface of the bioshield. The reason for the this is 
+significantly degraded thermal flux which impacts the importance of (n,$\gamma$)
+ reactions and also the transport of neutrons back from the bioshield. The true 
+benefit appears only to be very close to the B$_4$C layer, where is reduces the
 activation of steel components near to the bioshield, those components away
 from the bioshield appear to have their activation dominated by the neutron
 transported via long paths around other ports. This is  likely due to the fact
@@ -1154,7 +1176,11 @@ were instead reduced to groups of $5\times10^6$ particles per batch. With the
 smaller batching system calculations did finish, however, only 10\% of all
 calculations for each mesh finished, but this represents $5\times10^7$ total
 source histories for each mesh.
+\\
+\\
 \subsubsection{Baseline}
+There are no nominal differences between the Baseline and the B$_4$C calculation
+with the excpetion
 \subsubsection{With B$_4$C}
 \subsection{Activation Calculations}
 There was an activation calculation for each neutron mesh and case, therefore
