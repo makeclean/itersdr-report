@@ -50,7 +50,7 @@
 %\usepackage[printwatermark]{xwatermark}
 %\usepackage{mathptmx}
 %\usepackage{fouriernc}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{times}
 \usepackage{graphicx}
 \usepackage{longtable}
@@ -1172,6 +1172,21 @@ detailed contributions for each mesh shown in Figures
 \clearpage
 \subsubsection{Breakdown of Cross Talk}
 We can examine the breakdown of cross talk within the 
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/ep/dc1.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
+\label{fig:ct_dc1}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/ep/dc1_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
+\label{fig:ct_dc1}
+\end{figure}
+
+
 \subsection{Conclusion}
 It is clear from Figures \ref{fig:photons_dc1_no4bc_total} to 
 \ref{fig:photons_dc3_b4c_total_error_zoomed} that the shutdown photon dose rate 
