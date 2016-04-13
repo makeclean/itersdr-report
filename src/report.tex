@@ -215,7 +215,34 @@ along side detailed \gls{pi} equipment up to the bioshield plug. Similarly, the
 and significant quantities of internal B$_4$C shielding, the \gls{ep} interspace
 contained detailed models of rails, racks and support frames out to the 
 bioshield. The \gls{lpp} contained a detailed model of the cryopump. 
+\\
+\\
+Following neutron transport using DAG-MCNP5.1.60 the \gls{r2s} method was used 
+to  determine the \gls{sdr}. The SA2 irradiation scenario was used and 3 decay
+were of interest 1$\times$10$^5$ seconds, 1$\times$10$^6$ seconds and 
+1$\times$10$^7$ seconds. The \gls{sdr} photon dose rate was determined in a 
+single large mesh which covered the entire geometry. The sources were produced 
+in seven meshes which convered discrete non-overlapping parts of the geometry. 
+The use of multiple meshes based sources allows the determination of which 
+source mehses are the source of resultant dose rate.
+\\
+\\
+It was found that for the lowest decay time the impact of the B$_4$C layer was 
+largest, at the lowest decay time the dose rate in the \gls{epi} was reduced
+by a factor of $\sim$ 2-3, for the longest decay times by a factor of at most 
+1.30. It was found that for the \gls{epi} and \gls{upi} at each decay time 
+the doserate was dominated by the contribution from the source defined in that
+specific region. However, it was also found that without the contribution from
+the local source, the cross talk from other systems is greater than 100 
+$\mu$Sv/hr for all decay times.
+\\
+\\
+For the \gls{upi} it was found that a significant component of \gls{sdr} is due
+to the activation of structures around and include Poloidal Field Coil 2, such 
+that if the activation in the \gls{upi} was reduced to zero, the dose rate would
+still be several hundred $\mu$Sv/hr at 1$\times$10$^6$ seconds.
 \newpage
+\clearpage
 \section{Purpose}
 \subsection{Problem Statement}
 The shutdown dose rate in an around the equatorial and upper ports determine the
@@ -596,6 +623,7 @@ calculation, and therefore, since each photon source is determined for a
 specific non overlapping region of the geometry the final result is the 
 summation of each mesh, with the statistical error propagated appropriately.
 \subsection{Software Risk Assessment}
+All software used is current, validated and verified.  
 \clearpage
 \newpage
 \section{Assumptions and Engineering Judgements}
@@ -611,31 +639,27 @@ equivalent to 1.98$\times$10$^{18}$ neutrons per second in the 40$^{\circ}$
 sector. Given that this is the IO approved neutron source description, it is
 assumed to be adequate for this simulation.
 \subsection{Irradiation Scenario}
-The irradiation scenario used in this work was the MDRG-2, shown in Table
-\ref{tab:irrad_scenario} scenario as opposed to the typical SA-2 scenario.
-The MDRG-2 scenario is more aggressive in overall fluence than the SA-2
-scenario, representing a full ITER lifetime as opposed to 2 operation
-cycles of the SA-2 scenario.
+The irradiation scenario used in this work was the SA-2 \cite{sa2_irradiation}, 
+shown in Table \ref{tab:irrad_scenario} which is overall more conservative in 
+terms of activation than the retired M-DRG2 scenario.
 \begin{table}[ht!]
    \begin{tabular}{| l | c |}
       \hline 
       Irradiation Period & Fractional Strength \\
       \hline
-      5 Years & 0.0095 \\
-      1 Year  & 0.0127 \\
-      1 Year  & 0.0190 \\
-      1 Year  & 0.0317 \\
-      1 Year  & 0.0380 \\
-      1 Year  & 0.0380 \\
-      6 Days  & 0.1929 \\
-      1 Year  & 0.0380 \\
-      \cellcolor{blue!25} 400 Seconds & 1.0000 \\
-      \cellcolor{blue!25}1673.6 Seconds & 0.0000 \\
-      400 Seconds & 1.0000 \\
+      2 Years & 0.0053 \\
+      10 Years & 0.0412 \\
+      1.325 Years & 0.0830 \\
+      \cellcolor{blue!25} 400 Seconds & \cellcolor{blue!25} 1.0  \\
+      \cellcolor{blue!25} 3920 Seconds & \cellcolor{blue!25} 0.0 \\
+      \cellcolor{green!25} 400 Seconds & \cellcolor{green!25} 1.4 \\
+      \cellcolor{green!25} 3920 Seconds & \cellcolor{green!25} 0.0 \\
       \hline
 \end{tabular}
-\caption{The table shows the MDRG-2 scenario for irradiation, note the
-         cells in \textcolor{blue!25}{blue} are repeated 249 times}
+\caption{The table shows the SA-2 scenario for irradiation, note the
+         cells in \textcolor{blue!25}{blue} are repeated 17 times
+         and the cells in \textcolor{green!25}{green} are repeated 3
+         times.}
 \label{tab:irrad_scenario}
 \end{table}
 It is assumed that the longer fluence operation will lead to greater accumulated
@@ -644,7 +668,7 @@ dose rate.
 \\
 \\
 In this report time periods following machine shutdown are of interest,
-1.0$\times$10$^5$ s, 1.0$\times$10$^6$ s and 1.0$\times$10$^6$ s, approximately
+1.0$\times$10$^5$ s, 1.0$\times$10$^6$ s and 1.0$\times$10$^7$ s, approximately
 corresponding to 27 hours, 14 days, and 116 days post shutdown.
 \subsection{Geometry}
 The geometry used in this simulation was collected from a number of sources,
@@ -787,9 +811,17 @@ Photon Data - The standard photon data supplied with \gls{mcnp}5 mcplib04 was
 used. This data ultimately falls back onto \gls{endf}/B-VI release 8 photo
 atomic data.
 \subsection{Transport Software}
-\gls{mcnp}
+The particle transport software used for this analysis was \gls{dag}-\gls{mcnp}5
+which integrates the DAGMC toolkit into the Monte Carlo code \gls{mcnp}. 
+DAG-MCNP5 has been extensively used in other ITER analyses and has a significant
+validation effort behind it. MCNP5 is the standard monte carlo transport code
+used at ITER and therefore represents the predefined level of neutron and physics
+required for this analysis.
 \subsection{Activation Software}
-\gls{alara_c}
+\gls{alara_c} is the \gls{uw}'s standard nuclear inventory code for performing
+fusion relevant activation calculations. Alara has been validated against 
+FISPACT \cite{fispact} in the past and gives numerically equivalent results. 
+
 \newpage
 \clearpage
 \section{Neutron Transport Results and Conclusions}
@@ -1171,129 +1203,68 @@ detailed contributions for each mesh shown in Figures
 \newpage
 \clearpage
 \subsubsection{Breakdown of Cross Talk}
-We can examine the breakdown of cross talk within the 
+We can examine the breakdown of cross talk within the problem and the effect 
+that the B$_4$C has upon the local fluxes. The full suite of data can be found
+in Section \ref{cross_talk_data}, however Figures \ref{fig:ct_ep_dc2},
+\ref{fig:ct_ep_dc2_rel}, \ref{fig:b4c_ct_ep_dc2}, and \ref{fig:b4c_ct_ep_dc2_rel} 
+show the data for the baseline case and the with B$_4$C case for the equatorial 
+port for the second decay times. What is shown in the figures is that the \gls{epi}
+region around 70-90\% of the photon dose is produced by local activation, there are
+significant contributions from the the upper port in the range 0-10\% and 
+similarly 0-30\% of the photon dose originates from the pumping port. The 
+addition of the B$_4$C layer does little to alter the distribution of 
+relative contribution or the absolute value of SDR.
+\\
+\\
+For the \gls{upp}, the Figures are contained in Section \ref{appendix} and are 
+shown in Figures \ref{appendix:pt_ct_base} to \ref{appendix:pt_ct_b4c}. 
+Both the baseline case finds the doserate in 
+the \gls{upi} is much higher than the 100 $\mu$Sv/hr guideline, just behind the 
+\gls{upp} the doserate is more than 1 mSv/hr and even the contribution to the 
+dose from the \gls{epi} activation is more than the 100 $\mu$Sv/hr guideline. 
+The background contribution from mesh 2, containing activation of the upper
+outboard side of ITER also contributes some 80 $\mu$Sv/hr to the dose rate in 
+the \gls{epi}.
+\\
+\\
+For the \gls{pp} the Figures are contained in Section \ref{appendix} and are 
+shown in Figures \ref{} to \ref{}. Both cases find the doserate in 
+the cryopump is significant $\sim$ 100 mSv/hr in the region of the cyropump. 
+This simulation contained the unshielded pumping port and thus the doserate is 
+very high due to neutrons streaming along the pumping port. 
 
-\subsection*{Equatorial Ports}
 \begin{figure}[ht!]
 \centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/ep/dc1.png}
-\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
-\label{fig:ct_ep_dc1}
-\end{figure}
-\begin{figure}[ht!]
-\centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/ep/dc1_rel.png}
-\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
-\label{fig:ct_ep_dc1_rel}
-\end{figure}
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/ep/dc2.png}
-\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/ep/dc2.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 
+         0,0,0 along the x direction for the 2nd decay time - baseline case}
 \label{fig:ct_ep_dc2}
 \end{figure}
 \begin{figure}[ht!]
 \centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/ep/dc2_rel.png}
-\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/ep/dc2_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 
+         0,0,0 along the x direction for the 2nd decay time - baseline case}
 \label{fig:ct_ep_dc2_rel}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/ep/dc3.png}
-\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
-\label{fig:ct_ep_dc3}
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/ep/dc2.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along,
+         0,0,0 along the x direction for the 2nd decay time - with B$_4$C}
+\label{fig:b4c_ct_ep_dc2}
 \end{figure}
 \begin{figure}[ht!]
 \centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/ep/dc3_rel.png}
-\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
-\label{fig:ct_ep_dc3_rel}
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/ep/dc2_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 
+         0,0,0 along the x direction for the 2nd decay time - with B$_4$C }
+\label{fig:b4c_ct_ep_dc2_rel}
 \end{figure}
 
-\subsection*{Upper Ports}
-\begin{figure}[ht!]
-\centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/up/dc1.png}
-\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
-\label{fig:ct_up_dc1}
-\end{figure}
-\begin{figure}[ht!]
-\centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/up/dc1_rel.png}
-\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
-\label{fig:ct_up_dc1_rel}
-\end{figure}
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/up/dc2.png}
-\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
-\label{fig:ct_up_dc2}
-\end{figure}
-\begin{figure}[ht!]
-\centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/up/dc2_rel.png}
-\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
-\label{fig:ct_up_dc2_rel}
-\end{figure}
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/up/dc3.png}
-\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
-\label{fig:ct_up_dc3}
-\end{figure}
-\begin{figure}[ht!]
-\centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/up/dc3_rel.png}
-\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
-\label{fig:ct_up_dc3_rel}
-\end{figure}
-
-\subsection*{Lower Port}
-\begin{figure}[ht!]
-\centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/lp/dc1.png}
-\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
-\label{fig:ct_lp_dc1}
-\end{figure}
-\begin{figure}[ht!]
-\centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/lp/dc1_rel.png}
-\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
-\label{fig:ct_lp_dc1_rel}
-\end{figure}
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/lp/dc2.png}
-\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
-\label{fig:ct_lp_dc2}
-\end{figure}
-\begin{figure}[ht!]
-\centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/lp/dc2_rel.png}
-\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
-\label{fig:ct_lp_dc2_rel}
-\end{figure}
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/lp/dc3.png}
-\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
-\label{fig:ct_lp_dc3}
-\end{figure}
-\begin{figure}[ht!]
-\centering
-\includegraphics[clip,scale=1.0]{../plots/crosstalk/nob4c/lp/dc3_rel.png}
-\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
-\label{fig:ct_lp_dc3_rel}
-\end{figure}
-
-
+\newpage
+\clearpage
 \subsection{Conclusion}
 It is clear from Figures \ref{fig:photons_dc1_no4bc_total} to 
 \ref{fig:photons_dc3_b4c_total_error_zoomed} that the shutdown photon dose rate 
@@ -1323,6 +1294,13 @@ to strong sources in the cryopump, which has roughly the same contribution
 as the sources within the \gls{epi}.
 \\
 \\
+The individual cross talk contributions from meshes 5,6 and 7 (pumping duct, 
+upper port and equatorial port respectively) is in each case over the 100 
+$mu$Sv/hr threshold, i.e. the cross talk from mesh 6 to mesh 5 is more than 100 
+$mu$Sv/hr, similarly for mesh 5 to 7 etc. The worst example of cross talk was 
+found to be excessive streaming 
+\\
+\\
 It is also apparent that the utility of the B$_4$C present in the \gls{gepp}
 design is not as high as may be imagined. The B$_4$C powder is contained within
 a stainless steel lined box, which itself becomes activated under the presence
@@ -1349,19 +1327,19 @@ calculations for each mesh finished, but this represents $5\times10^7$ total
 source histories for each mesh.
 \\
 \\
-\subsubsection{Baseline}
-There are no nominal differences between the Baseline and the B$_4$C calculation
-with the excpetion
-\subsubsection{With B$_4$C}
+The individual meshtals were read using PyNE's Mesh class and statistically
+combined to produce the final result mesh for that region. In total fourteen 
+condensed meshes were produced for this analysis, seven for the baseline case
+and seven for the with B$_4$C liner. These condensed neutron mesh tallies were
+then used for the subsequent activation calculations.
 \subsection{Activation Calculations}
 There was an activation calculation for each neutron mesh and case, therefore
-there were a total of 14 activation calculations performed. The activation
+there were a total of fourteen activation calculations performed. The activation
 calculations used a uniform `truncation tolerance', a parameter in \gls{alara_c}
 which details when the linearised transmutation chains should be terminated. The
 materials used in the activation calculation were taken directly from the 
-associated MCNP input decks.
-\subsubsection{Baseline}
-\subsubsection{With B$_4$C}
+associated MCNP input decks. 
+
 \subsection{Photon Transport}
 The shutdown photon sources were developed in several separate meshes and
 therefore any individual mesh does not represent the entire problem. The
@@ -1370,9 +1348,9 @@ to make shutdown sources to be read into a sampling subroutine (also distributed
 with \gls{pyne}). Each photon source is run independently, and the photon dose
 is recorded on a mesh common to each photon calculation and then the meshes
 summed together to create the final result. The final mesh has a uniform size of
-side 2 cm striding from x = {0,1500}, y = {-500,500}, z = {-1900,1500} cm.
-The meshes used the\gls{icrp}-74 dose response coefficients as a dose multiplier
-as recommended in \cite{iter_sdr_coeffs}.
+side 5 cm $\times$ 5 cm $\times$ 5.23 cm striding from x = {0,2000}, y = {-600,600},
+ z = {-1500,1900} cm. The meshes used the\gls{icrp}-74 dose response coefficients 
+as a dose multiplier as recommended in \cite{iter_sdr_coeffs}.
 \\
 \\
 Each photon transport calculation was performed for a fixed number of particles,
@@ -1380,8 +1358,6 @@ Each photon transport calculation was performed for a fixed number of particles,
 \gls{aci}. Each photon simulation used the same random number seed, but given
 that each photon source is unique, there are no concerns regarding the resuse
 of the same seed.
-\subsubsection{Baseline}
-\subsubsection{With B$_4$C}
 \newpage
 \clearpage
 \section{Acceptance Criteria}
@@ -1493,7 +1469,263 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 \clearpage
 \subsubsection{Decay time 3 - 1.$\times$10$^7$ s}
 \input{../plots/final_model/dc3.tex}
+
+\newpage
 \clearpage
+\section{Appendix - D - Photon Cross Talk}
+\subsection{Baseline}
+\subsubsection*{Equatorial Ports}
+\label{appendix:pt_ct_base}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/ep/dc1.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
+\label{fig:ct_ep_dc1}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/ep/dc1_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
+\label{fig:ct_ep_dc1_rel}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/ep/dc2.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
+\label{fig:ct_ep_dc2}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/ep/dc2_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
+\label{fig:ct_ep_dc2_rel}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/ep/dc3.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
+\label{fig:ct_ep_dc3}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/ep/dc3_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
+\label{fig:ct_ep_dc3_rel}
+\end{figure}
+\newpage
+\clearpage
+
+\subsubsection*{Upper Ports}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/up/dc1.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
+\label{fig:ct_up_dc1}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/up/dc1_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
+\label{fig:ct_up_dc1_rel}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/up/dc2.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
+\label{fig:ct_up_dc2}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/up/dc2_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
+\label{fig:ct_up_dc2_rel}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/up/dc3.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
+\label{fig:ct_up_dc3}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/up/dc3_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
+\label{fig:ct_up_dc3_rel}
+\end{figure}
+\newpage
+\clearpage
+
+\subsubsection*{Lower Port}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/lp/dc1.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
+\label{fig:ct_lp_dc1}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/lp/dc1_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
+\label{fig:ct_lp_dc1_rel}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/lp/dc2.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
+\label{fig:ct_lp_dc2}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/lp/dc2_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
+\label{fig:ct_lp_dc2_rel}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/lp/dc3.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
+\label{fig:ct_lp_dc3}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/lp/dc3_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
+\label{fig:ct_lp_dc3_rel}
+\end{figure}
+
+\newpage
+\clearpage
+\subsection{Including the B$_4$C Liner}
+\label{appendix:pt_ct_b4c}
+\subsubsection*{Equatorial Ports}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/ep/dc1.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
+\label{fig:ct_ep_dc1}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/ep/dc1_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
+\label{fig:b4c_ct_ep_dc1_rel}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/ep/dc2.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
+\label{fig:b4c_ct_ep_dc2}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/ep/dc2_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
+\label{fig:b4c_ct_ep_dc2_rel}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/ep/dc3.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
+\label{fig:b4c_ct_ep_dc3}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/ep/dc3_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
+\label{fig:b4c_ct_ep_dc3_rel}
+\end{figure}
+\newpage
+\clearpage
+\subsection*{Upper Ports}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/up/dc1.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
+\label{fig:b4c_ct_up_dc1}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/up/dc1_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
+\label{fig:b4c_ct_up_dc1_rel}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/up/dc2.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
+\label{fig:b4c_ct_up_dc2}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/up/dc2_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
+\label{fig:b4c_ct_up_dc2_rel}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/up/dc3.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
+\label{fig:b4c_ct_up_dc3}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/up/dc3_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
+\label{fig:b4c_ct_up_dc3_rel}
+\end{figure}
+\newpage
+\clearpage
+
+\subsection*{Lower Port}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/lp/dc1.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
+\label{fig:b4c_ct_lp_dc1}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/lp/dc1_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 1st decay time}
+\label{fig:b4c_ct_lp_dc1_rel}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/lp/dc2.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
+\label{fig:b4c_ct_lp_dc2}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/lp/dc2_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 2nd decay time}
+\label{fig:b4c_ct_lp_dc2_rel}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/lp/dc3.png}
+\caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
+\label{fig:b4c_ct_lp_dc3}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[clip,scale=0.25]{../plots/crosstalk/b4c/lp/dc3_rel.png}
+\caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
+\label{fig:b4c_ct_lp_dc3_rel}
+\end{figure}
+
 
 
 \end{document}
