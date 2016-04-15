@@ -345,43 +345,9 @@ broad details of the model can be seen.
   \caption{Section showing the overall model}
   \label{fig:cad_iter_global}
 \end{figure}
-
-\begin{figure}[p]
-  \centering
-  \includegraphics[scale=0.32]{../plots/cad/mats/label_1.png}
-  \includegraphics[scale=0.32]{../plots/cad/mats/label_2.png}
-  \caption{Section some of the major tokamak materials}
-  \label{fig:material_assign_1}
-\end{figure}
-
-\begin{figure}[p]
-  \centering
-  \includegraphics[scale=0.32]{../plots/cad/mats/label_3.png}
-  \caption{Section some of the major tokamak materials}
-  \label{fig:material_assign_2}
-\end{figure}
-
-\begin{figure}[p]
-  \centering
-  \includegraphics[scale=0.32]{../plots/cad/mats/label_4.png}
-  \caption{Section some of the major tokamak materials}
-  \label{fig:material_assign_3}
-\end{figure}
-
-\begin{figure}[p]
-  \centering
-  \includegraphics[scale=0.32]{../plots/cad/mats/label_5.png}
-  \caption{Section some of the major tokamak materials}
-  \label{fig:material_assign_3}
-\end{figure}
-
-\begin{figure}[p]
-  \centering
-  \includegraphics[scale=0.32]{../plots/cad/mats/label_6.png}
-  \caption{Section some of the major tokamak materials}
-  \label{fig:material_assign_3}
-\end{figure}
-
+The geometry was faceted to a tolerance of 1.0$\times$10$^4$ cm, meaning that 
+the edges of curve facets used in this analysis can lie no further away from 
+the underlying geometric curve or surface.
 \newpage
 \clearpage
 \subsubsection{Materials}
@@ -389,16 +355,55 @@ All materials in the problem originate from the Clite \gls{mcnp} model -
 CLITE\textunderscore V1\textunderscore REV131031\textunderscore MOD, with the
 exception of the \gls{upp}, the \gls{epp}, the
 Cryopump, the blanket modules and the contents of the \gls{upi} and \gls{epi}.
-The default cross section set used was \gls{fendl}-2.1, with the exception of XX
-which was expanded into an isotopic definition and used the \gls{endf}-VIIR1
-evaluation. The \gls{epp} material definitions were taken from the \gls{gepp}
-\gls{mcnp} model\cite{epp_materials}. The \gls{upp} material definitions were
-provided by \cite{bertalot_communication}. The Cryopump materials assignments
+The default cross section set used was \gls{fendl}-2.1. The material allocation
+for each region in the model can be seen in Figures \ref{fig:material_assign_1} 
+to \ref{fig:material_assign_5}. The \gls{epp} material 
+definitions were taken from the \gls{gepp} \gls{mcnp} model\cite{epp_materials}.
+The \gls{upp} material definitions were provided by 
+\cite{bertalot_communication}. The Cryopump materials assignments
 came from \cite{cryopump_communication}. The blanket module material
-compositions were taken from the Bl-lite \gls{cad}model since the blankets were
+compositions were taken from the Bl-lite \gls{cad} model since the blankets were
 homogenized identically in this model. The full evaluated material definitions
 can be found in the Appendix.
+\begin{figure}[p]
+  \centering
+  \includegraphics[scale=0.32]{../plots/cad/mats/label_1.png}
+  \includegraphics[scale=0.32]{../plots/cad/mats/label_2.png}
+  \caption{Section showing some of the major tokamak structural materials}
+  \label{fig:material_assign_1}
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[scale=0.32]{../plots/cad/mats/label_3.png}
+  \caption{Materials found in the divertor region}
+  \label{fig:material_assign_2}
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[scale=0.32]{../plots/cad/mats/label_4.png}
+  \caption{Materials found in the upper and equatorial port plugs }
+  \label{fig:material_assign_3}
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[scale=0.32]{../plots/cad/mats/label_5.png}
+  \caption{Materials found in the equatorial and
+           upper port interspace region}
+  \label{fig:material_assign_4}
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[scale=0.32]{../plots/cad/mats/label_6.png}
+  \caption{Materials found in the Cryopump}
+  \label{fig:material_assign_5}
+\end{figure}
+
 \newpage
+\clearpage
 \subsection{Software Programs \& Validation Status}
 \subsubsection{DAGMC}
 The \gls{dagmc} is a toolkit developed at the \gls{uw}
@@ -479,9 +484,9 @@ in this report.
   ALARA & 2.9.1 & Production & \cite{alara}\\
   ADVANTG & 3.0.2 & Production & \cite{advantg}\\
   Denovo & 5.3 & Production & \cite{denovo} \\
-  yt & 3.2 & Production & \\
+  yt & 3.2 & Production & n/a \\
   \end{tabular}
- \caption{}
+ \caption{List of Analysis codes used and their validation status}
  \label{table:validation}
  \end{table}
 \end{centering}
@@ -500,7 +505,7 @@ and output data.
   pyne.r2s & Validated & \cite{pyne_r2s} \\
   pyne.source\_sampling & Validated & \cite{pyne_r2s} \\
  \end{tabular}
- \caption{}
+ \caption{List of auxilliary codes and their validation status}
  \label{table:validation_aux}
  \end{table}
 \end{centering}
@@ -623,7 +628,37 @@ calculation, and therefore, since each photon source is determined for a
 specific non overlapping region of the geometry the final result is the 
 summation of each mesh, with the statistical error propagated appropriately.
 \subsection{Software Risk Assessment}
-All software used is current, validated and verified.  
+All software used for analysis is current, validated and verified. DAG-MCNP5
+is validated using an extensive test suite which checked every two weeks against
+the current state of a number of software libraries. Any change to the DAG interface
+is found using unit tests which are run whenever a developer wishes to merge 
+in changes to the master repository. There is a defence in depth against bugs creeping
+into DAG-MCNP5. There are DAGMC unit tests run often multiple time a day depending upon
+pull request flow. DAGMC itself depends upon MOAB, who also have unit test run upon
+opening of a pull request and also have nightly tests for a number of common system
+configurations.
+\\
+\\
+The parts of the workflow related to PyNE are also tested upon pull request by a large
+number of unit tests, again often several times per day. Formal verification for indvidual
+parts of PyNE are performed on an as needed basis, for example with PyNE.r2s on the FNG
+shutdown doserate experiment.
+\\
+\\
+The plotting tool yt, is a tool that originates from the astrophysics community used
+for plotting very large datasets. Like the other tools mentioned here, yt is no different
+in software development practises, version control, code reviews and unit testing are
+used extensively. There are several features that make yt an attractive 
+tool for plotting, as opposed to the more commonly encountered Visit from LLNL, specifically
+its capability to read native MOAB meshes, the speed at which it slices stl overlays and 
+its convenient scripting capabilities lead to its use in this report.
+\\
+\\
+The Denovo discrete ordinates solver is built against a set of verifcation 
+problems and unit tests. It is distributed as part of the SCALE code system, which imposes
+a quality control plan found in \cite{scale_qa}. In this analysis Denovo was exclusively
+used by \gls{ornl} as part of ADVANTG to produce weight windows for this analysis.
+
 \clearpage
 \newpage
 \section{Assumptions and Engineering Judgements}
@@ -883,6 +918,13 @@ orders of magnitude. The MCNP runs will not be stopped even if the computational
  time exceeded the time of the  CTME card until MCNP reaches the printing and 
 dumping stage. Without increasing the frequency of these dumping events, the 
 time of the CTME card may be ignored for a very long time.
+\\
+\\
+However even given the limitations imposed by the reduced size of the neutron 
+nps range, the statistical uncertainty in the 
+neutron flux around many regions where the activation is likely to contribute to
+the dose is $\sim$ 10-20\% and thus deemed acceptable for an activation 
+calculation. 
 
 \newpage
 \clearpage
@@ -1545,7 +1587,7 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 \end{figure}
 
 \begin{figure}[ht!]
-\centering
+5\centering
 \includegraphics[clip,scale=0.25]{../plots/crosstalk/nob4c/up/dc3.png}
 \caption{Absolute contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
 \label{fig:ct_up_dc3}
