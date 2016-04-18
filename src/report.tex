@@ -109,6 +109,7 @@
 \newacronym{fwcadis}{FW-CADIS}{Forward Weighted - Consistent Adjoint Driven 
             Importance Sampling}
 \newacronym{gepp}{GEPP}{Generic Equatorial Port Plug}
+\newacronym{gvr}{GVR}{Global Variance Reduction}
 \newacronym{icrp}{ICRP}{International Commission on Radiation Protection}
 \newacronym{io}{IO}{ITER Organisation}
 \newacronym{lp}{LP}{Lower Port}
@@ -326,11 +327,28 @@ energy-dependent source biasing parameters and weight windows that are used in
 a forward Monte Carlo calculation to obtain more uniform statistical
 uncertainties in the desired tally regions \cite{wagnerNSEFWCADIS}. This
 method was used to accelerate the neutron Monte Carlo calculation of
-the \gls{r2s} \gls{sdr} analysis in this work.  Since the photon source is
+the \gls{r2s} \gls{sdr} analysis in this work. Since the photon source is
 distributed broadly in space, the impact of variance reduction for a broadly
 distributed photon dose map is less obvious, and was not used in this problem.
+\\
+\\
+There are some issues when using \gls{gvr} methodologies such as \gls{fwcadis}
+for truely global problems. One of the issues are ray effects in the 
+deterministic solution, ray effects arise when a limited number of angles are 
+used in to solve the problem compounded by low interaction rates. The most 
+important aspect is the issue of long histories. Long histories are said to 
+occur in a transport problem when a the time taken for any given history is 
+significantly longer (hours, days, weeks ...) than the average history. They 
+typically occur when particles stream along a narrow gap travelling to regions
+where their predicited weight is very much lower than their current weight. The 
+particle is routletted into several low weight particles, and (typically but not
+always) the rouletted particles will interact again and be rouletted again and 
+so on. Single core  simulation long histories are not so much of a problem as 
+at some point the calculation will terminate. However, in large scale parallel 
+computation long histories mean that in the case of MCNP the calculation will
+not rendevous regularly and therefore often simulations are terminated by the 
+queueing system. 
 
-%% NOTE [PPHW]: Describe problems with FW-CADIS in SDR calculations
 
 \subsection{Input Description}
 \subsubsection{The Model Geometry}
@@ -347,29 +365,118 @@ problem.
 \\
 Several modifications were nessary for the \gls{cad} to be fully usable. Several
 person-months of time was invested in cleaning, reparing and building multiple
-components multiple times. 
+components multiple times. The overall \gls{cad} model in shown in Figure 
+\ref{fig:cad_iter_global}, in which the broad details of the model can be seen. In
+Table \ref{tab:cad_process} the origin of each file, the format it was recieved
+in and whether it was modified as part of this analysis or not.
 
-%% NOTE [PPHW]: Are we not able to document specific changes made to these
-%% models?  I'm happy for this section to be multiple pages...
 
-\\
-\\
-The overall \gls{cad} model in shown in Figure \ref{fig:cad_iter_global}, the
-broad details of the model can be seen. 
+\begin{centering}
+ \begin{table}[ht!]
+  \begin{tabular}{c | c | c | c }
+  \hline
+  Component & Origination & File Format & Modified \\
+  \hline 
+  Graveyard & UWFTI & SpaceClaim &  Y \\
+  Bioshield & CLITE\_V1\_REV131031\_SPACECLAIM & SpaceClaim & Y\\
+  Cryostat & CLITE\_V1\_REV131031\_SPACECLAIM  & SpaceClaim &  N \\
+  Thermal Shields & CLITE\_V1\_REV131031\_SPACECLAIM &  SpaceClaim & N\\
+  Toroidal Field Coils & CLITE\_V1\_REV131031\_SPACECLAIM & SpaceClaim & N \\
+  Poloidal Field Coils & CLITE\_V1\_REV131031\_SPACECLAI  & SpaceClaim & N\\
+  Correction Coils & CLITE\_V1\_REV131031\_SPACECLAIM & SpaceClaim & Y\\
+  Vacuum Vessel & VV\_40\_reg\_union & STEP & Y \\
+  Blankets & CLITE\_V1\_REV131031\_SPACECLAIM & SpaceClaim & N\\
+  Divertor & CLITE\_V1\_REV131031\_SPACECLAIM & SpaceClaim & Y\\
+  Central Solenoid & CLITE\_V1\_REV131031\_SPACECLAIM & SpaceClaim & N\\
+  Boron Plates & Boron Plates for C-Lite & SpaceClaim & N\\
+  Upper Port & UPP18\_simple &  STEP & Y\\
+  Upper Port Interspace & TOKAMAK\_COMPLEX - UPPER\_PORT\_17 & STEP & Y\\
+  Equatorial Port & GEPP3 & STEP & Y \\
+  Equatorial Port Interspace & EQ10\_v5 & STEP &  Y\\
+  Cryopump & \multicolumn{1}{m{3cm}|}{141023\_CRYOPUMP\_ENVIRONMENT, HousingAndCryopumpLowerPort4} & STEP & Y\\
+  \end{tabular}
+ \caption{List of CAD components used in the analysis, their origin, file format, and if the component was modified by
+     UW }
+ \label{table:cad_components}
+ \end{table}
+\end{centering}
+
+The following subsections detail only the components that were modified to 
+allow the analysis to proceed, they do offer an overview of the changes that
+were required.  
+
+\subsubsection*{Graveyard}
+The graveyard for the ITER SDDR model is a component that was created for the 
+purpose of the neutronics analysis. It serves the function of reflecting or 
+collecting particles that are streaming through or out of the geometry of 
+interest. There is no origination information for this component because it was 
+created by the University of Wisconsin – Fusion Technology Institute for the
+purpose of analyzing the model.
+\subsubsection*{Bioshield}
+modifications were made to the original geometry. A 5 mm boron carbide layer was
+ added to the internal surfaces of the geometry. Plugs were added to levels B1, 
+L1, and L2 in such a way as to accommodate the existing geometry that was 
+extending through the openings on those levels.
+\subsubsection*{Error Field Correction Coils}
+Due to the MCNP requisite of model simplification there were some geometrical 
+issues in the location of the rounded corners of these coils. The corners had 
+been segmented for MCNP simplification. These segmentations caused geometrical 
+problems when the model was brought into CUBIT that is used in the neutronics 
+calculations with DAG-MCNP. The solution was to delete the segments and 
+recreate the curved bends in the coils. The added benefit is that it also 
+created a model that should be more accurate since it better reflects the 
+actual geometry
+\subsubsection*{Vacuum Vessel}
+The vacuum vessel components were received from Sandia National Lab as part of 
+the development of the Blanket-Lite (BL-Lite) model for ITER blanket analysis.
+The origination file was named VV\_40\_reg\_union. This model was received in the 
+STEP (.step, .stp) format. In addition to the vacuum vessel geometry around the
+plasma, port components were used from the file CLITE\_V1\_REV131031\_SPACECLAIM 
+that was received from ITER. The vacuum vessel geometry was modified in several 
+ways. The simple components of the BL-Lite geometry were modified to include 
+the in-wall plates within the vacuum vessel shells. Also, overlaps were removed 
+from the VV geometry for both the shells and the ports. Finally, the “fill
+volume” between the shells was added. This fill volume represents the internal 
+coolant water as well as the IWS plate
+\subsubsection*{Divertor}
+There were several regions of overlapping volumes that were removed from the 
+divertor geometry. The divertor was received without the internal coolant 
+volumes. These internal volumes were added.
+\subsubsection*{Upper Port \& Upper Port Interspace}
+These components were received in the STEP (.step, .stp) format. Many volumes 
+from this geometry were modified or removed. These volumes were either too
+detailed, in which case they were simplified, or were placeholder volumes and 
+thus were not necessary for neutronics analysis. Also, many overlaps within the 
+geometry were removed. These included overlaps with surrounding geometry, such 
+as the upper port region of the vacuum vessel and the bioshield. In addition to 
+the geometrical modifications, the half-instances on the 0 and 40 degree 
+boundaries were created as duplicates of the original geometry
+\subsubsection*{Equatorial Port \& Equatorial Port Interspace}
+These components were received in the STEP (.step, .stp) format. Many volumes 
+from this geometry were modified or removed. These volumes were either too 
+detailed, in which case they were simplified, or were placeholder volumes 
+and thus were not necessary for neutronics analysis. Also, many overlaps
+within the geometry were removed. These included overlaps with surrounding 
+geometry, such as the upper port region of the vacuum vessel and the bioshield. 
+In addition to the geometrical modifications, the half-instances on the 0 and 40
+degree boundaries were created as duplicates of the original geometry.
+\subsubsection*{Cryopump}
+These components were received in the STEP (.step, .stp) format. The
+cryopump model had some overlaps removed, including overlaps with the vacuum 
+vessel. It was built using components from both origination files listed above.
+
 \begin{figure}[ht!]
   \centering
   \includegraphics[scale=0.8]{../plots/cad/global.png}
   \caption{Section showing the overall model}
   \label{fig:cad_iter_global}
 \end{figure}
-The geometry was faceted to a tolerance of $10^4$ cm, meaning that 
-the edges of curve facets used in this analysis should lie no further away from 
-the underlying geometric curve or surface.
 
-%%NOTE [PPHW]: How was the B4C layer added to the geometry??  Cutting out a
-%%thin layer of the bioshield?  Or adding a thin layer to the bioshield?
-%%Or???
-
+\subsubsection{DAGMC Parameters}
+The CAD preprocessing finished, the final model was imprinted and merged using
+Cubit 12.2 and then faceted to a tolerance of 10$^{-4}$ cm, meaning that the
+edges of the triangle should lie at that distance from the underlying geometric
+curve.
 \newpage
 \clearpage
 \subsubsection{Materials}
@@ -547,16 +654,11 @@ in this report.
   \gls{alara_c} & 2.9.1 & Production & \cite{alara}\\
   \gls{advantg} & 3.0.2 & Production & \cite{advantg}\\
   Denovo & 5.3 & Production & \cite{denovo} \\
-  yt & 3.2 & Production & n/a \\
   \end{tabular}
  \caption{List of Analysis codes used and their validation status}
  \label{table:validation}
  \end{table}
 \end{centering}
-
-%% NOTE [PPHW]: Doesn't yt belong in the next section?  It may be
-%% validated and/or have a version number, but it is really an aux
-%% code.
 
 \subsubsection*{Auxilliary Codes}
 The auxiallary codes used in the this report are shown in Table 
@@ -574,6 +676,8 @@ and output data.
   pyne.alara & Validated & ??? \\
   pyne.mcnp & Validated & ???? \\
   pyne.source\_sampling & Validated & \cite{pyne_r2s} \\
+  yt 3.2 & Validated by unit tests & n/a \\
+
  \end{tabular}
  \caption{List of auxilliary codes and their validation status}
  \label{table:validation_aux}
@@ -583,7 +687,6 @@ and output data.
 \newpage
 \subsection{Solution Methodology}
 \label{section:method}
-
 \subsubsection{Neutron Transport}
 The neutron transport calculations were performed using version 1.0 of DAG-MCNP5.
 This version is derived from the RSICC source code version 1.60 of \gls{mcnp5}
@@ -595,7 +698,6 @@ In each case, the neutron flux was tallied in 175 energy groups using the
 vitamin-j structure.
 
 \subsubsection{Mesh Domain Decomposition}
-
 The level of detail present in the faceted geometry files impacts the amount of
 memory required to run the calculation, this combined with the large and
 detailed weight window file and the need for 175 energy group neutron spectra
@@ -661,7 +763,7 @@ occupy in memory when transferred to an \gls{alara_c} geometry.
  \end{table}
 \end{centering}
 
-\subsection{Variance Reduction}
+\subsubsection{Variance Reduction}
 The weight window parameters were generated using the \gls{ornl} code
 \gls{advantg}, specifically using DAG-\gls{advantg}, which allows a
 \gls{dagmc} geometry to be read and the geometry and material data handed off to
@@ -684,8 +786,7 @@ sector, or fills the entire 360$^{\circ}$.
 %%  fw-cadis including: the number of energy groups and spatial mesh (I
 %%  think/assume this is the same as the neutron tally mesh?)
 
-\subsection{Job-level Parallelism}
-
+\subsubsection{Job-level Parallelism}
 Parallelism over many processors was necessary to achieve this calculation in
 a reasonable time. Methodologies with extreme variance reduction can produce
 pathologically long histories.  In such problems, individual histories may
@@ -780,32 +881,64 @@ case of \texttt{pyne.r2s} a full \gls{alara_c} input deck is produced which can
 then be executed and the final shutdown photon sources produced. From a single
 inventory calculation the decay photon sources for all the subsequent decay
 times can be generated.  The photon sources were each generated using 24 photon
-energy groups using the XXX group structure.
+energy groups using the FISPACT 24 group structure.
 
-%% NOTE [PPHW]: Need to describe/confirm this group structure.
+\begin{table}[ht!]
+   \begin{tabular}{| l | c | c |}
+      \hline
+      Energy Group Number & Lower Energy Bound & Upper Energy Bound \\
+      \hline
+      0 & 0.0 & 10.0 \\
+      1 & 10.0 & 20.0 \\
+      2 & 20.0 & 50.0 \\
+      3 & 50.0 & 100.0 \\
+      4 & 100.0 & 200.0 \\
+      5 & 200.0 & 300.0 \\
+      6 & 300.0 & 400.0 \\
+      7 & 400.0 & 600.0 \\
+      8 & 600.0 & 800.0 \\
+      9 & 800.0 & 1000.0 \\
+      10 & 1000.0 & 1220.0 \\
+      11 & 1220.0 & 1440.0 \\
+      12 & 1440.0 & 1660.0 \\
+      13 & 1660.0 & 2000.0 \\
+      14 & 2000.0 & 2500.0 \\
+      15 & 2500.0 & 3000.0 \\
+      16 & 3000.0 & 4000.0 \\
+      17 & 4000.0 & 5000.0 \\
+      18 & 5000.0 & 6500.0 \\
+      19 & 6500.0 & 8000.0 \\  
+      20 & 8000.0 & 10000.0 \\
+      21 & 10000.0 & 12000.0 \\
+      22 & 12000.0 & 14000.0 \\
+      23 & 14000.0 & 20000.0 \\  
+      \hline
+\end{tabular}
+\caption{The photon group boundaries used in this analysis}
+\label{tab:photon_boundaries}
+\end{table}
+
 
 \subsubsection{Photon Transport}
 The photon transport proceeds using the same computational model as in the
 neutron calculation, but without variance reduction and with a mesh-based
 photon source and appropriate normalisation as determined using the activation
-step.  The photon dose is tallied using ICRP XXX flux-to-dose conversion
+step.  The photon dose is tallied using ICRP-74 flux-to-dose conversion
 factors.  Because the photon dose is tallied in a single bin over all
 energies, tally mesh decomposition is not necessary for photon transport.  The
 dose response from each of the seven source mesh is simulated over the entire
 domain for each of the decay times.  The total dose is found by superposition
 by simply adding the full domain's results from each source mesh, and
 combining estimates of the statistical error appropriately.
-
-%% NOTE [PPHW]: Need to confirm ICRP reference
+\\
+\\
 
 With two cases, seven source meshes and three decay times, this led to 42
 independent photon transport calculations, each with $10^8$ histories sampled
 using the \texttt{pyne.source\_sampling} routines configured for uniform
-sampling and void rejection of XXXX.  The dose response mesh tallies in each
-problem were normalised using the appropriate total source intensity.
-
-%% NOTE [PPHW]: Need to confirm void rejection parameters above.
-
+sampling and void rejection of 0.01.  The dose response mesh tallies in each
+problem were normalised using the appropriate total source intensity as determined
+by the appropriate inventory calculation.
 
 \subsection{Software Risk Assessment}
 All software used for analysis is current, validated and verified. DAG-MCNP5
@@ -836,9 +969,6 @@ The Denovo discrete ordinates solver is built against a set of verifcation
 problems and unit tests. It is distributed as part of the SCALE code system, which imposes
 a quality control plan found in \cite{scale_qa}. In this analysis Denovo was exclusively
 used by \gls{ornl} as part of \gls{advantg} to produce weight windows for this analysis.
-
-%% NOTE [PPHW]: is ORNL happy with this description?  How is the version of
-%% Denovo distributed with AVANTG related to SCALE?
 
 \clearpage
 \newpage
@@ -881,12 +1011,6 @@ terms of activation than the retired M-DRG2 scenario.
          times.}
 \label{tab:irrad_scenario}
 \end{table}
-It is assumed that the longer fluence operation will lead to greater accumulated
-radionuclides, which should provide a conservative estimate of shutdown photon
-dose rate.
-%% NOTE [PPHW]: "longer fluence operation" than what??  
-\\
-\\
 In this report time periods following machine shutdown are of interest,
 $10^5$ s, $10^6$ s and $10^7$ s, approximately
 corresponding to 27 hours, 14 days, and 116 days post shutdown.
@@ -1027,6 +1151,27 @@ FISPACT \cite{fispact} in the past and gives numerically equivalent results.
 \clearpage
 \section{Neutron Transport Results and Conclusions}
 
+\subsection{Calculation Details}
+Using the methodology shown in Section \ref{section:method}, the neutron meshes
+were split into 7 calculations. These jobs were submitted to the \gls{uw}
+\gls{chtc} system in batches of 200 for each mesh, with seven meshes used to
+determine the neutron flux, making a
+total of 2800 individual \gls{mcnp5} simulations. These results were then
+combined using \gls{pyne} to result in the statistically averaged final results.
+Initially calculations were batched into groups of $5\times10^7$ particles per
+batch, however these calculations did not finish in a timely enough manner and
+were instead reduced to groups of $5\times10^6$ particles per batch. With the
+smaller batching system calculations did finish, however, only 10\% of all
+calculations for each mesh finished, but this represents $5\times10^7$ total
+source histories for each mesh.
+\\
+\\
+The individual meshtals were read using \gls{pyne}'s Mesh class and statistically
+combined to produce the final result mesh for that region. In total fourteen 
+condensed meshes were produced for this analysis, seven for the baseline case
+and seven for the with B$_4$C liner. These condensed neutron mesh tallies were
+then used for the subsequent activation calculations.
+
 \subsection{Variance Reduction}
 The weight windows generated by \gls{advantg} for this problem are shown in Figure
 \ref{fig:wwinp}. 
@@ -1047,27 +1192,26 @@ left hand image of Figure \ref{fig:wwinp}. The overall span of the weight window
 is seven orders of magnitude, which is largely proportional to the neutron
 attenuation from the plasma to the port interspace, previous calculations put
 the attenuation in the range of 6 to 8 orders of magnitude. There is some
-evidence of ray effects in the weight window solution in the right hand image
+evidence of component shadowing in the weight window solution in the right hand image
 of Figure \ref{fig:wwinp} due to the neutron attenuation of some \gls{epi}
-shielding around the diagnostic equipment, but this is small deviation in an
-otherwise reasonable solution.
-%% NOTE [PPHW]: Where is the ray effect??? I don't see it.
+shielding around the diagnostic equipment. Overall the solution appears 
+otherwise reasonable.
 \\
 \\
 Since neither 90$^{\circ}$ nor 180$^{\circ}$ are integer multiples of 40$^{\circ}$,
 this model must be rotated and replicated to fill a full 360$^{\circ}$ space.
 \gls{ornl} specifically developed the 360$^{\circ}$
 rotation feature for DAG-\gls{advantg} that allows rotationally symmetric
-bodies.  Therefore, weight window values are observed beyond the 40$^{\circ}$ sector.
+bodies  Therefore, weight window values are observed beyond the 40$^{\circ}$ sector.
 
 \subsection{Baseline}
-
 The baseline results represent a standard C-lite model since there is no
 B$_4$C liner present, however relative to the standard C-lite
 native \gls{mcnp5} model there is much more equipment present in
 the \gls{upi} \& \gls{epi}, and the divertor pumping port is unplugged. The
 open pumping port specifically leads to higher neutron fluxes beyond the
 vacuum vessel.
+
 \begin{figure}[ht!]
   \centering
   \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/{Neutron_Result_(All_Energy_Groups)_Meshes_1-7}.png}     
@@ -1114,11 +1258,16 @@ pumping port is unplugged.
   \caption{The relative error in the total neutron flux from the B$_4$C case}
 \end{figure}
 
+\subsection{Comparison}
+
+\textbf{placeholder for lineouts for thermal and fast flux}
+
 %% NOTE [PPHW]: Can we generate line-out plots for the neutron flux
 %% (total? thermal?) like we are doing for the dose?
 
 \subsection{Conclusion}
 
+\textbf{placeholder for conclusion}
 %% NOTE [PPHW]: Do we really need a conclusion section here?  If so, it should
 %% probably focus on some discusison of the relative neutron fluxes per the
 %% above request for line out plots.  That is, do we see any evidence of the
@@ -1128,11 +1277,17 @@ pumping port is unplugged.
 \clearpage
 
 \section{Neutron Activation Results and Conclusions}
-
+\subsection{Calculation Details}
 The \gls{r2s} shutdown dose rate calculations were performed using the
 \texttt{pyne.r2s} methods found \gls{pyne}. The setup scripts produce
 \gls{alara_c} inputs and the neutron activation calculations were performed
-using \gls{alara_c} 2.9.1RC. 
+using \gls{alara_c} 2.9.1RC. There was an activation calculation for each 
+neutron mesh and case, therefore
+there were a total of fourteen activation calculations performed. The activation
+calculations used a uniform `truncation tolerance', a parameter in \gls{alara_c}
+which details when the linearised transmutation chains should be terminated. The
+materials used in the activation calculation were taken directly from the 
+associated MCNP input decks. 
 
 \subsection{Baseline}
 
@@ -1206,8 +1361,9 @@ appendix \ref{appendix:grp_photon_src_b4c}.
 \clearpage
 \subsection{Comparison}
 
-%% NOTE [PPHW]: What do we want to say here?
 
+
+%% NOTE [PPHW]: What do we want to say here?
 %% NOTE [PPHW]: Why do the B4C results look smoother/better in the bioshield?
 
 \subsection{Conclusion}
@@ -1222,6 +1378,25 @@ photon energies, thus effectively produces no decay photons.
 \newpage
 \clearpage
 \section{Shutdown Photon Dose rates Results and Conclusions}
+
+\subsection{Calculation Details}
+The shutdown photon sources were developed in several separate meshes and
+therefore any individual mesh does not represent the entire problem. The
+results of the previous \gls{alara_c} calculations are then processed further
+to make shutdown sources to be read into a sampling subroutine (also distributed
+with \gls{pyne}). Each photon source is run independently, and the photon dose
+is recorded on a mesh common to each photon calculation and then the meshes
+summed together to create the final result. The final mesh has a uniform size of
+side 5 cm $\times$ 5 cm $\times$ 5.23 cm striding from x = {0,2000}, y = {-600,600},
+ z = {-1500,1900} cm. The meshes used the\gls{icrp}-74 dose response coefficients 
+as a dose multiplier as recommended in \cite{iter_sdr_coeffs}.
+\\
+\\
+Each photon transport calculation was performed for a fixed number of particles,
+$10^8$, which nominally completed in less than 15 hours on 40 cores of
+\gls{aci}. Each photon simulation used the same random number seed, but given
+that each photon source is unique, there are no concerns regarding the resuse
+of the same seed.
 
 %% NOTES [PPHW]: Need some basic discussion - at least to describe what is in
 %% each figure.
@@ -1475,6 +1650,10 @@ detailed contributions for each mesh shown in Figures
 
 \newpage
 \clearpage
+\subsubsection{Comparison of total photon doses}
+\textbf{placeholder for total photon dose comparison}
+\newpage
+\clearpage
 \subsubsection{Breakdown of Cross Talk}
 We can examine the breakdown of cross talk within the problem and the effect 
 that the B$_4$C has upon the local fluxes. The full suite of data can be found
@@ -1583,60 +1762,9 @@ activation in the region. It is suggested that the front 50 cm of the B$_4$C
 drawers could be removed, reducing the weight of the port plug without
 significantly impacting the shielding capability.
 
-\newpage
-\clearpage
-\section{Calculation Details}
-\subsection{Neutron Transport}
-Using the methodology shown in Section \ref{section:method}, the neutron meshes
-were split into 7 calculations. These jobs were submitted to the \gls{uw}
-\gls{chtc} system in batches of 200 for each mesh, with seven meshes used to
-determine the neutron flux, making a
-total of 2800 individual \gls{mcnp5} simulations. These results were then
-combined using \gls{pyne} to result in the statistically averaged final results.
-Initially calculations were batched into groups of $5\times10^7$ particles per
-batch, however these calculations did not finish in a timely enough manner and
-were instead reduced to groups of $5\times10^6$ particles per batch. With the
-smaller batching system calculations did finish, however, only 10\% of all
-calculations for each mesh finished, but this represents $5\times10^7$ total
-source histories for each mesh.
-\\
-\\
-The individual meshtals were read using \gls{pyne}'s Mesh class and statistically
-combined to produce the final result mesh for that region. In total fourteen 
-condensed meshes were produced for this analysis, seven for the baseline case
-and seven for the with B$_4$C liner. These condensed neutron mesh tallies were
-then used for the subsequent activation calculations.
-
-\subsection{Activation Calculations}
-There was an activation calculation for each neutron mesh and case, therefore
-there were a total of fourteen activation calculations performed. The activation
-calculations used a uniform `truncation tolerance', a parameter in \gls{alara_c}
-which details when the linearised transmutation chains should be terminated. The
-materials used in the activation calculation were taken directly from the 
-associated MCNP input decks. 
-
-\subsection{Photon Transport}
-The shutdown photon sources were developed in several separate meshes and
-therefore any individual mesh does not represent the entire problem. The
-results of the previous \gls{alara_c} calculations are then processed further
-to make shutdown sources to be read into a sampling subroutine (also distributed
-with \gls{pyne}). Each photon source is run independently, and the photon dose
-is recorded on a mesh common to each photon calculation and then the meshes
-summed together to create the final result. The final mesh has a uniform size of
-side 5 cm $\times$ 5 cm $\times$ 5.23 cm striding from x = {0,2000}, y = {-600,600},
- z = {-1500,1900} cm. The meshes used the\gls{icrp}-74 dose response coefficients 
-as a dose multiplier as recommended in \cite{iter_sdr_coeffs}.
-\\
-\\
-Each photon transport calculation was performed for a fixed number of particles,
-$10^8$, which nominally completed in less than 15 hours on 40 cores of
-\gls{aci}. Each photon simulation used the same random number seed, but given
-that each photon source is unique, there are no concerns regarding the resuse
-of the same seed.
-
-\newpage
-\clearpage
-\section{Acceptance Criteria}
+%\newpage
+%\clearpage
+%\section{Acceptance Criteria}
 
 \newpage
 \clearpage
@@ -1702,7 +1830,7 @@ simulations) that represents the importance of particles to the final response
  of the overall simulation. This paper explains the theory of the MS-CADIS 
 method and provides some insights into the physical interpretations of the 
 MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
-\section{Acknowledgements}
+
 \newpage
 \clearpage
 \bibliographystyle{unsrt}
