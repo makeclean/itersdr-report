@@ -529,8 +529,8 @@ in this report.
   Code & Version & Validation Status & References \\
   \hline 
   DAG-MCNP5 & 1.0 & Production & \cite{dagmc_validation}\\
-  ALARA & 2.9.1 & Production & \cite{alara}\\
-  ADVANTG & 3.0.2 & Production & \cite{advantg}\\
+  \gls{alara_c} & 2.9.1 & Production & \cite{alara}\\
+  \gls{advantg} & 3.0.2 & Production & \cite{advantg}\\
   Denovo & 5.3 & Production & \cite{denovo} \\
   yt & 3.2 & Production & n/a \\
   \end{tabular}
@@ -613,6 +613,46 @@ simulated.
   \label{fig:mesh_domains}
 \end{figure}
 
+This job-parallel approach can also be important to mitigate the impact of
+pathologically long histories often experienced in problems with extreme
+variance reduction.  In such problems, individual histories may experience the
+variance reduction scheme in a way that results in extreme splitting of the
+history.  Such rare histories can overwhelm the total computer time needed for
+a simulation appearing to never actually reach completion, with severe
+negative impacts on load balancing under a typical message passing parallel
+approach.  In the job parallel approach, it is possible to submit many jobs
+such that the total number of histories across the entire campaign is larger
+than required, and use a subset of those statistcally independent jobs to
+produce the final result.
+
+%% NOTE [PPHW]: Should integrate this discussion (previously in the Conclusion
+%% section) with the above.  But did we use CTME or NPS for the HTC calcs?
+%% It must have been NPS to avoid overlapping histories.
+
+When variance reduction parameters that span over
+ many orders of magnitude are being used in non-analog Monte Carlo simulations,
+ it is difficult to estimate the computational time needed to simulate each 
+particle because some of these particles undergo millions of splitting events. 
+To overcome this problem, the authors suggest 1) using the computer time cutoff
+ (CTME) card in MCNP to stop the MCNP runs after reaching a certain amount of 
+running time without losing the results, 2) to increase the frequency of the 
+printing and dumping of MCNP using the PRDMP card, 3) and to avoid the use of 
+the MPI version of MCNP. The Monte Carlo calculations can still run in parallel
+ without using MPI by submitting independent jobs with different random number 
+seeds and statistically averaging the results as demonstrated in this report. 
+The load balancing of the MPI  version of MCNP does not consider the huge 
+differences in the computational times needed to simulate different histories
+ that are typical with the use of variance reduction parameters that span many 
+orders of magnitude. The MCNP runs will not be stopped even if the computational
+ time exceeded the time of the  CTME card until MCNP reaches the printing and 
+dumping stage. Without increasing the frequency of these dumping events, the 
+time of the CTME card may be ignored for a very long time.
+
+%% NOTE [PPHW]: We never say how many histories we used, whether total or in
+%% each individual job.  We should somewhere indicate the total number of
+%% histories for each mesh and how many individual jobs were used (not how
+%% many were launched).
+
 The calculation was split into seven calculation domains, shown in Figure
 \ref{fig:mesh_domains}, which bound the regions of the problem requiring
 activation. In addition to reducing the memory requirements for each calculation
@@ -676,6 +716,10 @@ configured to achieve uniform statistical variance throughout the neutron mesh
 tally regions.  One consequence of this configuration is that computational
 effort may be expended to increase the neutron population in unimportant regions 
 of neutron phase space.
+
+\gls{advantg} only implements reflecting boundaries on the principal axes of a 
+problem, requiring a geometry that fills either a 90$^{\circ}$ or 180$^{\circ}$ 
+sector, or fills the entire 360$^{\circ}$.
 
 %% NOTE [PPHW]: Need to confirm with AMI exactly how he configured the fw-cadis
 
@@ -745,22 +789,25 @@ used by \gls{ornl} as part of \gls{advantg} to produce weight windows for this a
 
 \clearpage
 \newpage
-\section{Assumptions and Engineering Judgements}
+\section{Inputs, Assumptions and Engineering Judgements}
+
 \subsection{Neutron Source}
 As used in typical ITER analysis the reference ITER neutron source with
 reflecting boundary conditions is assumed to adequately represent the
 true 360$^{\circ}$ neutron source. The ITER supplied \gls{mcnp5} SDEF was used
-completely unmodified. The on load neutron data is used un-normalised
+completely unmodified. The on-load neutron data is used un-normalised
 in the \gls{r2s} calculation since the neutron source normalisation is scaled
 depending on average power for the pulse being modelled. However for reference,
 the highest power used in the activation calculation was 500 MW, which is
-equivalent to 1.98$\times$10$^{18}$ neutrons per second in the 40$^{\circ}$
+equivalent to $1.98 \times 10^{18}$ neutrons per second in the 40$^{\circ}$
 sector. Given that this is the IO approved neutron source description, it is
 assumed to be adequate for this simulation.
+
 \subsection{Irradiation Scenario}
 The irradiation scenario used in this work was the SA-2 \cite{sa2_irradiation}, 
 shown in Table \ref{tab:irrad_scenario} which is overall more conservative in 
 terms of activation than the retired M-DRG2 scenario.
+%% NOTE [PPHW]: What does "Fractional Strength" mean?
 \begin{table}[ht!]
    \begin{tabular}{| l | c |}
       \hline 
@@ -784,27 +831,31 @@ terms of activation than the retired M-DRG2 scenario.
 It is assumed that the longer fluence operation will lead to greater accumulated
 radionuclides, which should provide a conservative estimate of shutdown photon
 dose rate.
+%% NOTE [PPHW]: "longer fluence operation" than what??  
 \\
 \\
 In this report time periods following machine shutdown are of interest,
-1.0$\times$10$^5$ s, 1.0$\times$10$^6$ s and 1.0$\times$10$^7$ s, approximately
+$10^5$ s, $10^6$ s and $10^7$ s, approximately
 corresponding to 27 hours, 14 days, and 116 days post shutdown.
+
 \subsection{Geometry}
-The geometry used in this simulation was collected from a number of sources,
+The geometry used in this simulation was collected from a number of sources;
 some models were generated directly from CAD drawings supplied by the
 drawing office of US ITER and the IO, some were intermediate CAD files produced
 as part of other simulations, and some were generated by \gls{uw} to meet a
 perceived deficiency in the file. Irrespective of this, the \gls{dagmc} method
 allows the exact representation of the underlying CAD to be used without
 approximation.
+%% NOTE [PPHW]: What does "perceived deficiency in the file" mean?
 \\
 \\
 The geometry is defined starting at the centre column (x = 0.0 cm) and ends
 beyond the bioshield (x = 1800 cm), truncation of details relative to the full
 ITER device CAD model begins on the port cell side of the bioshield plugs,
 results beyond the bioshield should therefore be not be used for any
-analysis purposes. 
-
+analysis purposes.  It is assumed that the 40$^{\circ}$ sector of the geometry
+is sufficiently representative and reflecting boundaries were applied on the
+planes at each side of the sector.
 
 \subsection{Materials and Nuclear Data}
 \subsubsection{Materials}
@@ -899,24 +950,34 @@ Activation Data - The activation data used was \gls{fendl}-3.0/A.
 Photon Data - The standard photon data supplied with \gls{mcnp5} mcplib04 was 
 used. This data ultimately falls back onto \gls{endf}/B-VI release 8 photo
 atomic data.
+
 \subsection{Transport Software}
 The particle transport software used for this analysis was \gls{dag}-\gls{mcnp5}
 which integrates the DAGMC toolkit into the Monte Carlo code \gls{mcnp5}. 
 DAG-MCNP5 has been extensively used in other ITER analyses and has a significant
-validation effort behind it. MCNP5 is the standard monte carlo transport code
+validation effort behind it. \gls{mcnp5} is the standard Monte Carlo transport code
 used at ITER and therefore represents the predefined level of neutron and physics
 required for this analysis.
+
+These results also assume that results from a set of N independent Monte Carlo
+simulations of M histories each, can be averaged to represent a single
+simulation of N$\times$M histories.  It is further assumed that any N
+simulations can be used, even if/when they do not represent a contiguous set
+of histories, as long as they do not include any overlapping histories.
+
 \subsection{Activation Software}
 \gls{alara_c} is the \gls{uw}'s standard nuclear inventory code for performing
-fusion relevant activation calculations. Alara has been validated against 
+fusion relevant activation calculations. \gls{alara_c} has been validated against 
 FISPACT \cite{fispact} in the past and gives numerically equivalent results. 
 
 \newpage
 \clearpage
 \section{Neutron Transport Results and Conclusions}
+
 \subsection{Variance Reduction}
-The weight windows used for the problem are shown below in Figure
+The weight windows generated by \gls{advantg} for this problem are shown in Figure
 \ref{fig:wwinp}. 
+
 \begin{figure}[ht!]
   \centering
   \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/wwinp/Neutron_Weight_Windows.png}
@@ -924,7 +985,10 @@ The weight windows used for the problem are shown below in Figure
   z = 500.0 cm, z = 0.0 cm and z = -500.0 cm}
   \label{fig:wwinp}
 \end{figure}
-Several artifacts are worthy of note, despite being a deterministic code Denovo
+
+%% NOTE [PPHW]: which energy group is this WW data?
+
+Several artifacts are worthy of note.  Despite being a deterministic code, Denovo
 has handled the streaming of neutrons along the divertor duct well as shown in
 left hand image of Figure \ref{fig:wwinp}. The overall span of the weight window
 is seven orders of magnitude, which is largely proportional to the neutron
@@ -934,20 +998,32 @@ evidence of ray effects in the weight window solution in the right hand image
 of Figure \ref{fig:wwinp} due to the neutron attenuation of some \gls{epi}
 shielding around the diagnostic equipment, but this is small deviation in an
 otherwise reasonable solution.
+%% NOTE [PPHW]: Where is the ray effect??? I don't see it.
 \\
 \\
-It should be noted that \gls{ornl} specifically developed the 360$^{\circ}$
+Since neither 90$^{\circ}$ nor 180$^{\circ}$ are integer multiples of 40$^{\circ}$,
+this model must be rotated and replicated to fill a full 360$^{\circ}$ space.
+\gls{ornl} specifically developed the 360$^{\circ}$
 rotation feature for DAG-\gls{advantg} that allows rotationally symmetric
-bodies, which is the reason for the weight window values beyond the
-40$^{\circ}$ sector.
-
+bodies.  Therefore, weight window values are observed beyond the 40$^{\circ}$ sector.
 
 \subsection{Baseline}
-The baseline results represent a standard C-lite model since there is no B$_4$C
-liner present, however relative to the standard C-lite native \gls{mcnp5} model
-there is much more equipment present in the \gls{upi} \& \gls{epi}, and
-the divertor pumping port is unplugged. The open pumping port specifically
-leads to higher neutron fluxes beyond the vacuum vessel.
+
+%% NOTE [PPHW]: Let's reframe the following in a more constructive way. We
+%% should just declare that we used the first N jobs that completed their
+%% requested M histories.  It should come here, before reportin results (or
+%% earlier in methodology, perhaps).
+
+%% The final calculations represent only around 10\% of the overall requested 
+%% runtime; this is mostly due to calculations not completing with the 3 day 
+%% allotted runtime on CHTC. 
+
+The baseline results represent a standard C-lite model since there is no
+B$_4$C liner present, however relative to the standard C-lite
+native \gls{mcnp5} model there is much more equipment present in
+the \gls{upi} \& \gls{epi}, and the divertor pumping port is unplugged. The
+open pumping port specifically leads to higher neutron fluxes beyond the
+vacuum vessel.
 \begin{figure}[ht!]
   \centering
   \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/{Neutron_Result_(All_Energy_Groups)_Meshes_1-7}.png}     
@@ -960,6 +1036,20 @@ leads to higher neutron fluxes beyond the vacuum vessel.
   \label{fig:neutrons_baseline_relerr}
   \caption{The relative error in the total neutron flux from the baseline case}
 \end{figure}
+
+%% NOTE [PPHW]: Discussion of the neutron flux errors should come here.
+
+%% What do we mean "given the limitations imposed...."?  Presumably we chose a
+%% total NPS for this problem.  How did we chose it?  A) we didn't have more
+%% time? B) we monitored it and stopped when we reached an adequate level of
+%% statistical error? C) we chose it arbitrarily?
+
+However even given the limitations imposed by the reduced size of the neutron 
+nps range, the statistical uncertainty in the 
+neutron flux around many regions where the activation is likely to contribute to
+the dose is $\sim$ 10-20\% and thus deemed acceptable for an activation 
+calculation. 
+
 \newpage
 \clearpage
 \subsection{Including the B4C Liner}
@@ -979,45 +1069,29 @@ pumping port is unplugged.
   \label{fig:neutrons_no4bc_relerr}
   \caption{The relative error in the total neutron flux from the B$_4$C case}
 \end{figure}
+
+%% NOTE [PPHW]: Can we generate line-out plots for the neutron flux
+%% (total? thermal?) like we are doing for the dose?
+
 \subsection{Conclusion}
-The final calculations represent only around 10\% of the overall requested 
-runtime; this is mostly due to calculations not completing with the 3 day 
-allotted runtime on CHTC. When variance reduction parameters that span over
- many orders of magnitude are being used in non-analog Monte Carlo simulations,
- it is difficult to estimate the computational time needed to simulate each 
-particle because some of these particles undergo millions of splitting events. 
-To overcome this problem, the authors suggest 1) using the computer time cutoff
- (CTME) card in MCNP to stop the MCNP runs after reaching a certain amount of 
-running time without losing the results, 2) to increase the frequency of the 
-printing and dumping of MCNP using the PRDMP card, 3) and to avoid the use of 
-the MPI version of MCNP. The Monte Carlo calculations can still run in parallel
- without using MPI by submitting independent jobs with different random number 
-seeds and statistically averaging the results as demonstrated in this report. 
-The load balancing of the MPI  version of MCNP does not consider the huge 
-differences in the computational times needed to simulate different histories
- that are typical with the use of variance reduction parameters that span many 
-orders of magnitude. The MCNP runs will not be stopped even if the computational
- time exceeded the time of the  CTME card until MCNP reaches the printing and 
-dumping stage. Without increasing the frequency of these dumping events, the 
-time of the CTME card may be ignored for a very long time.
-\\
-\\
-However even given the limitations imposed by the reduced size of the neutron 
-nps range, the statistical uncertainty in the 
-neutron flux around many regions where the activation is likely to contribute to
-the dose is $\sim$ 10-20\% and thus deemed acceptable for an activation 
-calculation. 
+
+%% NOTE [PPHW]: Do we really need a conclusion section here?  If so, it should
+%% probably focus on some discusison of the relative neutron fluxes per the
+%% above request for line out plots.  That is, do we see any evidence of the
+%% B4C in the neutron transport results?  
 
 \newpage
 \clearpage
 
 \section{Neutron Activation Results and Conclusions}
+
 The \gls{r2s} shutdown dose rate calculations were performed using the
 \texttt{pyne.r2s} methods found \gls{pyne}. The setup scripts produce
 \gls{alara_c} inputs and the neutron activation calculations were performed
 using \gls{alara_c} 2.9.1RC. 
+
 \subsection{Baseline}
-\subsubsection{Decay Time 1 - 1$\times$10$^{5}$ seconds}
+\subsubsection{Decay Time 1 - $10^{5}$ seconds}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/{Photon_Source_Density_Decay_Time_1_All_Energy_Groups}.png}
@@ -1025,7 +1099,7 @@ using \gls{alara_c} 2.9.1RC.
 \caption{The total shutdown photon source for the baseline case for decay time 1}
 \end{figure}
 \clearpage
-\subsubsection{Decay Time 2 - 1$\times$10$^{6}$ seconds}
+\subsubsection{Decay Time 2 - $10^{6}$ seconds}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/{Photon_Source_Density_Decay_Time_2_All_Energy_Groups}.png}
@@ -1033,7 +1107,7 @@ using \gls{alara_c} 2.9.1RC.
 \caption{The total shutdown photon source for the baseline case for decay time 2}
 \end{figure}
 \clearpage
-\subsubsection{Decay Time 3 - 1$\times$10$^{7}$ seconds}
+\subsubsection{Decay Time 3 - $10^{7}$ seconds}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/{Photon_Source_Density_Decay_Time_3_All_Energy_Groups}.png}
@@ -1043,7 +1117,7 @@ using \gls{alara_c} 2.9.1RC.
 \newpage
 \clearpage
 \subsection{Including the B4C Liner}
-\subsubsection{Decay Time 1 - 1$\times$10$^{5}$ seconds}
+\subsubsection{Decay Time 1 - $10^{5}$ seconds}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_with_b4c/{Photon_Source_Density_Decay_Time_1_All_Energy_Groups}.png}
@@ -1051,7 +1125,7 @@ using \gls{alara_c} 2.9.1RC.
 \label{fig:source_dc1_b4c}
 \end{figure}
 \clearpage
-\subsubsection{Decay Time 2 - 1$\times$10$^{6}$ seconds}
+\subsubsection{Decay Time 2 - $10^{6}$ seconds}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_with_b4c/{Photon_Source_Density_Decay_Time_2_All_Energy_Groups}.png}
@@ -1059,7 +1133,7 @@ using \gls{alara_c} 2.9.1RC.
 \label{fig:source_dc2_b4c}
 \end{figure}
 \clearpage
-\subsubsection{Decay Time 3 - 1$\times$10$^{7}$ seconds}
+\subsubsection{Decay Time 3 - $10^{7}$ seconds}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_with_b4c/{Photon_Source_Density_Decay_Time_3_All_Energy_Groups}.png}
@@ -1068,8 +1142,11 @@ using \gls{alara_c} 2.9.1RC.
 \end{figure}
 \clearpage
 \subsection{Comparison}
+
+
+
 \subsection{Conclusion}
-The shutdown photon source produced for each case and 3 decay times results in
+The shutdown photon source produced case and 3 decay times results in
 42 individual photon sources that must be used in subsequent photon transport
 calculations.
 \\
@@ -1080,6 +1157,7 @@ fact that the \gls{gepp} model has a large B$_4$C powder filled containers
 in these regions, B$_4$C when irradiated by neutrons undergoes reactions
 which produce only low energy beta particle decays with very low associated
 photon energies, thus effectively produces no decay photons.
+
 \newpage
 \clearpage
 \section{Shutdown Photon Dose rates Results and Conclusions}
@@ -1478,7 +1556,7 @@ as a dose multiplier as recommended in \cite{iter_sdr_coeffs}.
 \\
 \\
 Each photon transport calculation was performed for a fixed number of particles,
-1$\times$10$^8$, which nominally completed in less than 15 hours on 40 cores of
+$10^8$, which nominally completed in less than 15 hours on 40 cores of
 \gls{aci}. Each photon simulation used the same random number seed, but given
 that each photon source is unique, there are no concerns regarding the resuse
 of the same seed.
@@ -1559,18 +1637,18 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 
 \section{Appendix - B - Groupwise Photon Sources}
 \subsection{Baseline}
-\subsubsection{Decay Time 1 - 1$\times$10$^{5}$ seconds}
+\subsubsection{Decay Time 1 - $10^{5}$ seconds}
 \input{../plots/final_model/src_dc1.tex}
-\subsubsection{Decay Time 2 - 1$\times$10$^{6}$ seconds}
+\subsubsection{Decay Time 2 - $10^{6}$ seconds}
 \input{../plots/final_model/src_dc2.tex}
-\subsubsection{Decay Time 3 - 1$\times$10$^{7}$ seconds}
+\subsubsection{Decay Time 3 - $10^{7}$ seconds}
 \input{../plots/final_model/src_dc3.tex}
 \subsection{Including the B4C Liner}
-\subsubsection{Decay Time 1 - 1$\times$10$^{5}$ seconds}
+\subsubsection{Decay Time 1 - $10^{5}$ seconds}
 \input{../plots/final_model_with_b4c/src_dc1.tex}
-\subsubsection{Decay Time 2 - 1$\times$10$^{6}$ seconds}
+\subsubsection{Decay Time 2 - $10^{6}$ seconds}
 \input{../plots/final_model_with_b4c/src_dc2.tex}
-\subsubsection{Decay Time 3 - 1$\times$10$^{7}$ seconds}
+\subsubsection{Decay Time 3 - $10^{7}$ seconds}
 \input{../plots/final_model_with_b4c/src_dc3.tex}
 
 \section{Appendix - C - Shutdown Photon Dose Rates}
