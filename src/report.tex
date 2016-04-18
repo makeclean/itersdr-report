@@ -575,42 +575,26 @@ This version is derived from the RSICC source code version 1.60 of \gls{mcnp5}
 with modifications for \gls{dagmc} applied, as represented in commit \texttt{e12e2a3}
 of the \gls{uw} source code repository for DAG-MCNP5.
 The two batches of calculations were performed, one
-case with the B$_4$C liner and one without.
-
+case with the B$_4$C liner and one without.  
 In each case, the neutron flux was tallied in 175 energy groups using the
-vitamin-j structure in a spatial mesh voxel that was $20 \times 20 \times 20$
-cm.
+vitamin-j structure.
 
-%% NOTE [PPHW]: Confirm mesh voxel size.  
-\\
-\\
+\subsubsection{Mesh Domain Decomposition}
+
 The level of detail present in the faceted geometry files impacts the amount of
 memory required to run the calculation, this combined with the large and
 detailed weight window file and the need for 175 energy group neutron spectra
 in each voxel means that the calculation requires significant memory resources,
-in excess of 12 Gb per process. It was therefore determined that in order to perform
-the neutron transport in a timely fashion given the memory requirements, this
-set of simulations would be considered a good case to run using a high
-throughput methodology with domain replication, this procedure is shown in 
-Figure \ref{fig:mesh_splitting}.
-\\
-\\
-In this method the spatial domain of the problem is duplicated and a given
-mesh tally superimposed onto the geometry. Several single core simulations are
-launched for that specific meshtally but the random number seed is strided in
-such a way that no CPU will share the same seed with another job, this is
-performed using the \texttt{rand hist=n} command in \gls{mcnp5}.
-\begin{figure}[ht!]
-  \centering
-  \includegraphics[scale=0.3]{../plots/method/neutron_method.png}
-  \caption{The high throughput methodology, splitting a given MCNP calculation
-           into smaller calculations spanning a contiguous random number seed
-           space}
-  \label{fig:mesh_splitting}
-\end{figure}
-The key feature of this method is that the combined sub results are identically
-equal to single MCNP calculation covering the whole original range of particles
-simulated.
+in excess of 12 Gb per process.  %% 12 Gb after splitting into 7 meshes, or before?
+To mitigate these memory requirements, the calculation was split into seven 
+calculation domains, shown in Figure
+\ref{fig:mesh_domains}, which bound the regions of the problem requiring
+activation. In addition to reducing the memory requirements for each calculation
+simply due to the decomposition of the tally domain, dividing the mesh tally 
+domains in this manner reduces the number of neutron mesh voxels that are 
+outside the boundary of the 40$^{\circ}$ sector, further reducing the overall memory
+requirements.
+
 \begin{figure}[ht!]
   \centering
   \includegraphics[scale=0.4]{../plots/transport/job_splits.png}
@@ -620,53 +604,6 @@ simulated.
   \label{fig:mesh_domains}
 \end{figure}
 
-This job-parallel approach can also be important to mitigate the impact of
-pathologically long histories often experienced in problems with extreme
-variance reduction.  In such problems, individual histories may experience the
-variance reduction scheme in a way that results in extreme splitting of the
-history.  Such rare histories can overwhelm the total computer time needed for
-a simulation appearing to never actually reach completion, with severe
-negative impacts on load balancing under a typical message passing parallel
-approach.  In the job parallel approach, it is possible to submit many jobs
-such that the total number of histories across the entire campaign is larger
-than required, and use a subset of those statistcally independent jobs to
-produce the final result.
-
-%% NOTE [PPHW]: Should integrate this discussion (previously in the Conclusion
-%% section) with the above.  But did we use CTME or NPS for the HTC calcs?
-%% It must have been NPS to avoid overlapping histories.
-
-When variance reduction parameters that span over
- many orders of magnitude are being used in non-analog Monte Carlo simulations,
- it is difficult to estimate the computational time needed to simulate each 
-particle because some of these particles undergo millions of splitting events. 
-To overcome this problem, the authors suggest 1) using the computer time cutoff
- (CTME) card in MCNP to stop the MCNP runs after reaching a certain amount of 
-running time without losing the results, 2) to increase the frequency of the 
-printing and dumping of MCNP using the PRDMP card, 3) and to avoid the use of 
-the MPI version of MCNP. The Monte Carlo calculations can still run in parallel
- without using MPI by submitting independent jobs with different random number 
-seeds and statistically averaging the results as demonstrated in this report. 
-The load balancing of the MPI  version of MCNP does not consider the huge 
-differences in the computational times needed to simulate different histories
- that are typical with the use of variance reduction parameters that span many 
-orders of magnitude. The MCNP runs will not be stopped even if the computational
- time exceeded the time of the  CTME card until MCNP reaches the printing and 
-dumping stage. Without increasing the frequency of these dumping events, the 
-time of the CTME card may be ignored for a very long time.
-
-%% NOTE [PPHW]: We never say how many histories we used, whether total or in
-%% each individual job.  We should somewhere indicate the total number of
-%% histories for each mesh and how many individual jobs were used (not how
-%% many were launched).
-
-The calculation was split into seven calculation domains, shown in Figure
-\ref{fig:mesh_domains}, which bound the regions of the problem requiring
-activation. In addition to reducing the memory requirements for each calculation
-simply due to the decomposition of the tally domain, dividing the mesh tally 
-domains in this manner reduces the number of neutron mesh voxels that are 
-outside the boundary of the 40$^{\circ}$ sector, further reducing the overall memory
-requirements.
 The physical size and boundaries that were used in the calculation
 can be found in Table \ref{table:mesh_sizes}. With \gls{r2s} calculations there 
 is a subtle interplay between the size of the mesh elements and the number of mesh
@@ -731,6 +668,78 @@ sector, or fills the entire 360$^{\circ}$.
 %% NOTE [PPHW]: Need to confirm with AMI exactly how he configured the
 %%  fw-cadis including: the number of energy groups and spatial mesh (I
 %%  think/assume this is the same as the neutron tally mesh?)
+
+\subsection{Job-level Parallelism}
+
+Parallelism over many processors was necessary to achieve this calculation in
+a reasonable time. Methodologies with extreme variance reduction can produce
+pathologically long histories.  In such problems, individual histories may
+experience the variance reduction scheme in a way that results in millions of
+splitting events.  Such rare histories can overwhelm the total computer time
+needed for a simulation appearing to never actually reach completion, with
+severe negative impacts on load balancing under a typical message passing
+(MPI) parallel approach.  In the worst cases, the entire MPI job never reaches
+completion yielding no results.  In the job parallel approach, instead of
+distributing packets of independent histories from within a single simulation,
+a batch of independent jobs are launched each with the same packets of
+independent histories.  While it is still possible for some of these jobs to
+not reach completion, this approach is amenable to submitting a surplus of
+jobs and using a subset of these statistically independent jobs to produce the
+final results.  In both cases, independent histories are guaranteed by
+selecting the number of histories and the first history for each process to
+avoid overlap.  
+
+%% NOTE [PPHW]: Should integrate this discussion (previously in the Conclusion
+%% section) with the above.  Maybe it's all covered now above and we just delete?
+%% But some questions: 
+%%
+%% *) Does this mean to say that we suggest using all 3 concepts, or just some
+%%    subset. It seems to make more sense as the latter to me!  If the latter
+%%    which do we do?  and why all the suggestions - just document what we do.
+%% *) Did we use CTME or NPS for the HTC calcs?It must have been NPS to avoid
+%%    overlapping histories.
+
+When variance reduction parameters that span over
+ many orders of magnitude are being used in non-analog Monte Carlo simulations,
+ it is difficult to estimate the computational time needed to simulate each 
+particle because some of these particles undergo millions of splitting events. 
+To overcome this problem, the authors suggest 1) using the computer time cutoff
+ (CTME) card in MCNP to stop the MCNP runs after reaching a certain amount of 
+running time without losing the results, 2) to increase the frequency of the 
+printing and dumping of MCNP using the PRDMP card, 3) and to avoid the use of 
+the MPI version of MCNP. The Monte Carlo calculations can still run in parallel
+ without using MPI by submitting independent jobs with different random number 
+seeds and statistically averaging the results as demonstrated in this report. 
+The load balancing of the MPI  version of MCNP does not consider the huge 
+differences in the computational times needed to simulate different histories
+ that are typical with the use of variance reduction parameters that span many 
+orders of magnitude. The MCNP runs will not be stopped even if the computational
+ time exceeded the time of the  CTME card until MCNP reaches the printing and 
+dumping stage. Without increasing the frequency of these dumping events, the 
+time of the CTME card may be ignored for a very long time.
+
+The combination of mesh domain decomposion and job parallelism is shown in
+Figure \ref{fig:mesh_splitting}.  
+The spatial domain of the problem is duplicated and a given
+mesh tally superimposed onto the geometry. Several single core simulations are
+launched for that specific meshtally but the random number seed is strided in
+such a way that no process will share the same histories with another job.  
+This is performed using the \texttt{rand hist=n} command in \gls{mcnp5}.
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[scale=0.3]{../plots/method/neutron_method.png}
+  \caption{The high throughput methodology, splitting a given MCNP calculation
+           into smaller calculations spanning a contiguous random number seed
+           space}
+  \label{fig:mesh_splitting}
+\end{figure}
+
+
+%% NOTE [PPHW]: We never say how many histories we used, whether total or in
+%% each individual job.  We should somewhere indicate the total number of
+%% histories for each mesh and how many individual jobs were used (not how
+%% many were launched - or maybe?).
 
 \subsubsection{Activation}
 The activation calculations are performed using the spatially dependent neutron
