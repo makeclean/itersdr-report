@@ -755,6 +755,9 @@ This is performed using the \texttt{rand hist=n} command in \gls{mcnp5}.
 %% each individual job.  We should somewhere indicate the total number of
 %% histories for each mesh and how many individual jobs were used (not how
 %% many were launched - or maybe?).
+%%
+%% I see this comes in a later section on Calculation Details...  is this 
+%% based on the outline from ORNL?  It seems odd to put it so late.
 
 \subsubsection{Activation}
 The activation calculations are performed using the spatially dependent neutron
@@ -776,7 +779,10 @@ description is developed and recorded for running in an inventory code. In the
 case of \texttt{pyne.r2s} a full \gls{alara_c} input deck is produced which can
 then be executed and the final shutdown photon sources produced. From a single
 inventory calculation the decay photon sources for all the subsequent decay
-times can be generated.
+times can be generated.  The photon sources were each generated using 24 photon
+energy groups using the XXX group structure.
+
+%% NOTE [PPHW]: Need to describe/confirm this group structure.
 
 \subsubsection{Photon Transport}
 The photon transport proceeds using the same computational model as in the
@@ -1056,15 +1062,6 @@ bodies.  Therefore, weight window values are observed beyond the 40$^{\circ}$ se
 
 \subsection{Baseline}
 
-%% NOTE [PPHW]: Let's reframe the following in a more constructive way. We
-%% should just declare that we used the first N jobs that completed their
-%% requested M histories.  It should come here, before reportin results (or
-%% earlier in methodology, perhaps).
-
-%% The final calculations represent only around 10\% of the overall requested 
-%% runtime; this is mostly due to calculations not completing with the 3 day 
-%% allotted runtime on CHTC. 
-
 The baseline results represent a standard C-lite model since there is no
 B$_4$C liner present, however relative to the standard C-lite
 native \gls{mcnp5} model there is much more equipment present in
@@ -1139,11 +1136,13 @@ using \gls{alara_c} 2.9.1RC.
 
 \subsection{Baseline}
 
-%% NOTES [PPHW]: We need some discussion here - at least to describe what is
-%% in these plots in text an refer to the appendix for the others.
-
-The total photon source intensities for each decay time are shown in
-figure \ref{fig:source_dc1_no4bc} through \ref{fig:source_dc3_no4bc}.
+The total photon source intensities for the baseline case and for each decay
+time are shown in Figures \ref{fig:source_dc1_no4bc}
+through \ref{fig:source_dc3_no4bc}.  Figures that show the source intensity
+for each of the 24 photon groups are in
+appendix \ref{appendix:grp_photon_src_baseline}.  The first wall and blanket modules
+clearly have the strongest source, 3-4 orders of magnitude larger than most
+ex-vessel components.
 
 \subsubsection{Decay Time 1 - $10^{5}$ seconds}
 \begin{figure}[ht!]
@@ -1168,9 +1167,18 @@ figure \ref{fig:source_dc1_no4bc} through \ref{fig:source_dc3_no4bc}.
 \label{fig:source_dc3_no4bc}
 \caption{The total shutdown photon source for the baseline case for decay time 3}
 \end{figure}
+
 \newpage
 \clearpage
 \subsection{Including the B4C Liner}
+
+The total photon source intensities for the case with B$_4$C liner and for
+each decay time are shown in Figures \ref{fig:source_dc1_b4c}
+through \ref{fig:source_dc3_b4c}.  Figures that show the source intensity for
+each of the 24 photon groups are in
+appendix \ref{appendix:grp_photon_src_b4c}.  
+
+
 \subsubsection{Decay Time 1 - $10^{5}$ seconds}
 \begin{figure}[ht!]
 \centering
@@ -1194,17 +1202,16 @@ figure \ref{fig:source_dc1_no4bc} through \ref{fig:source_dc3_no4bc}.
 \caption{The total shutdown photon source for the case with B$_4$C for decay time 3}
 \label{fig:source_dc3_b4c}
 \end{figure}
+
 \clearpage
 \subsection{Comparison}
 
+%% NOTE [PPHW]: What do we want to say here?
 
+%% NOTE [PPHW]: Why do the B4C results look smoother/better in the bioshield?
 
 \subsection{Conclusion}
-The shutdown photon source produced case and 3 decay times results in
-42 individual photon sources that must be used in subsequent photon transport
-calculations.
-\\
-\\
+
 It is worth noting that the lack of gamma source present in the \gls{epp}
 regions are not due to poor neutron transport in this region, but due to the
 fact that the \gls{gepp} model has a large B$_4$C powder filled containers
@@ -1215,8 +1222,12 @@ photon energies, thus effectively produces no decay photons.
 \newpage
 \clearpage
 \section{Shutdown Photon Dose rates Results and Conclusions}
+
+%% NOTES [PPHW]: Need some basic discussion - at least to describe what is in
+%% each figure.
+
 \subsection{Baseline}
-\subsubsection{Decay time 1 - 1.$\times$10$^5$ s}
+\subsubsection{Decay time 1 - $10^5$ s}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Rate_Decay_Time_1_Meshes_1-7.png}
@@ -1243,7 +1254,7 @@ photon energies, thus effectively produces no decay photons.
 \end{figure}
 
 \clearpage
-\subsubsection{Decay time 2 - 1.$\times$10$^6$ s}
+\subsubsection{Decay time 2 - $10^6$ s}
 %% the totals plots
 \begin{figure}[ht!]
 \centering
@@ -1271,7 +1282,7 @@ photon energies, thus effectively produces no decay photons.
 \end{figure}
 \clearpage
 
-\subsubsection{Decay time 3 - 1.$\times$10$^7$ s}
+\subsubsection{Decay time 3 - $10^7$ s}
 %% the totals plots
 \begin{figure}[ht!]
 \centering
@@ -1299,7 +1310,7 @@ photon energies, thus effectively produces no decay photons.
 \end{figure}
 \clearpage
 \subsection{Including the B$_4$C liner}
-\subsubsection{Decay time 1 - 1.$\times$10$^5$ s}
+\subsubsection{Decay time 1 - $10^5$ s}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_with_b4c/Photon_Dose_Rate_Decay_Time_1_Meshes_1-7.png}
@@ -1327,7 +1338,7 @@ photon energies, thus effectively produces no decay photons.
 \end{figure}
 
 \clearpage
-\subsubsection{Decay time 2 - 1.$\times$10$^6$ s}
+\subsubsection{Decay time 2 - $10^6$ s}
 
 %% the totals plots
 \begin{figure}[ht!]
@@ -1356,7 +1367,7 @@ photon energies, thus effectively produces no decay photons.
 \end{figure}
 \clearpage
 
-\subsubsection{Decay time 3 - 1.$\times$10$^7$ s}
+\subsubsection{Decay time 3 - $10^7$ s}
 %% the totals plots
 \begin{figure}[ht!]
 \centering
@@ -1382,6 +1393,10 @@ photon energies, thus effectively produces no decay photons.
 \caption{The error in the total dose rate combined over all meshes for decay time 3, with focus on the port areas}
 \label{fig:photons_dc3_b4c_total_error_zoomed}
 \end{figure}
+
+%% NOTE [PPHW]: Include line-out plots of total photon dose here and/or ratio
+%% - no cross-talk break down yet.  And then also discussion of same....
+
 \newpage
 \clearpage
 \subsection{Photon Cross Talk}
@@ -1402,6 +1417,7 @@ detailed contributions for each mesh shown in Figures
 \caption{The total photon dose from the B$_4$C case for decay time 2 for mesh 1}
 \label{fig:ct_photons_dc2_no4bc_m1_flux}
 \end{figure}
+
 \newpage
 \clearpage
 
@@ -1456,6 +1472,7 @@ detailed contributions for each mesh shown in Figures
 \caption{The total photon dose from the B$_4$C case for decay time 2 for mesh 7}
 \label{fig:ct_photons_dc2_no4bc_m7_flux}
 \end{figure}
+
 \newpage
 \clearpage
 \subsubsection{Breakdown of Cross Talk}
@@ -1691,6 +1708,7 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 
 \section{Appendix - B - Groupwise Photon Sources}
 \subsection{Baseline}
+\label{appendix:grp_photon_src_baseline}
 \subsubsection{Decay Time 1 - $10^{5}$ seconds}
 \input{../plots/final_model/src_dc1.tex}
 \subsubsection{Decay Time 2 - $10^{6}$ seconds}
@@ -1698,6 +1716,7 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 \subsubsection{Decay Time 3 - $10^{7}$ seconds}
 \input{../plots/final_model/src_dc3.tex}
 \subsection{Including the B4C Liner}
+\label{appendix:grp_photon_src_b4c}
 \subsubsection{Decay Time 1 - $10^{5}$ seconds}
 \input{../plots/final_model_with_b4c/src_dc1.tex}
 \subsubsection{Decay Time 2 - $10^{6}$ seconds}
@@ -1707,23 +1726,23 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 
 \section{Appendix - C - Shutdown Photon Dose Rates}
 \subsection{Baseline}
-\subsubsection{Decay time 1 - 1.$\times$10$^5$ s}
+\subsubsection{Decay time 1 - $10^5$ s}
 \input{../plots/final_model/dc1.tex}
 \clearpage
-\subsubsection{Decay time 2 - 1.$\times$10$^6$ s}
+\subsubsection{Decay time 2 - $10^6$ s}
 \input{../plots/final_model/dc2.tex}
 \clearpage
-\subsubsection{Decay time 3 - 1.$\times$10$^7$ s}
+\subsubsection{Decay time 3 - $10^7$ s}
 \input{../plots/final_model/dc3.tex}
 \clearpage
 \subsection{Including the B4C Liner}
-\subsubsection{Decay time 1 - 1.$\times$10$^5$ s}
+\subsubsection{Decay time 1 - $10^5$ s}
 \input{../plots/final_model_with_b4c/dc1.tex}
 \clearpage
-\subsubsection{Decay time 2 - 1.$\times$10$^6$ s}
+\subsubsection{Decay time 2 - $10^6$ s}
 \input{../plots/final_model_with_b4c/dc2.tex}
 \clearpage
-\subsubsection{Decay time 3 - 1.$\times$10$^7$ s}
+\subsubsection{Decay time 3 - $10^7$ s}
 \input{../plots/final_model_with_b4c/dc3.tex}
 
 \newpage
