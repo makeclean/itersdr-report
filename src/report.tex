@@ -113,7 +113,7 @@
 \newacronym{io}{IO}{ITER Organisation}
 \newacronym{lp}{LP}{Lower Port}
 \newacronym{lpp}{LPP}{Lower Pumping Port}
-\newacronym{mcnp}{MCNP}{Monte Carlo N Particle}
+\newacronym{mcnp5}{MCNP5}{Monte Carlo N Particle}
 \newacronym{moab}{MOAB}{Mesh Oriented datABase}
 \newacronym{ornl}{ORNL}{Oak Ridge National Laboratory}
 \newacronym{pi}{PI}{Port Interspace}
@@ -152,7 +152,7 @@
  \gls{fwcadis} \\
  \gls{gepp} \\ \gls{icrp} \\
  \gls{io} \\ \gls{lp} \\
- \gls{lpp} \\ \gls{mcnp} \\
+ \gls{lpp} \\ \gls{mcnp5} \\
  \gls{moab} \\ \gls{ornl} \\
  \gls{pi} \\ \gls{pyne} \\
  \gls{pfc} \\ \gls{pp} \\
@@ -181,14 +181,14 @@ order of magnitude. The largest reduction was in the lowest thermal groups,
 which impacts the (n,$\gamma$) capture reactions the most.
 \\
 \\
-The activation results showed the for the first decay time there is little 
+The activation results showed that for the first decay time there is little 
 difference between the baseline and with B$_4$C. For the second decay time, 
 the was an order of magnitude reduction in the photon source density for 
 steel components near the bioshield in the B$_4$C case. For the third decay
 time there are nominal differences between the two cases.
 \\
 \\
-The photon results showed that the doserate there was some benefit to the 
+The photon results showed that for the dose rate was some benefit to the 
 the B$_4$C liner. Dose rates across all decay times were consistently lower
 by factors of 2-4 for the with B$_4$C case for all the ports. The biggest effect
 was present in the upper and equatorial ports. However, for decay times greater
@@ -198,11 +198,13 @@ than 100 $\mu$Sv $hr^{-1}$.
 \\
 This analysis focused on only shutdown photon sources, and therefore does not
 contain prompt photon doses.
+
 \newpage
 \blankpage
+
 \newpage
 \section*{Abstract}
-This report provides the methology, input data, assumptions and results for a
+This report provides the methodology, input data, assumptions and results for a
 full analysis of neutron, neutron induced activation and the subsequent
 transport of residual decay photons in a reference ITER \gls{cad} model. The 
 purpose of the analysis was to (1) establish a baseline result for the shutdown 
@@ -219,28 +221,29 @@ bioshield. The \gls{lpp} contained a detailed model of the cryopump.
 \\
 Following neutron transport using DAG-MCNP5.1.60 the \gls{r2s} method was used 
 to  determine the \gls{sdr}. The SA2 irradiation scenario was used and 3 decay
-were of interest 1$\times$10$^5$ seconds, 1$\times$10$^6$ seconds and 
-1$\times$10$^7$ seconds. The \gls{sdr} photon dose rate was determined in a 
+times were of interest $10^5$ seconds, $10^6$ seconds and 
+$10^7$ seconds. The \gls{sdr} photon dose rate was determined in a 
 single large mesh which covered the entire geometry. The sources were produced 
-in seven meshes which convered discrete non-overlapping parts of the geometry. 
-The use of multiple meshes based sources allows the determination of which 
-source mehses are the source of resultant dose rate.
+in seven meshes which covered discrete non-overlapping parts of the geometry. 
+The use of multiple mesh-based sources allows the determination of some insight into which 
+source meshes are responsible for the resultant dose rate.
 \\
 \\
 It was found that for the lowest decay time the impact of the B$_4$C layer was 
-largest, at the lowest decay time the dose rate in the \gls{epi} was reduced
-by a factor of $\sim$ 2-3, for the longest decay times by a factor of at most 
+largest: at the lowest decay time the dose rate in the \gls{epi} was reduced
+by a factor of $\sim$ 2-3, whlie for the longest decay times by a factor of at most 
 1.30. It was found that for the \gls{epi} and \gls{upi} at each decay time 
 the doserate was dominated by the contribution from the source defined in that
-specific region. However, it was also found that without the contribution from
-the local source, the cross talk from other systems is greater than 100 
+specific region. However, it was also found that even without the contribution from
+the local source, the cross-talk from other regions is greater than 100 
 $\mu$Sv/hr for all decay times.
 \\
 \\
 For the \gls{upi} it was found that a significant component of \gls{sdr} is due
-to the activation of structures around and include Poloidal Field Coil 2, such 
+to the activation of structures around and including  Poloidal Field Coil 2, such 
 that if the activation in the \gls{upi} was reduced to zero, the dose rate would
-still be several hundred $\mu$Sv/hr at 1$\times$10$^6$ seconds.
+still be several hundred $\mu$Sv/hr at $10^6$ seconds.
+
 \newpage
 \clearpage
 \section{Purpose}
@@ -248,7 +251,8 @@ still be several hundred $\mu$Sv/hr at 1$\times$10$^6$ seconds.
 The shutdown dose rate in an around the equatorial and upper ports determine the
 type and duration of maintenance that can be performed by person access. Thus,
 minimization of the dose rate is desirable and indeed encouraged by the 
-\gls{alara_p} principles used at ITER. It was recently suggested in the 
+\gls{alara_p} principles used at ITER. Since initial estimates indicate that
+these dose rates are larger than desirable, it was recently suggested in the 
 Neutronics Task Force that lining the plasma side of the concrete bioshield 
 with a thin ($\sim$ mm thickness) layer of boron carbide (B$_4$C). The purpose 
 of the layer is to absorb much of the thermal flux which would otherwise lead 
@@ -261,6 +265,7 @@ dose rates, this would be achieved by modelling a detailed 40$^{\circ}$ sector
 of the ITER device once with the layer included and once without and then 
 examining the detailed effect this layer has upon neutron transport, the 
 subsequent neutron induced activation and the resultant photon transport.
+
 \subsection{Initiating Documents}
 The ITER Task Agreement under which this work was initiated and performed is TA
 C74TD21FU. Several documents provided the basis of the materials for components,
@@ -268,6 +273,7 @@ and several \gls{cad} models were provided by numerous \gls{io} groups.
 \\
 \\
 This report fulfills deliverable 7 of the task agreement.
+
 \newpage
 \section{Solution Methodology}
 \subsection{Background}
@@ -278,7 +284,7 @@ steps.  Neutron transport simulations generate a detailed three-dimensional
 map of multi-group neutron fluxes.  These are used to predict the induced
 activity of the structural material, resulting in three-dimensional maps of
 the energy-dependent photon emission density for different times after
-shutdown.  For each time after shutdown, those photon emission densities are
+shutdown.  For each time after shutdown time, those photon emission densities are
 used as the source for photon transport to determine a three-dimensional map
 of the photon dose.  Improvements on the original method rely on mesh based
 flux determination methods \cite{mcr2s,r2smesh,r2suned,pyne_r2s} that allow
@@ -286,7 +292,12 @@ more fine neutron flux gradients to be represented in resultant activation
 source.  Since the \gls{r2s} method performs a complete activation calculation
 using a standalone nuclear inventory code, it is capable of handling the
 non-linear variations of nuclide density induced by (n,xn) reactions
-that \gls{d1s} methods traditionally struggle with.
+that \gls{d1s} methods traditionally struggle with.  This analysis methodology
+relies upon Monte Carlo radiation transport code for the first 
+(neutron transport) step and the third (photon transport) step, an upon an 
+activation code for the second step.  When the geometry is defined by a 
+\gls{cad}-based geometric model, the \gls{r2s} methodology and all of these tools
+must be able to operate using such geometric representations.
 
 \subsubsection{Variance Reduction and the FW-CADIS Method}
 The neutron and photon transport steps of the above \gls{r2s} methodology are
@@ -319,22 +330,28 @@ the \gls{r2s} \gls{sdr} analysis in this work.  Since the photon source is
 distributed broadly in space, the impact of variance reduction for a broadly
 distributed photon dose map is less obvious, and was not used in this problem.
 
+%% NOTE [PPHW]: Describe problems with FW-CADIS in SDR calculations
+
 \subsection{Input Description}
 \subsubsection{The Model Geometry}
-The \gls{cad} model was generated from several sources, ITER Clite \gls{cad}
-which was used as input to generate the ITER Clite V1 \gls{mcnp} model, ITER
+The \gls{cad} model was generated from several sources: ITER Clite \gls{cad}
+which was used as input to generate the ITER Clite V1 \gls{mcnp5} model, ITER
 Diagnostics Division \gls{cad} models of Upper and Equatorial ports, and
-previous \gls{mcnp} analysis which were detailed in \cite{cad_origination}. The
+previous \gls{mcnp5} analysis which were detailed in \cite{cad_origination}. The
 model represents several ITER systems in high levels of detail, with all detail
 retained in the \gls{epi}, the  \gls{upi}, and the Lower Port Cryopump. Some of
-these models were previously used to generate \gls{mcnp} input decks so have
+these models were previously used to generate \gls{mcnp5} input decks so have
 undergone some degree of simplification prior to being provided for use on this 
 problem.
 \\
 \\
 Several modifications were nessary for the \gls{cad} to be fully usable. Several
-person months of time was invested in cleaning, reparing and building multiple
+person-months of time was invested in cleaning, reparing and building multiple
 components multiple times. 
+
+%% NOTE [PPHW]: Are we not able to document specific changes made to these
+%% models?  I'm happy for this section to be multiple pages...
+
 \\
 \\
 The overall \gls{cad} model in shown in Figure \ref{fig:cad_iter_global}, the
@@ -345,20 +362,25 @@ broad details of the model can be seen.
   \caption{Section showing the overall model}
   \label{fig:cad_iter_global}
 \end{figure}
-The geometry was faceted to a tolerance of 1.0$\times$10$^4$ cm, meaning that 
-the edges of curve facets used in this analysis can lie no further away from 
+The geometry was faceted to a tolerance of $10^4$ cm, meaning that 
+the edges of curve facets used in this analysis should lie no further away from 
 the underlying geometric curve or surface.
+
+%%NOTE [PPHW]: How was the B4C layer added to the geometry??  Cutting out a
+%%thin layer of the bioshield?  Or adding a thin layer to the bioshield?
+%%Or???
+
 \newpage
 \clearpage
 \subsubsection{Materials}
-All materials in the problem originate from the Clite \gls{mcnp} model -
+All materials in the problem originate from the Clite \gls{mcnp5} model -
 CLITE\textunderscore V1\textunderscore REV131031\textunderscore MOD, with the
 exception of the \gls{upp}, the \gls{epp}, the
 Cryopump, the blanket modules and the contents of the \gls{upi} and \gls{epi}.
 The default cross section set used was \gls{fendl}-2.1. The material allocation
 for each region in the model can be seen in Figures \ref{fig:material_assign_1} 
 to \ref{fig:material_assign_5}. The \gls{epp} material 
-definitions were taken from the \gls{gepp} \gls{mcnp} model\cite{epp_materials}.
+definitions were taken from the \gls{gepp} \gls{mcnp5} model\cite{epp_materials}.
 The \gls{upp} material definitions were provided by 
 \cite{bertalot_communication}. The Cryopump materials assignments
 came from \cite{cryopump_communication}. The blanket module material
@@ -411,18 +433,25 @@ designed specifically for ray tracing efficiently on complex \gls{cad} based
 geometries. The \gls{dagmc} toolkit is distributed as part of \gls{moab} and
 is completely open source. Input to \gls{dagmc} is a \gls{moab} mesh file
 which contains the faceted representation of the \gls{cad} geometry, this
-is loaded and Oriented Bounding Box (OBB) acceleration structures are built
+is loaded and oriented bounding box (OBB) acceleration structures are built
 to speed each ray fire query.
+
 \subsubsection{DAG-MCNP5}
-DAG-MCNP5 \cite{dagmc} is a version of \gls{mcnp} \cite{mcnp} where the core ray
-queries (point in volume, ray fire, next volume, etc) have their \gls{mcnp}
+As \gls{dagmc} only satisfies the ray-tracing 
+and related queries for Monte Carlo transport, it is necessary to combine it
+with a Monte Carlo physics code to provide the majority of radiation transport
+capability. For this work, \gls{mcnp5} \cite{mcnp} was selected as that physics
+code as it has been identified by ITER as the reference tool for Monte Carlo 
+radiation transport.  DAG-MCNP5 \cite{dagmc} is a version of \gls{mcnp5} where the core ray
+queries (point in volume, ray fire, next volume, etc) have their \gls{mcnp5}
 versions replaced with the \gls{dagmc} equivalents. DAG-MCNP5 has been validated
 \cite{dagmc_validation} and tested in several ITER analysis in the past.
+
 \subsubsection{ADVANTG}
 The \gls{advantg} software automates the 
 process of generating variance reduction parameters for continuous-energy Monte 
 Carlo simulations of fixed-source neutron, photon, and coupled neutron-photon 
-transport problems using \gls{mcnp}5 \cite{advantg}. \gls{advantg} generates 
+transport problems using \gls{mcnp5} \cite{advantg}. \gls{advantg} generates 
 space and  energy-dependent mesh-based weight-window bounds and biased source 
 distributions using three-dimensional discrete ordinates solutions of the 
 adjoint transport equation that are calculated by the Denovo package 
@@ -436,39 +465,43 @@ generating space and energy-dependent weight-window targets and a consistent
 biased source distribution. The \gls{cadis} method was developed for accelerating
 individual tallies, whereas \gls{fwcadis} was developed for multiple tallies and
 mesh tallies. The \gls{cadis} method has been demonstrated to provide speed-ups 
-in the tally \gls{fom} of $O(10^{1}-10^{4})$ across a broad range of radiation 
-detection and shielding problems. The FW-CADIS method has been shown to produce
+in the tally \gls{fom} of $O(10^1-10^4)$ across a broad range of radiation 
+detection and shielding problems. The \gls{fwcadis} method has been shown to produce
  relatively uniform statistical uncertainties across multiple cell tallies and 
 large space- and energy-dependent mesh tallies in real-world applications.
 \\
 \\
-\gls{advantg} was updated to support DAG-MCNP calculations. This was 
+\gls{advantg} was updated to support \gls{dagmc}-based calculations. This was 
 accomplished by linking the \gls{advantg} mapping functions that are used to 
-map the Monte Carlo geometry onto the Denovo mesh to the DAG-MCNP 
+map the Monte Carlo geometry onto the Denovo mesh to the \gls{dagmc}
 ray-tracing routines \cite{biondoMC2015}. With this new capability, 
 \gls{advantg} was able to map the geometry of the Clite \gls{cad} model onto a 
 Cartesean mesh to use Denovo to generate the variance reduction parameters 
 for the DAG-MCNP5 calculations of the neutron fluxes.
+
 \subsubsection{PyNE}
 The \gls{pyne} \cite{Scopatz2012b} project aims to
-make C++ wrapped Python-accessible library of well validated and tested
-functions and capabilities available to nuclear engineers across the world.
+make a Python-accessible library of well validated and tested
+Python and C++ functions and capabilities available to nuclear engineers 
+across the world.
 For this project we used the following capabilities of \gls{pyne}.
 \begin{itemize}
   \item{the \texttt{pyne.mesh} class to combine meshes, with an appropriate
         combined statistical error}
   \item{the \texttt{pyne.r2s} class to produce \gls{r2s} inputs and outputs}
-  \item{the \texttt{pyne.alara} class to produce alara inputs}
-  \item{the \texttt{pyne.mcnp} class to read \gls{mcnp} meshtal files}
+  \item{the \texttt{pyne.alara} class to produce \gls{alara_c} inputs}
+  \item{the \texttt{pyne.mcnp} class to read \gls{mcnp5} meshtal files}
 \end{itemize}
 The PyNE capabilities are interoperable with \gls{dagmc} output and handles
 most post-process operations in the analysis.
+
 \subsubsection{ALARA}
 \gls{alara_c} \cite{alara} is a nuclear inventory code developed at the \gls{uw}
 The unique feature of \gls{alara_c} is the way it handles the
 pathways of the reactions, all of the potential pathways are accounted for and
 duplicate links linearised. \gls{alara_c} is used in this analysis as the method
 of producing gamma ray sources for \gls{r2s} shutdown photon calculations.
+
 \subsection{Validation Status}
 \subsubsection*{Analysis Codes}
 The 1$^{st}$ rate analsysis codes used in these calculations are shown in Table 
@@ -490,6 +523,9 @@ in this report.
  \label{table:validation}
  \end{table}
 \end{centering}
+
+%% NOTE [PPHW]: Doesn't yt belong in the next section?
+
 \subsubsection*{Auxilliary Codes}
 The auxiallary codes used in the this report are shown in Table 
 \ref{table:validation_aux}. These codes were not directly used to 
@@ -509,13 +545,16 @@ and output data.
  \label{table:validation_aux}
  \end{table}
 \end{centering}
+
 \newpage
 \subsection{Solution Methodology}
 \label{section:method}
 \subsubsection{Neutron Transport}
-The neutron transport calculations were performed using version 1.0 of DAG-MCNP5
-using the source from version 1.60 of MCNP5, from the develop branch with git
-checkout \texttt{e12e2a3}. The two batches of calculations were performed, one
+The neutron transport calculations were performed using version 1.0 of DAG-MCNP5.
+This version is derived from the RSICC source code version 1.60 of \gls{mcnp5}
+with modifications for \gls{dagmc} applied, as represented in commit \texttt{e12e2a3}
+of the \gls{uw} source code repository for DAG-MCNP5.
+The two batches of calculations were performed, one
 case with the B$_4$C liner and one without.
 \\
 \\
@@ -523,7 +562,7 @@ The level of detail present in the faceted geometry files impacts the amount of
 memory required to run the calculation, this combined with the large and
 detailed weight window file and the need for 175 energy group neutron spectra
 in each voxel means that the calculation requires significant memory resources,
-in excess of 12 Gb per CPU. It was therefore determined that in order to perform
+in excess of 12 Gb per process. It was therefore determined that in order to perform
 the neutron transport in a timely fashion given the memory requirements, this
 set of simulations would be considered a good case to run using a high
 throughput methodology with domain replication, this procedure is shown in 
@@ -531,10 +570,10 @@ Figure \ref{fig:mesh_splitting}.
 \\
 \\
 In this method the spatial domain of the problem is duplicated and a given
-meshtally superimposed onto the geometry. Several single core simulations are
+mesh tally superimposed onto the geometry. Several single core simulations are
 launched for that specific meshtally but the random number seed is strided in
 such a way that no CPU will share the same seed with another job, this is
-performed using the \texttt{rand hist=n} command in \gls{mcnp}.
+performed using the \texttt{rand hist=n} command in \gls{mcnp5}.
 \begin{figure}[ht!]
   \centering
   \includegraphics[scale=0.3]{../plots/method/neutron_method.png}
@@ -557,14 +596,19 @@ simulated.
 
 The calculation was split into seven calculation domains, shown in Figure
 \ref{fig:mesh_domains}, which bound the regions of the problem requiring
-activation. The physical size and boundaries that were used in the calculation
+activation. In addition to reducing the memory requirements for each calculation
+simply due to the decomposition of the tally domain, dividing the mesh tally 
+domains in this manner reduces the number of neutron mesh voxels that are 
+outside the boundary of the 40$^{\circ}$ sector, further reducing the overall memory
+requirements.
+The physical size and boundaries that were used in the calculation
 can be found in Table \ref{table:mesh_sizes}. With \gls{r2s} calculations there 
 is a subtle interplay between the size of the mesh elements and the number of mesh
 elements; the larger the mesh elements the lower the statistical errors will be
 for a given fixed number of particles but the mesh will conform poorly to the
 geometry, and vice versa. In this calculation the maximum number of mesh
 elements in a given mesh is dictated by the size that the given mesh will
-occupy in memory when transferred to an \gls{alara_c}geometry. 
+occupy in memory when transferred to an \gls{alara_c} geometry. 
 
 \begin{centering}
  \begin{table}[ht!]
@@ -598,6 +642,7 @@ occupy in memory when transferred to an \gls{alara_c}geometry.
  \label{table:mesh_sizes}
  \end{table}
 \end{centering}
+
 \subsubsection{Activation}
 The activation calculations are performed using the spatially dependent neutron
 spectra determined in the previous step. The activation calculations proceed as
@@ -842,12 +887,12 @@ recommended by \gls{io} for ITER analysis.
 Activation Data - The activation data used was \gls{fendl}-3.0/A.
 \\
 \\
-Photon Data - The standard photon data supplied with \gls{mcnp}5 mcplib04 was 
+Photon Data - The standard photon data supplied with \gls{mcnp5} mcplib04 was 
 used. This data ultimately falls back onto \gls{endf}/B-VI release 8 photo
 atomic data.
 \subsection{Transport Software}
-The particle transport software used for this analysis was \gls{dag}-\gls{mcnp}5
-which integrates the DAGMC toolkit into the Monte Carlo code \gls{mcnp}. 
+The particle transport software used for this analysis was \gls{dag}-\gls{mcnp5}
+which integrates the DAGMC toolkit into the Monte Carlo code \gls{mcnp5}. 
 DAG-MCNP5 has been extensively used in other ITER analyses and has a significant
 validation effort behind it. MCNP5 is the standard monte carlo transport code
 used at ITER and therefore represents the predefined level of neutron and physics
@@ -862,7 +907,7 @@ FISPACT \cite{fispact} in the past and gives numerically equivalent results.
 \section{Neutron Transport Results and Conclusions}
 \subsection{Baseline}
 The baseline results represent a standard C-lite model since there is no B$_4$C
-liner present, however relative to the standard C-lite native \gls{mcnp} model
+liner present, however relative to the standard C-lite native \gls{mcnp5} model
 there is much more equipment present in the \gls{upi} \& \gls{epi}, and
 the divertor pumping port is unplugged. The open pumping port specifically
 leads to higher neutron fluxes beyond the vacuum vessel.
@@ -882,7 +927,7 @@ leads to higher neutron fluxes beyond the vacuum vessel.
 \clearpage
 \subsection{Including the B4C Liner}
 These results represent a standard C-lite model with improved B$_4$C liner,
-however relative to the standard C-lite native \gls{mcnp} model there is much more
+however relative to the standard C-lite native \gls{mcnp5} model there is much more
 equipment present in the \gls{pi} (both upper and lower), and the divertor
 pumping port is unplugged. 
 \begin{figure}[ht!]
@@ -1359,7 +1404,7 @@ Using the methodology shown in Section \ref{section:method}, the neutron meshes
 were split into 7 calculations. These jobs were submitted to the \gls{uw}
 \gls{chtc} system in batches of 200 for each mesh, with seven meshes used to
 determine the neutron flux, making a
-total of 2800 individual \gls{mcnp} simulations. These results were then
+total of 2800 individual \gls{mcnp5} simulations. These results were then
 combined using \gls{pyne} to result in the statistically averaged final results.
 Initially calculations were batched into groups of $5\times10^7$ particles per
 batch, however these calculations did not finish in a timely enough manner and
