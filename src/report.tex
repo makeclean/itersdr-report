@@ -510,6 +510,21 @@ The latter approach is important when the relative source intensity varies by
 many orders of magnitude across the geometric extents of the problem, as in 
 this problem.
 
+Another important feature of the \texttt{pyne.source\_sampling} capability is
+void rejection.  Since many of the activation voxels may contain a combination
+of solid material and vacuum, it is important that photon are only born in the
+non-void spaces.  Allowing photons to be born in the void spaces would ignore
+important self-shielding effects in the source in those cases.  Therefore,
+once a spatial voxel is selected, the location within that voxel is chosen
+uniformly in space and tested to ensure that this location is in a non-void
+space.  If it is found to be in a void space, then another location is sampled
+uniformly.  Since some voxels could theoretically contain very small fractions
+of non-void space, calculation efficiency requires a limit on the number of
+times a particular voxel is resampled before selecting a new voxel. This is
+exacerbated by uniform mesh sampling since voxels may be selected for sampling
+even if the total source strength is low, possibly due to a very small
+non-void volume.
+
 \subsubsection{ALARA}
 \gls{alara_c} \cite{alara} is a nuclear inventory code developed at the \gls{uw}
 The unique feature of \gls{alara_c} is the way it handles the
@@ -764,13 +779,27 @@ inventory calculation the decay photon sources for all the subsequent decay
 times can be generated.
 
 \subsubsection{Photon Transport}
-The photon transport proceeds using the same computational model as in the 
-neutron calculation, with the exception the photon source and appropriate 
-normalisation is determined using the activation step. The calculation is then
-performed, but each photon transport will use a common result mesh for each 
-calculation, and therefore, since each photon source is determined for a 
-specific non overlapping region of the geometry the final result is the 
-summation of each mesh, with the statistical error propagated appropriately.
+The photon transport proceeds using the same computational model as in the
+neutron calculation, but without variance reduction and with a mesh-based
+photon source and appropriate normalisation as determined using the activation
+step.  The photon dose is tallied using ICRP XXX flux-to-dose conversion
+factors.  Because the photon dose is tallied in a single bin over all
+energies, tally mesh decomposition is not necessary for photon transport.  The
+dose response from each of the seven source mesh is simulated over the entire
+domain for each of the decay times.  The total dose is found by superposition
+by simply adding the full domain's results from each source mesh, and
+combining estimates of the statistical error appropriately.
+
+%% NOTE [PPHW]: Need to confirm ICRP reference
+
+With two cases, seven source meshes and three decay times, this led to 42
+independent photon transport calculations, each with $10^8$ histories sampled
+using the \texttt{pyne.source\_sampling} routines configured for uniform
+sampling and void rejection of XXXX.  The dose response mesh tallies in each
+problem were normalised using the appropriate total source intensity.
+
+%% NOTE [PPHW]: Need to confirm void rejection parameters above.
+
 
 \subsection{Software Risk Assessment}
 All software used for analysis is current, validated and verified. DAG-MCNP5
