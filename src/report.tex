@@ -568,6 +568,7 @@ and output data.
 \newpage
 \subsection{Solution Methodology}
 \label{section:method}
+
 \subsubsection{Neutron Transport}
 The neutron transport calculations were performed using version 1.0 of DAG-MCNP5.
 This version is derived from the RSICC source code version 1.60 of \gls{mcnp5}
@@ -575,6 +576,12 @@ with modifications for \gls{dagmc} applied, as represented in commit \texttt{e12
 of the \gls{uw} source code repository for DAG-MCNP5.
 The two batches of calculations were performed, one
 case with the B$_4$C liner and one without.
+
+In each case, the neutron flux was tallied in 175 energy groups using the
+vitamin-j structure in a spatial mesh voxel that was $20 \times 20 \times 20$
+cm.
+
+%% NOTE [PPHW]: Confirm mesh voxel size.  
 \\
 \\
 The level of detail present in the faceted geometry files impacts the amount of
@@ -721,7 +728,9 @@ of neutron phase space.
 problem, requiring a geometry that fills either a 90$^{\circ}$ or 180$^{\circ}$ 
 sector, or fills the entire 360$^{\circ}$.
 
-%% NOTE [PPHW]: Need to confirm with AMI exactly how he configured the fw-cadis
+%% NOTE [PPHW]: Need to confirm with AMI exactly how he configured the
+%%  fw-cadis including: the number of energy groups and spatial mesh (I
+%%  think/assume this is the same as the neutron tally mesh?)
 
 \subsubsection{Activation}
 The activation calculations are performed using the spatially dependent neutron
@@ -1091,6 +1100,13 @@ The \gls{r2s} shutdown dose rate calculations were performed using the
 using \gls{alara_c} 2.9.1RC. 
 
 \subsection{Baseline}
+
+%% NOTES [PPHW]: We need some discussion here - at least to describe what is
+%% in these plots in text an refer to the appendix for the others.
+
+The total photon source intensities for each decay time are shown in
+figure \ref{fig:source_dc1_no4bc} through \ref{fig:source_dc3_no4bc}.
+
 \subsubsection{Decay Time 1 - $10^{5}$ seconds}
 \begin{figure}[ht!]
 \centering
