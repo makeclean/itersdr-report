@@ -168,6 +168,9 @@
 %\printglossary[type=\acronymtype]
 % none of these work, but should
 
+% to make the aconyms appear on first use
+\glsresetall
+
 \newpage
 \section*{Executive Summary}
 The results contained within this report show the results of complex 3D neutron
@@ -1020,17 +1023,17 @@ neutron source normalisation used relative to nominal 500 MW operations.
 %% NOTE [PPHW]: What does "Fractional Strength" mean?
 %%              Does 1.4 correspond to the 500 MW referenced above?
 \begin{table}[ht!]
-   \begin{tabular}{| l | c |}
+   \begin{tabular}{| l | c | c | c |}
       \hline 
       Irradiation Period & Neutron Power (MW) & Source Normalisation (n/s) &  Relative Strength \\
       \hline
       2 Years & 2.7 & 1.061$\times$10$^{17}$ & 0.0053 \\
       10 Years & 20.6 & 8.517$\times$10$^{17}$ & 0.0412 \\
-      1.325 Years & 41.5 & 1.643$\times$10$^{18}$ 0.0830 \\
-      \cellcolor{blue!25} 400 Seconds & 500.0 & 1.980$\times$10$^19$ & \cellcolor{blue!25} 1.0  \\
-      \cellcolor{blue!25} 3920 Seconds & 0.0 & 0.0 & \cellcolor{blue!25} 0.0 \\
-      \cellcolor{green!25} 400 Seconds & 700.0 & 2.772$\times$10$^19$ &\cellcolor{green!25} 1.4 \\
-      \cellcolor{green!25} 3920 Seconds & 0.0 & 0.0 &\cellcolor{green!25} 0.0 \\
+      1.325 Years & 41.5 & 1.643$\times$10$^{18}$ & 0.0830 \\
+      \cellcolor{blue!25} \cellcolor{blue!25} 400 Seconds & \cellcolor{blue!25} 500.0 & 1.980$\times$10$^19$ & \cellcolor{blue!25} 1.0  \\
+      \cellcolor{blue!25} 3920 Seconds & \cellcolor{blue!25} 0.0 & \cellcolor{blue!25} 0.0 & \cellcolor{blue!25} 0.0 \\
+      \cellcolor{green!25} 400 Seconds & \cellcolor{green!25} 700.0 & \cellcolor{green!25} 2.772$\times$10$^19$ &\cellcolor{green!25} 1.4 \\
+      \cellcolor{green!25} 3920 Seconds & \cellcolor{green!25} 0.0 & \cellcolor{green!25} 0.0 &\cellcolor{green!25} 0.0 \\
       \hline
 \end{tabular}
 \caption{The table shows the SA-2 scenario for irradiation, note the
