@@ -381,7 +381,7 @@ which was used as input to generate the ITER Clite V1 \gls{mcnp5} model, ITER
 Diagnostics Division \gls{cad} models of Upper and Equatorial ports, and
 previous \gls{mcnp5} analysis which were detailed in \cite{cad_origination}. The
 model represents several ITER systems in high levels of detail, with all detail
-retained in the \gls{epi}, the  \gls{upi}, and the Lower Port Cryopump. Some of
+retained in the \gls{epi}, the  \gls{upi}, and the Lower Port cryopump. Some of
 these models were previously used to generate \gls{mcnp5} input decks so have
 undergone some degree of simplification prior to being provided for use on this 
 problem.
@@ -507,13 +507,13 @@ curve.
 All materials in the problem originate from the Clite \gls{mcnp5} model -
 CLITE\textunderscore V1\textunderscore REV131031\textunderscore MOD, with the
 exception of the \gls{upp}, the \gls{epp}, the
-Cryopump, the blanket modules and the contents of the \gls{upi} and \gls{epi}.
+cryopump, the blanket modules and the contents of the \gls{upi} and \gls{epi}.
 The default cross section set used was \gls{fendl}-2.1. The material allocation
 for each region in the model can be seen in Figures \ref{fig:material_assign_1} 
 to \ref{fig:material_assign_5}. The \gls{epp} material 
 definitions were taken from the \gls{gepp} \gls{mcnp5} model\cite{epp_materials}.
 The \gls{upp} material definitions were provided by 
-\cite{bertalot_communication}. The Cryopump materials assignments
+\cite{bertalot_communication}. The cryopump materials assignments
 came from \cite{cryopump_communication}. The blanket module material
 compositions were taken from the Bl-lite \gls{cad} model since the blankets were
 homogenized identically in this model. The full evaluated material definitions
@@ -551,7 +551,7 @@ can be found in the Appendix.
 \begin{figure}[p]
   \centering
   \includegraphics[scale=0.32]{../plots/cad/mats/label_6.png}
-  \caption{Materials found in the Cryopump}
+  \caption{Materials found in the cryopump}
   \label{fig:material_assign_5}
 \end{figure}
 
@@ -1219,10 +1219,9 @@ bodies.  Therefore, weight window values are observed beyond the 40$^{\circ}$ se
 The baseline results represent a standard C-lite model since there is no
 B$_4$C liner present, however relative to the standard C-lite
 native \gls{mcnp5} model there is much more equipment present in
-the \gls{upi} \& \gls{epi}, and the divertor pumping port is unplugged. The
+the \gls{upi} \& \gls{epi}, and the divertor pumping port conatins only a cryopump. The
 open pumping port specifically leads to higher neutron fluxes beyond the
-vacuum vessel.
-%% NOTE [PPHW]: Better definition of unplugged
+vacuum vessel. 
 
 \begin{figure}[ht!]
   \centering
@@ -1256,7 +1255,7 @@ calculation.
 These results represent a standard C-lite model with improved B$_4$C liner,
 however relative to the standard C-lite native \gls{mcnp5} model there is much more
 equipment present in the \gls{pi} (both upper and lower), and the divertor
-pumping port is unplugged. 
+pumping port contains only a cryopump. 
 \begin{figure}[ht!]
   \centering
   \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_with_b4c/{Neutron_Result_(All_Energy_Groups)_Meshes_1-7}.png}     
@@ -1721,7 +1720,7 @@ outboard side of ITER also contributes some 80 $\mu$Sv/hr to the dose rate in
 the \gls{epi}.
 \\
 \\
-For the \gls{pp} the Figures are contained in Section \ref{appendix} and are 
+For the \gls{lpp} the Figures are contained in Section \ref{appendix} and are 
 shown in Figures \ref{} to \ref{}. Both cases find the doserate in 
 the cryopump is significant $\sim$ 100 mSv/hr in the region of the cyropump. 
 This simulation contained the unshielded pumping port and thus the doserate is 
