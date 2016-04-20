@@ -657,11 +657,19 @@ even if the total source strength is low, possibly due to a very small
 non-void volume.
 
 \subsubsection{ALARA}
-\gls{alara_c} \cite{alara} is a nuclear inventory code developed at the \gls{uw}
-The unique feature of \gls{alara_c} is the way it handles the
-pathways of the reactions, all of the potential pathways are accounted for and
-duplicate links linearised. \gls{alara_c} is used in this analysis as the method
-of producing gamma ray sources for \gls{r2s} shutdown photon calculations.
+\gls{alara_c} \cite{alara} is a nuclear inventory code developed at the \gls{uw}. 
+\gls{alara_c} solves isotopic inventory problems using enhanced linear chains 
+that are followed to user defined precision with loops in the chains unrolled.
+A single set of chains is built across all the spatial points of a problem
+using the groupwise maximum neutron flux to ensure a conservative estimate of
+necessary chain length.  Different mathematical solutions are used for the
+chains to optimize the speed and accuracy.  \gls{alara_c} can also model
+complex pulsed irradiation histories exactly with an arbitrary number of
+pulses. \gls{alara_c} produces photon source information from the final
+isotopic inventories at as many decay times as requested by the user by
+collapsing point-wise photon data to a user-defined energy
+grid.  \gls{alara_c} is used in this analysis as the method of producing gamma
+ray sources for \gls{r2s} shutdown photon calculations.
 
 \subsection{Validation Status}
 \subsubsection*{Analysis Codes}
@@ -824,41 +832,13 @@ severe negative impacts on load balancing under a typical message passing
 completion yielding no results.  In the job parallel approach, instead of
 distributing packets of independent histories from within a single simulation,
 a batch of independent jobs are launched each with the same packets of
-independent histories.  While it is still possible for some of these jobs to
+independent histories as would be distributed by the message passing approach.  
+While it is still possible for some of these jobs to
 not reach completion, this approach is amenable to submitting a surplus of
 jobs and using a subset of these statistically independent jobs to produce the
 final results.  In both cases, independent histories are guaranteed by
 selecting the number of histories and the first history for each process to
 avoid overlap.  
-
-%% NOTE [PPHW]: Should integrate this discussion (previously in the Conclusion
-%% section) with the above.  Maybe it's all covered now above and we just delete?
-%% But some questions: 
-%%
-%% *) Does this mean to say that we suggest using all 3 concepts, or just some
-%%    subset. It seems to make more sense as the latter to me!  If the latter
-%%    which do we do?  and why all the suggestions - just document what we do.
-%% *) Did we use CTME or NPS for the HTC calcs?It must have been NPS to avoid
-%%    overlapping histories.
-
-When variance reduction parameters that span over
- many orders of magnitude are being used in non-analog Monte Carlo simulations,
- it is difficult to estimate the computational time needed to simulate each 
-particle because some of these particles undergo millions of splitting events. 
-To overcome this problem, the authors suggest 1) using the computer time cutoff
- (CTME) card in MCNP to stop the MCNP runs after reaching a certain amount of 
-running time without losing the results, 2) to increase the frequency of the 
-printing and dumping of MCNP using the PRDMP card, 3) and to avoid the use of 
-the MPI version of MCNP. The Monte Carlo calculations can still run in parallel
- without using MPI by submitting independent jobs with different random number 
-seeds and statistically averaging the results as demonstrated in this report. 
-The load balancing of the MPI  version of MCNP does not consider the huge 
-differences in the computational times needed to simulate different histories
- that are typical with the use of variance reduction parameters that span many 
-orders of magnitude. The MCNP runs will not be stopped even if the computational
- time exceeded the time of the  CTME card until MCNP reaches the printing and 
-dumping stage. Without increasing the frequency of these dumping events, the 
-time of the CTME card may be ignored for a very long time.
 
 The combination of mesh domain decomposion and job parallelism is shown in
 Figure \ref{fig:mesh_splitting}.  
@@ -901,7 +881,9 @@ meshes do not overlap, this is shown schematically in Figure
   \label{fig:activation_method}
 \end{figure}
 The geometry under each voxel in the mesh is queried to 
-determine the average material composition by volume fraction, a material 
+determine the average material composition by volume fraction.  A ray-based
+method is used rather than a point based method to improve the estimate of material
+volume fractions.  A material 
 description is developed and recorded for running in an inventory code. In the 
 case of \texttt{pyne.r2s} a full \gls{alara_c} input deck is produced which can
 then be executed and the final shutdown photon sources produced. From a single
