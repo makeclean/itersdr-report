@@ -1258,7 +1258,37 @@ pumping port is unplugged.
   \caption{The relative error in the total neutron flux from the B$_4$C case}
 \end{figure}
 
+\newpage
+\clearpage
 \subsection{Comparison}
+We can compare the transport differences between the baseline and B$_4$C case 
+by examining serveral lineouts through the data. Specifically we can examine
+the effect that the B$_4$C layer has on the thermal flux near the bioshield. 
+First consider to the total flux through the system at a height of 0 cm, shown
+in Figure \ref{fig:total_flux_ep}. 
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[angle=-90,clip,scale=0.15]{../plots/neutron/total_flux_ep.png}     
+  \caption{The total flux in found along a line 0,0,0 cm to 1800,0,0 cm}
+  \label{fig:total_flux_ep}
+\end{figure}
+
+As seen in Figure \ref{fig:total_flux_ep} the total flux is clearly higher in 
+the baseline case than in the B$_4$C case, with increasing differences seen
+beyond 1200 cm until the bioshield is reached, where the difference drops
+\\
+\\
+The upper port can is similarly examined in Figure \ref{fig:total_flux_up},
+similar features can be seen.
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[angle=-90,clip,scale=0.15]{../plots/neutron/total_flux_up.png}     
+  \caption{The total flux in found along a line 0,0,500 cm to 1800,0,500 cm}
+  \label{fig:total_flux_up}
+\end{figure}
+We see that there is increasing effect in the B$_4$C closer to the bioshield, peaking
+at a factor of two reduction in neutron flux.
 
 \textbf{placeholder for lineouts for thermal and fast flux}
 
