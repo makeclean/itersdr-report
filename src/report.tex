@@ -129,7 +129,8 @@
 \newacronym{upi}{UPI}{Upper Port Interspace}
 \newacronym{uw}{UW}{The University of Wisconsin}
 \newacronym{ve}{VE}{Vessel Extension}
- %% NOTE [PPHW] : Acronyms are not being spelled out on first use... why?
+\newacronym{vv}{VV}{Vacuum Vessel}
+
 
 \begin{document}
 \maketitle
@@ -213,8 +214,8 @@ access required areas such as the equatorial and upper port interspaces. A
 significant finding in the upper ports was that a significant fraction of the
 SDR comes from decay photons created outside the upper port, from the activation
 of the structural components nearby. Focus should be placed on improving 
-shielding internal to the strong sources, possible on improving the VV filler
-near the PF2 coil or strong local shielding. 
+shielding internal to the strong sources, possible on improving the \gls{vv} filler
+near the \gls{pfc}2 or strong local shielding. 
 
 %% NOTE [PPHW]: Add design recommendations
 
@@ -720,8 +721,6 @@ case with the B$_4$C liner and one without.
 In each case, the neutron flux was tallied in 175 energy groups using the
 VITAMIN-J structure \cite{vitaminj} as shown in Appendix B \ref{appendix_b}.
 
-%% NOTE [PPHW]: is vitamin=j correct here?
-
 \subsubsection{Mesh Domain Decomposition}
 The level of detail present in the faceted geometry files impacts the amount of
 memory required to run the calculation, this combined with the large and
@@ -1018,21 +1017,20 @@ to the fluence of neutrons from the fusion source.
 
 \subsection{Irradiation Scenario}
 The irradiation scenario used in this work was the SA-2 \cite{sa2_irradiation}, 
-shown in Table \ref{tab:irrad_scenario}. Fractional strength refers to the 
+shown in Table \ref{tab:irrad_scenario}. Relative strength refers to the 
 neutron source normalisation used relative to nominal 500 MW operations.
-%% NOTE [PPHW]: What does "Fractional Strength" mean?
-%%              Does 1.4 correspond to the 500 MW referenced above?
+
 \begin{table}[ht!]
    \begin{tabular}{| l | c | c | c |}
       \hline 
       Irradiation Period & Neutron Power (MW) & Source Normalisation (n/s) &  Relative Strength \\
       \hline
-      2 Years & 2.7 & 1.061$\times$10$^{17}$ & 0.0053 \\
-      10 Years & 20.6 & 8.517$\times$10$^{17}$ & 0.0412 \\
-      1.325 Years & 41.5 & 1.643$\times$10$^{18}$ & 0.0830 \\
-      \cellcolor{blue!25} \cellcolor{blue!25} 400 Seconds & \cellcolor{blue!25} 500.0 & 1.980$\times$10$^19$ & \cellcolor{blue!25} 1.0  \\
+      2 Years & 2.7 & $1.061\times10^{17}$ & 0.0053 \\
+      10 Years & 20.6 & $8.517\times10^{17}$ & 0.0412 \\
+      1.325 Years & 41.5 & $1.643\times10^{18}$ & 0.0830 \\
+      \cellcolor{blue!25} \cellcolor{blue!25} 400 Seconds & \cellcolor{blue!25} 500.0 & $1.980\times10^{19}$ & \cellcolor{blue!25} 1.0  \\
       \cellcolor{blue!25} 3920 Seconds & \cellcolor{blue!25} 0.0 & \cellcolor{blue!25} 0.0 & \cellcolor{blue!25} 0.0 \\
-      \cellcolor{green!25} 400 Seconds & \cellcolor{green!25} 700.0 & \cellcolor{green!25} 2.772$\times$10$^19$ &\cellcolor{green!25} 1.4 \\
+      \cellcolor{green!25} 400 Seconds & \cellcolor{green!25} 700.0 & \cellcolor{green!25} $2.772\times10^{19}$ &\cellcolor{green!25} 1.4 \\
       \cellcolor{green!25} 3920 Seconds & \cellcolor{green!25} 0.0 & \cellcolor{green!25} 0.0 &\cellcolor{green!25} 0.0 \\
       \hline
 \end{tabular}
@@ -1044,7 +1042,7 @@ neutron source normalisation used relative to nominal 500 MW operations.
 \end{table}
 In this report time periods following machine shutdown are of interest,
 $10^5$ s, $10^6$ s and $10^7$ s, approximately corresponding to 27 
-hours, 14 days, and 116 days post shutdown.
+hours, 14 days, and 116 days post shutdown respectively.
 
 \subsection{Geometry}
 The geometry used in this simulation was collected from a number of sources;
@@ -1948,9 +1946,15 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
   2.0000E+01 & & & & \\ 
   \hline
 \end{tabular}
+<<<<<<< HEAD
 \caption{Table showing the VITAMIN-J group boundaries in MeV}
 \label{tab:vitamin_j}
 \end{table}
+=======
+\end{table}
+\caption{Table showing the VITAMIN-J group boundaries in MeV}
+\label{tab:vitamin_j}
+>>>>>>> 3b386430d3f16928ccbf18e15accdad0801631f3
 \end{centering}
 
 \newpage
