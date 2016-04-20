@@ -129,6 +129,8 @@
 \newacronym{upi}{UPI}{Upper Port Interspace}
 \newacronym{uw}{UW}{The University of Wisconsin}
 \newacronym{ve}{VE}{Vessel Extension}
+ %% NOTE [PPHW] : Acronyms are not being spelled out on first use... why?
+
 \begin{document}
 \maketitle
 \newpage
@@ -170,10 +172,9 @@
 \section*{Executive Summary}
 The results contained within this report show the results of complex 3D neutron
 \& photon transport simulations to determine the shutdown photon dose rate
-resulting from the neutron activation of structural materials within a
-representative model of the ITER device. The neutrons modelled in this 
-analysis are the result of DT reactions in the plasma an no other neutrons
-are considered. There are several ongoing questions
+resulting from the neutron activation of structural materials caused by prompt
+fusion nuetrons within a
+representative model of the ITER device. There are several ongoing questions
 regarding the correct level of \gls{sdr} photon dose in the equatorial and upper
 port regions of ITER.
 \\
@@ -184,6 +185,7 @@ order of magnitude. The largest reduction was in the lowest thermal groups,
 which impacts the (n,$\gamma$) capture reactions the most.
 \\
 \\
+%% NOTE [PPHW]: Revise when final results are ready
 The activation results showed that for the first decay time there is little 
 difference between the baseline and with B$_4$C. For the second decay time, 
 there was an order of magnitude reduction in the photon source density for 
@@ -211,6 +213,12 @@ of the structural components nearby. Focus should be placed on improving
 shielding internal to the strong sources, possible on improving the VV filler
 near the PF2 coil or strong local shielding. 
 
+%% NOTE [PPHW]: Add design recommendations
+
+%% NOTE [PPHW]: Add analysis recommendations
+
+%% NOTE [PPHW]: Reference error bars/uncertainties
+
 \newpage
 \blankpage
 
@@ -232,7 +240,7 @@ bioshield. The \gls{lpp} contained a detailed model of the cryopump.
 \\
 \\
 Following neutron transport using DAG-MCNP5.1.60 the \gls{r2s} method was used 
-to  determine the \gls{sdr}. The SA2 irradiation scenario was used and 3 decay
+to  determine the \gls{sdr}. The SA-2 irradiation scenario \cite{sa2_irradiation} was used and 3 decay
 times were of interest $10^5$ seconds, $10^6$ seconds and 
 $10^7$ seconds. The \gls{sdr} photon dose rate was determined in a 
 single large mesh which covered the entire geometry. The sources were produced 
@@ -241,6 +249,7 @@ The use of multiple mesh-based sources allows the determination of some insight
 into which source meshes are responsible for the resultant dose rate.
 \\
 \\
+%% NOTE [PPHW]: Confirm/revise with final assessment
 It was found that for the lowest decay time the impact of the B$_4$C layer was 
 largest: at the lowest decay time the dose rate in the \gls{epi} was reduced
 by a factor of $\sim$ 2-3, whlie for the longest decay times by a factor of at 
@@ -266,7 +275,7 @@ minimization of the dose rate is desirable and indeed encouraged by the
 \gls{alara_p} principles used at ITER. Since initial estimates indicate that
 these dose rates are larger than desirable, it was recently suggested in the 
 Neutronics Task Force that lining the plasma side of the concrete bioshield 
-with a thin ($\sim$ mm thickness) layer of boron carbide (B$_4$C). The purpose 
+with a thin (5 mm thickness) layer of boron carbide (B$_4$C). The purpose 
 of the layer is to absorb much of the thermal flux which would otherwise lead 
 to neutron induced activation, typically (n,$\gamma$) capture reactions. Simple 
 scoping calculations have suggested that the thermal neutron flux should be 
@@ -348,11 +357,11 @@ for truely global problems. One of the issues are ray effects in the
 deterministic solution, ray effects arise when a limited number of angles are 
 used in to solve the problem compounded by low interaction rates. The most 
 important aspect is the issue of long histories. Long histories are said to 
-occur in a transport problem when a the time taken for any given history is 
+occur in a transport problem when the time taken for any given history is 
 significantly longer (hours, days, weeks ...) than the average history. They 
 typically occur when particles stream along a narrow gap travelling to regions
 where their predicited weight is very much lower than their current weight. The 
-particle is routletted into several low weight particles, and (typically but not
+particle is rouletted into several low weight particles, and (typically but not
 always) the rouletted particles will interact again and be rouletted again and 
 so on. Single core  simulation long histories are not so much of a problem as 
 at some point the calculation will terminate. However, in large scale parallel 
@@ -378,7 +387,7 @@ Several modifications were nessary for the \gls{cad} to be fully usable. Several
 person-months of time was invested in cleaning, reparing and building multiple
 components multiple times. The overall \gls{cad} model in shown in Figure 
 \ref{fig:cad_iter_global}, in which the broad details of the model can be seen. In
-Table \ref{tab:cad_process} the origin of each file, the format it was recieved
+Table \ref{tab:cad_components} the origin of each file, the format it was recieved
 in and whether it was modified as part of this analysis or not.
 
 
@@ -416,15 +425,15 @@ The following subsections detail only the components that were modified to
 allow the analysis to proceed, they do offer an overview of the changes that
 were required.  
 
-\subsubsection*{Graveyard}
-The graveyard for the ITER SDDR model is a component that was created for the 
-purpose of the neutronics analysis. It serves the function of reflecting or 
-collecting particles that are streaming through or out of the geometry of 
-interest. There is no origination information for this component because it was 
+\subsubsection*{Boundary Conditions}
+New volumes were created in order to apply the appropriate boundary conditions
+for the model.  As a 40${^\circ}$ model, reflecting boundaries are placed on
+either side of the model in the toroidal direction in the form of .  In the radial direction. 
+There is no origination information for this component because it was 
 created by the University of Wisconsin – Fusion Technology Institute for the
 purpose of analyzing the model.
 \subsubsection*{Bioshield}
-modifications were made to the original geometry. A 5 mm boron carbide layer was
+Modifications were made to the original geometry. A 5 mm boron carbide layer was
  added to the internal surfaces of the geometry. Plugs were added to levels B1, 
 L1, and L2 in such a way as to accommodate the existing geometry that was 
 extending through the openings on those levels.
@@ -652,7 +661,7 @@ of producing gamma ray sources for \gls{r2s} shutdown photon calculations.
 
 \subsection{Validation Status}
 \subsubsection*{Analysis Codes}
-The 1$^{st}$ rate analsysis codes used in these calculations are shown in Table 
+The analsysis codes used in these calculations are shown in Table 
 \ref{table:validation}. These codes were used to directly produce results shown
 in this report.
 \begin{centering}
@@ -684,11 +693,11 @@ and output data.
   \hline
   pyne.mesh & Validated by unit tests & - \\
   pyne.r2s & Validated & \cite{pyne_r2s} \\
-  pyne.alara & Validated & ??? \\
-  pyne.mcnp & Validated & ???? \\
+  pyne.alara & Validated & \cite{pyne_r2s} \\
+  pyne.mcnp & Validated & \cite{pyne_r2s} \\
   pyne.source\_sampling & Validated & \cite{pyne_r2s} \\
   yt 3.2 & Validated by unit tests & n/a \\
-
+%% NOTE [PPHW] do all codes need validation?
  \end{tabular}
  \caption{List of auxilliary codes and their validation status}
  \label{table:validation_aux}
@@ -707,6 +716,8 @@ The two batches of calculations were performed, one
 case with the B$_4$C liner and one without.  
 In each case, the neutron flux was tallied in 175 energy groups using the
 vitamin-j structure.
+
+%% NOTE [PPHW]: is vitamin=j correct here?
 
 \subsubsection{Mesh Domain Decomposition}
 The level of detail present in the faceted geometry files impacts the amount of
@@ -986,22 +997,28 @@ used by \gls{ornl} as part of \gls{advantg} to produce weight windows for this a
 \section{Inputs, Assumptions and Engineering Judgements}
 
 \subsection{Neutron Source}
-As used in typical ITER analysis the reference ITER neutron source with
+As used in typical ITER analysis the reference ITER neutron source 
+\cite{iter_n_src} with
 reflecting boundary conditions is assumed to adequately represent the
+%% NOTE [PPHW]: Is this really an assumption?  No need to draw attention 
+%%              to this as an assumption - it's the standard!
 true 360$^{\circ}$ neutron source. The ITER supplied \gls{mcnp5} SDEF was used
-completely unmodified. The on-load neutron data is used un-normalised
-in the \gls{r2s} calculation since the neutron source normalisation is scaled
-depending on average power for the pulse being modelled. However for reference,
+completely unmodified. The on-load neutron data is normalised as part of the 
+\gls{r2s} calculation to correspond to the 
+average power for the pulse being modelled. However for reference,
 the highest power used in the activation calculation was 500 MW, which is
 equivalent to $1.98 \times 10^{18}$ neutrons per second in the 40$^{\circ}$
 sector. Given that this is the IO approved neutron source description, it is
-assumed to be adequate for this simulation.
+assumed to be adequate for this simulation.  Neutrons from activated water
+were not considered in this problem as they represent a negligible addition
+to the fluence of neutrons from the fusion source.
 
 \subsection{Irradiation Scenario}
 The irradiation scenario used in this work was the SA-2 \cite{sa2_irradiation}, 
 shown in Table \ref{tab:irrad_scenario}. Fractional strength refers to the 
 neutron source normalisation used relative to nominal 500 MW operations.
 %% NOTE [PPHW]: What does "Fractional Strength" mean?
+%%              Does 1.4 correspond to the 500 MW referenced above?
 \begin{table}[ht!]
    \begin{tabular}{| l | c |}
       \hline 
@@ -1213,7 +1230,7 @@ Since neither 90$^{\circ}$ nor 180$^{\circ}$ are integer multiples of 40$^{\circ
 this model must be rotated and replicated to fill a full 360$^{\circ}$ space.
 \gls{ornl} specifically developed the 360$^{\circ}$
 rotation feature for DAG-\gls{advantg} that allows rotationally symmetric
-bodies  Therefore, weight window values are observed beyond the 40$^{\circ}$ sector.
+bodies.  Therefore, weight window values are observed beyond the 40$^{\circ}$ sector.
 
 \subsection{Baseline}
 The baseline results represent a standard C-lite model since there is no
@@ -1222,6 +1239,7 @@ native \gls{mcnp5} model there is much more equipment present in
 the \gls{upi} \& \gls{epi}, and the divertor pumping port is unplugged. The
 open pumping port specifically leads to higher neutron fluxes beyond the
 vacuum vessel.
+%% NOTE [PPHW]: Better definition of unplugged
 
 \begin{figure}[ht!]
   \centering
@@ -1404,7 +1422,7 @@ appendix \ref{appendix:grp_photon_src_b4c}.
 
 
 
-%% NOTE [PPHW]: What do we want to say here?
+%% NOTE [PPHW]: What do we want to say here? Anything??
 %% NOTE [PPHW]: Why do the B4C results look smoother/better in the bioshield?
 
 \subsection{Conclusion}
@@ -1765,7 +1783,7 @@ in the port interspace is slightly affected by the addition of boron carbide
 to the plasma side surface of the bioshield. The reason for the this is 
 significantly degraded thermal flux which impacts the importance of (n,$\gamma$)
  reactions and also the transport of neutrons back from the bioshield. The true 
-benefit appears only to be very close to the B$_4$C layer, where is reduces the
+benefit appears only to be very close to the B$_4$C layer, where it reduces the
 activation of steel components near to the bioshield, those components away
 from the bioshield appear to have their activation dominated by the neutron
 transported via long paths around other ports. This is  likely due to the fact
@@ -1868,7 +1886,7 @@ method focuses on multistep shielding calculations such as the \gls{r2s}
 calculations of \gls{sdr}, it develops an importance function for the initial 
 radiation transport calculation (e.g., the neutron calculations in \gls{sdr} 
 simulations) that represents the importance of particles to the final response
- of the overall simulation. This paper explains the theory of the MS-CADIS 
+ of the overall simulation. Reference \ref{mscadis} explains the theory of the MS-CADIS 
 method and provides some insights into the physical interpretations of the 
 MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 
@@ -2176,7 +2194,7 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 \label{fig:b4c_ct_lp_dc3_rel}
 \end{figure}
 
-
+%% NOTE [PPHW] : Be sure to double check all references to make sure they are not ??
 
 \end{document}
 This is never printed
