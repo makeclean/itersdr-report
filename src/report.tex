@@ -832,41 +832,13 @@ severe negative impacts on load balancing under a typical message passing
 completion yielding no results.  In the job parallel approach, instead of
 distributing packets of independent histories from within a single simulation,
 a batch of independent jobs are launched each with the same packets of
-independent histories.  While it is still possible for some of these jobs to
+independent histories as would be distributed by the message passing approach.  
+While it is still possible for some of these jobs to
 not reach completion, this approach is amenable to submitting a surplus of
 jobs and using a subset of these statistically independent jobs to produce the
 final results.  In both cases, independent histories are guaranteed by
 selecting the number of histories and the first history for each process to
 avoid overlap.  
-
-%% NOTE [PPHW]: Should integrate this discussion (previously in the Conclusion
-%% section) with the above.  Maybe it's all covered now above and we just delete?
-%% But some questions: 
-%%
-%% *) Does this mean to say that we suggest using all 3 concepts, or just some
-%%    subset. It seems to make more sense as the latter to me!  If the latter
-%%    which do we do?  and why all the suggestions - just document what we do.
-%% *) Did we use CTME or NPS for the HTC calcs?It must have been NPS to avoid
-%%    overlapping histories.
-
-When variance reduction parameters that span over
- many orders of magnitude are being used in non-analog Monte Carlo simulations,
- it is difficult to estimate the computational time needed to simulate each 
-particle because some of these particles undergo millions of splitting events. 
-To overcome this problem, the authors suggest 1) using the computer time cutoff
- (CTME) card in MCNP to stop the MCNP runs after reaching a certain amount of 
-running time without losing the results, 2) to increase the frequency of the 
-printing and dumping of MCNP using the PRDMP card, 3) and to avoid the use of 
-the MPI version of MCNP. The Monte Carlo calculations can still run in parallel
- without using MPI by submitting independent jobs with different random number 
-seeds and statistically averaging the results as demonstrated in this report. 
-The load balancing of the MPI  version of MCNP does not consider the huge 
-differences in the computational times needed to simulate different histories
- that are typical with the use of variance reduction parameters that span many 
-orders of magnitude. The MCNP runs will not be stopped even if the computational
- time exceeded the time of the  CTME card until MCNP reaches the printing and 
-dumping stage. Without increasing the frequency of these dumping events, the 
-time of the CTME card may be ignored for a very long time.
 
 The combination of mesh domain decomposion and job parallelism is shown in
 Figure \ref{fig:mesh_splitting}.  
