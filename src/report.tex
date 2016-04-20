@@ -129,7 +129,8 @@
 \newacronym{upi}{UPI}{Upper Port Interspace}
 \newacronym{uw}{UW}{The University of Wisconsin}
 \newacronym{ve}{VE}{Vessel Extension}
- %% NOTE [PPHW] : Acronyms are not being spelled out on first use... why?
+\newacronym{vv}{VV}{Vacuum Vessel}
+
 
 \begin{document}
 \maketitle
@@ -168,6 +169,9 @@
 %\printglossary[type=\acronymtype]
 % none of these work, but should
 
+% to make the aconyms appear on first use
+\glsresetall
+
 \newpage
 \section*{Executive Summary}
 The results contained within this report show the results of complex 3D neutron
@@ -193,7 +197,7 @@ steel components near the bioshield in the B$_4$C case. For the third decay
 time there are nominal differences between the two cases.
 \\
 \\
-The photon results showed that for the dose rate was some benefit to the 
+The photon results showed that for the dose rate there was some benefit to the 
 the B$_4$C liner. Dose rates across all decay times were consistently lower
 by factors of 2-4 for the with B$_4$C case for all the ports. The biggest effect
 was present in the upper and equatorial ports. However, for decay times greater
@@ -202,7 +206,16 @@ than 100 $\mu$Sv $hr^{-1}$.
 \\
 \\
 This analysis focused on only shutdown photon sources, and therefore does not
-contain prompt photon doses.
+contain prompt photon doses which are not present following machine shutdown.
+\\
+\\
+Future studies should focus on further decreasing the SDR in the person 
+access required areas such as the equatorial and upper port interspaces. A 
+significant finding in the upper ports was that a significant fraction of the
+SDR comes from decay photons created outside the upper port, from the activation
+of the structural components nearby. Focus should be placed on improving 
+shielding internal to the strong sources, possible on improving the \gls{vv} filler
+near the \gls{pfc}2 or strong local shielding. 
 
 %% NOTE [PPHW]: Add design recommendations
 
@@ -236,15 +249,15 @@ times were of interest $10^5$ seconds, $10^6$ seconds and
 $10^7$ seconds. The \gls{sdr} photon dose rate was determined in a 
 single large mesh which covered the entire geometry. The sources were produced 
 in seven meshes which covered discrete non-overlapping parts of the geometry. 
-The use of multiple mesh-based sources allows the determination of some insight into which 
-source meshes are responsible for the resultant dose rate.
+The use of multiple mesh-based sources allows the determination of some insight 
+into which source meshes are responsible for the resultant dose rate.
 \\
 \\
 %% NOTE [PPHW]: Confirm/revise with final assessment
 It was found that for the lowest decay time the impact of the B$_4$C layer was 
 largest: at the lowest decay time the dose rate in the \gls{epi} was reduced
-by a factor of $\sim$ 2-3, whlie for the longest decay times by a factor of at most 
-1.30. It was found that for the \gls{epi} and \gls{upi} at each decay time 
+by a factor of $\sim$ 2-3, whlie for the longest decay times by a factor of at 
+most 1.30. It was found that for the \gls{epi} and \gls{upi} at each decay time 
 the doserate was dominated by the contribution from the source defined in that
 specific region. However, it was also found that even without the contribution from
 the local source, the cross-talk from other regions is greater than 100 
@@ -1006,22 +1019,21 @@ to the fluence of neutrons from the fusion source.
 
 \subsection{Irradiation Scenario}
 The irradiation scenario used in this work was the SA-2 \cite{sa2_irradiation}, 
-shown in Table \ref{tab:irrad_scenario} which is overall more conservative in 
-terms of activation than the retired M-DRG2 scenario.
-%% NOTE [PPHW]: What does "Fractional Strength" mean?
-%%              Does 1.4 correspond to the 500 MW referenced above?
+shown in Table \ref{tab:irrad_scenario}. Relative strength refers to the 
+neutron source normalisation used relative to nominal 500 MW operations.
+
 \begin{table}[ht!]
-   \begin{tabular}{| l | c |}
+   \begin{tabular}{| l | c | c | c |}
       \hline 
-      Irradiation Period & Fractional Strength \\
+      Irradiation Period & Neutron Power (MW) & Source Normalisation (n/s) &  Relative Strength \\
       \hline
-      2 Years & 0.0053 \\
-      10 Years & 0.0412 \\
-      1.325 Years & 0.0830 \\
-      \cellcolor{blue!25} 400 Seconds & \cellcolor{blue!25} 1.0  \\
-      \cellcolor{blue!25} 3920 Seconds & \cellcolor{blue!25} 0.0 \\
-      \cellcolor{green!25} 400 Seconds & \cellcolor{green!25} 1.4 \\
-      \cellcolor{green!25} 3920 Seconds & \cellcolor{green!25} 0.0 \\
+      2 Years & 2.7 & $1.061\times10^{17}$ & 0.0053 \\
+      10 Years & 20.6 & $8.517\times10^{17}$ & 0.0412 \\
+      1.325 Years & 41.5 & $1.643\times10^{18}$ & 0.0830 \\
+      \cellcolor{blue!25} \cellcolor{blue!25} 400 Seconds & \cellcolor{blue!25} 500.0 & $1.980\times10^{19}$ & \cellcolor{blue!25} 1.0  \\
+      \cellcolor{blue!25} 3920 Seconds & \cellcolor{blue!25} 0.0 & \cellcolor{blue!25} 0.0 & \cellcolor{blue!25} 0.0 \\
+      \cellcolor{green!25} 400 Seconds & \cellcolor{green!25} 700.0 & \cellcolor{green!25} $2.772\times10^{19}$ &\cellcolor{green!25} 1.4 \\
+      \cellcolor{green!25} 3920 Seconds & \cellcolor{green!25} 0.0 & \cellcolor{green!25} 0.0 &\cellcolor{green!25} 0.0 \\
       \hline
 \end{tabular}
 \caption{The table shows the SA-2 scenario for irradiation, note the
@@ -1031,8 +1043,8 @@ terms of activation than the retired M-DRG2 scenario.
 \label{tab:irrad_scenario}
 \end{table}
 In this report time periods following machine shutdown are of interest,
-$10^5$ s, $10^6$ s and $10^7$ s, approximately
-corresponding to 27 hours, 14 days, and 116 days post shutdown.
+$10^5$ s, $10^6$ s and $10^7$ s, approximately corresponding to 27 
+hours, 14 days, and 116 days post shutdown respectively.
 
 \subsection{Geometry}
 The geometry used in this simulation was collected from a number of sources;
