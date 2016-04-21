@@ -428,7 +428,7 @@ in and whether it was modified as part of this analysis or not.
   \end{tabular}
  \caption{List of CAD components used in the analysis, their origin, file format, and if the component was modified by
      UW }
- \label{table:cad_components}
+ \label{tab:cad_components}
  \end{table}
 \end{centering}
 
@@ -1192,7 +1192,6 @@ source histories for each mesh.
 %%
 %% I see this comes in a later section on Calculation Details...  is this 
 %% based on the outline from ORNL?  It seems odd to put it so late.
-
 \\
 \\
 The individual meshtals were read using \gls{pyne}'s Mesh class and statistically
@@ -1377,8 +1376,8 @@ at a factor of two reduction in neutron flux.
 \subsection{Baseline}
 
 The total photon source intensities for the baseline case and for each decay
-time are shown in Figures \ref{fig:source_dc1_no4bc}
-through \ref{fig:source_dc3_no4bc}.  Figures that show the source intensity
+time are shown in Figures \ref{fig:source_dc1_no4bc_b}
+through \ref{fig:source_dc3_no4bc_b}.  Figures that show the source intensity
 for each of the 24 photon groups are in
 appendix \ref{appendix:grp_photon_src_baseline}.  The first wall and blanket modules
 clearly have the strongest source, 3-4 orders of magnitude larger than most
@@ -1388,24 +1387,24 @@ ex-vessel components.
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/{Photon_Source_Density_Decay_Time_1_All_Energy_Groups}.png}
-\label{fig:source_dc1_no4bc}
 \caption{The total shutdown photon source for the baseline case for decay time 1}
+\label{fig:source_dc1_no4bc_b}
 \end{figure}
 \clearpage
 \subsubsection{Decay Time 2 - $10^{6}$ seconds}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/{Photon_Source_Density_Decay_Time_2_All_Energy_Groups}.png}
-\label{fig:source_dc2_no4bc}
 \caption{The total shutdown photon source for the baseline case for decay time 2}
+\label{fig:source_dc2_no4bc_b}
 \end{figure}
 \clearpage
 \subsubsection{Decay Time 3 - $10^{7}$ seconds}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/{Photon_Source_Density_Decay_Time_3_All_Energy_Groups}.png}
-\label{fig:source_dc3_no4bc}
 \caption{The total shutdown photon source for the baseline case for decay time 3}
+\label{fig:source_dc3_no4bc_b}
 \end{figure}
 
 \newpage
@@ -1815,7 +1814,7 @@ addition of the B$_4$C layer does little to alter the distribution of
 relative contribution or the absolute value of SDR.
 \\
 \\
-For the \gls{upp}, the Figures are contained in Section \ref{appendix} and are 
+For the \gls{upp}, the Figures are contained in Section \ref{cross_talk_data} and are 
 shown in Figures \ref{appendix:pt_ct_base} to \ref{appendix:pt_ct_b4c}. 
 Both the baseline case finds the doserate in 
 the \gls{upi} is much higher than the 100 $\mu$Sv/hr guideline, just behind the 
@@ -1826,8 +1825,8 @@ outboard side of ITER also contributes some 80 $\mu$Sv/hr to the dose rate in
 the \gls{epi}.
 \\
 \\
-For the \gls{lpp} the Figures are contained in Section \ref{appendix} and are 
-shown in Figures \ref{} to \ref{}. Both cases find the doserate in 
+For the \gls{lpp} the Figures are contained in Section \ref{cross_talk_data} and are 
+shown in Figures \ref{fig:ct_lp_dc1} to \ref{fig:ct_lp_dc3}. Both cases find the doserate in 
 the cryopump is significant $\sim$ 100 mSv/hr in the region of the cyropump. 
 This simulation contained the unshielded pumping port and thus the doserate is 
 very high due to neutrons streaming along the pumping port. 
@@ -1974,7 +1973,7 @@ method focuses on multistep shielding calculations such as the \gls{r2s}
 calculations of \gls{sdr}, it develops an importance function for the initial 
 radiation transport calculation (e.g., the neutron calculations in \gls{sdr} 
 simulations) that represents the importance of particles to the final response
- of the overall simulation. Reference \ref{mscadis} explains the theory of the MS-CADIS 
+ of the overall simulation. Reference \cite{mscadis} explains the theory of the MS-CADIS 
 method and provides some insights into the physical interpretations of the 
 MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 
@@ -2082,6 +2081,7 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 \newpage
 \clearpage
 \section{Appendix - E - Photon Cross Talk}
+\label{cross_talk_data}
 \subsection{Baseline}
 \subsubsection*{Equatorial Ports}
 \label{appendix:pt_ct_base}
