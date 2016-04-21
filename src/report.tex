@@ -524,7 +524,7 @@ The \gls{upp} material definitions were provided by
 came from \cite{cryopump_communication}. The blanket module material
 compositions were taken from the Bl-lite \gls{cad} model since the blankets were
 homogenized identically in this model. The full evaluated material definitions
-can be found in the Appendix.
+can be found in Appendix \ref{appendix_a}.
 \begin{figure}[p]
   \centering
   \includegraphics[scale=0.32]{../plots/cad/mats/label_1.png}
@@ -736,7 +736,7 @@ of the \gls{uw} source code repository for DAG-MCNP5.
 The two batches of calculations were performed, one
 case with the B$_4$C liner and one without.  
 In each case, the neutron flux was tallied in 175 energy groups using the
-VITAMIN-J structure \cite{vitaminj} as shown in Appendix B \ref{appendix_b}.
+VITAMIN-J structure \cite{vitaminj} as shown in Appendix \ref{appendix_b}.
 
 \subsubsection{Mesh Domain Decomposition}
 The level of detail present in the faceted geometry files impacts the amount of
@@ -1048,7 +1048,7 @@ planes at each side of the sector.
 
 \subsection{Materials and Nuclear Data}
 \subsubsection{Materials}
-The full description of material contents can be found in the Appendix. The 
+The full description of material contents can be found in Appendix \ref{appendix_a}. The 
 origin of each material is described in Table \ref{tab:material_origin}. 
 
 \begin{centering}
@@ -1383,7 +1383,7 @@ The total photon source intensities for the baseline case and for each decay
 time are shown in Figures \ref{fig:source_dc1_no4bc_b}
 through \ref{fig:source_dc3_no4bc_b}.  Figures that show the source intensity
 for each of the 24 photon groups are in
-appendix \ref{appendix:grp_photon_src_baseline}.  The first wall and blanket modules
+Appendix \ref{appendix:grp_photon_src_baseline}.  The first wall and blanket modules
 clearly have the strongest source, 3-4 orders of magnitude larger than most
 ex-vessel components.
 
@@ -1987,11 +1987,13 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 \bibliography{bibliography}
 \newpage
 \clearpage
-\section{Appendix - A - Materials used in the problem}
+\renewcommand\thesection{\Alph{section}}
+\section{Appendix - Materials used in the problem}
+\label{appendix_a}
 \input{materials.tex}
 \newpage
 \clearpage
-\section{Appendix - B - VITAMIN-J Group Boundaries}
+\section{Appendix - VITAMIN-J Group Boundaries}
 \label{appendix_b}
 \begin{centering}
  \begin{table}[ht!]
@@ -2043,7 +2045,7 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 
 \newpage
 \clearpage
-\section{Appendix - C - Groupwise Photon Sources}
+\section{Appendix - Groupwise Photon Sources}
 \subsection{Baseline}
 \label{appendix:grp_photon_src_baseline}
 \subsubsection{Decay Time 1 - $10^{5}$ seconds}
@@ -2060,8 +2062,7 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 \input{../plots/final_model_with_b4c/src_dc2.tex}
 \subsubsection{Decay Time 3 - $10^{7}$ seconds}
 \input{../plots/final_model_with_b4c/src_dc3.tex}
-
-\section{Appendix - D - Shutdown Photon Dose Rates}
+\section{Appendix - Shutdown Photon Dose Rates}
 \subsection{Baseline}
 \subsubsection{Decay time 1 - $10^5$ s}
 \input{../plots/final_model/dc1.tex}
@@ -2084,7 +2085,7 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 
 \newpage
 \clearpage
-\section{Appendix - E - Photon Cross Talk}
+\section{Appendix - Photon Cross Talk}
 \label{cross_talk_data}
 \subsection{Baseline}
 \subsubsection*{Equatorial Ports}
@@ -2338,8 +2339,6 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 \caption{Relative contributions to dose from each mesh, considering a line along, 0,0,0 along the x direction for the 3rd decay time}
 \label{fig:b4c_ct_lp_dc3_rel}
 \end{figure}
-
-%% NOTE [PPHW] : Be sure to double check all references to make sure they are not ??
 
 \end{document}
 This is never printed
