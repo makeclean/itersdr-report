@@ -319,7 +319,7 @@ the energy-dependent photon emission density for different times after
 shutdown.  For each time after shutdown time, those photon emission densities are
 used as the source for photon transport to determine a three-dimensional map
 of the photon dose.  Improvements on the original method rely on mesh based
-flux determination methods \cite{mcr2s,r2smesh,r2suned,pyne_r2s,biondo2016FED} that allow
+flux determination methods \cite{mcr2s,r2smesh,r2suned,pyne_r2s,Biondo201677} that allow
 more fine neutron flux gradients to be represented in resultant activation
 source.  Since the \gls{r2s} method performs a complete activation calculation
 using a standalone nuclear inventory code, it is capable of handling the
@@ -714,10 +714,10 @@ unit and regression testing.
   Code & Validation/Verification Status & References \\    
   \hline
   pyne.mesh & Verified by unit tests & n/a \\
-  pyne.r2s & Validated & \cite{biondoFED2016} \\
-  pyne.alara & Verified by unit tests & \cite{biondoFED2016}  \\
-  pyne.mcnp & Verified by unit tests & \cite{biondoFED2016}  \\
-  pyne.source\_sampling & Verified by unit tests & \cite{biondoFED2016} \\
+  pyne.r2s & Validated & \cite{Biondo201677} \\
+  pyne.alara & Verified by unit tests & \cite{Biondo201677}  \\
+  pyne.mcnp & Verified by unit tests & \cite{Biondo201677}  \\
+  pyne.source\_sampling & Verified by unit tests & \cite{Biondo201677} \\
   yt 3.2 & Validated by unit tests & n/a \\
  \end{tabular}
  \caption{List of auxilliary codes and their validation status}
@@ -963,7 +963,7 @@ similar continuous integration strategy.
 \gls{pyne} is also maintained under a continuous integration strategy.  
 Formal verification for indvidual parts of \gls{pyne} are performed on an as
 needed basis, for example with \texttt{pyne.r2s} on the FNG shutdown dose rate
-experiment. \cite{biondoFED2016}
+experiment. \cite{Biondo201677}
 \\
 \\
 The plotting tool yt, is a tool that originates from the astrophysics community used
@@ -1012,7 +1012,7 @@ neutron source normalisation used relative to nominal 500 MW operations.
       2 Years & 2.7 & $1.061\times10^{17}$ & 0.0053 \\
       10 Years & 20.6 & $8.517\times10^{17}$ & 0.0412 \\
       1.325 Years & 41.5 & $1.643\times10^{18}$ & 0.0830 \\
-      \cellcolor{blue!25} \cellcolor{blue!25} 400 Seconds & \cellcolor{blue!25} 500.0 & $1.980\times10^{19}$ & \cellcolor{blue!25} 1.0  \\
+      \cellcolor{blue!25} \cellcolor{blue!25} 400 Seconds & \cellcolor{blue!25} 500.0 & \cellcolor{blue!25} $1.980\times10^{19}$ & \cellcolor{blue!25} 1.0  \\
       \cellcolor{blue!25} 3920 Seconds & \cellcolor{blue!25} 0.0 & \cellcolor{blue!25} 0.0 & \cellcolor{blue!25} 0.0 \\
       \cellcolor{green!25} 400 Seconds & \cellcolor{green!25} 700.0 & \cellcolor{green!25} $2.772\times10^{19}$ &\cellcolor{green!25} 1.4 \\
       \cellcolor{green!25} 3920 Seconds & \cellcolor{green!25} 0.0 & \cellcolor{green!25} 0.0 &\cellcolor{green!25} 0.0 \\
