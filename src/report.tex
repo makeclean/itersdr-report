@@ -1328,9 +1328,9 @@ in Figure \ref{fig:total_flux_ep}.
 
 As seen in Figure \ref{fig:total_flux_ep} the total flux is clearly higher in 
 the baseline case than in the B$_4$C case, with increasing differences seen
-beyond 1200 cm until the bioshield is reached, where the difference drops
-\\
-\\
+beyond 1200 cm until the bioshield is reached, where the difference drops.
+\newpage
+\clearpage
 The upper port can is similarly examined in Figure \ref{fig:total_flux_up},
 similar features can be seen.
 \begin{figure}[ht!]
@@ -1340,14 +1340,47 @@ similar features can be seen.
   \label{fig:total_flux_up}
 \end{figure}
 We see that there is increasing effect in the B$_4$C closer to the bioshield, peaking
-at a factor of two reduction in neutron flux.
+at a factor of two reduction in neutron flux. The same effect of a factor of two, reduction
+in the total flux is seen in both Figures \ref{fig:total_flux_ep} and \ref{fig:total_flux_up}, 
+suggesting a similar mechanism is present in both cases. 
 
-\textbf{placeholder for lineouts for thermal and fast flux}
-
-%% NOTE [PPHW]: Can we generate line-out plots for the neutron flux
-%% (total? thermal?) like we are doing for the dose?
+\newpage
+\clearpage
+If we examine the thermal flux from the equatorial port line out shown in Figure 
+\ref{fig:thermal_flux_ep}, we can see the impact of B$_4$C on the thermal flux.
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[angle=-90,clip,scale=0.15]{../plots/neutron/thermal_flux_ep.png}     
+  \caption{The total flux in found along a line 0,0,0 cm to 1800,0,0 cm}
+  \label{fig:thermal_flux_up}
+\end{figure}
+We can see that the thermal neutron flux is significantly lower
+in the B$_4$C case than in the baseline case, suggesting that the B$_4$C is significantly
+impacting the thermal neutron flux. What is also suggested, is that it is the bioshield
+that is the source of thermal neutrons in the port interspaces.
 
 \subsection{Conclusion}
+We see that there are a number of differences in the transport in the two different models,
+however in some cases it is hard to disambiguate what is the true effect due to the high 
+statistical errors from the neutron transport simulations. 
+\\
+\\
+It is clear from the previous section, that there are differences in the neutron fluxes 
+between the baseline model and the case including the B$_4$C liner. It was found that 
+the total neutron fluxes in the \gls{epi} and \gls{upi} are lower in the case of B$_4$C.
+The highest errors are found in towards the inboard centre column and the \gls{epp}, 
+in the case of the centre column, the weight windows were specifically biased not to send
+neutrons there as they will not contribute outside the vaccuum vessel. However, in the 
+\gls{epp}, transport is very challenging due to the high neutron flux gradient meaning that
+a the weight window may be spatially too coarse, and the \gls{epp} has a large quantity of
+B$_4$C, presenting more than 1 meter of thickness meaning attenuation is high. 
+\\
+\\
+The thermal flux near the bioshield was examined and found to be significantly effected
+by the B$_4$C layer, this correlated with the shape of the thermal flux suggests that 
+it is the bioshield that is the source of thermalized neutrons in the \gls{epi} and \gls{upi}.
+
+
 
 \textbf{placeholder for conclusion}
 %% NOTE [PPHW]: Do we really need a conclusion section here?  If so, it should
