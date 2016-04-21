@@ -1182,16 +1182,9 @@ combined using \gls{pyne} to result in the statistically averaged final results.
 Initially calculations were batched into groups of $5\times10^7$ particles per
 batch, however these calculations did not finish in a timely enough manner and
 were instead reduced to groups of $5\times10^6$ particles per batch. With the
-smaller batching system calculations did finish, however, only 10\% of all
+smaller batching system calculations did finish, however, only 5\% of all
 calculations for each mesh finished, but this represents $5\times10^7$ total
-source histories for each mesh.
-%% NOTE [PPHW]: We never say how many histories we used, whether total or in
-%% each individual job.  We should somewhere indicate the total number of
-%% histories for each mesh and how many individual jobs were used (not how
-%% many were launched - or maybe?).
-%%
-%% I see this comes in a later section on Calculation Details...  is this 
-%% based on the outline from ORNL?  It seems odd to put it so late.
+source histories for each mesh, or 10 successful sub runs for each mesh.
 \\
 \\
 The individual meshtals were read using \gls{pyne}'s Mesh class and statistically
