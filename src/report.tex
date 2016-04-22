@@ -1448,7 +1448,55 @@ appendix \ref{appendix:grp_photon_src_b4c}.
 
 \clearpage
 \subsection{Comparison}
+Given the Figures in the previous section and the differences in the
+neutron transport section, direct comparison of the photon sources is
+better performed on a macroscopic scale. The total photon sources produced
+by the activation calculations for both models and all decay times are shown
+in Table \ref{tab:source_norms}.
+\begin{centering}
+ \begin{table}[ht!]
+ \centering
+  \begin{tabular}{| c |  c |  c | c |}
+  \hline
+  Mesh & Decay Time & Baseline Source (p/s) & B$4$C Source (p/s) \\
+  \hline
+  1 & $1\times10^5$ & $1.03394\times10^{18}$ & $1.05549\times10^{18}$ \\ 
+  2 &               & $2.85338\times10^{17}$ & $2.83187\times10^{17}$ \\   
+  3 &               & $2.36705\times10^{17}$ & $2.70504\times10^{17}$ \\   
+  4 &               & $2.58260\times10^{18}$ & $2.58561\times10^{18}$ \\   
+  5 &               & $1.15257\times10^{13}$ & $1.02967\times10^{13}$ \\   
+  6 &               & $1.29516\times10^{12}$ & $7.46327\times10^{11}$ \\ 
+  7 &               & $1.86084\times10^{13}$ & $1.87862\times10^{13}$ \\   
+  \hline 
+  1 & $1\times10^6$ & $8.57089\times10^{17}$ & $8.71762\times10^{17}$ \\ 
+  2 &               & $2.38401\times10^{17}$ & $2.37029\times10^{17}$ \\   
+  3 &               & $6.62659\times10^{16}$ & $6.45169\times10^{16}$ \\   
+  4 &               & $2.18999\times10^{18}$ & $2.19233\times10^{18}$ \\   
+  5 &               & $8.07240\times10^{12}$ & $7.37614\times10^{12}$ \\   
+  6 &               & $6.74813\times10^{11}$ & $3.93980\times10^{11}$ \\   
+  7 &               & $3.47910\times10^{12}$ & $3.35260\times10^{12}$ \\   
+  \hline 
+  1 & $1\times10^7$ & $5.52972\times10^{17}$ & $5.60747\times10^{17}$ \\   
+  2 &               & $1.52388\times10^{17}$ & $1.51618\times10^{17}$ \\  
+  3 &               & $4.13871\times10^{16}$ & $4.03108\times10^{16}$ \\   
+  4 &               & $1.41559\times10^{18}$ & $1.41577\times10^{18}$ \\   
+  5 &               & $5.62266\times10^{12}$ & $4.84496\times10^{12}$ \\   
+  6 &               & $4.83070\times10^{11}$ & $3.03133\times10^{11}$ \\ 
+  7 &               & $2.30219\times10^{12}$ & $2.22919\times10^{12}$ \\   
+  \hline
+  \end{tabular}
+\caption{Table showing the photon source normalizations used in these calculations}
+\label{tab:source_norms}
+\end{table}
+\end{centering}
 
+Overall it can be seen the the photon source normalizations are consistently higher 
+for the baseline case than the B$_4$C case. There some differences seen 
+where the B$_4$C case can be higher, this is typically in mesh one, where 
+the variance reduction is trying to reduced the neutron population therefore its likely
+that this source result is dominated by noise, confirmed by comparison of Figure 
+\ref{fig:source_dc1_b4c_b} and \ref{fig:source_dc1_b4c}. Comparison of source normalisations
+for mesh 4 shows equivalent source normalizations at all decay times.
 
 
 %% NOTE [PPHW]: What do we want to say here? Anything??
