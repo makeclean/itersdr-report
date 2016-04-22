@@ -265,7 +265,7 @@ It was found that for the lowest decay time the impact of the B$_4$C layer was
 largest: at the lowest decay time the dose rate in the \gls{epi} was reduced
 by a factor of $\sim$ 2-3, whlie for the longest decay times by a factor of at 
 most 1.30. It was found that for the \gls{epi} and \gls{upi} at each decay time 
-the doserate was dominated by the contribution from the source defined in that
+the dose rate was dominated by the contribution from the source defined in that
 specific region. However, it was also found that even without the contribution from
 the local source, the cross-talk from other regions is greater than 100 
 $\mu$Sv/hr for all decay times.
@@ -1650,7 +1650,67 @@ photon energies, thus effectively produces no decay photons.
 
 \newpage
 \clearpage
-\subsubsection{Comparison of Total Photon Dose}
+\subsection{Contours of total photon dose}
+The following section shows contours of photon dose rate (between 1000 and 3000 $\mu$Sv/hr) through a y = 0.0 cm slice, in Appendix \ref{appendix_f} the same contours can be
+found but with contours between 100 and 1000 $\mu$Sv/hr. The first decay times are shown in Figures \ref{fig:photons_dc1_nob4c_contours}
+an \ref{fig:photons_dc1_b4c_contours}, the second decay times are shown in Figures \ref{fig:photons_dc2_nob4c_contours}
+an \ref{fig:photons_dc2_b4c_contours}, and the third decay times are shown in Figures \ref{fig:photons_dc3_nob4c_contours}
+an \ref{fig:photons_dc3_b4c_contours}.
+\subsubsection*{Decay Time 1}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_1.png}
+\caption{Contours of total dose rate for decay time 1 for the baseline case}
+\label{fig:photons_dc1_nob4c_contours}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_1.png}
+\caption{Contours of total dose rate for decay time 1 for the B$_4$C case}
+\label{fig:photons_dc1_b4c_contours}
+\end{figure}
+\newpage
+\clearpage
+\subsubsection*{Decay Time 2}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_2.png}
+\caption{Contours of total dose rate for decay time 2 for the baseline case}
+\label{fig:photons_dc2_nob4c_contours}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_2.png}
+\caption{Contours of total dose rate for decay time 2 for the B$_4$C case}
+\label{fig:photons_dc2_b4c_contours}
+\end{figure}
+\newpage
+\clearpage
+\subsubsection*{Decay Time 3}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_3.png}
+\caption{Contours of total dose rate for decay time 3 for the baseline case}
+\label{fig:photons_dc3_nob4c_contours}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_3.png}
+\caption{Contours of total dose rate for decay time 3 for the B$_4$C case}
+\label{fig:photons_dc3_b4c_contours}
+\end{figure}
+\newpage
+\clearpage
+A number of details are apparent from Figures \ref{fig:photons_dc1_nob4c_contours} to \ref{fig:photons_dc3_b4c_contours}.
+For the upper and equatoral port interspaces at each decay time the baseline case always has a greater area at higher 
+dose rates than the B$_4$C case, the bottom contour of dose rate 1 mSv/hr in these plots, is consistenly pushed further
+away from the bioshield in the B$_4$C case than the baseline case. The exception is that at decay time 3, there is little
+difference in the highest contours of dose rate (3 mSv/hr) between the baseline and B$_4$C case for the \gls{upi}, this is 
+likely due to the greater contribution of the cross talk from mesh 2 to the overall dose rate.
+
+\newpage
+\clearpage
+\subsection{Comparison of Total Photon Dose}
 \begin{figure}[ht!]
 \centering
 \includegraphics[angle=-90,clip,scale=0.15]{../plots/photon_lineout/dc1_z0_lineout.png}
@@ -1807,10 +1867,7 @@ detailed contributions for each mesh shown in Figures
 \label{fig:ct_photons_dc2_no4bc_m7_flux}
 \end{figure}
 
-\newpage
-\clearpage
-\subsubsection{Comparison of total photon doses}
-\textbf{placeholder for total photon dose comparison}
+
 \newpage
 \clearpage
 \subsubsection{Breakdown of Cross Talk}
@@ -1829,9 +1886,9 @@ relative contribution or the absolute value of SDR.
 \\
 For the \gls{upp}, the Figures are contained in Section \ref{cross_talk_data} and are 
 shown in Figures \ref{appendix:pt_ct_base} to \ref{appendix:pt_ct_b4c}. 
-Both the baseline case finds the doserate in 
+Both the baseline case finds the dose rate in 
 the \gls{upi} is much higher than the 100 $\mu$Sv/hr guideline, just behind the 
-\gls{upp} the doserate is more than 1 mSv/hr and even the contribution to the 
+\gls{upp} the dose rate is more than 1 mSv/hr and even the contribution to the 
 dose from the \gls{epi} activation is more than the 100 $\mu$Sv/hr guideline. 
 The background contribution from mesh 2, containing activation of the upper
 outboard side of ITER also contributes some 80 $\mu$Sv/hr to the dose rate in 
@@ -1839,9 +1896,9 @@ the \gls{epi}.
 \\
 \\
 For the \gls{lpp} the Figures are contained in Section \ref{cross_talk_data} and are 
-shown in Figures \ref{fig:ct_lp_dc1} to \ref{fig:ct_lp_dc3}. Both cases find the doserate in 
+shown in Figures \ref{fig:ct_lp_dc1} to \ref{fig:ct_lp_dc3}. Both cases find the dose rate in 
 the cryopump is significant $\sim$ 100 mSv/hr in the region of the cyropump. 
-This simulation contained the unshielded pumping port and thus the doserate is 
+This simulation contained the unshielded pumping port and thus the dose rate is 
 very high due to neutrons streaming along the pumping port. 
 
 \begin{figure}[ht!]
@@ -2091,6 +2148,56 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 \clearpage
 \subsubsection{Decay time 3 - $10^7$ s}
 \input{../plots/final_model_with_b4c/dc3.tex}
+
+\newpage
+\clearpage
+\section{Contours of total photon dose between 100 and 1000 $\mu$Sv/hr}
+\label{appendix_f}
+The following section shows contours of photon dose rate through a y = 0.0 cm slice, with contours between 100 and 1000 $\mu$Sv/hr.
+\subsubsection*{Decay Time 1}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Rate_Contours_Lower_Decades_Decay_Time_1.png}
+\caption{Contours of total dose rate for decay time 1 for the baseline case}
+\label{fig:photons_dc1_nob4c_contours_l}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.75]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Lower_Decades_Decay_Time_1.png}
+\caption{Contours of total dose rate for decay time 1 for the B$_4$ case}
+\label{fig:photons_dc1_b4c_contours_l}
+\end{figure}
+\newpage
+\clearpage
+\subsubsection*{Decay Time 2}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Rate_Contours_Lower_Decades_Decay_Time_2.png}
+\caption{Contours of total dose rate for decay time 2 for the baseline case}
+\label{fig:photons_dc2_nob4c_contours_l}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.75]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Lower_Decades_Decay_Time_2.png}
+\caption{Contours of total dose rate for decay time 2 for the B$_4$ case}
+\label{fig:photons_dc2_b4c_contours_l}
+\end{figure}
+\newpage
+\clearpage
+\subsubsection*{Decay Time 3}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Rate_Contours_Lower_Decades_Decay_Time_3.png}
+\caption{Contours of total dose rate for decay time 3 for the baseline case}
+\label{fig:photons_dc3_nob4c_contours_l}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.75]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Lower_Decades_Decay_Time_3.png}
+\caption{Contours of total dose rate for decay time 3 for the B$_4$ case}
+\label{fig:photons_dc3_b4c_contours_l}
+\end{figure}
+
 
 \newpage
 \clearpage
