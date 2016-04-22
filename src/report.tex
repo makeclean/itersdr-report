@@ -180,7 +180,7 @@ TEXT IN THIS SECTION WILL BE REVIEWED AFTER FINAL ANALYSIS IS COMPLETE.
 The results contained within this report show the results of complex 3D neutron
 \& photon transport simulations to determine the shutdown photon dose rate
 resulting from the neutron activation of structural materials caused by prompt
-fusion nuetrons within a
+fusion neutrons within a
 representative model of the ITER device. There are several ongoing questions
 regarding the correct level of \gls{sdr} photon dose in the equatorial and upper
 port regions of ITER.
@@ -212,10 +212,10 @@ This analysis focused on only shutdown photon sources, and therefore does not
 contain prompt photon doses which are not present following machine shutdown.
 \\
 \\
-Future studies should focus on further decreasing the SDR in the person 
+Future studies should focus on further decreasing the \gls{sdr} in the person 
 access required areas such as the equatorial and upper port interspaces. A 
 significant finding in the upper ports was that a significant fraction of the
-SDR comes from decay photons created outside the upper port, from the activation
+\gls{sdr} comes from decay photons created outside the upper port, from the activation
 of the structural components nearby. Focus should be placed on improving 
 shielding internal to the strong sources, possible on improving the \gls{vv} filler
 near the \gls{pfc}2 or strong local shielding. 
@@ -263,7 +263,7 @@ into which source meshes are responsible for the resultant dose rate.
 %% NOTE [PPHW]: Confirm/revise with final assessment
 It was found that for the lowest decay time the impact of the B$_4$C layer was 
 largest: at the lowest decay time the dose rate in the \gls{epi} was reduced
-by a factor of $\sim$ 2-3, whlie for the longest decay times by a factor of at 
+by a factor of $\sim$ 2-3, while for the longest decay times by a factor of at 
 most 1.30. It was found that for the \gls{epi} and \gls{upi} at each decay time 
 the dose rate was dominated by the contribution from the source defined in that
 specific region. However, it was also found that even without the contribution from
@@ -336,7 +336,7 @@ The neutron and photon transport steps of the above \gls{r2s} methodology are
 performed with Monte Carlo radiation transport methods in order to best
 capture the effects of streaming through narrow ducts and channels.  At the
 same time, problems such as these are characterized by deep penetration for
-which Monte Carlo simulation is known to be computationally ineffecient.
+which Monte Carlo simulation is known to be computationally inefficient.
 Variance reduction techniques can be employed to improve the computational
 efficiency without introducing approximations to the transport problem.
 \\
@@ -364,21 +364,21 @@ distributed photon dose map is less obvious, and was not used in this problem.
 \\
 \\
 There are some issues when using \gls{gvr} methodologies such as \gls{fwcadis}
-for truely global problems. One of the issues are ray effects in the 
+for truly global problems. One of the issues are ray effects in the 
 deterministic solution, ray effects arise when a limited number of angles are 
 used in to solve the problem compounded by low interaction rates. The most 
 important aspect is the issue of long histories. Long histories are said to 
 occur in a transport problem when the time taken for any given history is 
 significantly longer (hours, days, weeks ...) than the average history. They 
 typically occur when particles stream along a narrow gap travelling to regions
-where their predicited weight is very much lower than their current weight. The 
+where their predicted weight is very much lower than their current weight. The 
 particle is rouletted into several low weight particles, and (typically but not
 always) the rouletted particles will interact again and be rouletted again and 
 so on. Single core  simulation long histories are not so much of a problem as 
 at some point the calculation will terminate. However, in large scale parallel 
 computation long histories mean that in the case of MCNP the calculation will
-not rendevous regularly and therefore often simulations are terminated by the 
-queueing system. 
+not rendezvous regularly and therefore often simulations are terminated by the 
+queuing system. 
 
 
 \subsection{Input Description}
@@ -394,11 +394,11 @@ undergone some degree of simplification prior to being provided for use on this
 problem.
 \\
 \\
-Several modifications were nessary for the \gls{cad} to be fully usable. Several
-person-months of time was invested in cleaning, reparing and building multiple
+Several modifications were necessary for the \gls{cad} to be fully usable. Several
+person-months of time was invested in cleaning, repairing and building multiple
 components multiple times. The overall \gls{cad} model in shown in Figure 
 \ref{fig:cad_iter_global}, in which the broad details of the model can be seen. In
-Table \ref{tab:cad_components} the origin of each file, the format it was recieved
+Table \ref{tab:cad_components} the origin of each file, the format it was received
 in and whether it was modified as part of this analysis or not.
 
 
@@ -451,7 +451,7 @@ extending through the openings on those levels.
 \subsubsection*{Error Field Correction Coils}
 Due to the MCNP requisite of model simplification there were some geometrical 
 issues in the location of the rounded corners of these coils. The corners had 
-been segmented for MCNP simplification. These segmentations caused geometrical 
+been segmented for MCNP simplification. These segmentation's caused geometrical 
 problems when the model was brought into CUBIT that is used in the neutronics 
 calculations with DAG-MCNP. The solution was to delete the segments and 
 recreate the curved bends in the coils. The added benefit is that it also 
@@ -614,7 +614,7 @@ accomplished by linking the \gls{advantg} mapping functions that are used to
 map the Monte Carlo geometry onto the Denovo mesh to the \gls{dagmc}
 ray-tracing routines \cite{biondoMC2015}. With this new capability, 
 \gls{advantg} was able to map the geometry of the Clite \gls{cad} model onto a 
-Cartesean mesh to use Denovo to generate the variance reduction parameters 
+Cartesian mesh to use Denovo to generate the variance reduction parameters 
 for the DAG-MCNP5 calculations of the neutron fluxes.
 
 \subsubsection{PyNE}
@@ -632,7 +632,7 @@ For this project we used the following capabilities of \gls{pyne}.
   \item{the \texttt{pyne.source\_sampling} capability to enable sampling of 
         mesh-based multi-group sources in \gls{mcnp5} }
 \end{itemize}
-The \gls{pyne} capabilities are interoperable with \gls{dagmc} output and handles
+The \gls{pyne} capabilities are inter-operable with \gls{dagmc} output and handles
 most post-process operations in the analysis.
 
 The \texttt{pyne.source\_sampling} capability is a series of functions based on
@@ -658,7 +658,7 @@ uniformly in space and tested to ensure that this location is in a non-void
 space.  If it is found to be in a void space, then another location is sampled
 uniformly.  Since some voxels could theoretically contain very small fractions
 of non-void space, calculation efficiency requires a limit on the number of
-times a particular voxel is resampled before selecting a new voxel. This is
+times a particular voxel is re-sampled before selecting a new voxel. This is
 exacerbated by uniform mesh sampling since voxels may be selected for sampling
 even if the total source strength is low, possibly due to a very small
 non-void volume.
@@ -700,7 +700,7 @@ in this report.
 \end{centering}
 
 \subsubsection*{Auxilliary Codes}
-The auxiallary codes used in the this report are shown in Table 
+The auxiliary codes used in the this report are shown in Table 
 \ref{table:validation_aux}. These codes were not directly used to 
 produce results, but were used to either process or produce input
 and output data.  Moreover, because validation implies the comparison
@@ -720,7 +720,7 @@ unit and regression testing.
   pyne.source\_sampling & Verified by unit tests & \cite{Biondo201677} \\
   yt 3.2 & Validated by unit tests & n/a \\
  \end{tabular}
- \caption{List of auxilliary codes and their validation status}
+ \caption{List of auxiliary codes and their validation status}
  \label{table:validation_aux}
  \end{table}
 \end{centering}
@@ -773,7 +773,7 @@ final results.  In both cases, independent histories are guaranteed by
 selecting the number of histories and the first history for each process to
 avoid overlap.  
 
-The combination of mesh domain decomposion and job parallelism is shown in
+The combination of mesh domain decomposition and job parallelism is shown in
 Figure \ref{fig:mesh_splitting}.  
 The spatial domain of the problem is duplicated and a given
 mesh tally superimposed onto the geometry. Several single core simulations are
@@ -818,7 +818,7 @@ times can be generated.
 \subsubsection{Photon Transport}
 The photon transport proceeds using the same computational model as in the
 neutron calculation, but without weight window variance reduction and with a
-mesh-based photon source and appropriate normalisation as determined using the
+mesh-based photon source and appropriate normalization as determined using the
 activation step.  Because the photon dose is tallied in a single bin over all
 energies, tally mesh decomposition is not necessary for photon transport.  The
 dose response from each of the seven source mesh is simulated over the entire
@@ -830,42 +830,42 @@ combining estimates of the statistical error appropriately.
 All software used for analysis is current, validated and verified. DAG-MCNP5
 is validated using an extensive test suite which checked every two weeks against
 the current state of a number of software libraries.  The \gls{dagmc} interface
-istelf is controlled under continuous integration; a complete set of unit and
+itself is controlled under continuous integration; a complete set of unit and
 regression tests are performed each time a developer proposes a change to the
 software.  \gls{dagmc} itself depends upon MOAB, which also operates under a
 similar continuous integration strategy.
 \\
 \\
 \gls{pyne} is also maintained under a continuous integration strategy.  
-Formal verification for indvidual parts of \gls{pyne} are performed on an as
+Formal verification for individual parts of \gls{pyne} are performed on an as
 needed basis, for example with \texttt{pyne.r2s} on the FNG shutdown dose rate
 experiment. \cite{Biondo201677}
 \\
 \\
 The plotting tool yt, is a tool that originates from the astrophysics community used
 for plotting very large datasets. Like the other tools mentioned here, yt is no different
-in software development practises, version control, code reviews and unit testing are
+in software development practices, version control, code reviews and unit testing are
 used extensively. There are several features that make yt an attractive 
 tool for plotting, as opposed to the more commonly encountered Visit from LLNL, specifically
 its capability to read native MOAB meshes, the speed at which it slices stl overlays and 
 its convenient scripting capabilities lead to its use in this report.
 \\
 \\
-The Denovo discrete ordinates solver is built against a set of verifcation 
+The Denovo discrete ordinates solver is built against a set of verification 
 problems and unit tests. It is distributed as part of the SCALE code system, which imposes
 a quality control plan found in \cite{scale_qa}. In this analysis Denovo was exclusively
 used by \gls{ornl} as part of \gls{advantg} to produce weight windows for this analysis.
 
 \clearpage
 \newpage
-\section{Inputs, Assumptions and Engineering Judgements}
+\section{Inputs, Assumptions and Engineering Judgments}
 
 \subsection{Neutron Source}
 As used in typical ITER analysis the reference ITER neutron source 
 \cite{iter_n_src} with
 reflecting boundary conditions is defined to adequately represent the
 true 360$^{\circ}$ neutron source. The ITER supplied \gls{mcnp5} SDEF was used
-completely unmodified. The on-load neutron data is normalised as part of the 
+completely unmodified. The on-load neutron data is normalized as part of the 
 \gls{r2s} calculation to correspond to the 
 average power for the pulse being modelled. However for reference,
 the highest power used in the activation calculation was 500 MW, which is
@@ -878,7 +878,7 @@ to the fluence of neutrons from the fusion source.
 \subsection{Irradiation Scenario}
 The irradiation scenario used in this work was the SA-2 \cite{sa2_irradiation}, 
 shown in Table \ref{tab:irrad_scenario}. Relative strength refers to the 
-neutron source normalisation used relative to nominal 500 MW operations.
+neutron source normalization used relative to nominal 500 MW operations.
 
 \begin{table}[ht!]
    \begin{tabular}{| l | c | c | c |}
@@ -1210,10 +1210,10 @@ With two cases, seven source meshes and three decay times, this led to 42
 independent photon transport calculations, each with $10^8$ histories sampled
 using the \texttt{pyne.source\_sampling} routines configured for uniform
 sampling and void rejection of 0.01.  The dose response mesh tallies in each
-problem were normalised using the appropriate total source intensity as
+problem were normalized using the appropriate total source intensity as
 determined by the appropriate inventory calculation.  Each photon simulation
 used the same random number seed, but given that each photon source is unique,
-there are no concerns regarding the resuse of the same seed.
+there are no concerns regarding the reuse of the same seed.
 
 \newpage
 \clearpage
@@ -1240,12 +1240,12 @@ The weight windows generated by \gls{advantg} for this problem are shown in Figu
 
 Several artifacts are worthy of note.  Despite being a deterministic code, Denovo
 has handled the streaming of neutrons along the divertor duct well as shown in
-left hand image of Figure \ref{fig:wwinp}. The overall span of the weight window
+left hand image of Figure \ref{fig:wwinp_thermal}. The overall span of the weight window
 is seven orders of magnitude, which is largely proportional to the neutron
 attenuation from the plasma to the port interspace, previous calculations put
 the attenuation in the range of 6 to 8 orders of magnitude. There is some
 evidence of component shadowing in the weight window solution in the right hand image
-of Figure \ref{fig:wwinp} due to the neutron attenuation of some \gls{epi}
+of Figure \ref{fig:wwinp_thermal} due to the neutron attenuation of some \gls{epi}
 shielding around the diagnostic equipment. Overall the solution appears 
 otherwise reasonable.
 \\
@@ -1260,7 +1260,7 @@ bodies.  Therefore, weight window values are observed beyond the 40$^{\circ}$ se
 The baseline results represent a standard C-lite model since there is no
 B$_4$C liner present, however relative to the standard C-lite
 native \gls{mcnp5} model there is much more equipment present in
-the \gls{upi} \& \gls{epi}, and the divertor pumping port conatins only a cryopump. The
+the \gls{upi} \& \gls{epi}, and the divertor pumping port contains only a cryopump. The
 open pumping port specifically leads to higher neutron fluxes beyond the
 vacuum vessel. 
 
@@ -1314,7 +1314,7 @@ pumping port contains only a cryopump.
 \clearpage
 \subsection{Comparison}
 We can compare the transport differences between the baseline and B$_4$C case 
-by examining serveral lineouts through the data. Specifically we can examine
+by examining several lineouts through the data. Specifically we can examine
 the effect that the B$_4$C layer has on the thermal flux near the bioshield. 
 First consider the total flux through the system at a height of 0 cm, shown
 in Figure \ref{fig:total_flux_ep}. 
@@ -1353,7 +1353,7 @@ If we examine the thermal flux from the equatorial port line out shown in Figure
   \centering
   \includegraphics[angle=-90,clip,scale=0.15]{../plots/neutron/thermal_flux_ep.png}     
   \caption{The total flux in found along a line 0,0,0 cm to 1800,0,0 cm}
-  \label{fig:thermal_flux_up}
+  \label{fig:thermal_flux_ep}
 \end{figure}
 We can see that the thermal neutron flux is significantly lower
 in the B$_4$C case than in the baseline case, suggesting that the B$_4$C is significantly
@@ -1539,7 +1539,7 @@ respectively, showing small difference with the B$_4$C case.
   \label{fig:src_spectra_bioshield}
 \end{figure}
 
-For the bioshield plug spectra we see shown in Figure \ref{bioshield_spectra_upp}, 
+For the bioshield plug spectra we see shown in Figure \ref{fig:bioshield_spectra_upp}, 
 there are significant differences between the baseline and B$_4$C cases, 
 due mostly to the different magnitudes of the spectra, these differences are 
 likely due to the impact of B$_4$C on the transport. At decay time one, the 
@@ -1557,7 +1557,7 @@ difference to the B$_4$C case.
 \end{figure}
 
 Similarly to the \gls{pfc}2 case the \gls{upp} flange spectra shown in Figure 
-\ref{src_spectra_upp}, there are slight differences between the baseline and 
+\ref{fig:src_spectra_upp}, there are slight differences between the baseline and 
 B$_4$C cases, due mostly to the different magnitudes of the spectra, these 
 differences are likely due to slight differences in the neutron transport in 
 these two different cases. At decay time one, the source densities are 
@@ -1571,10 +1571,10 @@ $1.794\times10^4$ respectively, showing small difference with the B$_4$C case.
 \subsection{Conclusion}
 The difference in the activation between the two cases is greatest near the 
 the bioshield, this is shown via the photon source spectra shown in Figures
-\ref{fig:src_spectra_pf2} to \ref{fig_src_spectra_upp}, the near the bioshield
+\ref{fig:src_spectra_pf2} to \ref{fig:src_spectra_upp}, the near the bioshield
 the difference in the photon source is close to a factor of 3 lower than the 
 baseline case, for the components further from the bioshield there is a factor
-of 0.25-0.35 difference between them, due to some statisical errors in the 
+of 0.25-0.35 difference between them, due to some statistical errors in the 
 neutron transport. 
 \\
 \\
@@ -1814,8 +1814,8 @@ an \ref{fig:photons_dc3_b4c_contours}.
 \newpage
 \clearpage
 A number of details are apparent from Figures \ref{fig:photons_dc1_nob4c_contours} to \ref{fig:photons_dc3_b4c_contours}.
-For the upper and equatoral port interspaces at each decay time the baseline case always has a greater area at higher 
-dose rates than the B$_4$C case, the bottom contour of dose rate 1 mSv/hr in these plots, is consistenly pushed further
+For the upper and equatorial port interspaces at each decay time the baseline case always has a greater area at higher 
+dose rates than the B$_4$C case, the bottom contour of dose rate 1 mSv/hr in these plots, is consistently pushed further
 away from the bioshield in the B$_4$C case than the baseline case. The exception is that at decay time 3, there is little
 difference in the highest contours of dose rate (3 mSv/hr) between the baseline and B$_4$C case for the \gls{upi}, this is 
 likely due to the greater contribution of the cross talk from mesh 2 to the overall dose rate.
@@ -2101,7 +2101,7 @@ significantly impacting the shielding capability.
 One of the biggest reasons for delay with the deliver of the calculation results
 in this task was the cleaning and preparation of the CAD geometry. Several
 months were expended cleaning, repairing and merging components together into a
-final model. Ultimately due to time contraints, the decision was taken to
+final model. Ultimately due to time constraints, the decision was taken to
 proceed with the analysis with the CAD in its current state. It is important
 for CAD based workflows to have access to the unmodified, unsimplified CAD
 models that have been used to prepare the IO geometries. A specific issue
