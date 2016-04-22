@@ -820,15 +820,13 @@ effort may be expended to increase the neutron population in unimportant regions
 of neutron phase space.
 \\
 \\
-\gls{advantg} only implements reflecting boundaries on the principal axes of a 
-problem, requiring a geometry that fills either a 90$^{\circ}$ or 180$^{\circ}$ 
-sector, or fills the entire 360$^{\circ}$.
-\\
-\\
 For the generation of weight windows, \gls{ADVANTG} was configured to run
 with the FENDL-2.1 46 group neutron photon library, with solver settings
-8 azimuthal angles, 8 polar angles with P$_3$ diffusion correction. The Denovo
-solver used was gmres with the cesaro transport correction. 
+8 azimuthal angles, 8 polar angles with P$_3$ diffusion correction. 
+\gls{advantg} only implements reflecting boundaries on the principal axes of a 
+problem, requiring a geometry that fills either a 90$^{\circ}$ or 180$^{\circ}$ 
+sector, or fills the entire 360$^{\circ}$.  The Denovo
+solver used was \texttt{gmres} with the \texttt{cesaro} transport correction. 
 The solution mesh was divided in the x direction from -1800.0 to 0.0 cm into 84 bins and 
 from 0.0 to 1800 cm into 180 bins. The solution mesh was split in the y direction from 
 -1800.0 to -650.0 into 45 bins, from -650.0 to 650.0 cm into 130 bins, and from 650.0 
