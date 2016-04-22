@@ -265,7 +265,7 @@ It was found that for the lowest decay time the impact of the B$_4$C layer was
 largest: at the lowest decay time the dose rate in the \gls{epi} was reduced
 by a factor of $\sim$ 2-3, whlie for the longest decay times by a factor of at 
 most 1.30. It was found that for the \gls{epi} and \gls{upi} at each decay time 
-the doserate was dominated by the contribution from the source defined in that
+the dose rate was dominated by the contribution from the source defined in that
 specific region. However, it was also found that even without the contribution from
 the local source, the cross-talk from other regions is greater than 100 
 $\mu$Sv/hr for all decay times.
@@ -1455,16 +1455,129 @@ appendix \ref{appendix:grp_photon_src_b4c}.
 \label{fig:source_dc3_b4c}
 \end{figure}
 
+\newpage
 \clearpage
 \subsection{Comparison}
+%Given the Figures in the previous section and the differences in the
+%neutron transport section, direct comparison of the photon sources is
+%better performed on a macroscopic scale. The total photon sources produced
+%by the activation calculations for both models and all decay times are shown
+%in Table \ref{tab:source_norms}.
+%\begin{centering}
+% \begin{table}[ht!]
+% \centering
+%  \begin{tabular}{| c |  c |  c | c |}
+%  \hline
+%  Mesh & Decay Time & Baseline Source (p/s) & B$4$C Source (p/s) \\
+%  \hline
+%  1 & $1\times10^5$ & $1.03394\times10^{18}$ & $1.05549\times10^{18}$ \\ 
+%  2 &               & $2.85338\times10^{17}$ & $2.83187\times10^{17}$ \\   
+%  3 &               & $2.36705\times10^{17}$ & $2.70504\times10^{17}$ \\   
+%  4 &               & $2.58260\times10^{18}$ & $2.58561\times10^{18}$ \\   
+%  5 &               & $1.15257\times10^{13}$ & $1.02967\times10^{13}$ \\   
+%  6 &               & $1.29516\times10^{12}$ & $7.46327\times10^{11}$ \\ 
+%  7 &               & $1.86084\times10^{13}$ & $1.87862\times10^{13}$ \\   
+%  \hline 
+%  1 & $1\times10^6$ & $8.57089\times10^{17}$ & $8.71762\times10^{17}$ \\ 
+%  2 &               & $2.38401\times10^{17}$ & $2.37029\times10^{17}$ \\   
+%  3 &               & $6.62659\times10^{16}$ & $6.45169\times10^{16}$ \\   
+%  4 &               & $2.18999\times10^{18}$ & $2.19233\times10^{18}$ \\   
+%  5 &               & $8.07240\times10^{12}$ & $7.37614\times10^{12}$ \\   
+%  6 &               & $6.74813\times10^{11}$ & $3.93980\times10^{11}$ \\   
+%  7 &               & $3.47910\times10^{12}$ & $3.35260\times10^{12}$ \\   
+%  \hline 
+%  1 & $1\times10^7$ & $5.52972\times10^{17}$ & $5.60747\times10^{17}$ \\   
+%  2 &               & $1.52388\times10^{17}$ & $1.51618\times10^{17}$ \\  
+%  3 &               & $4.13871\times10^{16}$ & $4.03108\times10^{16}$ \\   
+%  4 &               & $1.41559\times10^{18}$ & $1.41577\times10^{18}$ \\   
+%  5 &               & $5.62266\times10^{12}$ & $4.84496\times10^{12}$ \\   
+%  6 &               & $4.83070\times10^{11}$ & $3.03133\times10^{11}$ \\ 
+%  7 &               & $2.30219\times10^{12}$ & $2.22919\times10^{12}$ \\   
+%  \hline
+%  \end{tabular}
+%\caption{Table showing the photon source normalizations used in these calculations}
+%\label{tab:source_norms}
+%\end{table}
+%\end{centering}
 
+%Overall it can be seen the the photon source normalizations are consistently higher 
+%for the baseline case than the B$_4$C case. There some differences seen 
+%where the B$_4$C case can be higher, this is typically in mesh one, where 
+%the variance reduction is trying to reduced the neutron population therefore its likely
+%that this source result is dominated by noise, confirmed by comparison of Figure 
+%\ref{fig:source_dc1_no4bc_b} and \ref{fig:source_dc1_b4c}. Comparison of source normalisations
+%for mesh 4 shows equivalent source normalizations at all decay times.
+%\\
+%\\
+Comparison can also be made between the photon source present in several discrete locations. 
+The locations selected are; \gls{pfc}2, the bioshield plug behind the \gls{epp} and
+the \gls{upp} flange. The source spectra for \gls{pfc}2 is show in Figure \ref{fig:src_spectra_pf2}.
 
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[angle=-90,clip,scale=0.15]{../plots/source_comparison/pf2_spectra.png}     
+  \caption{The shutdown photon source present in the \gls{pfc}2 for the baseline and B$_4$C case, compared 
+  for decay time 1 and 3}
+  \label{fig:src_spectra_pf2}
+\end{figure}
 
-%% NOTE [PPHW]: What do we want to say here? Anything??
-%% NOTE [PPHW]: Why do the B4C results look smoother/better in the bioshield?
+There are slight differences between the baseline and B$_4$C cases, due mostly 
+to the different magnitudes of the spectra, these differences are likely due to 
+slight differences in the neutron transport in these two different cases. At 
+decay time one, the source densities are $4.824\times10^7$ and 
+$3.517\times10^7$ for the baseline and with B$_4$C cases respectively, and for 
+decay time three are  $4.340\times10^6$ and $3.000\times10^6$
+respectively, showing small difference with the B$_4$C case.
+
+\newpage
+\clearpage
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[angle=-90,clip,scale=0.15]{../plots/source_comparison/bioshield_spectra.png}     
+  \caption{The shutdown photon source present in the bioshield plug for the baseline and B$_4$C case, compared 
+  for decay time 1 and 3}
+  \label{fig:src_spectra_bioshield}
+\end{figure}
+
+For the bioshield plug spectra we see shown in Figure \ref{bioshield_spectra_upp}, 
+there are significant differences between the baseline and B$_4$C cases, 
+due mostly to the different magnitudes of the spectra, these differences are 
+likely due to the impact of B$_4$C on the transport. At decay time one, the 
+source densities are $2.221\times10^4$ and  $7.102\times10^3$ for the
+baseline and with B$_4$C cases respectively, and for decay time three are  
+$1.548\times10^4$ and $5.594\times10^3$ respectively, showing a factor of 3 
+difference to the B$_4$C case.
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[angle=-90,clip,scale=0.15]{../plots/source_comparison/upp_flange_spectra.png}     
+  \caption{The shutdown photon source present in the UPP flange for the baseline and B$_4$C case, compared 
+  for decay time 1 and 3}
+  \label{fig:src_spectra_upp}
+\end{figure}
+
+Similarly to the \gls{pfc}2 case the \gls{upp} flange spectra shown in Figure 
+\ref{src_spectra_upp}, there are slight differences between the baseline and 
+B$_4$C cases, due mostly to the different magnitudes of the spectra, these 
+differences are likely due to slight differences in the neutron transport in 
+these two different cases. At decay time one, the source densities are 
+$6.647\times10^4$ and  $4.326\times10^4$ for the baseline and with B$_4$C 
+cases respectively, and for decay time three are  $2.454\times10^4$ and 
+$1.794\times10^4$ respectively, showing small difference with the B$_4$C case.
+
+\newpage
+\clearpage
 
 \subsection{Conclusion}
-
+The difference in the activation between the two cases is greatest near the 
+the bioshield, this is shown via the photon source spectra shown in Figures
+\ref{fig:src_spectra_pf2} to \ref{fig_src_spectra_upp}, the near the bioshield
+the difference in the photon source is close to a factor of 3 lower than the 
+baseline case, for the components further from the bioshield there is a factor
+of 0.25-0.35 difference between them, due to some statisical errors in the 
+neutron transport. 
+\\
+\\
 It is worth noting that the lack of gamma source present in the \gls{epp}
 regions are not due to poor neutron transport in this region, but due to the
 fact that the \gls{gepp} model has a large B$_4$C powder filled containers
@@ -1655,6 +1768,68 @@ of interest.
 
 \newpage
 \clearpage
+
+\subsection{Contours of total photon dose}
+The following section shows contours of photon dose rate (between 1000 and 3000 $\mu$Sv/hr) through a y = 0.0 cm slice, in Appendix \ref{appendix_f} the same contours can be
+found but with contours between 100 and 1000 $\mu$Sv/hr. The first decay times are shown in Figures \ref{fig:photons_dc1_nob4c_contours}
+an \ref{fig:photons_dc1_b4c_contours}, the second decay times are shown in Figures \ref{fig:photons_dc2_nob4c_contours}
+an \ref{fig:photons_dc2_b4c_contours}, and the third decay times are shown in Figures \ref{fig:photons_dc3_nob4c_contours}
+an \ref{fig:photons_dc3_b4c_contours}.
+\subsubsection*{Decay Time 1}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_1.png}
+\caption{Contours of total dose rate for decay time 1 for the baseline case}
+\label{fig:photons_dc1_nob4c_contours}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_1.png}
+\caption{Contours of total dose rate for decay time 1 for the B$_4$C case}
+\label{fig:photons_dc1_b4c_contours}
+\end{figure}
+\newpage
+\clearpage
+\subsubsection*{Decay Time 2}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_2.png}
+\caption{Contours of total dose rate for decay time 2 for the baseline case}
+\label{fig:photons_dc2_nob4c_contours}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_2.png}
+\caption{Contours of total dose rate for decay time 2 for the B$_4$C case}
+\label{fig:photons_dc2_b4c_contours}
+\end{figure}
+\newpage
+\clearpage
+\subsubsection*{Decay Time 3}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_3.png}
+\caption{Contours of total dose rate for decay time 3 for the baseline case}
+\label{fig:photons_dc3_nob4c_contours}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_3.png}
+\caption{Contours of total dose rate for decay time 3 for the B$_4$C case}
+\label{fig:photons_dc3_b4c_contours}
+\end{figure}
+\newpage
+\clearpage
+A number of details are apparent from Figures \ref{fig:photons_dc1_nob4c_contours} to \ref{fig:photons_dc3_b4c_contours}.
+For the upper and equatoral port interspaces at each decay time the baseline case always has a greater area at higher 
+dose rates than the B$_4$C case, the bottom contour of dose rate 1 mSv/hr in these plots, is consistenly pushed further
+away from the bioshield in the B$_4$C case than the baseline case. The exception is that at decay time 3, there is little
+difference in the highest contours of dose rate (3 mSv/hr) between the baseline and B$_4$C case for the \gls{upi}, this is 
+likely due to the greater contribution of the cross talk from mesh 2 to the overall dose rate.
+
+\newpage
+\clearpage
+
 \subsubsection{Comparison of Total Photon Dose}
 The figures shown in the previous section show detailed results throughout the model, however due to the range of data
 $10^10$ $\mu$Sv/hr in the plasma chamber to $10$'s of $mu$Sv/hr means that the data are nessarily shown on a log scale, 
@@ -1843,9 +2018,9 @@ relative contribution or the absolute value of SDR.
 \\
 For the \gls{upp}, the Figures are contained in Section \ref{cross_talk_data} and are 
 shown in Figures \ref{appendix:pt_ct_base} to \ref{appendix:pt_ct_b4c}. 
-Both the baseline case finds the doserate in 
+Both the baseline case finds the dose rate in 
 the \gls{upi} is much higher than the 100 $\mu$Sv/hr guideline, just behind the 
-\gls{upp} the doserate is more than 1 mSv/hr and even the contribution to the 
+\gls{upp} the dose rate is more than 1 mSv/hr and even the contribution to the 
 dose from the \gls{epi} activation is more than the 100 $\mu$Sv/hr guideline. 
 The background contribution from mesh 2, containing activation of the upper
 outboard side of ITER also contributes some 80 $\mu$Sv/hr to the dose rate in 
@@ -1853,9 +2028,9 @@ the \gls{epi}.
 \\
 \\
 For the \gls{lpp} the Figures are contained in Section \ref{cross_talk_data} and are 
-shown in Figures \ref{fig:ct_lp_dc1} to \ref{fig:ct_lp_dc3}. Both cases find the doserate in 
+shown in Figures \ref{fig:ct_lp_dc1} to \ref{fig:ct_lp_dc3}. Both cases find the dose rate in 
 the cryopump is significant $\sim$ 100 mSv/hr in the region of the cyropump. 
-This simulation contained the unshielded pumping port and thus the doserate is 
+This simulation contained the unshielded pumping port and thus the dose rate is 
 very high due to neutrons streaming along the pumping port. 
 
 \begin{figure}[ht!]
@@ -2105,6 +2280,56 @@ MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 \clearpage
 \subsubsection{Decay time 3 - $10^7$ s}
 \input{../plots/final_model_with_b4c/dc3.tex}
+
+\newpage
+\clearpage
+\section{Contours of total photon dose between 100 and 1000 $\mu$Sv/hr}
+\label{appendix_f}
+The following section shows contours of photon dose rate through a y = 0.0 cm slice, with contours between 100 and 1000 $\mu$Sv/hr.
+\subsubsection*{Decay Time 1}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Rate_Contours_Lower_Decades_Decay_Time_1.png}
+\caption{Contours of total dose rate for decay time 1 for the baseline case}
+\label{fig:photons_dc1_nob4c_contours_l}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.75]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Lower_Decades_Decay_Time_1.png}
+\caption{Contours of total dose rate for decay time 1 for the B$_4$ case}
+\label{fig:photons_dc1_b4c_contours_l}
+\end{figure}
+\newpage
+\clearpage
+\subsubsection*{Decay Time 2}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Rate_Contours_Lower_Decades_Decay_Time_2.png}
+\caption{Contours of total dose rate for decay time 2 for the baseline case}
+\label{fig:photons_dc2_nob4c_contours_l}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.75]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Lower_Decades_Decay_Time_2.png}
+\caption{Contours of total dose rate for decay time 2 for the B$_4$ case}
+\label{fig:photons_dc2_b4c_contours_l}
+\end{figure}
+\newpage
+\clearpage
+\subsubsection*{Decay Time 3}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.75]{../plots/final_model/Photon_Dose_Rate_Contours_Lower_Decades_Decay_Time_3.png}
+\caption{Contours of total dose rate for decay time 3 for the baseline case}
+\label{fig:photons_dc3_nob4c_contours_l}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.75]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Lower_Decades_Decay_Time_3.png}
+\caption{Contours of total dose rate for decay time 3 for the B$_4$ case}
+\label{fig:photons_dc3_b4c_contours_l}
+\end{figure}
+
 
 \newpage
 \clearpage
