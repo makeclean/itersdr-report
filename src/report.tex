@@ -818,17 +818,8 @@ configured to achieve uniform statistical variance throughout the neutron mesh
 tally regions.  One consequence of this configuration is that computational
 effort may be expended to increase the neutron population in unimportant regions 
 of neutron phase space.
-
-\gls{advantg} only implements reflecting boundaries on the principal axes of a 
-problem, requiring a geometry that fills either a 90$^{\circ}$ or 180$^{\circ}$ 
-sector, or fills the entire 360$^{\circ}$.
-
-AWAITING TEXT FROM A.\ IBRAHIM ON ADDITIONAL CALCULATION DETAILS FOR ADVANTG.
-
-
-%% NOTE [PPHW]: Need to confirm with AMI exactly how he configured the
-%%  fw-cadis including: the number of energy groups and spatial mesh (I
-%%  think/assume this is the same as the neutron tally mesh?)
+\\
+\\
 
 \subsubsection{Job-level Parallelism}
 Parallelism over many processors was necessary to achieve this calculation in
@@ -1165,11 +1156,20 @@ FISPACT \cite{fispact} in the past and gives numerically equivalent results.
 
 \subsection{Neutron Transport Variance Reduction}
 
-AWAITING TEXT FROM A.\ IBRAHIM ON ADDITIONAL CALCULATION DETAILS FOR ADVANTG.
-
-%% NOTE [PPHW]: Need to confirm with AMI exactly how he configured the
-%%  fw-cadis including: the number of energy groups and spatial mesh (I
-%%  think/assume this is the same as the neutron tally mesh?)
+For the generation of weight windows, \gls{ADVANTG} was configured to run
+with the FENDL-2.1 46 group neutron photon library, with solver settings
+8 azimuthal angles, 8 polar angles with P$_3$ diffusion correction. 
+\gls{advantg} only implements reflecting boundaries on the principal axes of a 
+problem, requiring a geometry that fills either a 90$^{\circ}$ or 180$^{\circ}$ 
+sector, or fills the entire 360$^{\circ}$.  The Denovo
+solver used was \texttt{gmres} with the \texttt{cesaro} transport correction. 
+The solution mesh was divided in the x direction from -1800.0 to 0.0 cm into 84 bins and 
+from 0.0 to 1800 cm into 180 bins. The solution mesh was split in the y direction from 
+-1800.0 to -650.0 into 45 bins, from -650.0 to 650.0 cm into 130 bins, and from 650.0 
+to 1800.0 cm into 45 bins. The solution mesh was split in the z direction from -1500.0
+to 1900.0 cm into 240 bins. The differing resolutions used in the mesh was to
+focus the detailed parts of the mesh into the 40 $^{\circ}$ sector of interest,
+using the rest of the lower resolution parts to ensure the correct boundary conditions.
 
 \subsection{Neutron Transport}
 
