@@ -1589,8 +1589,14 @@ photon energies, thus effectively produces no decay photons.
 \clearpage
 \section{Shutdown Photon Dose rates Results and Conclusions}
 
-%% NOTES [PPHW]: Need some basic discussion - at least to describe what is in
-%% each figure.
+This section shows the shutdown photon dose rate data that was perfomed using
+the photon sources determined in the previous section. Figures \ref{fig:photons_dc1_no4bc_total}
+to \ref{fig:photons_dc3_no4bc_total_error_zoomed} show the \gls{sdr} in the basline case 
+and Figures \ref{fig:photons_dc1_b4c_total} to \ref{fig:photons_dc3_b4c_total_error_zoomed}. 
+The first figure of each section shows the distribution of shutdown photon dose rate is shown 
+with the units of $mu$Sv/hr, the second plot shows the relative error for the previous plot. Following
+these are versions where a the level of zoom is increased to better show the variation in the regions
+of interest.
 
 \subsection{Baseline}
 \subsubsection{Decay time 1 - $10^5$ s}
@@ -1762,6 +1768,7 @@ photon energies, thus effectively produces no decay photons.
 
 \newpage
 \clearpage
+
 \subsection{Contours of total photon dose}
 The following section shows contours of photon dose rate (between 1000 and 3000 $\mu$Sv/hr) through a y = 0.0 cm slice, in Appendix \ref{appendix_f} the same contours can be
 found but with contours between 100 and 1000 $\mu$Sv/hr. The first decay times are shown in Figures \ref{fig:photons_dc1_nob4c_contours}
@@ -1822,7 +1829,15 @@ likely due to the greater contribution of the cross talk from mesh 2 to the over
 
 \newpage
 \clearpage
-\subsection{Comparison of Total Photon Dose}
+
+\subsubsection{Comparison of Total Photon Dose}
+The figures shown in the previous section show detailed results throughout the model, however due to the range of data
+$10^10$ $\mu$Sv/hr in the plasma chamber to $10$'s of $mu$Sv/hr means that the data are nessarily shown on a log scale, 
+making comparison of the 3d data difficult. In this section lineouts through the major data are shown through three 
+important regions in the model, through the middle of the equatorial port region shown in Figures 
+\ref{fig:photons_dc1_total_dose_lineout}  to \ref{fig:photons_dc3_total_dose_lineout}, and through two slices of the 
+upper port one with a z co-ordinate of 500 cm  shown in Figures \ref{fig:photons_dc1_total_dose_lineout_z500} to \ref{fig:photons_dc3_total_dose_lineout_z500} and one at 700 cm which slices through \gls{pfc}2 shown in Figures \ref{fig:photons_dc1_total_dose_lineout_z700} to \ref{fig:photons_dc3_total_dose_lineout_z500}.
+
 \begin{figure}[ht!]
 \centering
 \includegraphics[angle=-90,clip,scale=0.15]{../plots/photon_lineout/dc1_z0_lineout.png}
@@ -1897,11 +1912,17 @@ likely due to the greater contribution of the cross talk from mesh 2 to the over
 \label{fig:photons_dc3_total_dose_lineout_z700}
 \end{figure}
 
-
-
-
-%% NOTE [PPHW]: Include line-out plots of total photon dose here and/or ratio
-%% - no cross-talk break down yet.  And then also discussion of same....
+\newpage
+\clearpage
+For the equatorial lineouts we see the greatest effect on the \gls{sdr} for 
+the first decay times where it is reduced by a factor of at least two in the B$_4$C 
+case. It can also be seen that the reduction is greater the closer we get to the 
+bioshield, suggesting that bioshield is one of the significant sources in the 
+\gls{epi}. The upper port lineouts show a similar reduction in \gls{sdr} near
+the bioshield to the same factor of two reduction. For all cases the closer we
+consider the flux to the \gls{epp} and \gls{upp} respectively, the closer the 
+ratio of doses are to unity, suggesting the components closer to the main ITER
+vessel are unaffected by the B$_4$C layer.
 
 \newpage
 \clearpage
@@ -1978,7 +1999,6 @@ detailed contributions for each mesh shown in Figures
 \caption{The total photon dose from the B$_4$C case for decay time 2 for mesh 7}
 \label{fig:ct_photons_dc2_no4bc_m7_flux}
 \end{figure}
-
 
 \newpage
 \clearpage
