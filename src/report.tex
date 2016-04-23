@@ -293,7 +293,7 @@ scoping calculations have suggested that the thermal neutron flux should be
 depressed significantly and lead to significantly lower shutdown photon dose 
 rates, close to an order of magnitude. The main goal of this report was 
 therefore to examine if the use of the B$_4$C liner does indeed lead to lower 
-dose rates, this would be achieved by modelling a detailed 40$^{\circ}$ sector 
+dose rates.  This has been achieved by modelling a detailed 40$^{\circ}$ sector 
 of the ITER device once with the layer included and once without and then 
 examining the detailed effect this layer has upon neutron transport, the 
 subsequent neutron induced activation and the resultant photon transport.
@@ -326,9 +326,9 @@ using a standalone nuclear inventory code, it is capable of handling the
 non-linear variations of nuclide density induced by (n,xn) reactions
 that \gls{d1s} methods traditionally struggle with.  This analysis methodology
 relies upon Monte Carlo radiation transport code for the first 
-(neutron transport) step and the third (photon transport) step, an upon an 
+(neutron transport) step and the third (photon transport) step, and upon an 
 activation code for the second step.  When the geometry is defined by a 
-\gls{cad}-based geometric model, the \gls{r2s} methodology and all of these tools
+\gls{cad}-based geometric model, the \gls{r2s} methodology and all of its components
 must be able to operate using such geometric representations.
 
 \subsubsection{Variance Reduction and the FW-CADIS Method}
@@ -364,9 +364,7 @@ distributed photon dose map is less obvious, and was not used in this problem.
 \\
 \\
 There are some issues when using \gls{gvr} methodologies such as \gls{fwcadis}
-for truly global problems. One of the issues are ray effects in the 
-deterministic solution, ray effects arise when a limited number of angles are 
-used in to solve the problem compounded by low interaction rates. The most 
+for truly global problems. The most 
 important aspect is the issue of long histories. Long histories are said to 
 occur in a transport problem when the time taken for any given history is 
 significantly longer (hours, days, weeks ...) than the average history. They 
@@ -391,7 +389,7 @@ model represents several ITER systems in high levels of detail, with all detail
 retained in the \gls{epi}, the  \gls{upi}, and the Lower Port cryopump. Some of
 these models were previously used to generate \gls{mcnp5} input decks so have
 undergone some degree of simplification prior to being provided for use on this 
-problem.
+problem.  The final geometry contained VVV volumes bounded by SSS surfaces.
 \\
 \\
 Several modifications were necessary for the \gls{cad} to be fully usable. Several
@@ -437,26 +435,34 @@ allow the analysis to proceed, they do offer an overview of the changes that
 were required.  
 
 \subsubsection*{Boundary Conditions}
-New volumes were created in order to apply the appropriate boundary conditions
+New volumes, refered to as Graveyard volumes,  were created in order to apply 
+the appropriate boundary conditions
 for the model.  As a 40${^\circ}$ model, reflecting boundaries are placed on
-either side of the model in the toroidal direction in the form of .  In the radial direction. 
+either side of the model in the toroidal direction in the form of slabs. 
+In the radial direction, a cylindrical region is used to define a vacuum
+boundary condition.   %% Check this
 There is no origination information for this component because it was 
 created by the University of Wisconsin – Fusion Technology Institute for the
 purpose of analyzing the model.
+
 \subsubsection*{Bioshield}
 Modifications were made to the original geometry. A 5 mm boron carbide layer was
  added to the internal surfaces of the geometry. Plugs were added to levels B1, 
 L1, and L2 in such a way as to accommodate the existing geometry that was 
 extending through the openings on those levels.
+
 \subsubsection*{Error Field Correction Coils}
-Due to the MCNP requisite of model simplification there were some geometrical 
+Due to the necessiry of model simplification in the process of generating native MCNP 
+models, there were some geometrical 
 issues in the location of the rounded corners of these coils. The corners had 
 been segmented for MCNP simplification. These segmentation's caused geometrical 
-problems when the model was brought into CUBIT that is used in the neutronics 
+problems when the model is converted back to a \gls{CAD} representation using CUBIT 
+in preparation for the neutronics 
 calculations with DAG-MCNP. The solution was to delete the segments and 
 recreate the curved bends in the coils. The added benefit is that it also 
 created a model that should be more accurate since it better reflects the 
 actual geometry
+
 \subsubsection*{Vacuum Vessel}
 The vacuum vessel components were received from Sandia National Lab as part of 
 the development of the Blanket-Lite (BL-Lite) model for ITER blanket analysis.
@@ -482,15 +488,17 @@ geometry were removed. These included overlaps with surrounding geometry, such
 as the upper port region of the vacuum vessel and the bioshield. In addition to 
 the geometrical modifications, the half-instances on the 0 and 40 degree 
 boundaries were created as duplicates of the original geometry
+
 \subsubsection*{Equatorial Port \& Equatorial Port Interspace}
 These components were received in the STEP (.step, .stp) format. Many volumes 
 from this geometry were modified or removed. These volumes were either too 
 detailed, in which case they were simplified, or were placeholder volumes 
 and thus were not necessary for neutronics analysis. Also, many overlaps
 within the geometry were removed. These included overlaps with surrounding 
-geometry, such as the upper port region of the vacuum vessel and the bioshield. 
+geometry, such as the XXXXXXXXX of the vacuum vessel and the bioshield. 
 In addition to the geometrical modifications, the half-instances on the 0 and 40
 degree boundaries were created as duplicates of the original geometry.
+
 \subsubsection*{Cryopump}
 These components were received in the STEP (.step, .stp) format. The
 cryopump model had some overlaps removed, including overlaps with the vacuum 
@@ -506,8 +514,9 @@ vessel. It was built using components from both origination files listed above.
 \subsubsection{DAGMC Parameters}
 The CAD preprocessing finished, the final model was imprinted and merged using
 Cubit 12.2 and then faceted to a tolerance of 10$^{-4}$ cm, meaning that the
-edges of the triangle should lie at that distance from the underlying geometric
-curve.
+edges of the triangle should lie no further than that distance from the underlying geometric
+curve, and that each facet should lie no further than that distance from the underlying
+geometric surface.
 \newpage
 \clearpage
 \subsubsection{Materials}
