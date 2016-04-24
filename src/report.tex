@@ -659,7 +659,7 @@ this problem.
 
 Another important feature of the \texttt{pyne.source\_sampling} capability is
 void rejection.  Since many of the activation voxels may contain a combination
-of solid material and vacuum, it is important that photon are only born in the
+of solid material and vacuum, it is important that photons are only born in the
 non-void spaces.  Allowing photons to be born in the void spaces would ignore
 important self-shielding effects in the source in those cases.  Therefore,
 once a spatial voxel is selected, the location within that voxel is chosen
@@ -678,8 +678,9 @@ non-void volume.
 that are followed to user defined precision with loops in the chains unrolled.
 A single set of chains is built across all the spatial points of a problem
 using the groupwise maximum neutron flux to ensure a conservative estimate of
-necessary chain length.  Different mathematical solutions are used for the
-chains to optimize the speed and accuracy.  \gls{alara_c} can also model
+necessary chain length.  Different mathematical solutions are selected adaptively 
+depending on the characteristics of each chain to optimize the speed and accuracy.  
+\gls{alara_c} can also model
 complex pulsed irradiation histories exactly with an arbitrary number of
 pulses. \gls{alara_c} produces photon source information from the final
 isotopic inventories at as many decay times as requested by the user by
@@ -714,7 +715,7 @@ The auxiliary codes used in the this report are shown in Table
 produce results, but were used to either process or produce input
 and output data.  Moreover, because validation implies the comparison
 of physical models to experiments not all tools can be validated.  
-Instead, it is expected that such tools have bee verified through
+Instead, it is expected that such tools have been verified through
 unit and regression testing.
 \begin{centering}
  \begin{table}[ht!]
@@ -751,7 +752,7 @@ The weight window parameters were generated using the \gls{ornl} code
 \gls{dagmc} geometry to be read and the geometry and material data handed off to
 Denovo. The weight windows were produced using the \gls{fwcadis},
 which attempts to produce a weight window map which tries to get particles
-everywhere in the model, as opposed to \gls{cadis} for example, which
+everywhere in the model, in contrast to \gls{cadis} that
 attempts to get results to a small number of specific regions.  Since no 
 fully validated methodologies yet exist to determine the most important regions of
 neutron phase space for a \gls{sdr} calculation, this problem used a \gls{fwcadis}
@@ -761,6 +762,20 @@ effort may be expended to increase the neutron population in unimportant regions
 of neutron phase space.
 \\
 \\
+\subsubsection{Mesh Domain Decomposition}
+The level of detail present in the faceted geometry files impacts the amount
+of memory required to run the calculation.  This combined with the large and
+detailed weight window file and the need for many energy groups in the neutron
+spectra in each voxel means that the calculation requires significant memory
+resources for each process.  One simple strategy to mitigate these
+requirements is to decompose the tally mesh into different regions and only
+tally one region at a time.  This does nothing to reduce the memory consumed
+by the goemetry or weight window map, but allows the fidelity of the tally
+mesh to be increased since it has smaller extents.  In the case of a geometry
+such as this that only includes a 40$^\circ$ degree sector, it allows for
+fewer ``wasted'' mesh voxels oustide the geometry for which there will be no
+answer, allowing for further memory reductions or fidelity increases.
+
 
 \subsubsection{Job-level Parallelism}
 Parallelism over many processors was necessary to achieve this calculation in
@@ -1071,19 +1086,10 @@ In each case, the neutron flux was tallied in 175 energy groups using the
 VITAMIN-J structure \cite{vitaminj} as shown in Appendix \ref{appendix_b}.
 
 \subsubsection{Mesh Domain Decomposition}
-The level of detail present in the faceted geometry files impacts the amount of
-memory required to run the calculation, this combined with the large and
-detailed weight window file and the need for 175 energy group neutron spectra
-in each voxel means that the calculation requires significant memory resources,
-in excess of 12 Gb per process.  %% 12 Gb after splitting into 7 meshes, or before?
-To mitigate these memory requirements, the calculation was split into seven 
-calculation domains, shown in Figure
+To mitigate memory requirements and allow for higher fidelity mesh, the
+calculation was split into seven calculation domains, shown in Figure
 \ref{fig:mesh_domains}, which bound the regions of the problem requiring
-activation. In addition to reducing the memory requirements for each calculation
-simply due to the decomposition of the tally domain, dividing the mesh tally 
-domains in this manner reduces the number of neutron mesh voxels that are 
-outside the boundary of the 40$^{\circ}$ sector, further reducing the overall memory
-requirements.
+activation.
 
 \begin{figure}[ht!]
   \centering
