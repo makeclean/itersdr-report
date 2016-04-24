@@ -57,7 +57,6 @@ for (( i = 1 ; i <= 3 ; i++ )) ; do
     print_image Photon_Source_Density_Decay_Time_"$i"_\(Energy_Range:_1.00E1-1.20E1_MeV\).png $i >> src_dc$i.tex
     print_image Photon_Source_Density_Decay_Time_"$i"_\(Energy_Range:_1.20E1-1.40E1_MeV\).png $i >> src_dc$i.tex
     print_image Photon_Source_Density_Decay_Time_"$i"_\(Energy_Range:_1.40E1-2.00E1_MeV\).png $i >> src_dc$i.tex
-    print_image Photon_Source_Density_Decay_Time_"$i"_\(Energy_Range:_1.40E1-2.00E1_MeV\).png $i >> src_dc$i.tex
     print_image_total Photon_Source_Density_Decay_Time_"$i"_All_Energy_Groups.png $i >> src_dc$i.tex
 done
 
