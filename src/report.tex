@@ -667,7 +667,7 @@ uniformly in space and tested to ensure that this location is in a non-void
 space.  If it is found to be in a void space, then another location is sampled
 uniformly.  Since some voxels could theoretically contain very small fractions
 of non-void space, calculation efficiency requires a limit on the number of
-times a particular voxel is re-sampled before selecting a new voxel. This is
+times a particular voxel is re-sampled before selecting a new voxel.  This is
 exacerbated by uniform mesh sampling since voxels may be selected for sampling
 even if the total source strength is low, possibly due to a very small
 non-void volume.
@@ -1159,7 +1159,7 @@ then used for the subsequent activation calculations.
 
 \subsection{Neutron Activation}
 The \gls{r2s} shutdown dose rate calculations were performed using the
-\texttt{pyne.r2s} methods found \gls{pyne}. The setup scripts produce
+\texttt{pyne.r2s} methods found in \gls{pyne}. The setup scripts produce
 \gls{alara_c} inputs and the neutron activation calculations were performed
 using \gls{alara_c} 2.9.1RC. There was an activation calculation for each 
 neutron mesh and case, therefore
@@ -1216,7 +1216,7 @@ with \gls{pyne}). Each photon source is run independently, and the photon dose
 is recorded on a mesh common to each photon calculation and then the meshes
 summed together to create the final result. The final mesh has a uniform size of
 side 5 cm $\times$ 5 cm $\times$ 5.23 cm striding from x = {0,2000}, y = {-600,600},
- z = {-1500,1900} cm. The meshes used the\gls{icrp}-74 dose response coefficients 
+ z = {-1500,1900} cm. The meshes used the \gls{icrp}-74 dose response coefficients 
 as a dose multiplier as recommended in \cite{iter_sdr_coeffs}.
 \\
 \\
@@ -1224,11 +1224,12 @@ as a dose multiplier as recommended in \cite{iter_sdr_coeffs}.
 With two cases, seven source meshes and three decay times, this led to 42
 independent photon transport calculations, each with $10^8$ histories sampled
 using the \texttt{pyne.source\_sampling} routines configured for uniform
-sampling and void rejection of 0.01.  The dose response mesh tallies in each
-problem were normalized using the appropriate total source intensity as
-determined by the appropriate inventory calculation.  Each photon simulation
-used the same random number seed, but given that each photon source is unique,
-there are no concerns regarding the reuse of the same seed.
+sampling and to resample up to 100 times in the same voxel under void rejection.  
+The dose response mesh
+tallies in each problem were normalized using the appropriate total source
+intensity as determined by the appropriate inventory calculation.  Each photon
+simulation used the same random number seed, but given that each photon source
+is unique, there are no concerns regarding the reuse of the same seed.
 
 \newpage
 \clearpage
