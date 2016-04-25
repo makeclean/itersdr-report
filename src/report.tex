@@ -59,11 +59,11 @@
 \usepackage[nottoc,numbib]{tocbibind}
 \usepackage{subcaption}
 \usepackage{multirow}
-\usepackage{draftwatermark}
+%%\usepackage{draftwatermark}
 \usepackage[hidelinks]{hyperref}
 
-\SetWatermarkText{DRAFT}
-\SetWatermarkScale{1}
+%%\SetWatermarkText{DRAFT}
+%%\SetWatermarkScale{1}
 
 %% define this page left blank
 \newcommand*{\blankpage}{%
@@ -211,20 +211,29 @@ was present in the upper and equatorial ports. However, for all decay times up t
 10$^7$ seconds the dose rate in all the port interspaces was greater than
 than 100 $\mu$Sv $hr^{-1}$.  Even though it does not reduce the \gls{sdr} to the
 desired levels, the inclusion of the B$_4$C liner may be an important element
-to a more extensive program of dose reduction in the interspaces.
+to a more extensive program of dose reduction in the interspaces. 
 \\
 \\
 This analysis focused on only shutdown photon sources, and therefore does not
-contain prompt photon doses which are not present following machine shutdown.
+contain prompt photon doses which are not present following machine shutdown. It
+does not contain neutrons that are the product of decay reactions, such as neutron
+production from activated water, which is a small component compared to the plasma
+source. Although it is not possible to rigorously asses the uncertainty in a calculation 
+of this scope, the uncertainty has been estimated as a factor of 2. That is, 
+the actual results are expected to be between 0.5 times and 2 times the simulated results.
 \\
 \\
-Future studies should focus on further decreasing the \gls{sdr} in the person 
+Future analysis should focus on improvements such as 1) methods to decrease
+the \gls{sdr} 2)  consider other 
+sources of radiation at shutdown, and 3) estimate the quantity of tritium 
+relased with the introduction of so much B$_4$C as shielding material.
+\\
+\\
+Focus should be placed on methods to decrease the \gls{sdr} in the person 
 access required areas such as the equatorial and upper port interspaces. A 
 significant finding in the upper ports was that a significant fraction of the
 \gls{sdr} comes from decay photons created outside the upper port, from the activation
-of the structural components nearby. Focus should be placed on improving 
-shielding internal to the strong sources, possible on improving the \gls{vv} filler
-near the \gls{pfc}2 or strong local shielding. 
+of the structural components nearby. 
 
 \newpage
 \blankpage
@@ -232,7 +241,6 @@ near the \gls{pfc}2 or strong local shielding.
 \newpage
 \section*{Abstract}
 \addcontentsline{toc}{section}{Abstract}
-
 This report provides the methodology, input data, assumptions and results for a
 full analysis of neutron, neutron induced activation and the subsequent
 transport of residual decay photons in a reference ITER \gls{cad} model. The 
@@ -2191,7 +2199,36 @@ there is a sequence of sources of uncertainty that must be considered.
 There is no formal mathematical procedure for estimating the uncertainty in the final
 dose rate, the number of driving sources of uncertainty are too large and complex to 
 simplify. Estimates of these quantites are the source of active research at a number
-of institutions world wide.
+of institutions world wide. 
+\\
+\\
+We can however attempt to estimate and lower bound and a reasonable upper bound. Estimation of the uncertainty 
+in the SDR is challenging due to a number of sources of uncertainty which may compensate each other in unexpected 
+ways. The correct method to determine the uncertainty in the SDR has not been performed, however we attempt an
+estimate below.
+
+\begin{enumerate}
+\item{Neutronics Benchmarks - Several neutronics benchmarks have been performed 
+\cite{Kodeli2004717,Batistoni19941724,Fausser20112135,Batistoni1995504,Batistoni1997233,Flammini20151964,Klix2016,Kodeli2016,Angelone2016}
+and the majority show deviations from the experimental result of at between 5-50\%, we therefore 
+can ascribe a lower bound uncertainty of 5\% and an upper reasonable bound of 20\% in the neutron 
+result purely from nuclear data}
+\item{Activation Data Uncertainty - Activation data has uncertainty in the reaction channel encapsulated 
+as part of it. Inventory codes are often able to provide an estimate in the uncertainty 
+of the producion of the nuclide due to all the formation channels, this is nuclide dependent but typically in the range 10-100\%. 
+We can ascribe a lower bound estimate of 10\% and 20\% for an upper bound on the basis of the nuclides in this problem}
+\item{Mesh Resolution - There has been only one study showing the effect of the activation mesh upon the final 
+result in an SDR calculation \cite{r2smesh}, and for cell based methods \cite{frej}, these suggest that the mesh may have 
+an uncertainty of 10\% at its lowest and an upper bound of 40\%}
+\item{Neutron Histories - A target uncertainty in the total neutron flux for this calculation was 
+10\%, however this does not ascribe any uncertainty limits to the neutron spectrum, a reasonable 
+estimate of the effect is difficult to summarize, but a relative error of 10\% directly form the 
+flux as a lower bound and an upper bound of 20\% is ascribed.}
+\end{enumerate}
+\\
+\\
+The smallest the total relative error could be therefore in the range 0.7 to 1.45 and the highest reasonable 
+estimate is 0.5 to 2.0
 
 \newpage
 \clearpage
