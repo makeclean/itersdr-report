@@ -1334,8 +1334,9 @@ pumping port contains only a cryopump.
 \newpage
 \clearpage
 \subsection{Comparison}
-We can compare the transport differences between the baseline and B$_4$C case 
-by examining several lineouts through the data. Specifically we can examine
+Since it is challenging to directly compare the neutron flux maps plotted on
+a logarithmic scale, it is helpful to compare the transport differences between the baseline and B$_4$C case 
+by examining several lines along the x-direction through the data. Specifically we can examine
 the effect that the B$_4$C layer has on the thermal flux near the bioshield. 
 First consider the total flux through the system at a height of 0 cm, shown
 in Figure \ref{fig:total_flux_ep}. 
@@ -1625,7 +1626,10 @@ the photon sources determined in the previous section. Figures \ref{fig:photons_
 to \ref{fig:photons_dc3_no4bc_total_error_zoomed} show the \gls{sdr} in the basline case 
 and Figures \ref{fig:photons_dc1_b4c_total} to \ref{fig:photons_dc3_b4c_total_error_zoomed}. 
 The first figure of each section shows the distribution of shutdown photon dose rate is shown 
-with the units of $mu$Sv/hr, the second plot shows the relative error for the previous plot. Following
+with the units of $mu$Sv/hr, the second plot shows the relative error for the previous plot. 
+As there does not exist a mathematically robust way to propagate the statistical error of the
+neutron fluxes through the entire workflow, these maps of relative error only represent the 
+statistical error due to the Monte Carlo photon transport process. Following
 these are versions where a the level of zoom is increased to better show the variation in the regions
 of interest.
 
@@ -1805,7 +1809,9 @@ The following section shows contours of photon dose rate (between 1000 and 3000 
 found but with contours between 100 and 1000 $\mu$Sv/hr. The first decay times are shown in Figures \ref{fig:photons_dc1_nob4c_contours}
 an \ref{fig:photons_dc1_b4c_contours}, the second decay times are shown in Figures \ref{fig:photons_dc2_nob4c_contours}
 an \ref{fig:photons_dc2_b4c_contours}, and the third decay times are shown in Figures \ref{fig:photons_dc3_nob4c_contours}
-an \ref{fig:photons_dc3_b4c_contours}.
+an \ref{fig:photons_dc3_b4c_contours}.  A combination of statistical noise and local
+sources of photons can result in contours that fluctuate rapidly.
+
 \subsubsection*{Decay Time 1}
 \begin{figure}[ht!]
 \centering
@@ -1863,33 +1869,36 @@ likely due to the greater contribution of the cross talk from mesh 2 to the over
 
 \subsubsection{Comparison of Total Photon Dose}
 The figures shown in the previous section show detailed results throughout the model, however due to the range of data
-$10^10$ $\mu$Sv/hr in the plasma chamber to $10$'s of $mu$Sv/hr means that the data are nessarily shown on a log scale, 
-making comparison of the 3d data difficult. In this section lineouts through the major data are shown through three 
-important regions in the model, through the middle of the equatorial port region shown in Figures 
-\ref{fig:photons_dc1_total_dose_lineout}  to \ref{fig:photons_dc3_total_dose_lineout}, and through two slices of the 
-upper port one with a z co-ordinate of 500 cm  shown in Figures \ref{fig:photons_dc1_total_dose_lineout_z500} to \ref{fig:photons_dc3_total_dose_lineout_z500} and one at 700 cm which slices through \gls{pfc}2 shown in Figures \ref{fig:photons_dc1_total_dose_lineout_z700} to \ref{fig:photons_dc3_total_dose_lineout_z500}.
+$10^{10}$ $\mu$Sv/hr in the plasma chamber to $10$'s of $mu$Sv/hr near the bioshield, the data are nessarily shown on a log scale, 
+making comparison difficult. In this section data are extracted along lines through through three 
+important regions in the model and plotted together for comparison and with their ratio.  The first location is through the 
+middle of the equatorial port region (Figures \ref{fig:photons_dc1_total_dose_lineout}  to \ref{fig:photons_dc3_total_dose_lineout}).
+The other two locations pass through the upper port, one with a z co-ordinate of 500 cm  corresponding to the bottom of the
+upper port plug flange (Figures \ref{fig:photons_dc1_total_dose_lineout_z500} to \ref{fig:photons_dc3_total_dose_lineout_z500}),
+and one at 700 cm corresponding to the top of the upper port plug flange and through \gls{pfc}2 
+(Figures \ref{fig:photons_dc1_total_dose_lineout_z700} to \ref{fig:photons_dc3_total_dose_lineout_z500}).
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[angle=-90,clip,scale=0.15]{../plots/photon_lineout/dc1_z0_lineout.png}
-\caption{Lineout of the total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 1,
-         through 0,0,0 along the x direction}
+\caption{Total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 1,
+         along a line in the x direction through 0,0,0}
 \label{fig:photons_dc1_total_dose_lineout}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[angle=-90,clip,scale=0.15]{../plots/photon_lineout/dc2_z0_lineout.png}
-\caption{Lineout of the total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 2,
-         through 0,0,0 along the x direction}
+\caption{Total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 2,
+         along a line in the x direction through 0,0,0}
 \label{fig:photons_dc2_total_dose_lineout}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[angle=-90,clip,scale=0.15]{../plots/photon_lineout/dc2_z0_lineout.png}
-\caption{Lineout of the total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 3,
-         through 0,0,0 along the x direction}
+\caption{Total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 3,
+         along a line in the x direction through 0,0,0}
 \label{fig:photons_dc3_total_dose_lineout}
 \end{figure}
 
@@ -1897,24 +1906,24 @@ upper port one with a z co-ordinate of 500 cm  shown in Figures \ref{fig:photons
 \begin{figure}[ht!]
 \centering
 \includegraphics[angle=-90,clip,scale=0.15]{../plots/photon_lineout/dc1_z500_lineout.png}
-\caption{Lineout of the total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 1,
-                 through 0,0,500 cm along the x direction}
+\caption{Total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 1,
+                 along a line in the x direction through 0,0,500 cm}
 \label{fig:photons_dc1_total_dose_lineout_z500}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[angle=-90,clip,scale=0.15]{../plots/photon_lineout/dc2_z500_lineout.png}
-\caption{Lineout of the total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 2,
-                 through 0,0,500 cm along the x direction}
+\caption{Total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 2,
+                 along a line in the x direction through 0,0,500 cm}
 \label{fig:photons_dc2_total_dose_lineout_z500}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[angle=-90,clip,scale=0.15]{../plots/photon_lineout/dc2_z500_lineout.png}
-\caption{Lineout of the total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 3,
-                 through 0,0,500 cm along the x direction}
+\caption{Total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 3,
+                 along a line in the x direction through 0,0,500 cm}
 \label{fig:photons_dc3_total_dose_lineout_z500}
 \end{figure}
 
@@ -1922,34 +1931,34 @@ upper port one with a z co-ordinate of 500 cm  shown in Figures \ref{fig:photons
 \begin{figure}[ht!]
 \centering
 \includegraphics[angle=-90,clip,scale=0.15]{../plots/photon_lineout/dc1_z700_lineout.png}
-\caption{Lineout of the total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 1,
-                 through 0,0,500 cm along the x direction}
+\caption{Total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 1,
+                 along a line in the x direction through 0,0,700 cm}
 \label{fig:photons_dc1_total_dose_lineout_z700}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[angle=-90,clip,scale=0.15]{../plots/photon_lineout/dc2_z700_lineout.png}
-\caption{Lineout of the total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 2,
-                 through 0,0,500 cm along the x direction}
+\caption{Total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 2,
+                 along a line in the x direction through 0,0,700 cm}
 \label{fig:photons_dc2_total_dose_lineout_z700}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[angle=-90,clip,scale=0.15]{../plots/photon_lineout/dc2_z700_lineout.png}
-\caption{Lineout of the total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 3,
-                 through 0,0,500 cm along the x direction}
+\caption{Total photon dose showing a comparison between the baseline and B$_4$C cases for decay time 3,
+                 along a line in the x direction through 0,0,700 cm}
 \label{fig:photons_dc3_total_dose_lineout_z700}
 \end{figure}
 
 \newpage
 \clearpage
-For the equatorial lineouts we see the greatest effect on the \gls{sdr} for 
+For comparison along the line in the equatorial port we see the greatest effect on the \gls{sdr} for 
 the first decay times where it is reduced by a factor of at least two in the B$_4$C 
 case. It can also be seen that the reduction is greater the closer we get to the 
 bioshield, suggesting that bioshield is one of the significant sources in the 
-\gls{epi}. The upper port lineouts show a similar reduction in \gls{sdr} near
+\gls{epi}. The upper port results show a similar reduction in \gls{sdr} near
 the bioshield to the same factor of two reduction. For all cases the closer we
 consider the flux to the \gls{epp} and \gls{upp} respectively, the closer the 
 ratio of doses are to unity, suggesting the components closer to the main ITER
