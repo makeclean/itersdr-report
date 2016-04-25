@@ -50,7 +50,6 @@
 %\usepackage[printwatermark]{xwatermark}
 %\usepackage{mathptmx}
 %\usepackage{fouriernc}
-\usepackage[hidelinks]{hyperref}
 \usepackage{times}
 \usepackage{graphicx}
 \usepackage{longtable}
@@ -61,6 +60,8 @@
 \usepackage{subcaption}
 \usepackage{multirow}
 \usepackage{draftwatermark}
+\usepackage[hidelinks]{hyperref}
+
 \SetWatermarkText{DRAFT}
 \SetWatermarkScale{1}
 
@@ -110,6 +111,7 @@
             Importance Sampling}
 \newacronym{gepp}{GEPP}{Generic Equatorial Port Plug}
 \newacronym{gvr}{GVR}{Global Variance Reduction}
+\newacronym{htc}{HTC}{High Throughput Computing}
 \newacronym{icrp}{ICRP}{International Commission on Radiation Protection}
 \newacronym{io}{IO}{ITER Organisation}
 \newacronym{lp}{LP}{Lower Port}
@@ -129,6 +131,7 @@
 \newacronym{upi}{UPI}{Upper Port Interspace}
 \newacronym{uw}{UW}{The University of Wisconsin}
 \newacronym{ve}{VE}{Vessel Extension}
+\newacronym{vr}{VR}{Variance Reduction}
 \newacronym{vv}{VV}{Vacuum Vessel}
 
 
@@ -154,7 +157,8 @@
  \gls{epp} \\ \gls{epi} \\
  \gls{fendl} \\ \gls{fom} \\
  \gls{fwcadis} \\
- \gls{gepp} \\ \gls{icrp} \\
+ \gls{gepp} \\ \gls{htc} \\
+ \gls{icrp} \\
  \gls{io} \\ \gls{lp} \\
  \gls{lpp} \\ \gls{mcnp5} \\
  \gls{moab} \\ \gls{ornl} \\
@@ -163,7 +167,7 @@
  \gls{r2s} \\ \gls{sdr} \\
  \gls{ta} \\ \gls{up} \\
  \gls{upp} \\ \gls{upi} \\
- \gls{ve}
+ \gls{vr} \\ \gls{ve}
 % \printnoidxglossaries[type=\acronymtype]
 %\printglossary
 %\printglossary[type=\acronymtype]
@@ -273,6 +277,11 @@ still be several hundred $\mu$Sv/hr at $10^6$ seconds.
 \clearpage
 \glsresetall
 \setcounter{section}{0}
+
+\renewcommand*{\theHsection}{\Alph{section}}
+%\renewcommand*{\theHsubsection}{\the\value\one{subsection}}
+%\renewcommand*{\theHsubsubsection}{\the\value\two{subsubsection}}
+
 \section{Purpose}
 \subsection{Problem Statement}
 The shutdown dose rate in an around the equatorial and upper ports determine the
@@ -384,7 +393,7 @@ model represents several ITER systems in high levels of detail, with all detail
 retained in the \gls{epi}, the  \gls{upi}, and the Lower Port cryopump. Some of
 these models were previously used to generate \gls{mcnp5} input decks so have
 undergone some degree of simplification prior to being provided for use on this 
-problem.  The final geometry contained & VVV & volumes bounded by & SSS & surfaces.
+problem.  The final geometry contained 5481 volumes bounded by 69182 surfaces.
 \\
 \\
 Several modifications were necessary for the \gls{cad} to be fully usable. Several
@@ -434,11 +443,10 @@ New volumes, refered to as Graveyard volumes,  were created in order to apply
 the appropriate boundary conditions
 for the model.  As a 40${^\circ}$ model, reflecting boundaries are placed on
 either side of the model in the toroidal direction in the form of slabs. 
-In the radial direction, a cylindrical region is used to define a vacuum
-boundary condition.   %% Check this
-There is no origination information for this component because it was 
-created by the University of Wisconsin – Fusion Technology Institute for the
-purpose of analyzing the model.
+In the radial direction, a polygonal volume approximating a cylinder region is 
+used to define a vacuum boundary condition. There is no origination information 
+for this component because it was created by the University of Wisconsin – 
+Fusion Technology Institute for the purpose of analyzing the model.
 
 \subsubsection*{Bioshield}
 Modifications were made to the original geometry. A 5 mm boron carbide layer was
@@ -451,7 +459,7 @@ Due to the necessiry of model simplification in the process of generating native
 models, there were some geometrical 
 issues in the location of the rounded corners of these coils. The corners had 
 been segmented for MCNP simplification. These segmentation's caused geometrical 
-problems when the model is converted back to a \gls{CAD} representation using CUBIT 
+problems when the model is converted back to a \gls{cad} representation using CUBIT 
 in preparation for the neutronics 
 calculations with DAG-MCNP. The solution was to delete the segments and 
 recreate the curved bends in the coils. The added benefit is that it also 
@@ -490,7 +498,7 @@ from this geometry were modified or removed. These volumes were either too
 detailed, in which case they were simplified, or were placeholder volumes 
 and thus were not necessary for neutronics analysis. Also, many overlaps
 within the geometry were removed. These included overlaps with surrounding 
-geometry, such as the & XXXXXXXXX & of the vacuum vessel and the bioshield. 
+geometry, such as the equatorial port region the vacuum vessel and the bioshield. 
 In addition to the geometrical modifications, the half-instances on the 0 and 40
 degree boundaries were created as duplicates of the original geometry.
 
@@ -929,8 +937,8 @@ The geometry used in this simulation was collected from a number of sources;
 some models were generated directly from CAD drawings supplied by the
 drawing office of US ITER and the IO, some were intermediate CAD files produced
 as part of other simulations, and some were generated by \gls{uw} to overcome 
-deficiencies in the delivered models such as overlaps. Irrespective of this, the \gls{dagmc} method
-allows the exact representation of the underlying CAD to be used without
+deficiencies in the delivered models such as overlaps. Irrespective of this, the 
+\gls{dagmc} method allows the exact representation of the underlying CAD to be used without
 approximation.
 \\
 \\
@@ -1066,7 +1074,9 @@ with the FENDL-2.1 46 group neutron photon library, with solver settings
 8 azimuthal angles, 8 polar angles with P$_3$ diffusion correction. 
 \gls{advantg} only implements reflecting boundaries on the principal axes of a 
 problem, requiring a geometry that fills either a 90$^{\circ}$ or 180$^{\circ}$ 
-sector, or fills the entire 360$^{\circ}$.  The Denovo
+sector, or fills the entire 360$^{\circ}$. In terms of discretizing the geometry
+30 rays were fired per element along the z-direction and material mixture
+sensitivity was set such that a tolerance of 0.01 was used. The Denovo
 solver used was \texttt{gmres} with the \texttt{cesaro} transport correction. 
 The solution mesh was divided in the x direction from -1800.0 to 0.0 cm into 84 bins and 
 from 0.0 to 1800 cm into 180 bins. The solution mesh was split in the y direction from 
@@ -1075,6 +1085,8 @@ to 1800.0 cm into 45 bins. The solution mesh was split in the z direction from -
 to 1900.0 cm into 240 bins. The differing resolutions used in the mesh was to
 focus the detailed parts of the mesh into the 40 $^{\circ}$ sector of interest,
 using the rest of the lower resolution parts to ensure the correct boundary conditions.
+The \gls{fwcadis} response weighting was set to produce a uniform variance in the problem
+across all energies. 
 
 \subsection{Neutron Transport}
 
@@ -1160,7 +1172,7 @@ The \gls{r2s} shutdown dose rate calculations were performed using the
 using \gls{alara_c} 2.9.1RC. There was an activation calculation for each 
 neutron mesh and case, therefore
 there were a total of fourteen activation calculations performed. The activation
-calculations used a uniform `truncation tolerance', a parameter in \gls{alara_c}
+calculations used a uniform `truncation tolerance' of $1.0\times10^{-8}$, a parameter in \gls{alara_c}
 which details when the linearised transmutation chains should be terminated. The
 materials used in the activation calculation were taken directly from the 
 associated MCNP input decks. 
@@ -1397,14 +1409,17 @@ B$_4$C, presenting more than 1 meter of thickness meaning attenuation is high.
 The thermal flux near the bioshield was examined and found to be significantly affected
 by the B$_4$C layer, this correlated with the shape of the thermal flux suggests that 
 it is the bioshield that is the source of thermalized neutrons in the \gls{epi} and \gls{upi}.
-
+\subsection*{Geometric Deficiencies}
+Following completion of neutron transport the results displayed some minor deficiencies in 
+the transport geometry. Due to time constraints neutron transport could not be re-run, however,
+the photon transport calculations shown in Section \ref{section:sdr_conc} used the improved geometry.
+The source of these issues was due to issues in the original \gls{cad} where two surfaces had not 
+merged together properly. 
 \newpage
 \clearpage
 
 \section{Neutron Activation Results and Conclusions}
-
 \subsection{Baseline}
-
 The spatial distribution of the total photon source intensity for the baseline case 
 and for each decay
 time are shown in Figures \ref{fig:source_dc1_no4bc_b}
@@ -1615,7 +1630,7 @@ photon energies, thus effectively produces no decay photons.
 \newpage
 \clearpage
 \section{Shutdown Photon Dose rates Results and Conclusions}
-
+\label{section:sdr_conc}
 This section shows the shutdown photon dose rate data that was perfomed using
 the photon sources determined in the previous section. Figures \ref{fig:photons_dc1_no4bc_total}
 to \ref{fig:photons_dc3_no4bc_total_error_zoomed} show the \gls{sdr} in the basline case 
@@ -1802,21 +1817,24 @@ of interest.
 \subsection{Contours of total photon dose}
 The following section shows contours of photon dose rate (between 1000 and 3000 $\mu$Sv/hr) through a y = 0.0 cm slice, in Appendix \ref{appendix_f} the same contours can be
 found but with contours between 100 and 1000 $\mu$Sv/hr. The first decay times are shown in Figures \ref{fig:photons_dc1_nob4c_contours}
-an \ref{fig:photons_dc1_b4c_contours}, the second decay times are shown in Figures \ref{fig:photons_dc2_nob4c_contours}
-an \ref{fig:photons_dc2_b4c_contours}, and the third decay times are shown in Figures \ref{fig:photons_dc3_nob4c_contours}
-an \ref{fig:photons_dc3_b4c_contours}.  A combination of statistical noise and local
+and \ref{fig:photons_dc1_b4c_contours}, the second decay times are shown in Figures \ref{fig:photons_dc2_nob4c_contours}
+and \ref{fig:photons_dc2_b4c_contours}, and the third decay times are shown in Figures \ref{fig:photons_dc3_nob4c_contours}
+and \ref{fig:photons_dc3_b4c_contours}.  A combination of statistical noise and local
 sources of photons can result in contours that fluctuate rapidly.
+
+\newpage
+\clearpage
 
 \subsubsection*{Decay Time 1}
 \begin{figure}[ht!]
 \centering
-\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_1.png}
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.51]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_1.png}
 \caption{Contours of total dose rate for decay time 1 for the baseline case}
 \label{fig:photons_dc1_nob4c_contours}
 \end{figure}
 \begin{figure}[ht!]
 \centering
-\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_1.png}
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.51]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_1.png}
 \caption{Contours of total dose rate for decay time 1 for the B$_4$C case}
 \label{fig:photons_dc1_b4c_contours}
 \end{figure}
@@ -1825,13 +1843,13 @@ sources of photons can result in contours that fluctuate rapidly.
 \subsubsection*{Decay Time 2}
 \begin{figure}[ht!]
 \centering
-\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_2.png}
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.51]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_2.png}
 \caption{Contours of total dose rate for decay time 2 for the baseline case}
 \label{fig:photons_dc2_nob4c_contours}
 \end{figure}
 \begin{figure}[ht!]
 \centering
-\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_2.png}
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.51]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_2.png}
 \caption{Contours of total dose rate for decay time 2 for the B$_4$C case}
 \label{fig:photons_dc2_b4c_contours}
 \end{figure}
@@ -1840,13 +1858,13 @@ sources of photons can result in contours that fluctuate rapidly.
 \subsubsection*{Decay Time 3}
 \begin{figure}[ht!]
 \centering
-\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_3.png}
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.51]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_3.png}
 \caption{Contours of total dose rate for decay time 3 for the baseline case}
 \label{fig:photons_dc3_nob4c_contours}
 \end{figure}
 \begin{figure}[ht!]
 \centering
-\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.4]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_3.png}
+\includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.51]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_3.png}
 \caption{Contours of total dose rate for decay time 3 for the B$_4$C case}
 \label{fig:photons_dc3_b4c_contours}
 \end{figure}
@@ -2143,10 +2161,37 @@ the back plate and attachment flange, both of which are the dominant source of
 activation in the region. It is suggested that the front 50 cm of the B$_4$C
 drawers could be removed, reducing the weight of the port plug without
 significantly impacting the shielding capability.
-
-%\newpage
-%\clearpage
-%\section{Acceptance Criteria}
+\subsection{Estimation of Uncertainties}
+In a problem as large and as complicated as the geometry used in this analysis
+there are several sources of error. Specifically for \gls{sdr} calculations 
+there is a sequence of sources of uncertainty that must be considered.
+\begin{itemize} 
+\item{Transport Nuclear data uncertainty - there is an uncertainty associated with each 
+      reaction channel in each cross section in the problem, similarly for photons there are 
+      uncertainties in angular distributions of emitted particles}
+\item{Neutron Mesh Resolution - the bounds of the neutron mesh defince the 
+      profile of each volume element, how large the mesh element is relative
+      to the neutron and photon mean free paths define how adapted to the 
+      gradients in the problem.}
+\item{Activation Nuclear data uncertainty - the nuclear data used for each inventory code
+     also has an uncertainty for each activation channel in the problem, which will 
+     impact each volume element and its estimate of the nuclides evolution over time }
+\item{Undersampling - extreme variance reduction can lead to undersampling in the problem,
+     if too many ``unimportant'' particles are followed it is possible for a false 
+     convergence to occur, leading to reasonable estimates of the statistical error but
+     not be truly converged to the final result. }
+\item{Neutron Transport Uncertainty - the neutron transport calculation has instrinsic uncertainties
+     in the calculation. These uncertainties are linked to how low the statiscal error is 
+     in the calculation, but also how converged the neutron spectra in a given mesh element is. For instance
+     the uncertainty in a given volume element may have a very low error in the total bin, but 
+     a large error in the thermal bins, when propagated through to an activation calculation
+     the activation may be dominated by the thermal bin and thus the estimate of the photon source 
+     in that volume element would be underestimate or overestimated.}
+\end{itemize}
+There is no formal mathematical procedure for estimating the uncertainty in the final
+dose rate, the number of driving sources of uncertainty are too large and complex to 
+simplify. Estimates of these quantites are the source of active research at a number
+of institutions world wide.
 
 \newpage
 \clearpage
@@ -2175,6 +2220,23 @@ quantity of storage space required to store the intermediate split results prior
 to merging, in this batch of simulations a total sum of 1.8 Tb of data was
 produced, but increasing the desired number of particle histories could see this 
 grow to 20 Tb of space.
+
+\subsection*{ Transport Improvements}
+\subsubsection*{Further Neutron Histories}
+This calculation ran a specific number of neutron histories which was limited by
+time contraints. Future calculations should run a greater number of neutron histories
+which would reduce the statistical noise in the \gls{sdr} photon sources and allow
+smaller uncertainty bars to be placed on the photon sources. 
+
+\subsubsection*{Higher Resolution \gls{sdr} Mesh}
+The neutron mesh decomposition used in this calculation was specicially chosen
+to allow the calculation to be decomposed into several \gls{htc} runs. The degree of 
+decomposition is determined by how much memory is used to store the neutron mesh
+with 175 energy groups and the number of spatial divisions, more spatial divisions
+resulting in a higher resolution spatial mesh. The higher the spatial resolution the 
+better the neutron flux gradients in the problem are resolved, however the computational
+complexity increases as more neutron transport calculations must be peformed. 
+
 
 \subsection*{Variance Reduction}
 The neutron transport section of this work was impacted by long histories, which appear to
@@ -2213,13 +2275,23 @@ simulations) that represents the importance of particles to the final response
 method and provides some insights into the physical interpretations of the 
 MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 
+\subsubsection*{Photon Variance Reduction}
+In future calculations if a specific target region has been indentified, it
+would be possible to use \gls{fwcadis} to speed up the photon transport
+calculation by using biasing parameters for the mesh source and using \gls{vr}
+parameters to split particles appropriately by attentuation, the combination
+of which would result in a more efficient simulation.
+
 \newpage
 \clearpage
 \bibliographystyle{unsrt}
 \bibliography{bibliography}
 \newpage
 \clearpage
-\renewcommand\thesection{\Alph{section}}
+
+\setcounter{section}{0}
+\renewcommand{\thesection}{\Alph{section}}
+\renewcommand*\theHsection{appendixsection.\Alph{section}}
 \section{Appendix - Materials used in the problem}
 \label{appendix_a}
 \input{materials.tex}
@@ -2363,7 +2435,6 @@ The following section shows contours of photon dose rate through a y = 0.0 cm sl
 \caption{Contours of total dose rate for decay time 3 for the B$_4$ case}
 \label{fig:photons_dc3_b4c_contours_l}
 \end{figure}
-
 
 \newpage
 \clearpage
