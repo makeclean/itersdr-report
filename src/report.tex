@@ -1172,7 +1172,7 @@ The \gls{r2s} shutdown dose rate calculations were performed using the
 using \gls{alara_c} 2.9.1RC. There was an activation calculation for each 
 neutron mesh and case, therefore
 there were a total of fourteen activation calculations performed. The activation
-calculations used a uniform `truncation tolerance' of $1.0\times10^8$, a parameter in \gls{alara_c}
+calculations used a uniform `truncation tolerance' of $1.0\times10^{-8}$, a parameter in \gls{alara_c}
 which details when the linearised transmutation chains should be terminated. The
 materials used in the activation calculation were taken directly from the 
 associated MCNP input decks. 
@@ -2118,9 +2118,6 @@ very high due to neutrons streaming along the pumping port.
 
 \newpage
 \clearpage
-
-\newpage
-\clearpage
 \subsection{Conclusion}
 It is clear from Figures \ref{fig:photons_dc1_no4bc_total} to 
 \ref{fig:photons_dc3_b4c_total_error_zoomed} that the shutdown photon dose rate 
@@ -2183,6 +2180,13 @@ there is a sequence of sources of uncertainty that must be considered.
      if too many ``unimportant'' particles are followed it is possible for a false 
      convergence to occur, leading to reasonable estimates of the statistical error but
      not be truly converged to the final result. }
+\item{Neutron Transport Uncertainty - the neutron transport calculation has instrinsic uncertainties
+     in the calculation. These uncertainties are linked to how low the statiscal error is 
+     in the calculation, but also how converged the neutron spectra in a given mesh element is. For instance
+     the uncertainty in a given volume element may have a very low error in the total bin, but 
+     a large error in the thermal bins, when propagated through to an activation calculation
+     the activation may be dominated by the thermal bin and thus the estimate of the photon source 
+     in that volume element would be underestimate or overestimated.}
 \end{itemize}
 There is no formal mathematical procedure for estimating the uncertainty in the final
 dose rate, the number of driving sources of uncertainty are too large and complex to 
@@ -2222,7 +2226,7 @@ grow to 20 Tb of space.
 This calculation ran a specific number of neutron histories which was limited by
 time contraints. Future calculations should run a greater number of neutron histories
 which would reduce the statistical noise in the \gls{sdr} photon sources and allow
-smaller uncertainty bars to be placed on the neutron sources 
+smaller uncertainty bars to be placed on the photon sources. 
 
 \subsubsection*{Higher Resolution \gls{sdr} Mesh}
 The neutron mesh decomposition used in this calculation was specicially chosen
