@@ -2045,19 +2045,19 @@ detailed contributions for each mesh shown in Figures
 \subsubsection{Breakdown of Cross Talk}
 We can examine the breakdown of cross talk within the problem and the effect 
 that the B$_4$C has upon the local fluxes. The full suite of data can be found
-in Section \ref{cross_talk_data}, however Figures \ref{fig:ct_ep_dc2},
+in Appendix \ref{cross_talk_data}, however Figures \ref{fig:ct_ep_dc2},
 \ref{fig:ct_ep_dc2_rel}, \ref{fig:b4c_ct_ep_dc2}, and \ref{fig:b4c_ct_ep_dc2_rel} 
-show the data for the baseline case and the with B$_4$C case for the equatorial 
+show the data for the baseline case and B$_4$C case for the equatorial 
 port for the second decay times. What is shown in the figures is that the \gls{epi}
 region around 70-90\% of the photon dose is produced by local activation, there are
 significant contributions from the the upper port in the range 0-10\% and 
 similarly 0-30\% of the photon dose originates from the pumping port. The 
 addition of the B$_4$C layer does little to alter the distribution of 
-relative contribution or the absolute value of SDR.
+relative contribution from each mesh to the SDR.
 \\
 \\
-For the \gls{upp}, the Figures are contained in Section \ref{cross_talk_data} and are 
-shown in Figures \ref{appendix:pt_ct_base} to \ref{appendix:pt_ct_b4c}. 
+For the \gls{upp}, the Figures are contained in Appendix \ref{cross_talk_data} and are 
+shown in Sections \ref{appendix:pt_ct_base} to \ref{appendix:pt_ct_b4c}. 
 Both the baseline case finds the dose rate in 
 the \gls{upi} is much higher than the 100 $\mu$Sv/hr guideline, just behind the 
 \gls{upp} the dose rate is more than 1 mSv/hr and even the contribution to the 
@@ -2067,8 +2067,8 @@ outboard side of ITER also contributes some 80 $\mu$Sv/hr to the dose rate in
 the \gls{epi}.
 \\
 \\
-For the \gls{lpp} the Figures are contained in Section \ref{cross_talk_data} and are 
-shown in Figures \ref{fig:ct_lp_dc1} to \ref{fig:ct_lp_dc3}. Both cases find the dose rate in 
+For the \gls{lpp} the Figures are contained in Appendix \ref{cross_talk_data} and are 
+shown in Sections \ref{fig:ct_lp_dc1} to \ref{fig:ct_lp_dc3}. Both cases find the dose rate in 
 the cryopump is significant $\sim$ 100 mSv/hr in the region of the cyropump. 
 This simulation contained the unshielded pumping port and thus the dose rate is 
 very high due to neutrons streaming along the pumping port. 
@@ -2134,11 +2134,10 @@ to strong sources in the cryopump, which has roughly the same contribution
 as the sources within the \gls{epi}.
 \\
 \\
-The individual cross talk contributions from meshes 5,6 and 7 (pumping duct, 
-upper port and equatorial port respectively) is in each case over the 100 
-$\mu$Sv/hr threshold, i.e. the cross talk from mesh 6 to mesh 5 is more than 100 
-$\mu$Sv/hr, similarly for mesh 5 to 7 etc. The worst example of cross talk was 
-found to be excessive streaming 
+The individual cross talk contributions from neighboring mesh regions is in each 
+case over the 100 $\mu$Sv/hr threshold.  That is, the cross talk from meshes 5 and 6
+to the \gls{epi} and from meshes 2 and 7 to the \gls{upi} are more than 100 $\mu$Sv/hr.
+The worst example of cross talk was found to be excessive streaming.
 \\
 \\
 It is also apparent that the utility of the B$_4$C present in the \gls{gepp}
@@ -2179,11 +2178,11 @@ limited the total number of runs that could be completed, however the underlying
 method was reliable. One of the issues associated with such a method is the
 quantity of storage space required to store the intermediate split results prior
 to merging, in this batch of simulations a total sum of 1.8 Tb of data was
-produced, consider that this represents only 10\% of the completed runs,
-therefore this simulation should have consumed some 20 Tb of space.
+produced, but increasing the desired number of particle histories could see this 
+grow to 20 Tb of space.
 
 \subsection*{Variance Reduction}
-The neutron section of this work was impacted by long histories, which appear to
+The neutron transport section of this work was impacted by long histories, which appear to
 be a pervasive problem in the ITER geometry due to the area available for
 neutrons to stream through, combined with the strong neutron attenuation though
 bulk shielding. Ultimately this problem needs a solution and there are several
