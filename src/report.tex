@@ -218,7 +218,8 @@ This analysis focused on only shutdown photon sources, and therefore does not
 contain prompt photon doses which are not present following machine shutdown. It
 does not contain neutrons that are the product of decay reactions, such as neutron
 production from activated water, which is a small component compared to the plasma
-source. 
+source. The uncertainty in the \gls{sdr} was estimated being between a relative 
+error of between 0.5 and 2.0.
 \\
 \\
 Future analysis should focus around improving analysis 1) Methods to decrease
@@ -2222,7 +2223,33 @@ there is a sequence of sources of uncertainty that must be considered.
 There is no formal mathematical procedure for estimating the uncertainty in the final
 dose rate, the number of driving sources of uncertainty are too large and complex to 
 simplify. Estimates of these quantites are the source of active research at a number
-of institutions world wide.
+of institutions world wide. 
+\\
+\\
+We can however attempt to estimate and lower bound and a reasonable upper bound. Estimation of the uncertainty 
+in the SDR is challenging due to a number of sources of uncertainty which may compensate each other in unexpected 
+ways. The correct method to determine the uncertainty in the SDR has not been performed, however we attempt an
+estimate below.
+
+1 - Neutronics Benchmarks - Several neutronics benchmarks have been performed 
+\cite{Kodeli2004717,Batistoni19941724,Fausser20112135,Batistoni1995504,Batistoni1997233,Flammini20151964,Klix2016,Kodeli2016,Angelone2016}
+and the majority show deviations from the experimental result of at between 5-50\%, we therefore 
+can ascribe a lower bound uncertainty of 5\% and an upper reasonable bound of 20\% in the neutron 
+result purely from nuclear data.
+2 - Activation Data Uncertainty - Activation data has uncertainty in the reaction channel encapsulated 
+as part of it, often as part of activation calculations the inventory code estimate in the uncertainty 
+in the nuclide due to all the formation channels, this is in the range 10-100\% depending upon the nuclide, 
+we can ascribe a lower bound estimate of 10\% and 20\% for an upper bound on the basis of the nuclides in this problem
+3 - Mesh Resolution - There has been only one study showing the effect of the activation mesh upon the final 
+result in an SDR calculation \cite{r2smesh}, and for cell based methods \cite{frej}, these suggest that the mesh may have 
+an uncertainty of 10\% at its lowest and an upper bound of 40\%
+4 - Neutron Histories - A target uncertainty in the total neutron flux for this calculation was 
+10\%, however this does not ascribe any uncertainty limits to the neutron spectrum, a reasonable 
+estimate of the effect is difficult to summarize, but a relative error of 10\% directly form the 
+flux as a lower bound and an upper bound of 20\% is ascribed.
+\\
+\\
+The smallest the total relative error could be therefore 0.45 and the highest reasonable estimate is 2.0
 
 \newpage
 \clearpage
