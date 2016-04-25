@@ -2184,6 +2184,24 @@ to merging, in this batch of simulations a total sum of 1.8 Tb of data was
 produced, but increasing the desired number of particle histories could see this 
 grow to 20 Tb of space.
 
+
+\subsection*{ Transport Improvments}
+\subsubsection*{Further Neutron Histories}
+This calculation ran a specific number of neutron histories which was limited by
+time contraints. Future calculations should run a greater number of neutron histories
+which would reduce the statistical noise in the \gls{sdr} photon sources and allow
+smaller uncertainty bars to be placed on the neutron sources 
+
+\subsubsection*{Higher Resolution \gls{sdr} Mesh}
+The neutron mesh decomposition used in this calculation was specicially chosen
+to allow the calculation to be decomposed into several \gls{htc} runs. The degree of 
+decomposition is determined by how much memory is used to store the neutron mesh
+with 175 energy groups and the number of spatial divisions, more spatial divisions
+resulting in a higher resolution spatial mesh. The higher the spatial resolution the 
+better the neutron flux gradients in the problem are resolved, however the computational
+complexity increases as more neutron transport calculations must be peformed. 
+
+
 \subsection*{Variance Reduction}
 The neutron transport section of this work was impacted by long histories, which appear to
 be a pervasive problem in the ITER geometry due to the area available for
@@ -2220,6 +2238,13 @@ simulations) that represents the importance of particles to the final response
  of the overall simulation. Reference \cite{mscadis} explains the theory of the MS-CADIS 
 method and provides some insights into the physical interpretations of the 
 MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
+
+\subsubsection*{Photon Variance Reduction}
+In future calculations if a specific target region has been indentified, it
+would be possible to use \gls{fwcadis} to speed up the photon transport
+calculation by using biasing parameters for the mesh source and using \gls{vr}
+parameters to split particles appropriately by attentuation, the combination
+of which would result in a more efficient simulation.
 
 \newpage
 \clearpage
