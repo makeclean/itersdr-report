@@ -50,7 +50,6 @@
 %\usepackage[printwatermark]{xwatermark}
 %\usepackage{mathptmx}
 %\usepackage{fouriernc}
-\usepackage[hidelinks]{hyperref}
 \usepackage{times}
 \usepackage{graphicx}
 \usepackage{longtable}
@@ -61,6 +60,8 @@
 \usepackage{subcaption}
 \usepackage{multirow}
 \usepackage{draftwatermark}
+\usepackage[hidelinks]{hyperref}
+
 \SetWatermarkText{DRAFT}
 \SetWatermarkScale{1}
 
@@ -273,6 +274,11 @@ still be several hundred $\mu$Sv/hr at $10^6$ seconds.
 \clearpage
 \glsresetall
 \setcounter{section}{0}
+
+\renewcommand*{\theHsection}{\Alph{section}}
+%\renewcommand*{\theHsubsection}{\the\value\one{subsection}}
+%\renewcommand*{\theHsubsubsection}{\the\value\two{subsubsection}}
+
 \section{Purpose}
 \subsection{Problem Statement}
 The shutdown dose rate in an around the equatorial and upper ports determine the
@@ -384,7 +390,7 @@ model represents several ITER systems in high levels of detail, with all detail
 retained in the \gls{epi}, the  \gls{upi}, and the Lower Port cryopump. Some of
 these models were previously used to generate \gls{mcnp5} input decks so have
 undergone some degree of simplification prior to being provided for use on this 
-problem.  The final geometry contained & VVV & volumes bounded by & SSS & surfaces.
+problem.  The final geometry contained 5481 volumes bounded by 69182 surfaces.
 \\
 \\
 Several modifications were necessary for the \gls{cad} to be fully usable. Several
@@ -434,8 +440,8 @@ New volumes, refered to as Graveyard volumes,  were created in order to apply
 the appropriate boundary conditions
 for the model.  As a 40${^\circ}$ model, reflecting boundaries are placed on
 either side of the model in the toroidal direction in the form of slabs. 
-In the radial direction, a cylindrical region is used to define a vacuum
-boundary condition.   %% Check this
+In the radial direction, a truncated cylindrical region is used to define a vacuum
+boundary condition. 
 There is no origination information for this component because it was 
 created by the University of Wisconsin – Fusion Technology Institute for the
 purpose of analyzing the model.
@@ -451,7 +457,7 @@ Due to the necessiry of model simplification in the process of generating native
 models, there were some geometrical 
 issues in the location of the rounded corners of these coils. The corners had 
 been segmented for MCNP simplification. These segmentation's caused geometrical 
-problems when the model is converted back to a \gls{CAD} representation using CUBIT 
+problems when the model is converted back to a \gls{cad} representation using CUBIT 
 in preparation for the neutronics 
 calculations with DAG-MCNP. The solution was to delete the segments and 
 recreate the curved bends in the coils. The added benefit is that it also 
@@ -490,7 +496,7 @@ from this geometry were modified or removed. These volumes were either too
 detailed, in which case they were simplified, or were placeholder volumes 
 and thus were not necessary for neutronics analysis. Also, many overlaps
 within the geometry were removed. These included overlaps with surrounding 
-geometry, such as the & XXXXXXXXX & of the vacuum vessel and the bioshield. 
+geometry, such as the equatorial port region the vacuum vessel and the bioshield. 
 In addition to the geometrical modifications, the half-instances on the 0 and 40
 degree boundaries were created as duplicates of the original geometry.
 
@@ -1160,7 +1166,7 @@ The \gls{r2s} shutdown dose rate calculations were performed using the
 using \gls{alara_c} 2.9.1RC. There was an activation calculation for each 
 neutron mesh and case, therefore
 there were a total of fourteen activation calculations performed. The activation
-calculations used a uniform `truncation tolerance', a parameter in \gls{alara_c}
+calculations used a uniform `truncation tolerance' of $1.0\times10^8$, a parameter in \gls{alara_c}
 which details when the linearised transmutation chains should be terminated. The
 materials used in the activation calculation were taken directly from the 
 associated MCNP input decks. 
@@ -2363,7 +2369,6 @@ The following section shows contours of photon dose rate through a y = 0.0 cm sl
 \caption{Contours of total dose rate for decay time 3 for the B$_4$ case}
 \label{fig:photons_dc3_b4c_contours_l}
 \end{figure}
-
 
 \newpage
 \clearpage
