@@ -218,46 +218,22 @@ This analysis focused on only shutdown photon sources, and therefore does not
 contain prompt photon doses which are not present following machine shutdown. It
 does not contain neutrons that are the product of decay reactions, such as neutron
 production from activated water, which is a small component compared to the plasma
-source. The uncertainty in the \gls{sdr} was estimated being between a relative 
-error of between 0.5 and 2.0.
+source. Although it is not possible to rigorously asses the uncertainty in a calculation 
+of this scope, the uncertainty has been estimated as a factor of 2. That is, 
+the actual results are expected to be between 0.5 times and 2 times the simulated results.
 \\
 \\
-Future analysis should focus around improving analysis 1) Methods to decrease
+Future analysis should focus on improvements such as 1) methods to decrease
 the \gls{sdr} 2)  consider other 
-sources of radiation at shutdown, and 3) Estimate the quantity of tritium 
+sources of radiation at shutdown, and 3) estimate the quantity of tritium 
 relased with the introduction of so much B$_4$C as shielding material.
 \\
 \\
-1 - Methods to decrease the \gls{sdr} in the person 
+Focus should be placed on methods to decrease the \gls{sdr} in the person 
 access required areas such as the equatorial and upper port interspaces. A 
 significant finding in the upper ports was that a significant fraction of the
 \gls{sdr} comes from decay photons created outside the upper port, from the activation
-of the structural components nearby. Focus should be placed on improving 
-shielding internal to the strong sources, possible on improving the \gls{vv} 
-filler near the \gls{pfc}2 or strong local shielding. Further B$_4$C additions 
-should be considered around \gls{pfc}2 and potentially in the regions between 
-the vessel extensions.  
-\\
-\\
-2 - It was been found \cite{Khripunov2001899} that neutrons may be produced in significant
-quantities following machine shutdown some $2\times10^{16}$ n/s immediately 
-after shutdown, and following a trend with the decay of induced radioactivity. 
-The last survey of this effect was peformed with neutron diagnostics in mind 
-and the impact of these photoneutrons, it would be prudent therefore to 
-consider the effect that these photoneutrons may have 
-post machine shutdown and during port maintenence operations. Part of this 
-survey may need to do some physics code comparison regarding the treatment of
-photoneutrons.
-\\
-\\
-3 - Boron Carbide is such an effective material at reducing shutdown for 2 main 
-reasons, 1) it is very effective at absorbing thermal neutrons and 2) the carbon
- present is a reasonable moderator of neutrons. The thermal capture reactions 
-on B$_4$C progress via two pathways $^{10}$B(n,$\alpha$)$^7$Li and 
-$^{10}$B(n,p)$^{10}$Be. The lithium producing reaction further progresses via 
-$^7$Li(n,$\alpha$)$^3$H, ultimately producing tritium. Production of tritium is 
-often a concern and it should be verified that such quantities 
-of B$_4$C ultimately do not offgas tritium and helium at too great a level. 
+of the structural components nearby. 
 
 \newpage
 \blankpage
@@ -2237,9 +2213,9 @@ and the majority show deviations from the experimental result of at between 5-50
 can ascribe a lower bound uncertainty of 5\% and an upper reasonable bound of 20\% in the neutron 
 result purely from nuclear data.
 2 - Activation Data Uncertainty - Activation data has uncertainty in the reaction channel encapsulated 
-as part of it, often as part of activation calculations the inventory code estimate in the uncertainty 
-in the nuclide due to all the formation channels, this is in the range 10-100\% depending upon the nuclide, 
-we can ascribe a lower bound estimate of 10\% and 20\% for an upper bound on the basis of the nuclides in this problem
+as part of it. Inventory codes are often able to provide an estimate in the uncertainty 
+of the producion of the nuclide due to all the formation channels, this is nuclide dependent but typically in the range 10-100\%. 
+We can ascribe a lower bound estimate of 10\% and 20\% for an upper bound on the basis of the nuclides in this problem
 3 - Mesh Resolution - There has been only one study showing the effect of the activation mesh upon the final 
 result in an SDR calculation \cite{r2smesh}, and for cell based methods \cite{frej}, these suggest that the mesh may have 
 an uncertainty of 10\% at its lowest and an upper bound of 40\%
