@@ -1074,7 +1074,9 @@ with the FENDL-2.1 46 group neutron photon library, with solver settings
 8 azimuthal angles, 8 polar angles with P$_3$ diffusion correction. 
 \gls{advantg} only implements reflecting boundaries on the principal axes of a 
 problem, requiring a geometry that fills either a 90$^{\circ}$ or 180$^{\circ}$ 
-sector, or fills the entire 360$^{\circ}$.  The Denovo
+sector, or fills the entire 360$^{\circ}$. In terms of discretizing the geometry
+30 rays were fired per element along the z-direction and material mixture
+sensitivity was set such that a tolerance of 0.01 was used. The Denovo
 solver used was \texttt{gmres} with the \texttt{cesaro} transport correction. 
 The solution mesh was divided in the x direction from -1800.0 to 0.0 cm into 84 bins and 
 from 0.0 to 1800 cm into 180 bins. The solution mesh was split in the y direction from 
@@ -1083,6 +1085,8 @@ to 1800.0 cm into 45 bins. The solution mesh was split in the z direction from -
 to 1900.0 cm into 240 bins. The differing resolutions used in the mesh was to
 focus the detailed parts of the mesh into the 40 $^{\circ}$ sector of interest,
 using the rest of the lower resolution parts to ensure the correct boundary conditions.
+The \gls{fwcadis} response weighting was set to produce a uniform variance in the problem
+across all energies. 
 
 \subsection{Neutron Transport}
 
