@@ -232,8 +232,8 @@ relased with the introduction of so much B$_4$C as shielding material.
 Focus should be placed on methods to decrease the \gls{sdr} in the person 
 access required areas such as the equatorial and upper port interspaces. A 
 significant finding in the upper ports was that a significant fraction of the
-\gls{sdr} comes from decay photons created outside the upper port, from the activation
-of the structural components nearby. 
+\gls{sdr} comes from decay photons created outside the upper port, from the 
+activation of the structural components nearby. 
 
 \newpage
 \blankpage
@@ -384,12 +384,20 @@ typically occur when particles stream along a narrow gap travelling to regions
 where their predicted weight is very much lower than their current weight. The 
 particle is rouletted into several low weight particles, and (typically but not
 always) the rouletted particles will interact again and be rouletted again and 
-so on. Single core  simulation long histories are not so much of a problem as 
+so on. The root cause of long histories root cause is a poor description of 
+geometric fidelity of the model which is impossible on a Cartesian mesh as 
+elements are unlikely to correspond well to the underlying 
+geometry, which leads 1) the issue that rays in the deterministic problem do not
+allign with streaming channels in the problem and 2) the issue of material mixing
+due to poor correlation of mesh elements and streaming channels. These inaccuracies
+can decreate the efficiency of Monte Carlo simulations.
+Single core simulation long histories are not so much of a problem as 
 at some point the calculation will terminate. However, in large scale parallel 
 computation long histories mean that in the case of MCNP the calculation will
 not rendezvous regularly and therefore often simulations are terminated by the 
-queuing system. 
-
+queuing system. In this work we mitigate some the the problems with the parallel 
+version of MCNP by using a distributed as described in 
+\ref{section:job_level_parallelism}.
 
 \subsection{Input Description}
 \subsubsection{The Model Geometry}
@@ -759,7 +767,8 @@ case with the B$_4$C liner and one without.
 
 \subsubsection{Variance Reduction}
 The weight window parameters were generated using the \gls{ornl} code
-\gls{advantg}, specifically using DAG-\gls{advantg}, which allows a
+\gls{advantg}, specifically using a version of \gls{advantg} coupled to \gls{dagmc}
+, which allows a
 \gls{dagmc} geometry to be read and the geometry and material data handed off to
 Denovo. The weight windows were produced using the \gls{fwcadis},
 which attempts to produce a weight window map which tries to get particles
@@ -789,6 +798,7 @@ answer, allowing for further memory reductions or fidelity increases.
 
 
 \subsubsection{Job-level Parallelism}
+\label{section:job_level_parallelism}
 Parallelism over many processors was necessary to achieve this calculation in
 a reasonable time. Methodologies with extreme variance reduction can produce
 pathologically long histories.  In such problems, individual histories may
@@ -1077,9 +1087,17 @@ FISPACT \cite{fispact} in the past and gives numerically equivalent results.
 
 \subsection{Neutron Transport Variance Reduction}
 
-For the generation of weight windows, \gls{advantg} was configured to run
-with the FENDL-2.1 46 group neutron photon library, with solver settings
-8 azimuthal angles, 8 polar angles with P$_3$ diffusion correction. 
+For the generation of weight windows, \gls{advantg} was used to employ the 
+\gls{fwcadis} method to generate the weight windows and the source
+biasing parameters for the neutron transport calculation of this analysis. 
+The adjoint source in \gls{advantg} was defined to represent a rectangular 
+parallel pipe that extend from x=-1000 cm to x=1900 cm, y=-1000 cm to y=1000 cm, 
+and z=-1550 cm to z=1900 cm. These dimensions are much larger than the
+dimensions of the 40° sector of the ITER Clite model in the x and y 
+directions to account for the reflection in these directions. Denovo was
+configured to run with the FENDL-2.1 46 group neutron photon library, with solver settings
+using a quadruple range quadrature set \cite{jarrell} with 8 azimuthal angles and 8 polar angles,
+and a P$_3$ diffusion correction was used. 
 \gls{advantg} only implements reflecting boundaries on the principal axes of a 
 problem, requiring a geometry that fills either a 90$^{\circ}$ or 180$^{\circ}$ 
 sector, or fills the entire 360$^{\circ}$. In terms of discretizing the geometry
@@ -1094,8 +1112,9 @@ to 1900.0 cm into 240 bins. The differing resolutions used in the mesh was to
 focus the detailed parts of the mesh into the 40 $^{\circ}$ sector of interest,
 using the rest of the lower resolution parts to ensure the correct boundary conditions.
 The \gls{fwcadis} response weighting was set to produce a uniform variance in the problem
-across all energies. 
-
+across all energies. The spatial treatment of the \gls{fwcadis}  adjoint source was set to
+be global, which does not preferentially increase the population of the simulated
+neutrons in mesh tally elements with larger volumes. 
 \subsection{Neutron Transport}
 
 In each case, the neutron flux was tallied in 175 energy groups using the
@@ -1278,7 +1297,8 @@ left hand image of Figure \ref{fig:wwinp_thermal}. The overall span of the weigh
 is seven orders of magnitude, which is largely proportional to the neutron
 attenuation from the plasma to the port interspace, previous calculations put
 the attenuation in the range of 6 to 8 orders of magnitude. There is some
-evidence of component shadowing in the weight window solution in the right hand image
+evidence of component shadowing, a ray effect like trace in the \gls{epi}, 
+in the weight window solution in the right hand image
 of Figure \ref{fig:wwinp_thermal} due to the neutron attenuation of some \gls{epi}
 shielding around the diagnostic equipment. Overall the solution appears reasonable.
 \\
@@ -1286,7 +1306,7 @@ shielding around the diagnostic equipment. Overall the solution appears reasonab
 Since neither 90$^{\circ}$ nor 180$^{\circ}$ are integer multiples of 40$^{\circ}$,
 this model must be rotated and replicated to fill a full 360$^{\circ}$ space.
 \gls{ornl} specifically developed the 360$^{\circ}$
-rotation feature for DAG-\gls{advantg} that allows rotationally symmetric
+rotation feature for \gls{advantg} that allows rotationally symmetric
 bodies.  Therefore, weight window values are observed beyond the 40$^{\circ}$ sector.
 
 \subsection{Baseline Neutron Flux Reults}
@@ -1309,13 +1329,6 @@ vacuum vessel.
   \label{fig:neutrons_baseline_relerr}
   \caption{The relative error in the total neutron flux from the baseline case}
 \end{figure}
-
-%% NOTE [PPHW]: Discussion of the neutron flux errors should come here.
-
-%% What do we mean "given the limitations imposed...."?  Presumably we chose a
-%% total NPS for this problem.  How did we chose it?  A) we didn't have more
-%% time? B) we monitored it and stopped when we reached an adequate level of
-%% statistical error? C) we chose it arbitrarily?
 
 The statistical uncertainty in the total neutron flux around many regions where the
 activation is likely to contribute to the dose is $\sim$ 10-20\% and thus
@@ -2225,8 +2238,6 @@ an uncertainty of 10\% at its lowest and an upper bound of 40\%}
 estimate of the effect is difficult to summarize, but a relative error of 10\% directly form the 
 flux as a lower bound and an upper bound of 20\% is ascribed.}
 \end{enumerate}
-\\
-\\
 The smallest the total relative error could be therefore in the range 0.7 to 1.45 and the highest reasonable 
 estimate is 0.5 to 2.0
 
