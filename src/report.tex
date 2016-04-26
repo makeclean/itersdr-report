@@ -384,19 +384,21 @@ typically occur when particles stream along a narrow gap travelling to regions
 where their predicted weight is very much lower than their current weight. The 
 particle is rouletted into several low weight particles, and (typically but not
 always) the rouletted particles will interact again and be rouletted again and 
-so on. The root cause of long histories root cause is a poor description of 
-geometric fidelity of the model which is impossible on a Cartesian mesh as 
-elements are unlikely to correspond well to the underlying 
-geometry, which leads 1) the issue that rays in the deterministic problem do not
-allign with streaming channels in the problem and 2) the issue of material mixing
-due to poor correlation of mesh elements and streaming channels. These inaccuracies
-can decreate the efficiency of Monte Carlo simulations.
-Single core simulation long histories are not so much of a problem as 
-at some point the calculation will terminate. However, in large scale parallel 
+so on. The root cause of long histories is the inconsistency of the materials
+definitions between the deterministic and the Monte Carlo models in the hybrid
+MC/deterministic method implementation. Even with the materials mixing
+implemented in \gls{advantg} \cite{advantg}, the accurate representation of the
+materials of the Monte Carlo model using a Cartesian deterministic mesh is
+practically impossible. Consequently the variance reduction parameters
+generated using the FW-CADIS method may suffer from inaccuracies, especially
+in narrow and complicated streaming paths, that can decrease the efficiency of
+the Monte Carlo calculation.  
+Single core simulation long histories are not so much of a problem as at some
+point the calculation will terminate. However, in large scale MPI-based parallel
 computation long histories mean that in the case of MCNP the calculation will
-not rendezvous regularly and therefore often simulations are terminated by the 
-queuing system. In this work we mitigate some the the problems with the parallel 
-version of MCNP by using a distributed as described in 
+not rendezvous regularly and therefore often simulations are terminated by the
+queuing system. In this work we mitigate some the the problems with the
+parallel version of MCNP by using a distributed as described in
 \ref{section:job_level_parallelism}.
 
 \subsection{Input Description}
@@ -1087,6 +1089,37 @@ FISPACT \cite{fispact} in the past and gives numerically equivalent results.
 
 \subsection{Neutron Transport Variance Reduction}
 
+\gls{advantg} was used to employ the \gls{fwcadis} method to generate the 
+weight windows and the source biasing parameters for the neutron transport
+calculation of this analysis. The adjoint source in \gls{advantg} was defined
+to represent a rectangular parallel pipe that extend from x=-1000 cm to x=1900
+cm, y=-1000 cm to y=1000 cm, and z=-1550 cm to z=1900 cm. These dimensions are
+much larger than the dimensions of the 40$^{\circ}$ sector of the ITER Clite
+model in the x and y directions to account for the reflection in these
+directions. The Denovo mesh was divided in the x direction from -1800.0 to 0.0
+cm into 84 bins and from 0.0 to 1800 cm into 180 bins. The solution mesh was
+split in the y direction from - 1800.0 to -650.0 into 45 bins, from -650.0 to
+650.0 cm into 130 bins, and from 650.0 to 1800.0 cm into 45 bins. The solution
+mesh was split in the z direction from -1500.0 to 1900.0 cm into 240 bins. The
+differing resolutions used in the mesh was to focus the detailed parts of the
+mesh into the 40$^{\circ}$ sector of interest, using the rest of the lower
+resolution parts to ensure the correct boundary conditions. To optimize the
+population of the simulated neutrons in each of the individual neutron energy
+group in the Monte Carlo calculation, the \gls{advantg} response weighting
+option (fwcadis\_response\_weighting) was set to be false. When this option is
+true, \gls{advantg} constructs the adjoint source to accelerate an
+energy-integrated response (e.g., dose or total flux). When it is
+False, \gls{advantg} generates parameters with the objective of obtaining
+relatively uniform uncertainties across all energy groups. The spatial
+treatment of the \gls{fwcadis} adjoint source weighting
+(fwcadis\_spatial\_treatment) was set to be “global” as recommended for mesh
+tallies \cite{advantg}. This treatment does not preferentially increase the
+population of the simulated neutrons in mesh tally elements with larger
+volumes. A Quadruple Range Quadrature \cite{jarrell} with 8
+polar angles and 8 azimuthal angles was used with a P 3 scattering order for
+the Denovo forward and adjoint calculations in this analysis. The Denovo
+calculations used a FENDL-2.1 46 group neutron photon library.
+
 For the generation of weight windows, \gls{advantg} was used to employ the 
 \gls{fwcadis} method to generate the weight windows and the source
 biasing parameters for the neutron transport calculation of this analysis. 
@@ -1296,11 +1329,7 @@ has handled the streaming of neutrons along the divertor duct well as shown in
 left hand image of Figure \ref{fig:wwinp_thermal}. The overall span of the weight window
 is seven orders of magnitude, which is largely proportional to the neutron
 attenuation from the plasma to the port interspace, previous calculations put
-the attenuation in the range of 6 to 8 orders of magnitude. There is some
-evidence of component shadowing, a ray effect like trace in the \gls{epi}, 
-in the weight window solution in the right hand image
-of Figure \ref{fig:wwinp_thermal} due to the neutron attenuation of some \gls{epi}
-shielding around the diagnostic equipment. Overall the solution appears reasonable.
+the attenuation in the range of 6 to 8 orders of magnitude. Overall the solution appears reasonable.
 \\
 \\
 Since neither 90$^{\circ}$ nor 180$^{\circ}$ are integer multiples of 40$^{\circ}$,
@@ -1310,18 +1339,26 @@ rotation feature for \gls{advantg} that allows rotationally symmetric
 bodies.  Therefore, weight window values are observed beyond the 40$^{\circ}$ sector.
 
 \subsection{Baseline Neutron Flux Reults}
+
+For the baseline case, the total neutron flux and its associated statistical
+errors are shown in Figures \ref{fig:neutron_baseline}
+and \ref{fig:neutron_baseline_relerr}, respectively.  Flux results are given
+in units of neutrons/cm$^2$/src, and are converted to fluxes by normalizing to
+the neutron source intensity for each pulse in the irradiation schedule as
+shown in column 3 of Table \ref{tab:irrad_scenario}.
+
 The baseline results represent a standard C-lite model since there is no
 B$_4$C liner present.  However, relative to the standard C-lite
 native \gls{mcnp5} model there is much more equipment present in
-the \gls{upi} \& \gls{epi}, and the divertor pumping port contains only a cryopump. The
-open pumping port specifically leads to higher neutron fluxes beyond the
-vacuum vessel. 
+the \gls{upi} \& \gls{epi}, and the divertor pumping port contains only a
+cryopump. The open pumping port specifically leads to higher neutron fluxes
+beyond the vacuum vessel.
 
 \begin{figure}[ht!]
   \centering
   \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/{Neutron_Result_(All_Energy_Groups)_Meshes_1-7}.png}     
   \label{fig:neutrons_baseline}
-  \caption{The total neutron flux from the baseline case}
+  \caption{The total neutron flux from the baseline case $[n/cm^2/src]$}
 \end{figure}
 \begin{figure}[ht!]
   \centering
@@ -1341,6 +1378,13 @@ uncertainty in \gls{sdr} photon dose results.
 \newpage
 \clearpage
 \subsection{Including the B4C Liner}
+For the case with B$_4$C liner, the total neutron flux and its associated
+statistical errors are shown in Figures \ref{fig:neutron_no4bc}
+and \ref{fig:neutron_no4bc_relerr}, respectively.  As with the baseline case,
+flux results are given in units of neutrons/cm$^2$/src, and are converted to
+fluxes by normalizing to the neutron source intensity for each pulse in the
+irradiation schedule as shown in column 3 of Table \ref{tab:irrad_scenario}.
+
 Relative to the baseline model, these results include only the addition 
 of the B$_4$C liner.  As with the baseline model, relative to the standard 
 C-lite native \gls{mcnp5} model there is much more
@@ -1350,7 +1394,7 @@ pumping port contains only a cryopump.
   \centering
   \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_with_b4c/{Neutron_Result_(All_Energy_Groups)_Meshes_1-7}.png}     
   \label{fig:neutrons_no4bc}
-  \caption{The total neutron flux from the B$_4$C case}
+  \caption{The total neutron flux from the B$_4$C case $[n/cm^2/src]$}
 \end{figure}
 \begin{figure}[ht!]
   \centering
@@ -1358,6 +1402,10 @@ pumping port contains only a cryopump.
   \label{fig:neutrons_no4bc_relerr}
   \caption{The relative error in the total neutron flux from the B$_4$C case}
 \end{figure}
+
+The statistical uncertainties in the neutron fluxes for the case with the
+B$_4$C liner are nominally the same as for the case without: $\sim$ 10-20\% in
+the locations where the activation is likely to contribute to the dose.
 
 \newpage
 \clearpage
@@ -1372,7 +1420,7 @@ in Figure \ref{fig:total_flux_ep}.
 \begin{figure}[ht!]
   \centering
   \includegraphics[angle=-90,clip,scale=0.15]{../plots/neutron/total_flux_ep.png}     
-  \caption{The total flux in found along a line 0,0,0 cm to 1800,0,0 cm}
+  \caption{The total flux and flux ratio along a line 0,0,0 cm to 1800,0,0 cm}
   \label{fig:total_flux_ep}
 \end{figure}
 
@@ -1387,7 +1435,7 @@ similar features can be seen.
 \begin{figure}[ht!]
   \centering
   \includegraphics[angle=-90,clip,scale=0.15]{../plots/neutron/total_flux_up.png}     
-  \caption{The total flux in found along a line 0,0,500 cm to 1800,0,500 cm}
+  \caption{The total flux and flux ratio along a line 0,0,500 cm to 1800,0,500 cm}
   \label{fig:total_flux_up}
 \end{figure}
 We see that there is increasing effect in the B$_4$C closer to the bioshield, peaking
@@ -1402,7 +1450,7 @@ If we examine the thermal flux from the equatorial port line out shown in Figure
 \begin{figure}[ht!]
   \centering
   \includegraphics[angle=-90,clip,scale=0.15]{../plots/neutron/thermal_flux_ep.png}     
-  \caption{The total flux in found along a line 0,0,0 cm to 1800,0,0 cm}
+  \caption{The total flux and flux ratio along a line 0,0,0 cm to 1800,0,0 cm}
   \label{fig:thermal_flux_ep}
 \end{figure}
 We can see that the thermal neutron flux is significantly lower
