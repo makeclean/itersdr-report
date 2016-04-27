@@ -1120,34 +1120,7 @@ polar angles and 8 azimuthal angles was used with a P 3 scattering order for
 the Denovo forward and adjoint calculations in this analysis. The Denovo
 calculations used a FENDL-2.1 46 group neutron photon library.
 
-For the generation of weight windows, \gls{advantg} was used to employ the 
-\gls{fwcadis} method to generate the weight windows and the source
-biasing parameters for the neutron transport calculation of this analysis. 
-The adjoint source in \gls{advantg} was defined to represent a rectangular 
-parallel pipe that extend from x=-1000 cm to x=1900 cm, y=-1000 cm to y=1000 cm, 
-and z=-1550 cm to z=1900 cm. These dimensions are much larger than the
-dimensions of the 40° sector of the ITER Clite model in the x and y 
-directions to account for the reflection in these directions. Denovo was
-configured to run with the FENDL-2.1 46 group neutron photon library, with solver settings
-using a quadruple range quadrature set \cite{jarrell} with 8 azimuthal angles and 8 polar angles,
-and a P$_3$ diffusion correction was used. 
-\gls{advantg} only implements reflecting boundaries on the principal axes of a 
-problem, requiring a geometry that fills either a 90$^{\circ}$ or 180$^{\circ}$ 
-sector, or fills the entire 360$^{\circ}$. In terms of discretizing the geometry
-30 rays were fired per element along the z-direction and material mixture
-sensitivity was set such that a tolerance of 0.01 was used. The Denovo
-solver used was \texttt{gmres} with the \texttt{cesaro} transport correction. 
-The solution mesh was divided in the x direction from -1800.0 to 0.0 cm into 84 bins and 
-from 0.0 to 1800 cm into 180 bins. The solution mesh was split in the y direction from 
--1800.0 to -650.0 into 45 bins, from -650.0 to 650.0 cm into 130 bins, and from 650.0 
-to 1800.0 cm into 45 bins. The solution mesh was split in the z direction from -1500.0
-to 1900.0 cm into 240 bins. The differing resolutions used in the mesh was to
-focus the detailed parts of the mesh into the 40 $^{\circ}$ sector of interest,
-using the rest of the lower resolution parts to ensure the correct boundary conditions.
-The \gls{fwcadis} response weighting was set to produce a uniform variance in the problem
-across all energies. The spatial treatment of the \gls{fwcadis}  adjoint source was set to
-be global, which does not preferentially increase the population of the simulated
-neutrons in mesh tally elements with larger volumes. 
+
 \subsection{Neutron Transport}
 
 In each case, the neutron flux was tallied in 175 energy groups using the
@@ -1341,8 +1314,8 @@ bodies.  Therefore, weight window values are observed beyond the 40$^{\circ}$ se
 \subsection{Baseline Neutron Flux Reults}
 
 For the baseline case, the total neutron flux and its associated statistical
-errors are shown in Figures \ref{fig:neutron_baseline}
-and \ref{fig:neutron_baseline_relerr}, respectively.  Flux results are given
+errors are shown in Figures \ref{fig:neutrons_baseline}
+and \ref{fig:neutrons_baseline_relerr}, respectively.  Flux results are given
 in units of neutrons/cm$^2$/src, and are converted to fluxes by normalizing to
 the neutron source intensity for each pulse in the irradiation schedule as
 shown in column 3 of Table \ref{tab:irrad_scenario}.
@@ -1357,14 +1330,14 @@ beyond the vacuum vessel.
 \begin{figure}[ht!]
   \centering
   \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/{Neutron_Result_(All_Energy_Groups)_Meshes_1-7}.png}     
-  \label{fig:neutrons_baseline}
   \caption{The total neutron flux from the baseline case $[n/cm^2/src]$}
+  \label{fig:neutrons_baseline}
 \end{figure}
 \begin{figure}[ht!]
   \centering
   \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model/Neutron_Result_Relative_Error_Meshes_1-7.png}     
-  \label{fig:neutrons_baseline_relerr}
   \caption{The relative error in the total neutron flux from the baseline case}
+  \label{fig:neutrons_baseline_relerr}
 \end{figure}
 
 The statistical uncertainty in the total neutron flux around many regions where the
@@ -1379,8 +1352,8 @@ uncertainty in \gls{sdr} photon dose results.
 \clearpage
 \subsection{Including the B4C Liner}
 For the case with B$_4$C liner, the total neutron flux and its associated
-statistical errors are shown in Figures \ref{fig:neutron_no4bc}
-and \ref{fig:neutron_no4bc_relerr}, respectively.  As with the baseline case,
+statistical errors are shown in Figures \ref{fig:neutrons_no4bc}
+and \ref{fig:neutrons_no4bc_relerr}, respectively.  As with the baseline case,
 flux results are given in units of neutrons/cm$^2$/src, and are converted to
 fluxes by normalizing to the neutron source intensity for each pulse in the
 irradiation schedule as shown in column 3 of Table \ref{tab:irrad_scenario}.
@@ -1393,14 +1366,14 @@ pumping port contains only a cryopump.
 \begin{figure}[ht!]
   \centering
   \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_with_b4c/{Neutron_Result_(All_Energy_Groups)_Meshes_1-7}.png}     
-  \label{fig:neutrons_no4bc}
   \caption{The total neutron flux from the B$_4$C case $[n/cm^2/src]$}
+  \label{fig:neutrons_no4bc}
 \end{figure}
 \begin{figure}[ht!]
   \centering
   \includegraphics[trim={0cm 9cm 0cm 10cm},clip,scale=0.75]{../plots/final_model_with_b4c/Neutron_Result_Relative_Error_Meshes_1-7.png}     
-  \label{fig:neutrons_no4bc_relerr}
   \caption{The relative error in the total neutron flux from the B$_4$C case}
+  \label{fig:neutrons_no4bc_relerr}
 \end{figure}
 
 The statistical uncertainties in the neutron fluxes for the case with the
