@@ -422,8 +422,9 @@ person-months of time was invested in cleaning, repairing and building multiple
 components multiple times. The overall \gls{cad} model in shown in Figure 
 \ref{fig:cad_iter_global}, in which the broad details of the model can be seen. In
 Table \ref{tab:cad_components} the origin of each file, the format it was received
-in and whether it was modified as part of this analysis or not.
-
+in and whether it was modified as part of this analysis or not. Where possible mass
+was conserved, however for very small components for example when filling bolt holes
+small bolt heads and threads were discarded.
 
 \begin{centering}
  \begin{table}[ht!]
@@ -495,7 +496,8 @@ STEP (.step, .stp) format. In addition to the vacuum vessel geometry around the
 plasma, port components were used from the file CLITE\_V1\_REV131031\_SPACECLAIM 
 that was received from ITER. The vacuum vessel geometry was modified in several 
 ways. The simple components of the BL-Lite geometry were modified to include 
-the in-wall plates within the vacuum vessel shells. Also, overlaps were removed 
+the in-wall plates, with all detail retained. within the vacuum vessel shells.
+Also, overlaps were removed 
 from the VV geometry for both the shells and the ports. Finally, the “fill
 volume” between the shells was added. This fill volume represents the internal 
 coolant water as well as the IWS plate
