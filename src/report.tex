@@ -218,15 +218,18 @@ This analysis focused on only shutdown photon sources, and therefore does not
 contain prompt photon doses which are not present following machine shutdown. It
 does not contain neutrons that are the product of decay reactions, such as neutron
 production from activated water, which is a small component compared to the plasma
-source. Although it is not possible to rigorously asses the uncertainty in a calculation 
+source. Although it is not possible to rigorously assess the uncertainty in a calculation 
 of this scope, the uncertainty has been estimated as a factor of 2. That is, 
 the actual results are expected to be between 0.5 times and 2 times the simulated results.
+This estimate includes uncertainty in neutron transport, activation, photon transport and
+those due to the resolution of the activation mesh. 
 \\
 \\
 Future analysis should focus on improvements such as 1) methods to decrease
 the \gls{sdr} 2)  consider other 
 sources of radiation at shutdown, and 3) estimate the quantity of tritium 
-relased with the introduction of so much B$_4$C as shielding material.
+relased with the introduction of so much B$_4$C as shielding material, tritium
+being produced via the ${^10}$B(n,$\alpha$)$^7$Li(n,$^3$He)$^3$H reaction.
 \\
 \\
 Focus should be placed on methods to decrease the \gls{sdr} in the person 
@@ -266,8 +269,8 @@ The use of multiple mesh-based sources allows the determination of some insight
 into which source meshes are responsible for the resultant dose rate.
 \\
 \\
-It was found that for the lowest decay time the impact of the B$_4$C layer was 
-largest: at the lowest decay time the dose rate in the \gls{epi} was reduced
+It was found that for the shortest decay time the impact of the B$_4$C layer was 
+largest: at the shortest decay time the dose rate in the \gls{epi} was reduced
 by a factor of $\sim$ 2-3, while for the longest decay times by a factor of at 
 most 1.30. It was found that for the \gls{epi} and \gls{upi} at each decay time 
 the dose rate was dominated by the contribution from the source defined in that
@@ -292,11 +295,11 @@ still be several hundred $\mu$Sv/hr at $10^6$ seconds.
 
 \section{Purpose}
 \subsection{Problem Statement}
-The shutdown dose rate in an around the equatorial and upper ports determine the
-type and duration of maintenance that can be performed by person access. Thus,
+The shutdown dose rate in an around the equatorial and upper ports determines the
+type and duration of maintenance that can be performed by personel access. Thus,
 minimization of the dose rate is desirable and indeed encouraged by the 
-\gls{alara_p} principles used at ITER. Since initial estimates indicate that
-these dose rates are larger than desirable, it was recently suggested in the 
+\gls{alara_p} principle used at ITER. Since initial estimates indicate that
+these dose rates are larger than desirable, it was suggested in the 
 Neutronics Task Force that lining the plasma side of the concrete bioshield 
 with a thin (5 mm thickness) layer of boron carbide (B$_4$C). The purpose 
 of the layer is to absorb much of the thermal flux which would otherwise lead 
@@ -322,7 +325,7 @@ This report fulfills deliverable 7 of the task agreement.
 \section{Solution Methodology}
 \subsection{Background}
 \subsubsection{Rigorous Two Step (R2S) Method}
-The \gls{r2s} method \cite{r2s} is the primary method of generating shutdown
+The \gls{r2s} method \cite{r2s} is one method of generating shutdown
 photon dose rates and fluxes for fusion devices. The method consists of 3 main
 steps.  Neutron transport simulations generate a detailed three-dimensional
 map of multi-group neutron fluxes.  These are used to predict the induced
@@ -473,7 +476,7 @@ L1, and L2 in such a way as to accommodate the existing geometry that was
 extending through the openings on those levels.
 
 \subsubsection*{Error Field Correction Coils}
-Due to the necessiry of model simplification in the process of generating native MCNP 
+Due to the necessity of model simplification in the process of generating native MCNP 
 models, there were some geometrical 
 issues in the location of the rounded corners of these coils. The corners had 
 been segmented for MCNP simplification. These segmentation's caused geometrical 
@@ -983,67 +986,67 @@ origin of each material is described in Table \ref{tab:material_origin}.
   M29  & Copper &  CLITE V1 \\
   M74  & Tungsten &  CLITE V1 \\
   M100  & 316L(N)-IG &  CLITE V1 \\
-  M101  & " &  CLITE V1 \\
-  M102  & " &  CLITE V1 \\
-  M103  & " &  CLITE V1 \\
-  M104  & " &  CLITE V1 \\
-  M105  & " &  CLITE V1 \\
-  M106  & " &  CLITE V1 \\
-  M107  & " &  CLITE V1 \\
-  M108  & " &  CLITE V1 \\
-  M109  & " &  CLITE V1 \\
-  M110  & " &  CLITE V1 \\
-  M111  & " &  CLITE V1 \\
-  M162  & " &  CLITE V1 \\
-  M170  & " &  CLITE V1 \\
-  M200  & " &  CLITE V1 \\
-  M303  & " &  CLITE V1 \\
-  M400  & " &  CLITE V1 \\
-  M601  & " &  CLITE V1 \\
-  M602  & " &  CLITE V1 \\
-  M603  & " &  CLITE V1 \\
-  M611  & " &  CLITE V1 \\
-  M613  & " &  CLITE V1 \\
-  M621  & " &  CLITE V1 \\
-  M622  & " &  CLITE V1 \\
-  M623  & " &  CLITE V1 \\
-  M631  & " &  CLITE V1 \\
-  M906  & " &  CLITE V1 \\
-  M907  & " &  CLITE V1 \\
-  M908  & " &  CLITE V1 \\
+  M101  & 316L(N)-IG &  CLITE V1 \\
+  M102  & 316L(N)-IG &  CLITE V1 \\
+  M103  & 316L(N)-IG &  CLITE V1 \\
+  M104  & 316L(N)-IG &  CLITE V1 \\
+  M105  & 316L(N)-IG &  CLITE V1 \\
+  M106  & 316L(N)-IG &  CLITE V1 \\
+  M107  & XM-19      &  CLITE V1 \\
+  M108  & 316L(N)-IG &  CLITE V1 \\
+  M109  & 316L(N)-IG &  CLITE V1 \\
+  M110  & 316L(N)-IG &  CLITE V1 \\
+  M111  & 316L(N)-IG &  CLITE V1 \\
+  M162  & H$_2$0 + 316L(N)-IG + SS430 + XM19 &  CLITE V1 \\
+  M170  & H$_2$0 + 316L(N)-IG &  CLITE V1 \\
+  M200  & Concrete    &  CLITE V1 \\
+  M303  & NiAl Bronze &  CLITE V1 \\
+  M400  & H$_2$O &  CLITE V1 \\
+  M601  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
+  M602  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
+  M603  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
+  M611  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
+  M613  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
+  M621  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
+  M622  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
+  M623  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
+  M631  & H$_2$O + CuCrZr-IG &  CLITE V1 \\
+  M906  & Magnet Conductor &  CLITE V1 \\
+  M907  & TFC Outboard &  CLITE V1 \\
+  M908  & TFC WP &  CLITE V1 \\
   M910 & B$_4$C & Bespoke  \\
   M911 & Al T6061 & Bespoke  \\
   M912 & Al T6061 & Bespoke  \\
-  M913 & Copy M100 & CLITE V1\\
-  M914 & Copy M100 & CLITE V1\\
+  M913 & 316L(N)-IG & CLITE V1\\
+  M914 & 316L(N)-IG & CLITE V1\\
   M915 & Copy M910 & Bespoke \\
-  M916 & Copy M100 & CLITE V1\\
+  M916 & 316L(N)-IG & CLITE V1\\
   M917 & Cryopipes & \cite{cryopump_communication}\\
-  M918 & Copy M100 & CLITE V1 \\
-  M920 & Copy M100 & CLITE V1 \\
-  M921 & Copy M100 & CLITE V1 \\
-  M922 & Copy M100 & CLITE V1 \\
-  M923 & Copy M100 & CLITE V1 \\
-  M924 & Copy M100 & CLITE V1 \\
-  M925 & Copy M100 & CLITE V1 \\
-  M926 & Copy M100 - Frame Wheels & \cite{bertalot_communication}\\
-  M927 & Copy M100 - Frame Wheels Drive & \cite{bertalot_communication}\\
-  M928 & Copy M100 - Port Plug Frame & \cite{bertalot_communication}\\
-  M929 & Copy M100 - Port Plug Pipes & \cite{bertalot_communication}\\
-  M930 & Copy M100 & \cite{cryopump_communication}\\
-  M931 & M100:0.7 M400:0.3 & \cite{bertalot_communication}\\
-  M932 & M100:0.9 M400:0.1 & \cite{bertalot_communication}\\
-  M933 & M100:0.9 M400:0.1 & \cite{bertalot_communication}\\
-  M934 & M100:0.97 M400:0.03 & \cite{bertalot_communication}\\
-  M937 & Copy M100 & \cite{cryopump_communication}\\
-  M938 & Copy M100 & \cite{cryopump_communication}\\
-  M939 & Copy M100 & \cite{cryopump_communication}\\
+  M918 & 316L(N)-IG & CLITE V1 \\
+  M920 & 316L(N)-IG & CLITE V1 \\
+  M921 & 316L(N)-IG & CLITE V1 \\
+  M922 & 316L(N)-IG & CLITE V1 \\
+  M923 & 316L(N)-IG & CLITE V1 \\
+  M924 & 316L(N)-IG & CLITE V1 \\
+  M925 & 316L(N)-IG & CLITE V1 \\
+  M926 & 316L(N)-IG - Frame Wheels & \cite{bertalot_communication}\\
+  M927 & 316L(N)-IG - Frame Wheels Drive & \cite{bertalot_communication}\\
+  M928 & 316L(N)-IG - Port Plug Frame & \cite{bertalot_communication}\\
+  M929 & 316L(N)-IG - Port Plug Pipes & \cite{bertalot_communication}\\
+  M930 & 316L(N)-IG & \cite{cryopump_communication}\\
+  M931 & 316L(N)-IG:0.7 H$_2$O:0.3 & \cite{bertalot_communication}\\
+  M932 & 316L(N)-IG:0.9 H$_2$O:0.1 & \cite{bertalot_communication}\\
+  M933 & 316L(N)-IG:0.9 H$_2$O:0.1 & \cite{bertalot_communication}\\
+  M934 & 316L(N)-IG:0.97 H$_2$O:0.03 & \cite{bertalot_communication}\\
+  M937 & 316L(N)-IG & \cite{cryopump_communication}\\
+  M938 & 316L(N)-IG & \cite{cryopump_communication}\\
+  M939 & 316L(N)-IG & \cite{cryopump_communication}\\
   M935 & First Wall & BL-lite \\
   M936 & First Wall & BL-lite \\
-  M940 & Copy M100 & Diagnostics MCNP Model \\
-  M941 & Copy M100 & Diagnostics MCNP Model \\
-  M942 & Copy M100 & Diagnostics MCNP Model \\
-  M943 & Copy M100 & Diagnostics MCNP Model \\
+  M940 & 316L(N)-IG & Diagnostics MCNP Model \\
+  M941 & 316L(N)-IG & Diagnostics MCNP Model \\
+  M942 & 316L(N)-IG & Diagnostics MCNP Model \\
+  M943 & 316L(N)-IG & Diagnostics MCNP Model \\
   M944 & EPP Drawers & Diagnostics MCNP Model \\
   M945 & EPP Contents & Diagnostics MCNP Model \\
   M946 & EPP Chunks & Diagnostics MCNP Model \\
@@ -1433,7 +1436,7 @@ that is the source of thermal neutrons in the port interspaces.
 
 \subsection{Conclusion}
 We see that there are a number of differences in the transport in the two different models,
-however in some cases it is hard to disambiguate what is the true effect due to the high 
+however in some cases it is hard to determine what is the true effect due to the high 
 statistical errors from the neutron transport simulations. 
 \\
 \\
@@ -1450,7 +1453,7 @@ B$_4$C, presenting more than 1 meter of thickness meaning attenuation is high.
 \\
 The thermal flux near the bioshield was examined and found to be significantly affected
 by the B$_4$C layer, this correlated with the shape of the thermal flux suggests that 
-it is the bioshield that is the source of thermalized neutrons in the \gls{epi} and \gls{upi}.
+it is the B$_4$C layer is effective at absorbing thermalized neutrons in the \gls{epi} and \gls{upi}.
 \subsection*{Geometric Deficiencies}
 Following completion of neutron transport the results displayed some minor deficiencies in 
 the transport geometry. Due to time constraints neutron transport could not be re-run, however,
@@ -1678,7 +1681,7 @@ the photon sources determined in the previous section. Figures \ref{fig:photons_
 to \ref{fig:photons_dc3_no4bc_total_error_zoomed} show the \gls{sdr} in the basline case 
 and Figures \ref{fig:photons_dc1_b4c_total} to \ref{fig:photons_dc3_b4c_total_error_zoomed}. 
 The first figure of each section shows the distribution of shutdown photon dose rate is shown 
-with the units of $mu$Sv/hr, the second plot shows the relative error for the previous plot. 
+with the units of $\mu$Sv/hr, the second plot shows the relative error for the previous plot. 
 As there does not exist a mathematically robust way to propagate the statistical error of the
 neutron fluxes through the entire workflow, these maps of relative error only represent the 
 statistical error due to the Monte Carlo photon transport process. Following
@@ -1871,13 +1874,15 @@ sources of photons can result in contours that fluctuate rapidly.
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.51]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_1.png}
-\caption{Contours of total dose rate for decay time 1 for the baseline case}
+\caption{Contours of total dose rate for decay time 1 for the baseline case, contours at
+1.0, 1.5, 2.0, 2.5, and 3.0 mSv/hr}
 \label{fig:photons_dc1_nob4c_contours}
 \end{figure}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.51]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_1.png}
-\caption{Contours of total dose rate for decay time 1 for the B$_4$C case}
+\caption{Contours of total dose rate for decay time 1 for the B$_4$C case, contours at
+        1.0, 1.5, 2.0, 2.5, and 3.0 mSv/hr}
 \label{fig:photons_dc1_b4c_contours}
 \end{figure}
 \newpage
@@ -1886,13 +1891,15 @@ sources of photons can result in contours that fluctuate rapidly.
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.51]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_2.png}
-\caption{Contours of total dose rate for decay time 2 for the baseline case}
+\caption{Contours of total dose rate for decay time 2 for the baseline case, contours at
+        1.0, 1.5, 2.0, 2.5, and 3.0 mSv/hr}
 \label{fig:photons_dc2_nob4c_contours}
 \end{figure}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.51]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_2.png}
-\caption{Contours of total dose rate for decay time 2 for the B$_4$C case}
+\caption{Contours of total dose rate for decay time 2 for the B$_4$C case, contours at
+        1.0, 1.5, 2.0, 2.5, and 3.0 mSv/hr}
 \label{fig:photons_dc2_b4c_contours}
 \end{figure}
 \newpage
@@ -1901,13 +1908,15 @@ sources of photons can result in contours that fluctuate rapidly.
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.51]{../plots/final_model/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_3.png}
-\caption{Contours of total dose rate for decay time 3 for the baseline case}
+\caption{Contours of total dose rate for decay time 3 for the baseline case, contours at
+        1.0, 1.5, 2.0, 2.5, and 3.0 mSv/hr}
 \label{fig:photons_dc3_nob4c_contours}
 \end{figure}
 \begin{figure}[ht!]
 \centering
 \includegraphics[trim={0cm 8cm, 0cm 8cm},clip,scale=0.51]{../plots/final_model_with_b4c/Photon_Dose_Rate_Contours_Upper_Decades_Decay_Time_3.png}
-\caption{Contours of total dose rate for decay time 3 for the B$_4$C case}
+\caption{Contours of total dose rate for decay time 3 for the B$_4$C case, contours at
+        1.0, 1.5, 2.0, 2.5, and 3.0 mSv/hr}
 \label{fig:photons_dc3_b4c_contours}
 \end{figure}
 \newpage
