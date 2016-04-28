@@ -219,10 +219,14 @@ contain prompt photon doses which are not present following machine shutdown. It
 does not contain neutrons that are the product of decay reactions, such as neutron
 production from activated water, which is a small component compared to the plasma
 source. Although it is not possible to rigorously assess the uncertainty in a calculation 
-of this scope, the uncertainty has been estimated as a factor of 2. That is, 
-the actual results are expected to be between 0.5 times and 2 times the simulated results.
+of this scope, the absolute relative uncertainty has been estimated as a factor of 2. That is, 
+the actual independent results are expected to be between 0.5 times and 2 times the simulated results.
 This estimate includes uncertainty in neutron transport, activation, photon transport and
-those due to the resolution of the activation mesh. 
+those due to the resolution of the activation mesh. However, many of the uncertainties are
+complimentary, and therefore to compare the difference between the two different cases the
+true relative error in the ratio would be much smaller than a factor of two, largely
+dominated by the uncertainty in activation and neutron transport, therefore an upper bound
+of 40\% can be ascribed and a lower bound being 10\%.
 \\
 \\
 Future analysis should focus on improvements such as 1) methods to decrease
@@ -296,7 +300,7 @@ still be several hundred $\mu$Sv/hr at $10^6$ seconds.
 \section{Purpose}
 \subsection{Problem Statement}
 The shutdown dose rate in an around the equatorial and upper ports determines the
-type and duration of maintenance that can be performed by personel access. Thus,
+type and duration of maintenance that can be performed by personnel access. Thus,
 minimization of the dose rate is desirable and indeed encouraged by the 
 \gls{alara_p} principle used at ITER. Since initial estimates indicate that
 these dose rates are larger than desirable, it was suggested in the 
@@ -486,7 +490,7 @@ in preparation for the neutronics
 calculations with DAG-MCNP. The solution was to delete the segments and 
 recreate the curved bends in the coils. The added benefit is that it also 
 created a model that should be more accurate since it better reflects the 
-actual geometry
+actual geometry.
 
 \subsubsection*{Vacuum Vessel}
 The vacuum vessel components were received from Sandia National Lab as part of 
@@ -496,8 +500,8 @@ STEP (.step, .stp) format. In addition to the vacuum vessel geometry around the
 plasma, port components were used from the file CLITE\_V1\_REV131031\_SPACECLAIM 
 that was received from ITER. The vacuum vessel geometry was modified in several 
 ways. The simple components of the BL-Lite geometry were modified to include 
-the in-wall plates, with all detail retained. within the vacuum vessel shells.
-Also, overlaps were removed 
+the in-wall plates within the vacuum vessel shells, where the in-wall plates were
+unmodified from how they were delived by US-ITER. Also, overlaps were removed 
 from the VV geometry for both the shells and the ports. Finally, the “fill
 volume” between the shells was added. This fill volume represents the internal 
 coolant water as well as the IWS plate
@@ -1347,7 +1351,12 @@ beyond the vacuum vessel.
 
 The statistical uncertainty in the total neutron flux around many regions where the
 activation is likely to contribute to the dose is $\sim$ 10-20\% and thus
-acceptable for an activation calculation.  The challenges with producing an acceptable 
+acceptable for an activation calculation.  This limit was deemed acceptable for
+several reasons ; most of the dose comes from the first neutron activation path
+for a given daughter hence uncertainty strongly correlates with the error in total flux and
+the final estimate of uncertainty includes this error. It is however on the cusp of being
+acceptable and future work should aim to further reduce this error to less than 10\%.
+The challenges with producing an acceptable 
 geometry prevented the opportunity to have longer neutron transport times that would
 allow these statistical errors to be smaller.  At this time, there is no mechanism to
 robustly propagate the statistical uncertainty in neutron fluxes into the overall
@@ -1455,13 +1464,17 @@ B$_4$C, presenting more than 1 meter of thickness meaning attenuation is high.
 \\
 The thermal flux near the bioshield was examined and found to be significantly affected
 by the B$_4$C layer, this correlated with the shape of the thermal flux suggests that 
-it is the B$_4$C layer is effective at absorbing thermalized neutrons in the \gls{epi} and \gls{upi}.
+the B$_4$C layer is effective at absorbing thermalized neutrons in the \gls{epi} and \gls{upi} and
+that the bioshield the source of the thermal neutrons given that the thermal flux build back up
+immediately after the B$_4$C layer.
 \subsection*{Geometric Deficiencies}
 Following completion of neutron transport the results displayed some minor deficiencies in 
 the transport geometry. Due to time constraints neutron transport could not be re-run, however,
 the photon transport calculations shown in Section \ref{section:sdr_conc} used the improved geometry.
 The source of these issues was due to issues in the original \gls{cad} where two surfaces had not 
-merged together properly. 
+merged together properly. These geometry deficiencies result in a small number histories that are
+effectively lost without being detected as lost particles. They occur at a location in the
+geometry that should not impact the most important results in the port interspace regions.
 \newpage
 \clearpage
 
