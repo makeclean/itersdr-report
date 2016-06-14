@@ -97,6 +97,7 @@
 \newacronym{cad}{CAD}{Computer Aided Design}
 \newacronym{cadis}{CADIS}{Consistent Adjoint Driven Importance Sampling}
 \newacronym{chtc}{CHTC}{Centre for High Throughput Computing}
+\newacronym{cts}{CTS}{Cryostat Thermal Shield}
 \newacronym{d1s}{D1S}{ Direct One (1) Step}
 \newacronym{dag}{DAG}{ Direct Accelerated Geometry}
 \newacronym{dagmc}{DAGMC}{ Direct Accelerated Geometry Monte Carlo}
@@ -133,6 +134,7 @@
 \newacronym{ve}{VE}{Vessel Extension}
 \newacronym{vr}{VR}{Variance Reduction}
 \newacronym{vv}{VV}{Vacuum Vessel}
+\newacronym{vvts}{VVTS}{Vacuum Vessel Thermal Shield}
 
 
 \begin{document}
@@ -150,7 +152,7 @@
  \gls{alara_p} \\ \gls{bs} \\
  \gls{cad} \\
  \gls{cadis} \\  \gls{chtc} \\
- \gls{d1s} \\
+ \gls{cts} \\ \gls{d1s} \\
  \gls{dag} \\
  \gls{dagmc} \\ \gls{dd} \\
  \gls{endf} \\ \gls{ep} \\
@@ -167,7 +169,8 @@
  \gls{r2s} \\ \gls{sdr} \\
  \gls{ta} \\ \gls{up} \\
  \gls{upp} \\ \gls{upi} \\
- \gls{vr} \\ \gls{ve}
+ \gls{vr} \\ \gls{ve} \\
+ \gls{vvts}
 % \printnoidxglossaries[type=\acronymtype]
 %\printglossary
 %\printglossary[type=\acronymtype]
@@ -925,7 +928,7 @@ completely unmodified. The on-load neutron data is normalized as part of the
 \gls{r2s} calculation to correspond to the 
 average power for the pulse being modelled. However for reference,
 the nominal power used in the activation calculation was 500 MW, which is
-equivalent to $1.98 \times 10^{18}$ neutrons per second in the 40$^{\circ}$
+equivalent to $1.97 \times 10^{19}$ neutrons per second in the 40$^{\circ}$
 sector. Given that this is the IO approved neutron source description, it is
 assumed to be adequate for this simulation.  Neutrons from activated water
 were not considered in this problem as they represent a negligible addition
@@ -943,11 +946,12 @@ neutron source normalization used relative to nominal 500 MW operations.
       \hline
       2 Years & 2.7 & $1.061\times10^{17}$ & 0.0053 \\
       10 Years & 20.6 & $8.517\times10^{17}$ & 0.0412 \\
+      0.667 Years & 0.0 & 0.0 & 0.0 \\
       1.325 Years & 41.5 & $1.643\times10^{18}$ & 0.0830 \\
-      \cellcolor{blue!25} \cellcolor{blue!25} 400 Seconds & \cellcolor{blue!25} 500.0 & \cellcolor{blue!25} $1.980\times10^{19}$ & \cellcolor{blue!25} 1.0  \\
       \cellcolor{blue!25} 3920 Seconds & \cellcolor{blue!25} 0.0 & \cellcolor{blue!25} 0.0 & \cellcolor{blue!25} 0.0 \\
-      \cellcolor{green!25} 400 Seconds & \cellcolor{green!25} 700.0 & \cellcolor{green!25} $2.772\times10^{19}$ &\cellcolor{green!25} 1.4 \\
+      \cellcolor{blue!25} \cellcolor{blue!25} 400 Seconds & \cellcolor{blue!25} 500.0 & \cellcolor{blue!25} $1.973\times10^{19}$ & \cellcolor{blue!25} 1.0  \\
       \cellcolor{green!25} 3920 Seconds & \cellcolor{green!25} 0.0 & \cellcolor{green!25} 0.0 &\cellcolor{green!25} 0.0 \\
+      \cellcolor{green!25} 400 Seconds & \cellcolor{green!25} 700.0 & \cellcolor{green!25} $2.772\times10^{19}$ &\cellcolor{green!25} 1.4 \\
       \hline
 \end{tabular}
 \caption{The table shows the SA-2 scenario for irradiation, note the
@@ -992,26 +996,26 @@ origin of each material is described in Table \ref{tab:material_origin}.
   M74  & Tungsten &  CLITE V1 \\
   M100  & 316L(N)-IG &  CLITE V1 \\
   M101  & 316L(N)-IG &  CLITE V1 \\
-  M102  & 316L(N)-IG &  CLITE V1 \\
-  M103  & 316L(N)-IG &  CLITE V1 \\
-  M104  & 316L(N)-IG &  CLITE V1 \\
-  M105  & 316L(N)-IG &  CLITE V1 \\
-  M106  & 316L(N)-IG &  CLITE V1 \\
+  M102  & SS304LN  &  CLITE V1 \\
+  M103  & SS304/304L &  CLITE V1 \\
+  M104  & SS304 &  CLITE V1 \\
+  M105  & SS304L &  CLITE V1 \\
+  M106  & SS316L &  CLITE V1 \\
   M107  & XM-19      &  CLITE V1 \\
-  M108  & 316L(N)-IG &  CLITE V1 \\
-  M109  & 316L(N)-IG &  CLITE V1 \\
-  M110  & 316L(N)-IG &  CLITE V1 \\
-  M111  & 316L(N)-IG &  CLITE V1 \\
-  M162  & H$_2$0 + 316L(N)-IG + SS430 + XM19 &  CLITE V1 \\
+  M108  & SS316L &  CLITE V1 \\
+  M109  & STEEL 660 &  CLITE V1 \\
+  M110  & SS316LN &  CLITE V1 \\
+  M111  & SS316L &  CLITE V1 \\
+  M161  & H$_2$0 + 316L(N)-IG + XM19 + SS304B4 &  CLITE V1 \\
   M170  & H$_2$0 + 316L(N)-IG &  CLITE V1 \\
   M200  & Concrete    &  CLITE V1 \\
   M303  & NiAl Bronze &  CLITE V1 \\
   M400  & H$_2$O &  CLITE V1 \\
   M601  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
   M602  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
-  M603  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
+  M603  & H$_2$O + CuCrZr-IG  &  CLITE V1 \\
   M611  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
-  M613  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
+  M613  & H$_2$O + CuCrZr-IG &  CLITE V1 \\
   M621  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
   M622  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
   M623  & H$_2$O + 316L(N)-IG &  CLITE V1 \\
@@ -1022,18 +1026,18 @@ origin of each material is described in Table \ref{tab:material_origin}.
   M910 & B$_4$C & Bespoke  \\
   M911 & Al T6061 & Bespoke  \\
   M912 & Al T6061 & Bespoke  \\
-  M913 & 316L(N)-IG & CLITE V1\\
-  M914 & 316L(N)-IG & CLITE V1\\
+  M913 & (Copy M100 - Clite V1) 316L(N)-IG & Bespoke\\
+  M914 & (Copy M100 - Clite V1) 316L(N)-IG & Bespoke\\
   M915 & Copy M910 & Bespoke \\
-  M916 & 316L(N)-IG & CLITE V1\\
+  M916 & (Copy M100 - Clite V1) 316L(N)-IG & Bespoke\\
   M917 & Cryopipes & \cite{cryopump_communication}\\
   M918 & 316L(N)-IG & CLITE V1 \\
-  M920 & 316L(N)-IG & CLITE V1 \\
-  M921 & 316L(N)-IG & CLITE V1 \\
-  M922 & 316L(N)-IG & CLITE V1 \\
-  M923 & 316L(N)-IG & CLITE V1 \\
-  M924 & 316L(N)-IG & CLITE V1 \\
-  M925 & 316L(N)-IG & CLITE V1 \\
+  M920 & (Copy M100 - Clite V1) 316L(N)-IG & Bespoke\\
+  M921 & (Copy M100 - Clite V1) 316L(N)-IG & Bespoke\\
+  M922 & (Copy M100 - Clite V1) 316L(N)-IG & Bespoke\\
+  M923 & (Copy M100 - Clite V1) 316L(N)-IG & Bespoke\\
+  M924 & (Copy M100 - Clite V1) 316L(N)-IG & Bespoke\\
+  M925 & (Copy M100 - Clite V1) 316L(N)-IG & Bespoke\\
   M926 & 316L(N)-IG - Frame Wheels & \cite{bertalot_communication}\\
   M927 & 316L(N)-IG - Frame Wheels Drive & \cite{bertalot_communication}\\
   M928 & 316L(N)-IG - Port Plug Frame & \cite{bertalot_communication}\\
@@ -1100,7 +1104,7 @@ FISPACT \cite{fispact} in the past and gives numerically equivalent results.
 \gls{advantg} was used to employ the \gls{fwcadis} method to generate the 
 weight windows and the source biasing parameters for the neutron transport
 calculation of this analysis. The adjoint source in \gls{advantg} was defined
-to represent a rectangular parallel pipe that extend from x=-1000 cm to x=1900
+to represent a rectangular right parallelepiped that extend from x=-1000 cm to x=1900
 cm, y=-1000 cm to y=1000 cm, and z=-1550 cm to z=1900 cm. These dimensions are
 much larger than the dimensions of the 40$^{\circ}$ sector of the ITER Clite
 model in the x and y directions to account for the reflection in these
@@ -1145,7 +1149,7 @@ activation.
   \includegraphics[scale=0.4]{../plots/transport/job_splits.png}
   \caption{The seven different mesh domains, (left) shown with some transparency
            to indicate where the major boundaries end and (right) showing the
-           absolute scale of the mesh elements}
+           absolute size of the mesh regions relative to the entire ITER geometry}
   \label{fig:mesh_domains}
 \end{figure}
 
@@ -2191,11 +2195,8 @@ to the plasma side surface of the bioshield. The reason for the this is
 significantly degraded thermal flux which impacts the importance of (n,$\gamma$)
  reactions and also the transport of neutrons back from the bioshield. The true 
 benefit appears only to be very close to the B$_4$C layer, where it reduces the
-activation of steel components near to the bioshield, those components away
-from the bioshield appear to have their activation dominated by the neutron
-transported via long paths around other ports. This is  likely due to the fact
-that most neutron induced activation in fusion devices are due to high energy
-capture reactions like (n,p), (n,2n) and (n,xn) reactions.
+activation of steel components near to the bioshield, due to the impact of the 
+B$_4$C layer. 
 \\
 \\
 What is clear is that the shutdown photon dose rate at the second decay time is
@@ -2205,9 +2206,9 @@ from 200 to 400 $\mu$Sv hr$^{-1}$. It is surmised that the reason for the
 significantly higher \gls{sdr} in this calculation is due to the increased
 mass of components modelled in the \gls{epi} which leads to higher \gls{sdr}.
 The \gls{pfc}3 \& 4 coils also are strong sources near the \gls{epi}, but being
-beyond the \gls{ve} are somewhat shielded by it. The \gls{bs} is als a
-significant source, unshielded due to is proximity to the \gls{epi}. The ever
-present photon cross talk is also present, the \gls{lp} being unplugged leads
+beyond the thermal shields are somewhat shielded by it. The \gls{bs} is als a
+significant source, unshielded due to is proximity to the \gls{epi}. Photon cross 
+talk is also present, the \gls{lp} being unplugged leads
 to strong sources in the cryopump, which has roughly the same contribution
 as the sources within the \gls{epi}.
 \\
@@ -2230,10 +2231,22 @@ significantly impacting the shielding capability.
 In a problem as large and as complicated as the geometry used in this analysis
 there are several sources of error. Specifically for \gls{sdr} calculations 
 there is a sequence of sources of uncertainty that must be considered.
-\begin{itemize} 
+\begin{itemize}
+\item{Geometry Simplification - the ITER CAD geometry model is composed of several 
+      independently constructed models of individual parts of the geometry. Several stages of 
+      CAD defeaturing takes place where extraneous details are removed. Each complex
+      CAD surface is simplified to an analytic surface which approximates the true CAD surface.
+      This process necessarily generates a degree of approximation.} 
+\item{Geometry Uncertainty- there is an uncertainty associated with geometry. In DAGMC
+      the underlying CAD geometry is faceted to within a given tolerance, such that the
+      triangular facets that the geometry is composed of lie within a given delta of the CAD
+      surface. }
+\item{Material Composition - Material compositions have uncertainties due to deviations from
+      the materials as the device would be built. Often materials are defined by the combination
+      of several other materials and are determined by homogenization, which leads to further
+      uncertainty.}
 \item{Transport Nuclear data uncertainty - there is an uncertainty associated with each 
-      reaction channel in each cross section in the problem, similarly for photons there are 
-      uncertainties in angular distributions of emitted particles}
+      reaction channel in each cross section in the problem for both photons and neutrons.}
 \item{Neutron Mesh Resolution - the bounds of the neutron mesh defince the 
       profile of each volume element, how large the mesh element is relative
       to the neutron and photon mean free paths define how adapted to the 
@@ -2283,7 +2296,7 @@ estimate of the effect is difficult to summarize, but a relative error of 10\% d
 flux as a lower bound and an upper bound of 20\% is ascribed.}
 \end{enumerate}
 The smallest the total relative error could be therefore in the range 0.7 to 1.45 and the highest reasonable 
-estimate is 0.5 to 2.0
+estimate is 0.5 to 2.0.
 
 \newpage
 \clearpage
