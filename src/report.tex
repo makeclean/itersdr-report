@@ -1149,7 +1149,7 @@ activation.
   \includegraphics[scale=0.4]{../plots/transport/job_splits.png}
   \caption{The seven different mesh domains, (left) shown with some transparency
            to indicate where the major boundaries end and (right) showing the
-           absolute size of the mesh regions relative to the entire ITER geometry}
+           absolute size [cm] of the mesh regions relative to the entire ITER geometry.}
   \label{fig:mesh_domains}
 \end{figure}
 
@@ -2044,7 +2044,10 @@ bioshield, suggesting that bioshield is one of the significant sources in the
 the bioshield to the same factor of two reduction. For all cases the closer we
 consider the flux to the \gls{epp} and \gls{upp} respectively, the closer the 
 ratio of doses are to unity, suggesting the components closer to the main ITER
-vessel are unaffected by the B$_4$C layer.
+vessel are unaffected by the B$_4$C layer.  Note that the high statistical uncertainty
+from the photon transport means that no conclusions can be made about the
+relative dose inside the equatorial port plug, however the internals of this
+region are not of primary interest in this study.
 
 \newpage
 \clearpage
@@ -2233,22 +2236,22 @@ In a problem as large and as complicated as the geometry used in this analysis
 there are several sources of error. Specifically for \gls{sdr} calculations 
 there is a sequence of sources of uncertainty that must be considered.
 \begin{itemize}
-\item{Geometry Simplification - the ITER CAD geometry model is composed of several 
+\item{Geometry simplification - the ITER CAD geometry model is composed of several 
       independently constructed models of individual parts of the geometry. Several stages of 
       CAD defeaturing takes place where extraneous details are removed. Each complex
       CAD surface is simplified to an analytic surface which approximates the true CAD surface.
       This process necessarily generates a degree of approximation.} 
-\item{Geometry Uncertainty- there is an uncertainty associated with geometry. In DAGMC
+\item{Geometry uncertainty- there is an uncertainty associated with geometry. In DAGMC
       the underlying CAD geometry is faceted to within a given tolerance, such that the
       triangular facets that the geometry is composed of lie within a given delta of the CAD
       surface. }
-\item{Material Composition - Material compositions have uncertainties due to deviations from
+\item{Material composition - Material compositions have uncertainties due to deviations from
       the materials as the device would be built. Often materials are defined by the combination
       of several other materials and are determined by homogenization, which leads to further
       uncertainty.}
-\item{Transport Nuclear data uncertainty - there is an uncertainty associated with each 
+\item{Transport nuclear data uncertainty - there is an uncertainty associated with each 
       reaction channel in each cross section in the problem for both photons and neutrons.}
-\item{Neutron Mesh Resolution - the bounds of the neutron mesh define the 
+\item{Neutron mesh resolution - the bounds of the neutron mesh define the 
       profile of each volume element.  This introduces two separate kinds of uncertainty.
       First, how large the mesh element is relative to the neutron mean free paths defines 
       how well this mesh captures gradients in the total neutron flux and/or the neutron 
@@ -2262,14 +2265,14 @@ there is a sequence of sources of uncertainty that must be considered.
       photon that could only be born in one part of a mesh voxel is sampled from another part
       of a mesh voxel.  Understanding the implications of this uncertainty is an ongoing
       research effort and may result in substantial systematic error.}
-\item{Activation Nuclear data uncertainty - the nuclear data used for each inventory code
+\item{Activation nuclear data uncertainty - the nuclear data used for each inventory code
      also has an uncertainty for each activation channel in the problem, which will 
      impact each volume element and its estimate of the nuclides evolution over time }
 \item{Undersampling - extreme variance reduction can lead to undersampling in the problem,
      if too many ``unimportant'' particles are followed it is possible for a false 
      convergence to occur, leading to reasonable estimates of the statistical error but
      not be truly converged to the final result. }
-\item{Neutron Transport Uncertainty - the neutron transport calculation has instrinsic uncertainties
+\item{Neutron transport uncertainty - the neutron transport calculation has instrinsic uncertainties
      in the calculation. These uncertainties are linked to how low the statiscal error is 
      in the calculation, but also how converged the neutron spectra in a given mesh element is. For instance
      the uncertainty in a given volume element may have a very low error in the total bin, but 
