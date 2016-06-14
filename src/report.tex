@@ -234,7 +234,7 @@ of 40\% can be ascribed and a lower bound being 10\%.
 Future analysis should focus on improvements such as 1) methods to decrease
 the \gls{sdr} 2)  consider other 
 sources of radiation at shutdown, and 3) estimate the quantity of tritium 
-relased with the introduction of so much B$_4$C as shielding material, tritium
+released with the introduction of so much B$_4$C as shielding material, tritium
 being produced via the $^{10}$B(n,$\alpha$)$^7$Li(n,$^3$He)$^3$H reaction.
 \\
 \\
@@ -443,7 +443,7 @@ small bolt heads and threads were discarded.
   Cryostat & CLITE\_V1\_REV131031\_SPACECLAIM  & SpaceClaim &  N \\
   Thermal Shields & CLITE\_V1\_REV131031\_SPACECLAIM &  SpaceClaim & N\\
   Toroidal Field Coils & CLITE\_V1\_REV131031\_SPACECLAIM & SpaceClaim & N \\
-  Poloidal Field Coils & CLITE\_V1\_REV131031\_SPACECLAI  & SpaceClaim & N\\
+  Poloidal Field Coils & CLITE\_V1\_REV131031\_SPACECLAIM & SpaceClaim & N\\
   Correction Coils & CLITE\_V1\_REV131031\_SPACECLAIM & SpaceClaim & Y\\
   Vacuum Vessel & VV\_40\_reg\_union & STEP & Y \\
   Blankets & CLITE\_V1\_REV131031\_SPACECLAIM & SpaceClaim & N\\
@@ -467,7 +467,7 @@ allow the analysis to proceed, they do offer an overview of the changes that
 were required.  
 
 \subsubsection*{Boundary Conditions}
-New volumes, refered to as Graveyard volumes,  were created in order to apply 
+New volumes, referred to as Graveyard volumes,  were created in order to apply 
 the appropriate boundary conditions
 for the model.  As a 40${^\circ}$ model, reflecting boundaries are placed on
 either side of the model in the toroidal direction in the form of slabs. 
@@ -503,7 +503,7 @@ plasma, port components were used from the file CLITE\_V1\_REV131031\_SPACECLAIM
 that was received from ITER. The vacuum vessel geometry was modified in several 
 ways. The simple components of the BL-Lite geometry were modified to include 
 the in-wall plates within the vacuum vessel shells, where the in-wall plates were
-unmodified from how they were delived by US-ITER. Also, overlaps were removed 
+unmodified from how they were delivered by US-ITER. Also, overlaps were removed 
 from the VV geometry for both the shells and the ports. Finally, the “fill
 volume” between the shells was added. This fill volume represents the internal 
 coolant water as well as the IWS plate
@@ -722,7 +722,7 @@ ray sources for \gls{r2s} shutdown photon calculations.
 
 \subsection{Validation Status}
 \subsubsection*{Analysis Codes}
-The analsysis codes used in these calculations are shown in Table 
+The analysis codes used in these calculations are shown in Table 
 \ref{table:validation}. These codes were used to directly produce results shown
 in this report.
 \begin{centering}
@@ -741,7 +741,7 @@ in this report.
  \end{table}
 \end{centering}
 
-\subsubsection*{Auxilliary Codes}
+\subsubsection*{Auxiliary Codes}
 The auxiliary codes used in the this report are shown in Table 
 \ref{table:validation_aux}. These codes were not directly used to 
 produce results, but were used to either process or produce input
@@ -803,10 +803,10 @@ spectra in each voxel means that the calculation requires significant memory
 resources for each process.  One simple strategy to mitigate these
 requirements is to decompose the tally mesh into different regions and only
 tally one region at a time.  This does nothing to reduce the memory consumed
-by the goemetry or weight window map, but allows the fidelity of the tally
+by the geometry or weight window map, but allows the fidelity of the tally
 mesh to be increased since it has smaller extents.  In the case of a geometry
 such as this that only includes a 40$^\circ$ degree sector, it allows for
-fewer ``wasted'' mesh voxels oustide the geometry for which there will be no
+fewer ``wasted'' mesh voxels outside the geometry for which there will be no
 answer, allowing for further memory reductions or fidelity increases.
 
 
@@ -835,7 +835,7 @@ The combination of mesh domain decomposition and job parallelism is shown in
 Figure \ref{fig:mesh_splitting}.  
 The spatial domain of the problem is duplicated and a given
 mesh tally superimposed onto the geometry. Several single core simulations are
-launched for that specific meshtally but the random number seed is strided in
+launched for that specific mesh tally but the random number seed is strided in
 such a way that no process will share the same histories with another job.  
 This is performed using the \texttt{rand hist=n} command in \gls{mcnp5}.
 
@@ -906,7 +906,7 @@ for plotting very large datasets. Like the other tools mentioned here, yt is no 
 in software development practices, version control, code reviews and unit testing are
 used extensively. There are several features that make yt an attractive 
 tool for plotting, as opposed to the more commonly encountered Visit from LLNL, specifically
-its capability to read native MOAB meshes, the speed at which it slices stl overlays and 
+its capability to read native MOAB meshes, the speed at which it slices STL overlays and 
 its convenient scripting capabilities lead to its use in this report.
 \\
 \\
@@ -1069,7 +1069,7 @@ Neutron Data - The neutron transport data used was \gls{fendl}-2.1/MC, as
 recommended by \gls{io} for ITER analysis. 
 \\
 \\
-Activation Data - The activation data used was \gls{fendl}-3.0/A.
+Activation Data - The activation data used was EAF-2010.
 \\
 \\
 Photon Data - The standard photon data supplied with \gls{mcnp5} mcplib04 was 
@@ -1149,7 +1149,7 @@ activation.
   \includegraphics[scale=0.4]{../plots/transport/job_splits.png}
   \caption{The seven different mesh domains, (left) shown with some transparency
            to indicate where the major boundaries end and (right) showing the
-           absolute size of the mesh regions relative to the entire ITER geometry}
+           absolute size [cm] of the mesh regions relative to the entire ITER geometry.}
   \label{fig:mesh_domains}
 \end{figure}
 
@@ -1323,7 +1323,7 @@ this model must be rotated and replicated to fill a full 360$^{\circ}$ space.
 rotation feature for \gls{advantg} that allows rotationally symmetric
 bodies.  Therefore, weight window values are observed beyond the 40$^{\circ}$ sector.
 
-\subsection{Baseline Neutron Flux Reults}
+\subsection{Baseline Neutron Flux Results}
 
 For the baseline case, the total neutron flux and its associated statistical
 errors are shown in Figures \ref{fig:neutrons_baseline}
@@ -1459,7 +1459,7 @@ between the baseline model and the case including the B$_4$C liner. It was found
 the total neutron fluxes in the \gls{epi} and \gls{upi} are lower in the case of B$_4$C.
 The highest errors are found towards the inboard centre column and the \gls{epp}, 
 in the case of the centre column, the weight windows were specifically biased not to send
-neutrons there as they will not contribute outside the vaccuum vessel. However, in the 
+neutrons there as they will not contribute outside the vacuum vessel. However, in the 
 \gls{epp}, transport is very challenging due to the high neutron flux gradient meaning that
 a the weight window may be spatially too coarse, and the \gls{epp} has a large quantity of
 B$_4$C, presenting more than 1 meter of thickness meaning attenuation is high. 
@@ -1611,10 +1611,10 @@ bioshield wall and therefore not impacted by the presence of the liner.
 
 Any differences between the total source intensities of mesh regions 1 through
 4 are therefore expected to represent uncertainty due to the statistical
-fluctations in the neutron transport.  This is reinforced by the very small
+fluctuations in the neutron transport.  This is reinforced by the very small
 discrepancy seen in mesh 4 that experienced the largest neutron flux and thus
 the lowest statistical error in that neutron flux.  It also experiences the
-largest activiation due to that larger neutron flux.
+largest activation due to that larger neutron flux.
 
 Comparison can also be made between the photon source present in several discrete locations. 
 The locations selected are; \gls{pfc}2, the bioshield plug behind the \gls{epp} and
@@ -1694,9 +1694,9 @@ photon energies, thus effectively produces no decay photons.
 \clearpage
 \section{Shutdown Photon Dose rates Results and Conclusions}
 \label{section:sdr_conc}
-This section shows the shutdown photon dose rate data that was perfomed using
+This section shows the shutdown photon dose rate data that was performed using
 the photon sources determined in the previous section. Figures \ref{fig:photons_dc1_no4bc_total}
-to \ref{fig:photons_dc3_no4bc_total_error_zoomed} show the \gls{sdr} in the basline case 
+to \ref{fig:photons_dc3_no4bc_total_error_zoomed} show the \gls{sdr} in the baseline case 
 and Figures \ref{fig:photons_dc1_b4c_total} to \ref{fig:photons_dc3_b4c_total_error_zoomed}. 
 The first figure of each section shows the distribution of shutdown photon dose rate is shown 
 with the units of $\mu$Sv/hr, the second plot shows the relative error for the previous plot. 
@@ -1951,7 +1951,7 @@ likely due to the greater contribution of the cross talk from mesh 2 to the over
 
 \subsubsection{Comparison of Total Photon Dose}
 The figures shown in the previous section show detailed results throughout the model, however due to the range of data
-$10^{10}$ $\mu$Sv/hr in the plasma chamber to $10$'s of $mu$Sv/hr near the bioshield, the data are nessarily shown on a log scale, 
+$10^{10}$ $\mu$Sv/hr in the plasma chamber to $10$'s of $mu$Sv/hr near the bioshield, the data are necessarily shown on a log scale, 
 making comparison difficult. In this section data are extracted along lines through through three 
 important regions in the model and plotted together for comparison and with their ratio.  The first location is through the 
 middle of the equatorial port region (Figures \ref{fig:photons_dc1_total_dose_lineout}  to \ref{fig:photons_dc3_total_dose_lineout}).
@@ -2044,7 +2044,10 @@ bioshield, suggesting that bioshield is one of the significant sources in the
 the bioshield to the same factor of two reduction. For all cases the closer we
 consider the flux to the \gls{epp} and \gls{upp} respectively, the closer the 
 ratio of doses are to unity, suggesting the components closer to the main ITER
-vessel are unaffected by the B$_4$C layer.
+vessel are unaffected by the B$_4$C layer.  Note that the high statistical uncertainty
+from the photon transport means that no conclusions can be made about the
+relative dose inside the equatorial port plug, however the internals of this
+region are not of primary interest in this study.
 
 \newpage
 \clearpage
@@ -2206,7 +2209,7 @@ from 200 to 400 $\mu$Sv hr$^{-1}$. It is surmised that the reason for the
 significantly higher \gls{sdr} in this calculation is due to the increased
 mass of components modelled in the \gls{epi} which leads to higher \gls{sdr}.
 The \gls{pfc}3 \& 4 coils also are strong sources near the \gls{epi}, but being
-beyond the thermal shields are somewhat shielded by it. The \gls{bs} is als a
+beyond the thermal shields are somewhat shielded by it. The \gls{bs} is also a
 significant source, unshielded due to is proximity to the \gls{epi}. Photon cross 
 talk is also present, the \gls{lp} being unplugged leads
 to strong sources in the cryopump, which has roughly the same contribution
@@ -2227,55 +2230,75 @@ the back plate and attachment flange, both of which are the dominant source of
 activation in the region. It is suggested that the front 50 cm of the B$_4$C
 drawers could be removed, reducing the weight of the port plug without
 significantly impacting the shielding capability.
+
 \subsection{Estimation of Uncertainties}
 In a problem as large and as complicated as the geometry used in this analysis
 there are several sources of error. Specifically for \gls{sdr} calculations 
 there is a sequence of sources of uncertainty that must be considered.
 \begin{itemize}
-\item{Geometry Simplification - the ITER CAD geometry model is composed of several 
+\item{Geometry simplification - the ITER CAD geometry model is composed of several 
       independently constructed models of individual parts of the geometry. Several stages of 
       CAD defeaturing takes place where extraneous details are removed. Each complex
       CAD surface is simplified to an analytic surface which approximates the true CAD surface.
       This process necessarily generates a degree of approximation.} 
-\item{Geometry Uncertainty- there is an uncertainty associated with geometry. In DAGMC
+\item{Geometry uncertainty- there is an uncertainty associated with geometry. In DAGMC
       the underlying CAD geometry is faceted to within a given tolerance, such that the
       triangular facets that the geometry is composed of lie within a given delta of the CAD
       surface. }
-\item{Material Composition - Material compositions have uncertainties due to deviations from
+\item{Material composition - Material compositions have uncertainties due to deviations from
       the materials as the device would be built. Often materials are defined by the combination
       of several other materials and are determined by homogenization, which leads to further
       uncertainty.}
-\item{Transport Nuclear data uncertainty - there is an uncertainty associated with each 
+\item{Transport nuclear data uncertainty - there is an uncertainty associated with each 
       reaction channel in each cross section in the problem for both photons and neutrons.}
-\item{Neutron Mesh Resolution - the bounds of the neutron mesh defince the 
-      profile of each volume element, how large the mesh element is relative
-      to the neutron and photon mean free paths define how adapted to the 
-      gradients in the problem.}
-\item{Activation Nuclear data uncertainty - the nuclear data used for each inventory code
+\item{Neutron mesh resolution - the bounds of the neutron mesh define the 
+      profile of each volume element.  This introduces two separate kinds of uncertainty.
+      First, how large the mesh element is relative to the neutron mean free paths defines 
+      how well this mesh captures gradients in the total neutron flux and/or the neutron 
+      flux spectrum.  This mesh is used to define homogenized material 
+      compositions for the activation calculation.  When combined with the uncertainty in
+      the ability to capture gradients, this can results in a simulation that exposes materials
+      that occur in locations at the high end of the gradient to fluxes that are too low, and 
+      exposes materials that occur at the low end of the gradient to fluxes that are too high.
+      Finally, this mesh is also used for the photon source.  Although care is taken to avoid
+      sampling the source from regions of space that contain vacuum, it is possible that a
+      photon that could only be born in one part of a mesh voxel is sampled from another part
+      of a mesh voxel.  Understanding the implications of this uncertainty is an ongoing
+      research effort and may result in substantial systematic error.}
+\item{Activation nuclear data uncertainty - the nuclear data used for each inventory code
      also has an uncertainty for each activation channel in the problem, which will 
      impact each volume element and its estimate of the nuclides evolution over time }
 \item{Undersampling - extreme variance reduction can lead to undersampling in the problem,
      if too many ``unimportant'' particles are followed it is possible for a false 
      convergence to occur, leading to reasonable estimates of the statistical error but
      not be truly converged to the final result. }
-\item{Neutron Transport Uncertainty - the neutron transport calculation has instrinsic uncertainties
-     in the calculation. These uncertainties are linked to how low the statiscal error is 
+\item{Neutron transport uncertainty - the neutron transport calculation has intrinsic uncertainties
+     in the calculation. These uncertainties are linked to how low the statistical error is 
      in the calculation, but also how converged the neutron spectra in a given mesh element is. For instance
      the uncertainty in a given volume element may have a very low error in the total bin, but 
      a large error in the thermal bins, when propagated through to an activation calculation
      the activation may be dominated by the thermal bin and thus the estimate of the photon source 
      in that volume element would be underestimate or overestimated.}
 \end{itemize}
-There is no formal mathematical procedure for estimating the uncertainty in the final
-dose rate, the number of driving sources of uncertainty are too large and complex to 
-simplify. Estimates of these quantites are the source of active research at a number
-of institutions world wide. 
+
+There does not exist a way to formally estimate the uncertainty for all of
+these different contributions, nor is there a mechanism to combine them
+mathematically even if they were all well understood.  Estimates of these
+quantities are the source of active research at a number of institutions world
+wide.  It may be useful, however, to rank them based on there expected
+contribution to the overall uncertainty in results.  The largest source of
+uncertainty in the final result is expected to be due to the neutron mesh
+resolution, followed by stochastic uncertainties in the neutron transport and
+undersampling.  Nuclear data uncertainties and uncertainty due to geometry
+simplification and material composition are expected to be substantially
+smaller.  Uncertainty due to DAGMC handling of geometry has been shown to be
+extremely small.\cite{snouffer}
 \\
 \\
 We can however attempt to estimate and lower bound and a reasonable upper bound. Estimation of the uncertainty 
 in the SDR is challenging due to a number of sources of uncertainty which may compensate each other in unexpected 
-ways. The correct method to determine the uncertainty in the SDR has not been performed, however we attempt an
-estimate below.
+ways. Although no formal method to determine the uncertainty in an SDR calculation exists, an
+estimate is provided below.
 
 \begin{enumerate}
 \item{Neutronics Benchmarks - Several neutronics benchmarks have been performed 
@@ -2285,7 +2308,7 @@ can ascribe a lower bound uncertainty of 5\% and an upper reasonable bound of 20
 result purely from nuclear data}
 \item{Activation Data Uncertainty - Activation data has uncertainty in the reaction channel encapsulated 
 as part of it. Inventory codes are often able to provide an estimate in the uncertainty 
-of the producion of the nuclide due to all the formation channels, this is nuclide dependent but typically in the range 10-100\%. 
+of the production of the nuclide due to all the formation channels, this is nuclide dependent but typically in the range 10-100\%. 
 We can ascribe a lower bound estimate of 10\% and 20\% for an upper bound on the basis of the nuclides in this problem}
 \item{Mesh Resolution - There has been only one study showing the effect of the activation mesh upon the final 
 result in an SDR calculation \cite{r2smesh}, and for cell based methods \cite{frej}, these suggest that the mesh may have 
@@ -2295,8 +2318,15 @@ an uncertainty of 10\% at its lowest and an upper bound of 40\%}
 estimate of the effect is difficult to summarize, but a relative error of 10\% directly form the 
 flux as a lower bound and an upper bound of 20\% is ascribed.}
 \end{enumerate}
-The smallest the total relative error could be therefore in the range 0.7 to 1.45 and the highest reasonable 
-estimate is 0.5 to 2.0.
+
+Based on this information combined with expert judgment, the most optimistic
+estimate of the error suggests that the true results are between 0.7 and 1.45
+times the reported results.  A more pessimistic estimate of the error suggests
+that the true results are between 0.5 and 2.0 times the reported results.
+Since some of the largest sources of error in this problem are systematic, the
+ratio between the results that include the B$_4$C liner and those that do not
+are expected to have much smaller errors, between 10\% and 40\%.
+
 
 \newpage
 \clearpage
@@ -2329,18 +2359,18 @@ grow to 20 Tb of space.
 \subsection*{ Transport Improvements}
 \subsubsection*{Further Neutron Histories}
 This calculation ran a specific number of neutron histories which was limited by
-time contraints. Future calculations should run a greater number of neutron histories
+time constraints. Future calculations should run a greater number of neutron histories
 which would reduce the statistical noise in the \gls{sdr} photon sources and allow
 smaller uncertainty bars to be placed on the photon sources. 
 
 \subsubsection*{Higher Resolution \gls{sdr} Mesh}
-The neutron mesh decomposition used in this calculation was specicially chosen
+The neutron mesh decomposition used in this calculation was specifically chosen
 to allow the calculation to be decomposed into several \gls{htc} runs. The degree of 
 decomposition is determined by how much memory is used to store the neutron mesh
 with 175 energy groups and the number of spatial divisions, more spatial divisions
 resulting in a higher resolution spatial mesh. The higher the spatial resolution the 
 better the neutron flux gradients in the problem are resolved, however the computational
-complexity increases as more neutron transport calculations must be peformed. 
+complexity increases as more neutron transport calculations must be performed. 
 
 
 \subsection*{Variance Reduction}
@@ -2383,10 +2413,10 @@ method and provides some insights into the physical interpretations of the
 MS-CADIS adjoint neutron source and the MS-CADIS adjoint neutron flux.
 
 \subsubsection*{Photon Variance Reduction}
-In future calculations if a specific target region has been indentified, it
+In future calculations if a specific target region has been identified, it
 would be possible to use \gls{fwcadis} to speed up the photon transport
 calculation by using biasing parameters for the mesh source and using \gls{vr}
-parameters to split particles appropriately by attentuation, the combination
+parameters to split particles appropriately by attenuation, the combination
 of which would result in a more efficient simulation.
 
 \newpage
