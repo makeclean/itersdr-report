@@ -2227,6 +2227,7 @@ the back plate and attachment flange, both of which are the dominant source of
 activation in the region. It is suggested that the front 50 cm of the B$_4$C
 drawers could be removed, reducing the weight of the port plug without
 significantly impacting the shielding capability.
+
 \subsection{Estimation of Uncertainties}
 In a problem as large and as complicated as the geometry used in this analysis
 there are several sources of error. Specifically for \gls{sdr} calculations 
@@ -2247,10 +2248,20 @@ there is a sequence of sources of uncertainty that must be considered.
       uncertainty.}
 \item{Transport Nuclear data uncertainty - there is an uncertainty associated with each 
       reaction channel in each cross section in the problem for both photons and neutrons.}
-\item{Neutron Mesh Resolution - the bounds of the neutron mesh defince the 
-      profile of each volume element, how large the mesh element is relative
-      to the neutron and photon mean free paths define how adapted to the 
-      gradients in the problem.}
+\item{Neutron Mesh Resolution - the bounds of the neutron mesh define the 
+      profile of each volume element.  This introduces two separate kinds of uncertainty.
+      First, how large the mesh element is relative to the neutron mean free paths defines 
+      how well this mesh captures gradients in the total neutron flux and/or the neutron 
+      flux spectrum.  This mesh is used to define homogenized material 
+      compositions for the activation calculation.  When combined with the uncertainty in
+      the ability to capture gradients, this can results in a simulation that exposes materials
+      that occur in locations at the high end of the gradient to fluxes that are too low, and 
+      exposes materials that occur at the low end of the gradient to fluxes that are too high.
+      Finally, this mesh is also used for the photon source.  Although care is taken to avoid
+      sampling the source from regions of space that contain vacuum, it is possible that a
+      photon that could only be born in one part of a mesh voxel is sampled from another part
+      of a mesh voxel.  Understanding the implications of this uncertainty is an ongoing
+      research effort and may result in substantial systematic error.}
 \item{Activation Nuclear data uncertainty - the nuclear data used for each inventory code
      also has an uncertainty for each activation channel in the problem, which will 
      impact each volume element and its estimate of the nuclides evolution over time }
@@ -2266,16 +2277,25 @@ there is a sequence of sources of uncertainty that must be considered.
      the activation may be dominated by the thermal bin and thus the estimate of the photon source 
      in that volume element would be underestimate or overestimated.}
 \end{itemize}
-There is no formal mathematical procedure for estimating the uncertainty in the final
-dose rate, the number of driving sources of uncertainty are too large and complex to 
-simplify. Estimates of these quantites are the source of active research at a number
-of institutions world wide. 
+
+There does not exist a way to formally estimate the uncertainty for all of
+these different contributions, nor is there a mechanism to combine them
+mathematically even if they were all well understood.  Estimates of these
+quantites are the source of active research at a number of institutions world
+wide.  It may be useful, however, to rank them based on there expected
+contribution to the overall uncertainty in results.  The largest source of
+uncertainty in the final result is expected to be due to the neutron mesh
+resolution, followed by stochastic uncertainties in the neutron transport and
+undersampling.  Nuclear data uncertainties and uncertainty due to geometry
+simplification and material composition are expected to be substantially
+smaller.  Uncertainty due to DAGMC handling of geometry has been shown to be
+extremely small.\cite{snouffer}
 \\
 \\
 We can however attempt to estimate and lower bound and a reasonable upper bound. Estimation of the uncertainty 
 in the SDR is challenging due to a number of sources of uncertainty which may compensate each other in unexpected 
-ways. The correct method to determine the uncertainty in the SDR has not been performed, however we attempt an
-estimate below.
+ways. Although no formal method to determine the uncertainty in an SDR calculation exists, an
+estimate is provided below.
 
 \begin{enumerate}
 \item{Neutronics Benchmarks - Several neutronics benchmarks have been performed 
@@ -2295,8 +2315,15 @@ an uncertainty of 10\% at its lowest and an upper bound of 40\%}
 estimate of the effect is difficult to summarize, but a relative error of 10\% directly form the 
 flux as a lower bound and an upper bound of 20\% is ascribed.}
 \end{enumerate}
-The smallest the total relative error could be therefore in the range 0.7 to 1.45 and the highest reasonable 
-estimate is 0.5 to 2.0.
+
+Based on this information combined with expert judgement, the most optimisitic
+estimate of the error suggests that the true results are between 0.7 and 1.45
+times the reported results.  A more pessimistic estimate of the error suggests
+that the true results are between 0.5 and 2.0 times the reported results.
+Since some of the largest sources of error in this problem are systematic, the
+ratio between the results that include the B$_4$C liner and those that do not
+are expected to have much smaller errors, between 10\% and 40\%.
+
 
 \newpage
 \clearpage
