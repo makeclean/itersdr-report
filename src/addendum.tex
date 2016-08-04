@@ -279,7 +279,9 @@ activation source there due to a poor estimate of the neutron flux.
 A set of sequence of neutron activation calculations were peformed for a suite 
 of 3 different irradiation scenarios. It was found that lower the 5 and 10 year
 irradiation times reduce the SDR by factors of 0.56 relative to the SA2 and
-0.75 relative to the SA2 scenario respectively.
+0.75 relative to the SA2 scenario respectively, the full summary of results
+are shown in Tables \ref{tab:b4c_summary_scenario} and 
+\ref{tab:nob4c_summary_scenario}.
 
 \begin{table}[ht!]
    \centering      
@@ -294,7 +296,7 @@ irradiation times reduce the SDR by factors of 0.56 relative to the SA2 and
       1.0$\times$10$^{7}$ & 3.761$\times$10$^{2}$ & 2.756$\times$10$^{2}$ & 1.895$\times$10$^{2}$ \\
       \hline
 \end{tabular}
-\caption{B4C Results}
+\caption{B4C Results - Considering a point at the external surface of the bioshield plug}
 \label{tab:b4c_summary_scenario}
 \end{table}
 
@@ -306,19 +308,19 @@ irradiation times reduce the SDR by factors of 0.56 relative to the SA2 and
       \hline
       Decay Time (s) & Dose Rate & Dose Rate & Dose Rate \\
       \hline
-      1.0$\times$10$^{5}$ & 2.426$\times$10$^{3}$ & 1.481$\times$10$^{3}$ & 1.478$\times$10$^{3}$ \\
-      1.0$\times$10$^{6}$ & 1.936$\times$10$^{3}$ & 1.481$\times$10$^{3}$ & 1.936$\times$10$^{2}$ \\
-      1.0$\times$10$^{7}$ & 6.750$\times$10$^{2}$ & 4.501$\times$10$^{2}$ & 6.750$\times$10$^{2}$ \\
+      1.0$\times$10$^{5}$ & 2.426$\times$10$^{3}$ & 1.481$\times$10$^{3}$ & 1.133$\times$10$^{3}$ $\pm$ 6.3\%\\
+      1.0$\times$10$^{6}$ & 1.936$\times$10$^{3}$ & 1.481$\times$10$^{3}$ & 2.628$\times$10$^{2}$ $\pm$ 11.0\%\\
+      1.0$\times$10$^{7}$ & 6.750$\times$10$^{2}$ & 4.501$\times$10$^{2}$ & 2.806$\times$10$^{2}$ $\pm$ 11.7\%\\
       \hline
 \end{tabular}
-\caption{No B4C Results}
+\caption{No B4C Results - Considering a point at the external surface of the bioshield plug}
 \label{tab:nob4c_summary_scenario}
 \end{table}
 
 The SDR results for the shortened irradiation times show the expected behavior 
 that shorter irradiation times lead to lower accumulated activities and therfore
-lower SDR.  
-
+lower SDR.  There is also consistent behavior regarding the B$_4$C and no B$_4$C
+cases for each decay time, where the B$_4$C is consistently the lower of the two.
 
 \newpage
 \bibliographystyle{unsrt}
