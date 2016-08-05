@@ -94,10 +94,10 @@
 \section{Introduction}
 The original report \cite{iter_sdr_report} contained results for the baseline
 ITER SA-2 irradiation scenario, included in this report are the two remaining
-scenarios a reduced 5 year scenario and a 10 year irradation scenario. 
+scenarios a reduced 5 year scenario and a 10 year irradiation scenario. 
 \\
 \\
-The models and paramters for transport and activation are entirely unchanged 
+The models and parameters for transport and activation are entirely unchanged 
 and only differ by the irradiation scenario used, which is detailed in Section
 \ref{sec:irradiation_scenario}
 \newpage
@@ -172,16 +172,18 @@ irradiation scenarios \cite{sa2_irradiation}.
 
 \newpage
 \section{Shutdown Photon Transport Results}
+\label{sec:sdr_results}
 \subsection{No B$_4$C}
-The detailed transport data are contained within Appendix C for the 5 year irradation
+\label{sec:sdr_results_nob4c}
+The detailed transport data are contained within Appendix C for the 5 year irradiation
 and Appendix D for the 10 year irradiation. The data for the 5 year irradiation scenario
 at the first decay time - 1$\times$10$^5$ s are shown in Figure \ref{fig:photons_5y_dc1_nob4c_dose} with the
 associated relative error in Figure \ref{fig:photons_5y_dc1_nob4c_relerr}, the second
 decay time - 1$\times$10$^6$ s are shown in Figure \ref{fig:photons_5y_dc2_nob4c_dose} with the
 associated relative error in Figure \ref{fig:photons_5y_dc2_nob4c_relerr} and for the
 third decay times - 1$\times$10$^7$ s are shown in Figure \ref{fig:photons_5y_dc3_nob4c_dose} with the
-associated relative error in Figure \ref{fig:photons_5y_dc3_nob4c_relerr}. Detailed lineouts
-through the decay data are shown are in Figures \ref{fig:photons_5y_nob4c_dose}.
+associated relative error in Figure \ref{fig:photons_5y_dc3_nob4c_relerr}. Detailed line outs
+through the decay data are shown are in Figure \ref{fig:photons_5y_nob4c_dose}.
 \\
 \\
 The data for the 10 year irradiation scenario
@@ -190,8 +192,8 @@ associated relative error in Figure \ref{fig:photons_10y_dc1_nob4c_relerr}, the 
 decay time - 1$\times$10$^6$ s are shown in Figure \ref{fig:photons_10y_dc2_nob4c_dose} with the
 associated relative error in Figure \ref{fig:photons_10y_dc2_nob4c_relerr} and for the
 third decay times - 1$\times$10$^7$ s are shown in Figure \ref{fig:photons_10y_dc3_nob4c_dose} with the
-associated relative error in Figure \ref{fig:photons_10y_dc3_nob4c_relerr}. Detailed lineouts
-through the decay data are shown are in Figures \ref{fig:photons_10y_nob4c_dose}.
+associated relative error in Figure \ref{fig:photons_10y_dc3_nob4c_relerr}. Detailed line outs
+through the decay data are shown are in Figure \ref{fig:photons_10y_nob4c_dose}.
 \newpage
 \begin{figure}[ht!]
 \centering
@@ -208,15 +210,16 @@ through the decay data are shown are in Figures \ref{fig:photons_10y_nob4c_dose}
 \clearpage
 \newpage
 \subsection{B$_4$C}
-The detailed transport data are contained within Appendix A for the 5 year irradation
+\label{sec:sdr_results_b4c}
+The detailed transport data are contained within Appendix A for the 5 year irradiation
 and Appendix B for the 10 year irradiation. The data for the 5 year irradiation scenario
 at the first decay time - 1$\times$10$^5$ s are shown in Figure \ref{fig:photons_5y_dc1_b4c_dose} with the
 associated relative error in Figure \ref{fig:photons_5y_dc1_b4c_relerr}, the second
 decay time - 1$\times$10$^6$ s are shown in Figure \ref{fig:photons_5y_dc2_b4c_dose} with the
 associated relative error in Figure \ref{fig:photons_5y_dc2_b4c_relerr} and for the
 third decay times - 1$\times$10$^7$ s are shown in Figure \ref{fig:photons_5y_dc3_b4c_dose} with the
-associated relative error in Figure \ref{fig:photons_5y_dc3_b4c_relerr}. Detailed lineouts
-through the decay data are shown are in Figures \ref{fig:photons_5y_b4c_dose}.
+associated relative error in Figure \ref{fig:photons_5y_dc3_b4c_relerr}. Detailed line outs
+through the decay data are shown are in Figure \ref{fig:photons_5y_b4c_dose}.
 \\
 \\
 The data for the 10 year irradiation scenario
@@ -225,8 +228,8 @@ associated relative error in Figure \ref{fig:photons_10y_dc1_b4c_relerr}, the se
 decay time - 1$\times$10$^6$ s are shown in Figure \ref{fig:photons_10y_dc2_b4c_dose} with the
 associated relative error in Figure \ref{fig:photons_10y_dc2_b4c_relerr} and for the
 third decay times - 1$\times$10$^7$ s are shown in Figure \ref{fig:photons_10y_dc3_b4c_dose} with the
-associated relative error in Figure \ref{fig:photons_10y_dc3_b4c_relerr}. Detailed lineouts
-through the decay data are shown are in Figures \ref{fig:photons_10y_b4c_dose}.
+associated relative error in Figure \ref{fig:photons_10y_dc3_b4c_relerr}. Detailed line outs
+through the decay data are shown are in Figure \ref{fig:photons_10y_b4c_dose}.
 \newpage
 \begin{figure}[ht!]
 \centering
@@ -243,7 +246,7 @@ through the decay data are shown are in Figures \ref{fig:photons_10y_b4c_dose}.
 
 \clearpage
 \newpage
-\subsection{B$_4$C/No B$_4$C Comparision}
+\subsection{B$_4$C/No B$_4$C Comparison}
 \subsubsection{Decay Time 1 - 1$\times$10$^{5}$ s}
 \begin{figure}[ht!]
 \centering
@@ -295,34 +298,32 @@ for both the B$_4$C and No B$_4$C case at $10^7$ s}
 \newpage
 \subsection{Summary}
 \subsubsection*{B$_4$C}
-There are difference between the two irradiations across the decay times, 
-the 5 year irradiation case values are $\sim$ 0.75 times that of the 10 year 
-case, which is itself $\sim$ 0.75 times that of the full SA-2 scenario. Of note
-is that most points within equatorial port interspace are below 1 mSv/hr.
+As shown in Section \ref{sec:sdr_results_b4c} most points within equatorial port
+interspace are below 1 mSv/hr for the 5 year irradiation. The for the 10 year
+irradiation however, the majority of points across all decay times are
+greater than 1 mSv/hr with the exception of points at positions greater than
+1400 cm where reductions below 1 mSv/hr can be seen.
 \subsubsection*{No B$_4$C}
-Similarly to the B$_4$C case, there are difference between the two irradiations
-across the decay times, the 5 year irradiation case values are $\sim$ 0.75 times
- that of the 10 year case, which is itself $\sim$ 0.75 times that of the full 
-SA-2 scenario. Of note is that for the 10 year irradiation and for all decay 
-times most points in the equatorial port interspace is above 1 mSv/hr. However,
+Of note is that for the 10 year irradiation and for all decay 
+times most points in the equatorial port interspace are above 1 mSv/hr. However,
 for the 5 year irradiation we see that by the second decay time most points 
-are under 1 mSv/hr. 
+are under 1 mSv/hr, but are still in excess of 100 $\mu$Sv/hr. 
 \subsubsection*{Comparison}
 The immediate differences between the B$_4$C and no B$_4$C are the same as in 
 the full report, in the port interspace the SDR is lower adjacent to the 
 bioshield for all cases across all decay times. There are some cases where
 just behind the equatorial port plug flange the dose can be higher in the 
-B$_4$C than in the no B$_4$C case, this is likley due to a large error in the 
+B$_4$C than in the no B$_4$C case, this is likely due to a large error in the 
 activation source there due to a poor estimate of the neutron flux. 
 \clearpage
 \newpage
 \section{Conclusion}
-A set of sequence of neutron activation calculations were peformed for a suite 
-of 3 different irradiation scenarios. It was found that lower the 5 and 10 year
-irradiation times reduce the SDR by factors of 0.56 relative to the SA2 and
-0.75 relative to the SA2 scenario respectively, the full summary of results
-are shown in Tables \ref{tab:b4c_summary_scenario} and 
-\ref{tab:nob4c_summary_scenario}.
+A set of sequence of neutron activation calculations were performed for a suite 
+of 3 different irradiation scenarios. The ITER SA-2 scenario that has a
+fluence of 266.5 MWy, the SA-2 10 year scenario with a fluence of 163.5 MWy and
+the SA-2 5 year scenario with a fluence of 60.5 MWy. A brief summary of
+results chosen at a point on the external surface of the bioshield plug are shown in
+shown in Tables \ref{tab:b4c_summary_scenario} and \ref{tab:nob4c_summary_scenario}.
 
 \begin{table}[ht!]
    \centering      
@@ -359,10 +360,13 @@ are shown in Tables \ref{tab:b4c_summary_scenario} and
 \end{table}
 
 The SDR results for the shortened irradiation times show the expected behavior 
-that shorter irradiation times lead to lower accumulated activities and therfore
+that shorter irradiation times lead to lower accumulated activities and therefore
 lower SDR.  There is also consistent behavior regarding the B$_4$C and no B$_4$C
 cases for each decay time, where the B$_4$C is consistently the lower of the two.
-
+\\
+\\
+These calculations show that even for reduced ITER operations times the SDR
+in key maintenance areas are still above 100 $\mu$Sv/hr. 
 \newpage
 \bibliographystyle{unsrt}
 \bibliography{bibliography}
